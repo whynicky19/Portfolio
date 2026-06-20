@@ -208,18 +208,6 @@
 @media(max-width:900px) { .nav-cta { display: none; } }
 
 /* Mobile sidebar theme toggle */
-.theme-toggle-mobile {
-  display: flex; align-items: center; gap: 14px;
-  width: 100%;
-  font-size: 24px; font-weight: 600; letter-spacing: -0.03em;
-  color: var(--black);
-  background: none; border: none;
-  border-top: 1px solid var(--border);
-  padding: 18px 0; margin-top: auto;
-  cursor: pointer; text-align: left;
-  font-family: var(--font-display);
-}
-.theme-toggle-mobile .toggle-label { flex: 1; }
 
 
 /* ─────────────────────────────────────────
@@ -262,7 +250,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); font-size: 16px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); font-size: 16px; overflow-x: hidden; }
 
 body {
   font-family: var(--font-text);
