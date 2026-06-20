@@ -65,6 +65,8 @@
   overflow: hidden;
   transition: border-color .35s cubic-bezier(.23,1,.32,1), transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1);
   cursor: pointer;
+  display: flex; flex-direction: column;
+  height: 100%;
 }
 .proj-mini:hover { border-color: rgba(0,0,0,0.18); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 .proj-mini-visual {
@@ -72,6 +74,7 @@
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   overflow: hidden; position: relative;
+  flex-shrink: 0;
 }
 .proj-mini-visual img {
   width: 100%; height: 100%;
@@ -79,13 +82,20 @@
   display: block;
 }
 .proj-mini-visual svg { opacity: 0.15; }
-.proj-mini-body { padding: 24px; }
+.proj-mini-body {
+  padding: 24px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
 .proj-mini-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 8px; }
 .proj-mini-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--black); }
 .proj-mini-desc { font-size: 13px; color: var(--gray-4); line-height: 1.6; margin-bottom: 16px; }
-.proj-mini-links { display: flex; gap: 14px; }
+.proj-mini-links { display: flex; gap: 14px; margin-top: auto; }
 .proj-mini-link { font-size: 13px; color: var(--gray-4); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color .2s; }
 .proj-mini-link:hover { color: var(--black); }
+
+/* Equal-height grid rows so cards in the same row stretch together */
+.grid-3 { align-items: stretch; }
 
 /* Filter tabs */
 .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
@@ -239,7 +249,7 @@
           <div class="proj-mini-title">Digital Urpaq</div>
           <div class="proj-mini-desc">Full-stack web application for Digital Urpaq, developed for the Palace of Schoolchildren using Nuxt, FastAPI, and PostgreSQL. The platform includes role-based interfaces, multilingual support, and secure API-driven data management.</div>
           <div class="proj-mini-links">
-            <a href="#" class="proj-mini-link">View<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+            <a href="#" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
           </div>
         </div>
       </div>
@@ -289,6 +299,21 @@
         </div>
       </div>
 
+      <div class="proj-mini">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/freelanceOS.png" alt="FreelanceOS screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Flutter · Dart</div>
+          <div class="proj-mini-title">FreelanceOS</div>
+          <div class="proj-mini-desc">Full-stack mobile application for freelancers, enabling users to track income, estimate taxes, and manage financial records through an intuitive and user-friendly interface.</div>
+          <div class="proj-mini-links">
+            <a href="https://github.com/whynicky" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -310,11 +335,11 @@
 <footer class="apple-footer">
   <div class="footer-links-row">
     <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:your@email.com">Email</a><a href="https://github.com/whynicky" target="_blank">GitHub</a><a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a></div>
-    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="#" target="_blank">Resume (PDF)</a></div>
+    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
+    <span class="footer-copy">Copyright © 2026 Whynicky. All rights reserved.</span>
     <div class="footer-bottom-links"><a href="contact.html">Contact</a><a href="#">Privacy</a></div>
   </div>
 </footer>

@@ -13,13 +13,8 @@
 
 /* Contact split */
 .contact-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-@media(max-width: 768px) {
-  .contact-split { grid-template-columns: 1fr; gap: 48px; }
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 /* Social links */
@@ -54,11 +49,6 @@
 .social-arrow { color: var(--gray-5); }
 .social-arrow svg { display: block; }
 
-/* Form */
-.form-stack { display: flex; flex-direction: column; gap: 16px; }
-.form-row    { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media(max-width:500px){ .form-row{ grid-template-columns:1fr; } }
-
 /* Availability card */
 .avail-card {
   border: 1px solid rgba(0,0,0,0.08);
@@ -76,18 +66,6 @@
 @keyframes breathe { 0%,100%{opacity:.25} 50%{opacity:.9} }
 .avail-text  { font-size: 14px; font-weight: 500; color: var(--black); }
 .avail-sub   { font-size: 12px; color: var(--gray-4); margin-top: 2px; }
-
-/* Success state */
-.form-success {
-  display: none;
-  flex-direction: column; align-items: center;
-  text-align: center; gap: 16px; padding: 48px 32px;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--r-xl);
-  background: var(--gray-7);
-}
-.form-success.show { display: flex; }
-.form-success svg { opacity: 0.55; }
 </style>
 </head>
 <body>
@@ -103,7 +81,7 @@
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="mailto:your@email.com">
+    <a class="nav-cta" href="mailto:alimzhanart@icloud.com">
       Email directly
       <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg>
     </a>
@@ -162,14 +140,14 @@
             </div>
             <div class="social-info">
               <div class="social-name">Email</div>
-              <div class="social-handle">your@email.com</div>
+              <div class="social-handle">alimzhanart@icloud.com</div>
             </div>
             <div class="social-arrow">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12L12 2M5 2h7v7"/></svg>
             </div>
           </a>
 
-          <a href="https://github.com/whynicky" target="_blank" class="social-link">
+          <a href="https://github.com/whynicky19" target="_blank" class="social-link">
             <div class="social-icon">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path d="M9 1.5a7.5 7.5 0 00-2.371 14.617c.375.069.513-.163.513-.361 0-.178-.007-.651-.01-1.278-2.086.453-2.527-.993-2.527-.993-.341-.867-.833-1.098-.833-1.098-.681-.465.051-.456.051-.456.752.053 1.148.772 1.148.772.668 1.145 1.754.814 2.182.622.068-.483.261-.814.475-1.001-1.665-.189-3.417-.832-3.417-3.703 0-.818.293-1.487.772-2.011-.077-.189-.335-.952.073-1.985 0 0 .63-.202 2.063.769A7.18 7.18 0 019 5.288a7.18 7.18 0 011.876.253c1.432-.971 2.062-.769 2.062-.769.409 1.033.151 1.796.074 1.985.481.524.771 1.193.771 2.011 0 2.879-1.755 3.512-3.426 3.697.269.232.509.69.509 1.39 0 1.004-.009 1.813-.009 2.059 0 .2.135.434.517.361A7.502 7.502 0 009 1.5z" stroke="#1d1d1f" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
@@ -177,28 +155,14 @@
             </div>
             <div class="social-info">
               <div class="social-name">GitHub</div>
-              <div class="social-handle">github.com/whynicky</div>
+              <div class="social-handle">github.com/whynicky19</div>
             </div>
             <div class="social-arrow">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12L12 2M5 2h7v7"/></svg>
             </div>
           </a>
 
-          <a href="https://linkedin.com/in/whynicky" target="_blank" class="social-link">
-            <div class="social-icon">
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <rect x="2" y="2" width="14" height="14" rx="3" stroke="#1d1d1f" stroke-width="1.1"/>
-                <path d="M5.5 7.5v5M5.5 5.5v.01M8.5 12.5v-3a1.5 1.5 0 013 0v3M8.5 9.5v3" stroke="#1d1d1f" stroke-width="1.1" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="social-info">
-              <div class="social-name">LinkedIn</div>
-              <div class="social-handle">linkedin.com/in/whynicky</div>
-            </div>
-            <div class="social-arrow">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12L12 2M5 2h7v7"/></svg>
-            </div>
-          </a>
+          
 
           <a href="https://t.me/whynicky" target="_blank" class="social-link">
             <div class="social-icon">
@@ -243,53 +207,6 @@
         </div>
       </div>
 
-      <!-- Right: form -->
-      <div class="fade-up" style="animation-delay:.15s;">
-        <p class="t-eyebrow" style="margin-bottom:20px;">Send a message</p>
-
-        <form class="form-stack" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
-          <div class="form-row">
-            <div>
-              <label class="form-label" for="fname">First name</label>
-              <input class="input" type="text" id="fname" name="fname" placeholder="Alex" required>
-            </div>
-            <div>
-              <label class="form-label" for="lname">Last name</label>
-              <input class="input" type="text" id="lname" name="lname" placeholder="Kim">
-            </div>
-          </div>
-          <div>
-            <label class="form-label" for="email">Email address</label>
-            <input class="input" type="email" id="email" name="email" placeholder="alex@company.com" required>
-          </div>
-          <div>
-            <label class="form-label" for="subject">Subject</label>
-            <input class="input" type="text" id="subject" name="subject" placeholder="Job opportunity / Collaboration / Just saying hi">
-          </div>
-          <div>
-            <label class="form-label" for="message">Message</label>
-            <textarea class="textarea" id="message" name="message" placeholder="Tell me about the project, role, or idea..." required style="min-height:140px;"></textarea>
-          </div>
-          <div>
-            <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; justify-content:center; padding:14px 24px; font-size:15px;">
-              Send message
-            </button>
-          </div>
-          <p style="font-size:12px; color:var(--gray-5); text-align:center; margin-top:4px;">
-            Usually respond within 24 hours.
-          </p>
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <circle cx="22" cy="22" r="20" stroke="#1d1d1f" stroke-width="1.5"/>
-            <path d="M14 22l6 6 10-12" stroke="#1d1d1f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3 style="font-size:20px; font-weight:700; letter-spacing:-0.03em;">Message sent.</h3>
-          <p style="font-size:14px; color:var(--gray-4); max-width:280px; line-height:1.6;">Thanks for reaching out. I'll get back to you within 24 hours.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -330,7 +247,7 @@
           <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="rgba(0,0,0,0.35)" stroke-width="1.3" stroke-linecap="round" style="flex-shrink:0; transition:transform .25s;"><path d="M3 6l5 5 5-5"/></svg>
         </button>
         <div class="faq-body" style="overflow:hidden; max-height:0; transition:max-height .3s ease;">
-          <p style="font-size:15px; color:var(--gray-4); line-height:1.7; padding-bottom:22px;">Yes — hackathons are where I do some of my best work. I've competed in 8+ and know how to contribute under real time pressure. Reach out with the event details.</p>
+          <p style="font-size:15px; color:var(--gray-4); line-height:1.7; padding-bottom:22px;">Yes — hackathons are where I do some of my best work. I've competed in 3+ and know how to contribute under real time pressure. Reach out with the event details.</p>
         </div>
       </div>
 
@@ -353,63 +270,18 @@
 <!-- FOOTER -->
 <footer class="apple-footer">
   <div class="footer-links-row">
-    <div class="footer-col">
-      <div class="footer-col-title">Portfolio</div>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Projects</div>
-      <a href="projects.html">Chatra Academy</a>
-      <a href="projects.html">Portfolio Site</a>
-      <a href="projects.html">FastAPI Template</a>
-      <a href="projects.html">Hackathon MVP</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Connect</div>
-      <a href="mailto:your@email.com">Email</a>
-      <a href="https://github.com/whynicky" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a>
-      <a href="https://t.me/whynicky" target="_blank">Telegram</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Resources</div>
-      <a href="#" target="_blank">Resume (PDF)</a>
-      <a href="https://github.com/whynicky" target="_blank">Open Source</a>
-    </div>
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
-    <div class="footer-bottom-links">
-      <a href="contact.html">Contact</a>
-      <a href="#">Privacy</a>
-    </div>
+    <span class="footer-copy">Copyright © 2026 Whynicky. All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="contact.html">Contact</a><a href="#">Privacy</a></div>
   </div>
 </footer>
 
 <script src="app.js"></script>
 <script>
-// ── FORM SUBMIT ──
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  const form = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-
-  // Simulate sending
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  btn.style.opacity = '0.6';
-
-  setTimeout(() => {
-    form.style.display = 'none';
-    success.classList.add('show');
-  }, 1200);
-}
-
 // ── FAQ ACCORDION ──
 function toggleFaq(btn) {
   const body = btn.nextElementSibling;
