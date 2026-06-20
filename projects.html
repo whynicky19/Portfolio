@@ -17,10 +17,9 @@
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
-/* ── PROJECTS PAGE ── */
+
 .page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
 
-/* Project cards — Apple product-page style */
 .proj-feature {
   display: grid; grid-template-columns: 1fr 1fr;
   border-top: 1px solid rgba(0,0,0,0.08);
@@ -51,7 +50,7 @@
   .proj-feature:nth-child(even) .proj-f-visual { order: 0; }
   .proj-feature:nth-child(even) .proj-f-body   { order: 0; }
   .proj-f-visual { min-height: 280px; }
-  .proj-f-body { padding: 48px 28px; }
+  .proj-f-body { padding: 48px 20px; }
 }
 @media(max-width:600px){
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
@@ -76,7 +75,6 @@
 .proj-f-chips { display: flex; gap: 7px; flex-wrap: wrap; }
 .proj-f-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-/* Small project grid */
 .proj-mini {
   border: 1px solid rgba(0,0,0,0.08);
   border-radius: var(--r-lg);
@@ -113,10 +111,8 @@
 .proj-mini-link { font-size: 13px; color: var(--gray-4); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color .2s; }
 .proj-mini-link:hover { color: var(--black); }
 
-/* Equal-height grid rows so cards in the same row stretch together */
 .grid-3 { align-items: stretch; }
 
-/* Filter tabs */
 .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
 .filter-tab {
   padding: 8px 18px; border-radius: 980px;
@@ -132,7 +128,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="apple-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">Whynicky</a>
@@ -163,7 +158,6 @@
 </nav>
 <div class="scroll-progress"><div class="scroll-bar"></div></div>
 
-<!-- HERO -->
 <section class="page-hero section">
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Portfolio</p>
@@ -172,10 +166,9 @@
   </div>
 </section>
 
-<!-- FEATURED PROJECTS — Apple product-page alternating layout -->
 <section id="chatra" class="proj-feature">
   <div class="proj-f-visual slide-left">
-    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    
     <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
   </div>
   <div class="proj-f-body slide-right">
@@ -200,7 +193,7 @@
 
 <section id="portfolio" class="proj-feature">
   <div class="proj-f-visual slide-right">
-    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    
     <img src="img/macbook-card.svg" alt="Portfolio Website screenshot">
   </div>
   <div class="proj-f-body slide-left">
@@ -222,7 +215,7 @@
 
 <section id="hackathon" class="proj-feature">
   <div class="proj-f-visual slide-left">
-    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    
     <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP screenshot">
   </div>
   <div class="proj-f-body slide-right">
@@ -243,7 +236,6 @@
 
 <hr class="divider">
 
-<!-- SMALLER PROJECTS GRID -->
 <section class="section bg-darker">
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">More work</p>
@@ -252,7 +244,7 @@
 
       <div class="proj-mini" id="api">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/fastqpi.png" alt="FastAPI Template screenshot">
         </div>
         <div class="proj-mini-body">
@@ -270,7 +262,7 @@
 
       <div class="proj-mini">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/digital-urpaq.png" alt="Digital Urpaq screenshot">
         </div>
         <div class="proj-mini-body">
@@ -285,7 +277,7 @@
 
       <div class="proj-mini">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/chatraweb.png" alt="Chatra Web Dashboard screenshot">
         </div>
         <div class="proj-mini-body">
@@ -300,7 +292,7 @@
 
       <div class="proj-mini">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/cs50p.png" alt="CS50P Problem Sets screenshot">
         </div>
         <div class="proj-mini-body">
@@ -315,7 +307,7 @@
 
       <div class="proj-mini">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/crypto-macbook-card.svg" alt="Rugpull Frontend screenshot">
         </div>
         <div class="proj-mini-body">
@@ -330,7 +322,7 @@
 
       <div class="proj-mini">
         <div class="proj-mini-visual">
-          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          
           <img src="img/freelanceOS.png" alt="FreelanceOS screenshot">
         </div>
         <div class="proj-mini-body">
@@ -360,7 +352,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="apple-footer">
   <div class="footer-links-row">
     <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
-/* ── ABOUT PAGE ── */
+
 .page-hero {
   padding: calc(var(--nav-h) + 100px) 32px 100px;
   background: var(--white);
@@ -31,7 +31,6 @@
 }
 .page-hero-inner { position: relative; z-index: 1; }
 
-/* Timeline */
 .timeline { position: relative; }
 .timeline::before {
   content: '';
@@ -55,7 +54,6 @@
 .tl-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; color: var(--black); }
 .tl-desc { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
 
-/* Skills grid */
 .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 10px; }
 .skill-pill {
   border: 1px solid rgba(0,0,0,0.1);
@@ -68,7 +66,6 @@
 .skill-pill-icon { display: flex; justify-content: center; margin-bottom: 10px; opacity: 0.75; }
 .skill-pill-name { font-size: 12px; font-weight: 500; color: var(--gray-4); }
 
-/* Cert grid */
 .cert-rail-card {
   width: 260px; flex-shrink: 0;
   border: 1px solid rgba(0,0,0,0.08);
@@ -96,7 +93,6 @@
 .cert-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; color: var(--black); }
 .cert-org { font-size: 12px; color: var(--gray-4); }
 
-/* Cert rail centering: center when content fits, scroll when it overflows */
 .rail-wrap { display: flex; justify-content: center; }
 .rail { margin: 0 auto; }
 @media(max-width:700px){
@@ -113,7 +109,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="apple-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">Whynicky</a>
@@ -144,7 +139,6 @@
 </nav>
 <div class="scroll-progress"><div class="scroll-bar"></div></div>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero-inner">
     <p class="t-eyebrow fade-up" style="margin-bottom:20px;">About me</p>
@@ -157,7 +151,6 @@
 
 <hr class="divider">
 
-<!-- BIO -->
 <section class="section bg-darker">
   <div class="container">
     <div class="fade-up" style="max-width:680px; margin:0 auto;">
@@ -176,7 +169,6 @@
 
 <hr class="divider">
 
-<!-- STATS -->
 <section class="section bg-black">
   <div class="container">
     <div class="grid-4 stagger">
@@ -202,7 +194,6 @@
 
 <hr class="divider">
 
-<!-- TIMELINE -->
 <section class="section bg-darker">
   <div class="container" style="max-width:700px;">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Journey</p>
@@ -254,7 +245,6 @@
 
 <hr class="divider">
 
-<!-- SKILLS -->
 <section class="section bg-black">
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Tech Stack</p>
@@ -298,7 +288,6 @@
 
 <hr class="divider">
 
-<!-- CERTIFICATES -->
 <section class="section bg-darker">
   <div class="container" style="padding-bottom:0;">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Recognition</p>
@@ -306,7 +295,7 @@
     <p class="t-body-lg fade-up" style="max-width:440px;margin-bottom:48px;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
   </div>
   <div class="rail-wrap">
-    <!-- PHOTO SLOTS: paste your image link in each <img src=""> below. -->
+    
     <div class="rail">
       <div class="cert-rail-card">
         <div class="cert-thumb"><img src="img/hackathon.png" alt="Hackathon certificate"></div>
@@ -334,7 +323,6 @@
 
 <hr class="divider">
 
-<!-- CTA -->
 <section class="section bg-black" style="text-align:center;">
   <div class="container">
     <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Want to work together?</h2>
@@ -346,7 +334,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="apple-footer">
   <div class="footer-links-row">
     <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>

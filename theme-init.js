@@ -1,6 +1,5 @@
-// Task 1: Synchronous theme init — runs in <head>, prevents FOUC.
-// Reads localStorage first, falls back to cookie, then prefers-color-scheme.
-// No writes here — only the user's toggle (in app.js) writes the preference.
+
+
 (function(){
   function readCookie(n){return(document.cookie.match('(?:^|;)\\s*'+n+'=([^;]*)')||[])[1]||null}
   var t;

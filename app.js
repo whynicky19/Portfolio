@@ -1,11 +1,5 @@
-/* ═══════════════════════════════
-   APPLE PORTFOLIO — SHARED JS
-   Vanilla JS, no frameworks
-═══════════════════════════════ */
 
-// ── DARK MODE TOGGLE ──────────────────────────────────────────────────────
-// theme-init.js (loaded in <head>) already applied the correct theme before
-// first paint. This IIFE only wires up the toggle button and cross-tab sync.
+
 (function () {
   const root = document.documentElement;
   const btn  = document.getElementById('themeToggle');
@@ -20,19 +14,19 @@
     ckSet(theme);
   }
 
-  // Bind desktop toggle (#themeToggle) + mobile sidebar toggle (#themeToggleMobile)
+  
   document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(function(b) {
     b.addEventListener('click', function() {
       setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
   });
 
-  // Follow system preference only when user hasn't explicitly chosen a theme
+  
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     if (!lsGet()) root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
   });
 
-  // Sync theme across all other open tabs/windows instantly
+  
   window.addEventListener('storage', e => {
     if (e.key === 'theme' && e.newValue) root.setAttribute('data-theme', e.newValue);
   });
@@ -41,29 +35,29 @@
 (function () {
   'use strict';
 
-  // ── PAGE TRANSITION FADE ──────────────────
+  
   const overlay = document.createElement('div');
   overlay.className = 'page-transition';
   document.body.appendChild(overlay);
 
-  // Fade in on load
+  
   window.addEventListener('load', () => {
     overlay.style.opacity = '0';
   });
 
-  // Fade out on internal link click
+  
   document.addEventListener('click', (e) => {
     const a = e.target.closest('a[href]');
     if (!a) return;
     const href = a.getAttribute('href');
-    // Only intercept same-origin .html links
+    
     if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http') || a.target === '_blank') return;
     e.preventDefault();
     overlay.style.opacity = '1';
     setTimeout(() => { window.location.href = href; }, 300);
   });
 
-  // ── SCROLL PROGRESS BAR ──────────────────
+  
   const bar = document.querySelector('.scroll-bar');
   if (bar) {
     const update = () => {
@@ -74,7 +68,7 @@
     update();
   }
 
-  // ── MOBILE NAV ───────────────────────────
+  
   const burger = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('mobileMenu');
   if (burger && mobileMenu) {
@@ -84,7 +78,7 @@
       else mobileMenu.classList.remove('open');
       document.body.style.overflow = open ? 'hidden' : '';
     });
-    // Close on link click
+    
     mobileMenu.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         burger.classList.remove('open');
@@ -94,7 +88,7 @@
     });
   }
 
-  // ── ACTIVE NAV LINK ──────────────────────
+  
   const page = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-menu a, .nav-mobile a').forEach(a => {
     const href = a.getAttribute('href') || '';
@@ -103,7 +97,7 @@
     }
   });
 
-  // ── INTERSECTION OBSERVER — SCROLL ANIMATIONS ──
+  
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -115,7 +109,7 @@
 
   document.querySelectorAll('.fade-up, .fade-in, .stagger, .slide-left, .slide-right, .scale-up').forEach(el => io.observe(el));
 
-  // ── STAT COUNTERS ──────────────────────
+  
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
     if (isNaN(target)) return;
@@ -142,7 +136,7 @@
 
   document.querySelectorAll('[data-target]').forEach(el => counterIO.observe(el));
 
-  // ── DRAG SCROLL RAILS ──────────────────
+  
   document.querySelectorAll('.rail-wrap').forEach(wrap => {
     let isDown = false, startX, scrollLeft;
     wrap.addEventListener('mousedown', e => {
@@ -159,7 +153,7 @@
     });
   });
 
-  // ── PARALLAX HERO TEXT ─────────────────
+  
   const heroText = document.querySelector('.hero-parallax');
   if (heroText) {
     window.addEventListener('scroll', () => {
@@ -167,7 +161,7 @@
     }, { passive: true });
   }
 
-  // ── RIPPLE EFFECT on all .btn-primary ──
+  
   const rippleCSS = document.createElement('style');
   rippleCSS.textContent = `
     @keyframes _ripple { to { transform:scale(1); opacity:0; } }
@@ -195,7 +189,7 @@
     });
   });
 
-  // ── NAV SHRINK on scroll ──
+  
   const nav = document.querySelector('.apple-nav');
   const progressBar = document.querySelector('.scroll-progress');
   if (nav) {
@@ -221,7 +215,7 @@
     }, { passive: true });
   }
 
-  // ── SMOOTH ANCHOR SCROLL ──
+  
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -235,14 +229,13 @@
     });
   });
 
-  // ── IMAGE LAZY LOAD polyfill hint ──
+  
   document.querySelectorAll('img').forEach(img => {
     if (!img.loading) img.loading = 'lazy';
   });
 
 })();
 
-// ── BACK TO TOP ─────────────────────────────────────────────────────────
 (function () {
   const btn = document.createElement('button');
   btn.className = 'back-top';
