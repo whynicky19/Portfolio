@@ -5,6 +5,6 @@
   var t;
   try{t=localStorage.getItem('theme')}catch(e){}
   if(!t)t=readCookie('theme');
-  if(!t)t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  if(!t)t='light';
   document.documentElement.setAttribute('data-theme',t);
 })();
