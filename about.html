@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Whynicky</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── ABOUT PAGE ── */
+.page-hero {
+  padding: calc(var(--nav-h) + 100px) 32px 100px;
+  background: var(--white);
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,0,0,0.035) 0%, transparent 70%);
+}
+.page-hero-inner { position: relative; z-index: 1; }
+
+/* Timeline */
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 0; top: 8px; bottom: 8px;
+  width: 1px; background: rgba(0,0,0,0.12);
+}
+.tl-item {
+  display: grid; grid-template-columns: 24px 1fr;
+  gap: 0 28px; padding-bottom: 48px;
+  position: relative;
+}
+.tl-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--white); border: 1px solid rgba(0,0,0,0.4);
+  margin-top: 5px; flex-shrink: 0;
+  position: relative; z-index: 1;
+  margin-left: -4px;
+}
+.tl-body {}
+.tl-year { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 6px; }
+.tl-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; color: var(--black); }
+.tl-desc { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
+
+/* Skills grid */
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 10px; }
+.skill-pill {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: var(--r-lg);
+  background: rgba(0,0,0,0.025);
+  padding: 20px 16px; text-align: center;
+  transition: background .25s cubic-bezier(.23,1,.32,1), transform .25s cubic-bezier(.23,1,.32,1);
+}
+.skill-pill:hover { background: rgba(0,0,0,0.05); transform: translateY(-2px); }
+.skill-pill-icon { display: flex; justify-content: center; margin-bottom: 10px; opacity: 0.75; }
+.skill-pill-name { font-size: 12px; font-weight: 500; color: var(--gray-4); }
+
+/* Photo + text split */
+.bio-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+@media(max-width:768px){ .bio-split{ grid-template-columns:1fr; gap:40px; } }
+.bio-photo {
+  aspect-ratio: 4/5; border-radius: var(--r-xl);
+  background: var(--gray-7);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+}
+.bio-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.bio-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.12) 0%, transparent 60%);
+}
+.bio-photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.bio-photo-placeholder svg { opacity: 0.2; }
+.bio-photo-placeholder span { font-size: 11px; color: var(--gray-5); }
+
+/* Cert grid */
+.cert-rail-card {
+  width: 260px; flex-shrink: 0;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--r-lg);
+  background: var(--white);
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.23,1,.32,1), border-color .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1);
+}
+.cert-rail-card:hover { transform: translateY(-4px); border-color: rgba(0,0,0,0.18); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.cert-thumb {
+  height: 150px; background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden; position: relative;
+}
+.cert-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cert-thumb svg { opacity: 0.2; }
+.cert-info { padding: 18px; }
+.cert-cat { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 5px; }
+.cert-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; color: var(--black); }
+.cert-org { font-size: 12px; color: var(--gray-4); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="apple-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Whynicky</a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Say hello <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg></a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a>
+</nav>
+<div class="scroll-progress"><div class="scroll-bar"></div></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <p class="t-eyebrow fade-up" style="margin-bottom:20px;">About me</p>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Student.<br>Builder.<br>Competitor.</h1>
+    <p class="t-body-xl fade-up" style="max-width:540px;margin:28px auto 0;animation-delay:.25s;">
+      I'm a Computer Science student in Petropavl, Kazakhstan — building real products with Flutter, Python, and FastAPI while competing in hackathons and chasing international opportunities.
+    </p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BIO SPLIT -->
+<section class="section bg-darker">
+  <div class="container">
+    <div class="bio-split">
+      <div class="bio-photo fade-in">
+        <!-- PHOTO SLOT: paste your image link in src="" below. -->
+        <img src="img/me.jpeg" alt="Whynicky">
+      </div>
+      <div class="fade-up">
+        <p class="t-eyebrow" style="margin-bottom:16px;">The story</p>
+        <h2 class="t-headline-md" style="margin-bottom:24px;">From curiosity<br>to craft.</h2>
+        <p class="t-body-lg" style="margin-bottom:18px;">My journey started in 2022 when I enrolled in Computer Science and wrote my first line of code. What began as a requirement became an obsession.</p>
+        <p class="t-body-lg" style="margin-bottom:18px;">I built <strong style="color:var(--black)">Chatra Academy</strong> — a complete educational platform — from scratch, handling everything from the Flutter mobile app to the FastAPI backend and Nuxt.js web dashboard.</p>
+        <p class="t-body-lg" style="margin-bottom:32px;">Today I'm competing in hackathons across Kazakhstan, studying Harvard's CS50P, and building toward international opportunities in tech.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="projects.html" class="btn btn-primary">See my work</a>
+          <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STATS -->
+<section class="section bg-black">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div>
+        <div class="stat-num" data-target="3" data-suffix="+">0+</div>
+        <div class="stat-label">Hackathons entered</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="7" data-suffix="+">0+</div>
+        <div class="stat-label">Projects completed</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="5" data-suffix="+">0+</div>
+        <div class="stat-label">Certificates earned</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="11" data-suffix="+">0+</div>
+        <div class="stat-label">Technologies learned</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TIMELINE -->
+<section class="section bg-darker">
+  <div class="container" style="max-width:700px;">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Journey</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:52px;">The road so far.</h2>
+    <div class="timeline fade-up">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-year">2022</div>
+          <div class="tl-title">Enrolled in Computer Science</div>
+          <div class="tl-desc">Began university studies in Petropavl. Wrote my first programs in Python. Discovered that building things with code was the most satisfying thing I'd ever done.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-year">2023</div>
+          <div class="tl-title">First Hackathon — Top 3</div>
+          <div class="tl-desc">Competed in my first national hackathon. Built a working MVP in 48 hours, pitched it to a panel of judges, and finished in the top 3. Completely changed how I think about building software.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-year">2023–2024</div>
+          <div class="tl-title">Mastered Flutter & Full-Stack</div>
+          <div class="tl-desc">Went deep on Flutter/Dart for mobile, FastAPI for backend, and Vue/Nuxt for web. Built Chatra Academy — a complete educational platform used in real classrooms.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-year">2024</div>
+          <div class="tl-title">Harvard CS50P</div>
+          <div class="tl-desc">Completed Harvard's Python course (CS50P) to deepen my foundations. Strict about writing code manually — not copy-pasting or AI-generating — to actually learn.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <div class="tl-year">2025</div>
+          <div class="tl-title">International Ambitions</div>
+          <div class="tl-desc">Competing in a university competition with a potential travel prize to the United States. Building a competitive portfolio to apply for international programs and employment in global tech.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="section bg-black">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Tech Stack</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Tools I build with.</h2>
+    <div class="skill-grid stagger">
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M9 19l5-10 5 10M10.5 16h7" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-name">Python</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v20M4 9l10-5 10 5M4 19l10 5 10-5" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="skill-pill-name">FastAPI</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="7" y="2" width="14" height="24" rx="3" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="14" cy="21" r="1.5" fill="#1d1d1f"/></svg></div>
+        <div class="skill-pill-name">Flutter</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#1d1d1f" stroke-width="1.2"/><path d="M9 14h10M14 9v10" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-name">Dart</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h20M4 14h20M4 21h20" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-name">JavaScript</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><polygon points="14,3 25,9 25,19 14,25 3,19 3,9" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="14" cy="14" r="4" stroke="#1d1d1f" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-name">Vue / Nuxt</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="14" cy="14" r="10" stroke="#1d1d1f" stroke-width="1.2"/><ellipse cx="14" cy="14" rx="5.5" ry="10" stroke="#1d1d1f" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-name">React</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="10" rx="8" ry="4" stroke="#1d1d1f" stroke-width="1.2"/><path d="M6 10v8c0 2.21 3.582 4 8 4s8-1.79 8-4v-8" stroke="#1d1d1f" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-name">PostgreSQL</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="8" width="14" height="14" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M9 8V6a2 2 0 012-2h10a2 2 0 012 2v14a2 2 0 01-2 2h-2" stroke="#1d1d1f" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-name">Docker</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="7" r="3" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="6" cy="21" r="3" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="22" cy="21" r="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M14 10v4M14 14l-5 4M14 14l5 4" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-name">Git</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M7 14h14M7 10h8M7 18h6" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-name">Linux</div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M7 7h14M7 14h10M7 21h12" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/><path d="M22 16l-3 5h6z" fill="#1d1d1f" opacity=".6"/></svg></div>
+        <div class="skill-pill-name">TypeScript</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CERTIFICATES -->
+<section class="section bg-darker">
+  <div class="container" style="padding-bottom:0;">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Recognition</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:12px;">Certificates & Awards.</h2>
+    <p class="t-body-lg fade-up" style="max-width:440px;margin-bottom:48px;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
+  </div>
+  <div class="rail-wrap">
+    <!-- PHOTO SLOTS: paste your image link in each <img src=""> below. -->
+    <div class="rail">
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/cert-cs50p.jpg" alt="CS50P certificate"></div>
+        <div class="cert-info"><div class="cert-cat">Harvard Online</div><div class="cert-name">CS50P — Python</div><div class="cert-org">Harvard University · 2024</div></div>
+      </div>
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/aisana.png" alt="CS50x certificate"></div>
+        <div class="cert-info"><div class="cert-cat">AI-SANA</div><div class="cert-name">AI-SANA</div><div class="cert-org">University · 2026</div></div>
+      </div>
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/cert-hackathon.jpg" alt="Hackathon Top 3 certificate"></div>
+        <div class="cert-info"><div class="cert-cat">Hackathon</div><div class="cert-name">Top 3 Finalist</div><div class="cert-org">National IT Hackathon · 2023</div></div>
+      </div>
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/cert-flutter-dart.jpg" alt="Flutter and Dart certificate"></div>
+        <div class="cert-info"><div class="cert-cat">Mobile Dev</div><div class="cert-name">Flutter & Dart</div><div class="cert-org">Udemy · 2024</div></div>
+      </div>
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/cert-fullstack-js.jpg" alt="Full-Stack JavaScript certificate"></div>
+        <div class="cert-info"><div class="cert-cat">Web Dev</div><div class="cert-name">Full-Stack JavaScript</div><div class="cert-org">Hexlet · 2024</div></div>
+      </div>
+      <div class="cert-rail-card">
+        <div class="cert-thumb"><img src="img/cert-deans-list.jpg" alt="Dean's List Achievement certificate"></div>
+        <div class="cert-info"><div class="cert-cat">University</div><div class="cert-name">Dean's List Achievement</div><div class="cert-org">University · 2023</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section class="section bg-black" style="text-align:center;">
+  <div class="container">
+    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Want to work together?</h2>
+    <p class="t-body-xl fade-up" style="max-width:480px;margin:0 auto 36px;">I'm open to internships, freelance projects, hackathon teams, and full-time roles.</p>
+    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="projects.html" class="btn btn-ghost">See my projects</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="apple-footer">
+  <div class="footer-links-row">
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:your@email.com">Email</a><a href="https://github.com/whynicky" target="_blank">GitHub</a><a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="#" target="_blank">Resume (PDF)</a><a href="https://github.com/whynicky" target="_blank">Open Source</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="contact.html">Contact</a><a href="#">Privacy</a></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

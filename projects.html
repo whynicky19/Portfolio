@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Whynicky</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── PROJECTS PAGE ── */
+.page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
+
+/* Project cards — Apple product-page style */
+.proj-feature {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.proj-feature:nth-child(even) .proj-f-visual { order: 2; }
+.proj-feature:nth-child(even) .proj-f-body   { order: 1; }
+.proj-f-visual {
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 480px; position: relative; overflow: hidden;
+  padding: 0;
+}
+.proj-f-visual img {
+  width: 100%; height: 100%;
+  max-width: 100%; max-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+}
+.proj-f-visual-inner { opacity: 0.15; }
+.proj-f-body {
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+  background: var(--white); gap: 16px;
+}
+@media(max-width:768px){
+  .proj-feature { grid-template-columns: 1fr; }
+  .proj-feature:nth-child(even) .proj-f-visual { order: 0; }
+  .proj-feature:nth-child(even) .proj-f-body   { order: 0; }
+  .proj-f-visual { min-height: 280px; }
+  .proj-f-body { padding: 48px 28px; }
+}
+
+.proj-number {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-5);
+}
+.proj-f-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700; letter-spacing: -0.04em; line-height: 1.05;
+  color: var(--black);
+}
+.proj-f-desc { font-size: 15px; color: var(--gray-4); line-height: 1.7; max-width: 420px; }
+.proj-f-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+.proj-f-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* Small project grid */
+.proj-mini {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--r-lg);
+  background: var(--gray-8);
+  overflow: hidden;
+  transition: border-color .35s cubic-bezier(.23,1,.32,1), transform .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1);
+  cursor: pointer;
+}
+.proj-mini:hover { border-color: rgba(0,0,0,0.18); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.proj-mini-visual {
+  height: 180px; background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden; position: relative;
+}
+.proj-mini-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.proj-mini-visual svg { opacity: 0.15; }
+.proj-mini-body { padding: 24px; }
+.proj-mini-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 8px; }
+.proj-mini-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--black); }
+.proj-mini-desc { font-size: 13px; color: var(--gray-4); line-height: 1.6; margin-bottom: 16px; }
+.proj-mini-links { display: flex; gap: 14px; }
+.proj-mini-link { font-size: 13px; color: var(--gray-4); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color .2s; }
+.proj-mini-link:hover { color: var(--black); }
+
+/* Filter tabs */
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+.filter-tab {
+  padding: 8px 18px; border-radius: 980px;
+  font-size: 13px; font-weight: 500;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: transparent; color: var(--gray-4);
+  cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+  font-family: var(--font-text);
+}
+.filter-tab:hover { background: rgba(0,0,0,0.04); }
+.filter-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="apple-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Whynicky</a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Say hello <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg></a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a>
+</nav>
+<div class="scroll-progress"><div class="scroll-bar"></div></div>
+
+<!-- HERO -->
+<section class="page-hero section">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Portfolio</p>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Selected<br>work.</h1>
+    <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Real products built from scratch. Mobile apps, full-stack platforms, and tools that ship to real users.</p>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS — Apple product-page alternating layout -->
+<section id="chatra" class="proj-feature fade-in">
+  <div class="proj-f-visual">
+    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
+  </div>
+  <div class="proj-f-body">
+    <div class="proj-number">01 — Featured</div>
+    <h2 class="proj-f-title">Chatra<br>Academy</h2>
+    <p class="proj-f-desc">A complete educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress. Built end-to-end, deployed in production.</p>
+    <div class="proj-f-chips">
+      <span class="chip">Flutter</span>
+      <span class="chip">Dart</span>
+      <span class="chip">FastAPI</span>
+      <span class="chip">PostgreSQL</span>
+      <span class="chip">Nuxt.js</span>
+      <span class="chip">Docker</span>
+      <span class="chip">Riverpod</span>
+    </div>
+    <div class="proj-f-links">
+      <a href="https://github.com/whynicky" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="#" class="btn btn-ghost">Live Demo</a>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="proj-feature fade-in">
+  <div class="proj-f-visual">
+    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    <img src="img/macbook-card.svg" alt="Portfolio Website screenshot">
+  </div>
+  <div class="proj-f-body">
+    <div class="proj-number">02 — This Site</div>
+    <h2 class="proj-f-title">Portfolio<br>Website</h2>
+    <p class="proj-f-desc">This portfolio — built with vanilla HTML, CSS, and JavaScript. No React, no Vue. Apple-inspired design system with SF Pro typography, scroll animations via Intersection Observer, and a live canvas background.</p>
+    <div class="proj-f-chips">
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">Canvas API</span>
+      <span class="chip">Intersection Observer</span>
+    </div>
+    <div class="proj-f-links">
+      <a href="https://github.com/whynicky" target="_blank" class="btn btn-primary">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section id="hackathon" class="proj-feature fade-in">
+  <div class="proj-f-visual">
+    <!-- PHOTO SLOT: paste your image link in src="" below. -->
+    <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP screenshot">
+  </div>
+  <div class="proj-f-body">
+    <div class="proj-number">03 — Hackathon</div>
+    <h2 class="proj-f-title">Hackathon<br>MVP</h2>
+    <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 3 placement.</p>
+    <div class="proj-f-chips">
+      <span class="chip">Flutter</span>
+      <span class="chip">Python</span>
+      <span class="chip">Firebase</span>
+      <span class="chip">FastAPI</span>
+    </div>
+    <div class="proj-f-links">
+      <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="btn btn-primary">GitHub</a>
+      <a href="#" class="btn btn-ghost">Demo</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SMALLER PROJECTS GRID -->
+<section class="section bg-darker">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">More work</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Other projects.</h2>
+    <div class="grid-3 stagger">
+
+      <div class="proj-mini" id="api">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/fastapi-template.jpg" alt="FastAPI Template screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Python · Docker</div>
+          <div class="proj-mini-title">FastAPI Template</div>
+          <div class="proj-mini-desc">Production-ready boilerplate with JWT auth, PostgreSQL, Docker, and Swagger docs. Start a new API in minutes.</div>
+          <div class="proj-mini-links">
+            <a href="https://github.com/whynicky" target="_blank" class="proj-mini-link">
+              GitHub
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-mini">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/developer-roadmap.jpg" alt="Developer Roadmap screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Product · Content</div>
+          <div class="proj-mini-title">Developer Roadmap</div>
+          <div class="proj-mini-desc">Structured learning roadmap for web, mobile, and startup tracks — curated for the Kazakh and CIS developer market.</div>
+          <div class="proj-mini-links">
+            <a href="#" class="proj-mini-link">View<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-mini">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/chatra-web-dashboard.jpg" alt="Chatra Web Dashboard screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Nuxt.js · i18n</div>
+          <div class="proj-mini-title">Chatra Web Dashboard</div>
+          <div class="proj-mini-desc">Web frontend for Chatra Academy with Kazakh language support, role-based UI, and full API integration.</div>
+          <div class="proj-mini-links">
+            <a href="https://github.com/whynicky" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-mini">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/cs50p-problem-sets.jpg" alt="CS50P Problem Sets screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Python · CS50P</div>
+          <div class="proj-mini-title">CS50P Problem Sets</div>
+          <div class="proj-mini-desc">All Harvard CS50P problem sets completed — written by hand, no AI generation. Pure Python fundamentals practice.</div>
+          <div class="proj-mini-links">
+            <a href="https://github.com/whynicky" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-mini">
+        <div class="proj-mini-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/rugpull-frontend.jpg" alt="Rugpull Frontend screenshot">
+        </div>
+        <div class="proj-mini-body">
+          <div class="proj-mini-tag">Vue 3 · Riverpod</div>
+          <div class="proj-mini-title">Rugpull Frontend</div>
+          <div class="proj-mini-desc">Experimental frontend project exploring Vue 3 composition API, Vite, and TypeScript architectural patterns.</div>
+          <div class="proj-mini-links">
+            <a href="https://github.com/whynicky" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section bg-black" style="text-align:center;">
+  <div class="container">
+    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Have a project in mind?</h2>
+    <p class="t-body-xl fade-up" style="max-width:440px;margin:0 auto 36px;">I'm open to collaborations, freelance work, and interesting problems.</p>
+    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="https://github.com/whynicky" target="_blank" class="btn btn-ghost">View GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="apple-footer">
+  <div class="footer-links-row">
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:your@email.com">Email</a><a href="https://github.com/whynicky" target="_blank">GitHub</a><a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="#" target="_blank">Resume (PDF)</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="contact.html">Contact</a><a href="#">Privacy</a></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

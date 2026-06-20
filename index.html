@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whynicky — Software Developer</title>
+<meta name="description" content="Mobile developer, backend engineer, and builder based in Kazakhstan.">
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ═══════════ INDEX PAGE STYLES ═══════════ */
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-h) + 60px) 32px 100px;
+  position: relative; overflow: hidden;
+  background: var(--white);
+}
+
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.025) 0%, transparent 70%);
+}
+
+/* Animated grid lines */
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse { 0%,100%{opacity:.4} 50%{opacity:.8} }
+
+.hero-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 24px;
+}
+
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-4);
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--black); opacity: 0.4;
+  animation: dotBreathe 3s ease-in-out infinite;
+}
+@keyframes dotBreathe { 0%,100%{opacity:.2} 50%{opacity:.7} }
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 13vw, 160px);
+  font-weight: 700; letter-spacing: -0.055em;
+  line-height: 0.9; color: var(--black);
+  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .2s both;
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-role {
+  font-size: clamp(18px, 2.8vw, 26px);
+  font-weight: 300; letter-spacing: -0.02em;
+  color: var(--gray-4); line-height: 1.4;
+  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .4s both;
+}
+.hero-role b { color: var(--black); font-weight: 500; }
+
+.hero-actions {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .6s both;
+}
+
+.hero-scroll-cue {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: heroFadeUp .9s 1.4s both;
+}
+.hero-scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+  animation: scrollLine 2.5s ease-in-out infinite;
+}
+@keyframes scrollLine { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+.hero-scroll-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-5); }
+
+/* Photo card */
+.hero-photo-wrap {
+  position: relative;
+  width: min(320px, 75vw);
+  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .8s both;
+}
+.hero-photo-card {
+  width: 100%; aspect-ratio: 3/4;
+  border-radius: var(--r-xl);
+  background: var(--gray-7);
+  border: 1px solid rgba(0,0,0,0.08);
+  overflow: hidden; position: relative;
+  box-shadow: 0 60px 120px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.04);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-photo-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-photo-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 12px;
+}
+.hero-photo-placeholder svg { opacity: 0.25; }
+.hero-photo-placeholder span { font-size: 12px; color: var(--gray-5); letter-spacing: 0.05em; }
+.hero-photo-card::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
+}
+.hero-photo-badge {
+  position: absolute; bottom: 16px; left: 16px; right: 16px; z-index: 2;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 14px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+.badge-live {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--black);
+  flex-shrink: 0; animation: dotBreathe 2s infinite;
+}
+.badge-label { font-size: 12px; font-weight: 500; color: var(--black); }
+.badge-sub   { font-size: 11px; color: var(--gray-4); }
+
+/* ── MARQUEE ── */
+.marquee-section {
+  padding: 32px 0; overflow: hidden;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  background: var(--gray-8);
+}
+.marquee-track {
+  display: flex; gap: 0; white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 0 32px;
+  font-size: 14px; font-weight: 500; color: var(--gray-4);
+  letter-spacing: -0.01em;
+}
+.marquee-item svg { opacity: 0.55; flex-shrink: 0; }
+.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-5); }
+
+/* ── FEATURE BENTO ── */
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+.bento-card {
+  border-radius: var(--r-lg); background: var(--gray-7);
+  border: 1px solid rgba(0,0,0,0.07);
+  overflow: hidden; padding: 40px 36px;
+  position: relative;
+  transition: border-color .35s cubic-bezier(.23,1,.32,1),
+              transform .35s cubic-bezier(.23,1,.32,1),
+              box-shadow .35s cubic-bezier(.23,1,.32,1);
+}
+.bento-card:hover {
+  border-color: rgba(0,0,0,0.14);
+  transform: translateY(-3px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+}
+.bento-card.col-8 { grid-column: span 8; }
+.bento-card.col-4 { grid-column: span 4; }
+.bento-card.col-6 { grid-column: span 6; }
+.bento-card.col-12 { grid-column: span 12; }
+@media(max-width:900px){
+  .bento-card.col-8, .bento-card.col-4, .bento-card.col-6 { grid-column: span 12; }
+}
+.bento-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-4); margin-bottom: 12px;
+}
+.bento-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 700; letter-spacing: -0.035em;
+  line-height: 1.1; margin-bottom: 12px;
+  color: var(--black);
+}
+.bento-body { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
+.bento-visual {
+  position: absolute; right: 0; bottom: 0;
+  opacity: 0.06; pointer-events: none;
+}
+
+/* ── FEATURED PROJECT STRIP ── */
+.proj-strip {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 640px;
+}
+.proj-strip-visual {
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 0;
+}
+.proj-strip-visual img {
+  width: 100%; height: 100%;
+  max-width: 100%; max-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: cover;
+}
+.proj-strip-visual svg { opacity: 0.15; }
+.proj-strip-body {
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: center; gap: 20px;
+  background: var(--gray-8);
+}
+@media(max-width:700px){
+  .proj-strip { grid-template-columns: 1fr; }
+  .proj-strip-visual { min-height: 240px; }
+  .proj-strip-body { padding: 48px 32px; }
+}
+
+/* ── TESTIMONIAL STRIP ── */
+.quote-section { background: var(--gray-8); }
+.quote-mark {
+  font-family: Georgia, serif;
+  font-size: 80px; line-height: 0.8;
+  color: rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  display: block;
+}
+.quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 600; letter-spacing: -0.03em;
+  line-height: 1.3; color: var(--black);
+  margin-bottom: 28px;
+}
+.quote-author {
+  display: flex; align-items: center; gap: 14px;
+}
+.quote-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center;
+}
+.quote-name { font-size: 15px; font-weight: 600; color: var(--black); }
+.quote-role { font-size: 13px; color: var(--gray-4); }
+
+/* ── CTA BANNER ── */
+.cta-banner {
+  text-align: center; padding: 120px 32px;
+  position: relative; overflow: hidden;
+  background: var(--white);
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,0,0,0.035) 0%, transparent 70%);
+}
+.cta-banner-inner { position: relative; z-index: 1; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="apple-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Whynicky</a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">
+      Say hello
+      <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg>
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="projects.html">Projects</a>
+  <a href="experience.html">Experience</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<div class="scroll-progress"><div class="scroll-bar"></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content hero-parallax">
+    <p class="hero-eyebrow">
+      <span class="hero-eyebrow-dot"></span>
+      Available for opportunities · Petropavl, Kazakhstan
+    </p>
+    <h1 class="hero-name">Whynicky</h1>
+    <p class="hero-role"><b>Mobile Developer</b> · Frontend Engineer · Builder</p>
+    <div class="hero-actions">
+      <a href="projects.html" class="btn btn-primary">View Projects</a>
+      <a href="about.html" class="btn btn-ghost">About Me</a>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <!-- Repeated twice for seamless loop -->
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 8h6M5 5h6M5 11h4" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Flutter
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 5l6-3 6 3M2 11l6 3 6-3" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      FastAPI
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8h12M8 2a10 10 0 010 12M8 2a10 10 0 000 12" stroke="#1d1d1f" stroke-width="1.2"/></svg>
+      Python
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="2" width="8" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="8" cy="11" r="1" fill="#1d1d1f"/></svg>
+      Dart
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,2 14,5.5 14,10.5 8,14 2,10.5 2,5.5" stroke="#1d1d1f" stroke-width="1.2"/></svg>
+      Vue / Nuxt
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="8" rx="6" ry="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8c0 1.657 2.686 3 6 3s6-1.343 6-3M2 12c0 1.657 2.686 3 6 3s6-1.343 6-3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8v4M14 8v4" stroke="#1d1d1f" stroke-width="1.2"/></svg>
+      PostgreSQL
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="9" height="9" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 5V4a4 4 0 018 0v5a2 2 0 01-2 2h-1" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Docker
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="3" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="13" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M8 6v3M8 9L4 11M8 9l4 2" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Git
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13l4-10 4 10M4.5 9.5h5" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      TypeScript
+    </span><span class="marquee-dot"></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 8h6M5 5h6M5 11h4" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+      Flutter
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 5l6-3 6 3M2 11l6 3 6-3" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      FastAPI
+    </span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#1d1d1f" stroke-width="1.2"/></svg>Python</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="2" width="8" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/></svg>Dart</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,2 14,5.5 14,10.5 8,14 2,10.5 2,5.5" stroke="#1d1d1f" stroke-width="1.2"/></svg>Vue / Nuxt</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="8" rx="6" ry="3" stroke="#1d1d1f" stroke-width="1.2"/></svg>PostgreSQL</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="9" height="9" rx="2" stroke="#1d1d1f" stroke-width="1.2"/></svg>Docker</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="2" stroke="#1d1d1f" stroke-width="1.2"/></svg>Git</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13l4-10 4 10M4.5 9.5h5" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>TypeScript</span><span class="marquee-dot"></span>
+  </div>
+</div>
+
+<!-- BENTO GRID — "What I do" -->
+<section class="section bg-black">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Capabilities</p>
+    <h2 class="t-headline-lg fade-up" style="margin-bottom:64px;">What I build.</h2>
+    <div class="bento fade-up">
+
+      <div class="bento-card col-8">
+        <div class="bento-eyebrow">Mobile Development</div>
+        <h3 class="bento-title">Flutter apps that<br>feel native everywhere.</h3>
+        <p class="bento-body" style="max-width:400px;">Cross-platform iOS & Android apps with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. From concept to App Store.</p>
+        <a href="projects.html" class="btn btn-link" style="margin-top:24px;display:inline-flex;align-items:center;gap:6px;font-size:15px;">
+          See projects
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+        </a>
+        <div class="bento-visual">
+          <svg width="220" height="220" viewBox="0 0 220 220" fill="none"><rect x="60" y="20" width="100" height="180" rx="16" stroke="#1d1d1f" stroke-width="1.5"/><path d="M60 50h100M60 170h100" stroke="#1d1d1f" stroke-width="1"/><circle cx="110" cy="188" r="5" stroke="#1d1d1f" stroke-width="1"/></svg>
+        </div>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="bento-eyebrow">Backend & API</div>
+        <h3 class="bento-title">FastAPI backends. Production ready.</h3>
+        <p class="bento-body">JWT auth, PostgreSQL, Docker. From zero to deployed.</p>
+        <div class="bento-visual">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><rect x="20" y="20" width="120" height="120" rx="12" stroke="#1d1d1f" stroke-width="1.2"/><path d="M40 60h80M40 80h60M40 100h70" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="bento-eyebrow">Hackathons</div>
+        <h3 class="bento-title">8+ competitions entered.</h3>
+        <p class="bento-body">Building working MVPs in 24–48 hours. Pitching to real judges. Finishing in the top.</p>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="bento-eyebrow">Web Frontend</div>
+        <h3 class="bento-title">Vue, Nuxt, and beyond.</h3>
+        <p class="bento-body">Full-stack web dashboards with Nuxt.js, including Kazakh & Russian i18n.</p>
+      </div>
+
+      <div class="bento-card col-4">
+        <div class="bento-eyebrow">Open Source</div>
+        <h3 class="bento-title">Everything ships.</h3>
+        <p class="bento-body">Real code on GitHub. Not just tutorials — actual products people use.</p>
+        <a href="https://github.com/whynicky" target="_blank" class="btn btn-link" style="margin-top:20px;font-size:14px;display:inline-flex;align-items:center;gap:6px;">
+          GitHub
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FEATURED PROJECT -->
+<section class="section-lg bg-darker" style="padding:0;">
+  <div class="proj-strip fade-in">
+    <div class="proj-strip-visual">
+      <!-- PHOTO SLOT: paste your image link in src="" below. -->
+      <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
+    </div>
+    <div class="proj-strip-body">
+      <p class="t-eyebrow">Featured Project</p>
+      <h2 class="t-headline-md" style="margin-top:12px;">Chatra Academy</h2>
+      <p class="t-body-lg" style="margin-top:16px;">A full educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress across platforms.</p>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;">
+        <span class="chip">Flutter</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Nuxt.js</span>
+        <span class="chip">Docker</span>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:28px;align-items:center;">
+        <a href="projects.html" class="btn btn-primary">View project</a>
+        <a href="https://github.com/whynicky" target="_blank" class="btn btn-link" style="font-size:14px;display:inline-flex;align-items:center;gap:5px;">
+          GitHub
+          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- STATS -->
+<section class="section bg-black">
+  <div class="container">
+    <h2 class="t-headline-lg fade-up" style="max-width:600px;margin-bottom:64px;">Numbers that speak for themselves.</h2>
+    <div class="grid-4 stagger">
+      <div>
+        <div class="stat-num" data-target="3" data-suffix="+">0+</div>
+        <div class="stat-label">Hackathons entered</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="7" data-suffix="+">0+</div>
+        <div class="stat-label">Projects completed</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="5" data-suffix="+">0+</div>
+        <div class="stat-label">Certificates earned</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="11" data-suffix="+">0+</div>
+        <div class="stat-label">Technologies mastered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <p class="t-eyebrow" style="margin-bottom:20px;">Ready to build?</p>
+    <h2 class="t-headline-xl" style="margin-bottom:32px;">Let's work<br>together.</h2>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="projects.html" class="btn btn-ghost">See my work</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="apple-footer">
+  <div class="footer-links-row">
+    <div class="footer-col">
+      <div class="footer-col-title">Portfolio</div>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Projects</div>
+      <a href="projects.html">Chatra Academy</a>
+      <a href="projects.html">Portfolio Site</a>
+      <a href="projects.html">FastAPI Template</a>
+      <a href="projects.html">Hackathon MVP</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="mailto:your@email.com">Email</a>
+      <a href="https://github.com/whynicky" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a>
+      <a href="https://t.me/whynicky" target="_blank">Telegram</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="#" target="_blank">Resume (PDF)</a>
+      <a href="https://github.com/whynicky" target="_blank">Open Source</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+/* ── RIPPLE on btn-primary ── */
+document.querySelectorAll('.btn-primary').forEach(btn => {
+  btn.style.position = 'relative';
+  btn.style.overflow = 'hidden';
+  btn.addEventListener('click', function (e) {
+    const r = document.createElement('span');
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 2;
+    r.style.cssText = `
+      position:absolute; border-radius:50%; pointer-events:none;
+      width:${size}px; height:${size}px;
+      left:${e.clientX - rect.left - size/2}px;
+      top:${e.clientY - rect.top - size/2}px;
+      background:rgba(0,0,0,0.12);
+      transform:scale(0); animation:ripple .5s ease-out forwards;
+    `;
+    this.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  });
+});
+
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = '@keyframes ripple{to{transform:scale(1);opacity:0}}';
+document.head.appendChild(rippleStyle);
+</script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience — Whynicky</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
+
+/* Experience cards */
+.exp-card {
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding: 40px 0; display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0 64px; align-items: start;
+}
+@media(max-width:700px){
+  .exp-card { grid-template-columns: 1fr; gap: 12px; }
+}
+.exp-meta { padding-top: 3px; }
+.exp-year { font-size: 13px; font-weight: 600; color: var(--gray-4); letter-spacing: -0.01em; margin-bottom: 4px; }
+.exp-type { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-5); }
+.exp-icon-wrap {
+  width: 40px; height: 40px; border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.03);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.exp-icon-wrap svg { opacity: 0.75; }
+.exp-title { font-size: 19px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 10px; color: var(--black); }
+.exp-desc { font-size: 15px; color: var(--gray-4); line-height: 1.7; max-width: 560px; }
+.exp-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
+
+/* Achievement grid */
+.ach-card {
+  border-radius: var(--r-xl);
+  overflow: hidden; position: relative;
+  aspect-ratio: 4/3;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform .35s cubic-bezier(.23,1,.32,1);
+  cursor: default;
+}
+.ach-card:hover { transform: scale(1.02); }
+.ach-visual {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.ach-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.ach-visual svg { opacity: 0.1; }
+.ach-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(255,255,255,0.92) 0%, transparent 55%);
+}
+.ach-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px 26px; }
+.ach-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 6px; }
+.ach-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 3px; color: var(--black); }
+.ach-sub { font-size: 13px; color: var(--gray-4); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="apple-nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Whynicky</a>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="experience.html" class="active">Experience</a></li><li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Say hello <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg></a>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<nav class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a>
+</nav>
+<div class="scroll-progress"><div class="scroll-bar"></div></div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Background</p>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Experience<br>& Activities.</h1>
+    <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Hackathons, competitions, university events, volunteering, and leadership — the full picture beyond the code.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE LIST -->
+<section class="section bg-black">
+  <div class="container">
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-5 3.5 2 6.5-5-4-5 4 2-6.5L2 8h6z" stroke="#1d1d1f" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-year">2023 – 2025</div>
+        <div class="exp-type">Hackathons</div>
+      </div>
+      <div>
+        <div class="exp-title">Hackathon Competitor</div>
+        <div class="exp-desc">Participated in 8+ hackathons across Kazakhstan. Built working MVPs in 24–48 hour sprints, pitched to panels of industry judges, and learned to make real product decisions under extreme time pressure. Finished Top 3 in the National IT Hackathon.</div>
+        <div class="exp-tags"><span class="chip">Flutter</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Firebase</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 6v8l8 4 8-4V6L10 2zM2 6l8 4M10 10v8M18 6l-8 4" stroke="#1d1d1f" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-year">2022 – Present</div>
+        <div class="exp-type">Education</div>
+      </div>
+      <div>
+        <div class="exp-title">Computer Science Student</div>
+        <div class="exp-desc">Full-time CS student at university in Petropavl, Kazakhstan. Active member of the department — attending technical workshops, participating in academic competitions, and helping organize student coding events.</div>
+        <div class="exp-tags"><span class="chip">Python</span><span class="chip">Algorithms</span><span class="chip">Data Structures</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 10h16M10 2a13 13 0 010 16M10 2a13 13 0 000 16" stroke="#1d1d1f" stroke-width="1.2"/></svg>
+        </div>
+        <div class="exp-year">2024</div>
+        <div class="exp-type">Competition</div>
+      </div>
+      <div>
+        <div class="exp-title">International University Competition</div>
+        <div class="exp-desc">Competing in a national university-level competition with a travel prize to the United States. The portfolio site you're reading right now is part of the submission — built to demonstrate product, design, and engineering skills at an international level.</div>
+        <div class="exp-tags"><span class="chip">Portfolio</span><span class="chip">Design</span><span class="chip">Engineering</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M7 7V5a3 3 0 016 0v2" stroke="#1d1d1f" stroke-width="1.2"/></svg>
+        </div>
+        <div class="exp-year">2024</div>
+        <div class="exp-type">Mobile Dev</div>
+      </div>
+      <div>
+        <div class="exp-title">Flutter Developer — Chatra Academy</div>
+        <div class="exp-desc">Led mobile development for Chatra Academy — a full-stack educational platform. Handled iOS/Android compatibility, Riverpod state management, GoRouter navigation, Dio-based API integration, ngrok tunneling for iOS simulator, and SharedPreferences persistence.</div>
+        <div class="exp-tags"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Riverpod</span><span class="chip">GoRouter</span><span class="chip">Dio</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6" r="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M4 18c0-3.314 2.686-6 6-6s6 2.686 6 6" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="exp-year">2023 – Present</div>
+        <div class="exp-type">Community</div>
+      </div>
+      <div>
+        <div class="exp-title">Tech Community Volunteer</div>
+        <div class="exp-desc">Mentored fellow CS students in programming fundamentals, helped organize and facilitate coding workshops at university, and contributed to building a stronger local developer community in Petropavl.</div>
+        <div class="exp-tags"><span class="chip">Mentoring</span><span class="chip">Teaching</span><span class="chip">Leadership</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M6 5V4a2 2 0 014 0v1" stroke="#1d1d1f" stroke-width="1.2"/><path d="M10 10v3" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="exp-year">2024</div>
+        <div class="exp-type">Presenting</div>
+      </div>
+      <div>
+        <div class="exp-title">Speaker & Presenter</div>
+        <div class="exp-desc">Presented Chatra Academy to faculty panels, potential investors, and competition judges. Developed skills in technical storytelling, live demos, and pitch structure — distilling complex engineering into clear narrative.</div>
+        <div class="exp-tags"><span class="chip">Public Speaking</span><span class="chip">Pitch</span><span class="chip">Demo</span></div>
+      </div>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-meta">
+        <div class="exp-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-4.5 3.5 1.5 6L10 14l-5 3.5 1.5-6L2 8h6z" stroke="#1d1d1f" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="exp-year">2024</div>
+        <div class="exp-type">Harvard Online</div>
+      </div>
+      <div>
+        <div class="exp-title">Harvard CS50P — Certificate</div>
+        <div class="exp-desc">Completed Harvard University's CS50P (Introduction to Programming with Python) course. Strict discipline: every problem set written manually, no AI generation or copy-paste. Built real foundations, not just surface familiarity.</div>
+        <div class="exp-tags"><span class="chip">Python</span><span class="chip">CS50</span><span class="chip">Harvard</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ACHIEVEMENTS -->
+<section class="section bg-darker">
+  <div class="container">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Highlights</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Key achievements.</h2>
+    <div class="grid-3 stagger">
+
+      <div class="ach-card">
+        <div class="ach-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/ach-hackathon.jpg" alt="Hackathon Top 3 Finalist">
+        </div>
+        <div class="ach-overlay"></div>
+        <div class="ach-content">
+          <div class="ach-label">Hackathon</div>
+          <div class="ach-title">Top 3 Finalist</div>
+          <div class="ach-sub">National IT Hackathon · 2023</div>
+        </div>
+      </div>
+
+      <div class="ach-card">
+        <div class="ach-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/ach-cs50p.jpg" alt="Harvard CS50P Certificate">
+        </div>
+        <div class="ach-overlay"></div>
+        <div class="ach-content">
+          <div class="ach-label">Harvard University</div>
+          <div class="ach-title">CS50P Certificate</div>
+          <div class="ach-sub">Programming with Python · 2024</div>
+        </div>
+      </div>
+
+      <div class="ach-card">
+        <div class="ach-visual">
+          <!-- PHOTO SLOT: paste your image link in src="" below. -->
+          <img src="img/ach-chatra.jpg" alt="Chatra Academy product shipped">
+        </div>
+        <div class="ach-overlay"></div>
+        <div class="ach-content">
+          <div class="ach-label">Product</div>
+          <div class="ach-title">Chatra Academy</div>
+          <div class="ach-sub">Full platform shipped · 2024</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TESTIMONIALS -->
+<section class="section bg-black">
+  <div class="container" style="padding-bottom:0;">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Testimonials</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">What people say.</h2>
+  </div>
+  <div class="rail-wrap">
+    <div class="rail" style="padding-bottom:0;">
+      <div style="width:340px;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-xl);background:var(--gray-7);padding:32px;">
+        <div style="font-family:Georgia,serif;font-size:36px;line-height:.8;color:rgba(0,0,0,0.12);margin-bottom:16px;">"</div>
+        <p style="font-size:15px;color:var(--gray-4);line-height:1.7;font-style:italic;margin-bottom:24px;">One of the most driven students I've worked with. Their ability to learn new technologies and ship working products in record time is remarkable.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#1d1d1f" stroke-width="1.1"/><path d="M2 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#1d1d1f" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+          <div><div style="font-size:13px;font-weight:600;">Professor, CS Department</div><div style="font-size:11px;color:var(--gray-4);">University · Petropavl</div></div>
+        </div>
+      </div>
+      <div style="width:340px;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-xl);background:var(--gray-7);padding:32px;">
+        <div style="font-family:Georgia,serif;font-size:36px;line-height:.8;color:rgba(0,0,0,0.12);margin-bottom:16px;">"</div>
+        <p style="font-size:15px;color:var(--gray-4);line-height:1.7;font-style:italic;margin-bottom:24px;">During the hackathon, Whynicky was the backbone of our team. Calm under pressure, shipping features while others were still planning. A true builder.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#1d1d1f" stroke-width="1.1"/><path d="M2 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#1d1d1f" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+          <div><div style="font-size:13px;font-weight:600;">Hackathon Teammate</div><div style="font-size:11px;color:var(--gray-4);">Software Developer</div></div>
+        </div>
+      </div>
+      <div style="width:340px;flex-shrink:0;border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-xl);background:var(--gray-7);padding:32px;">
+        <div style="font-family:Georgia,serif;font-size:36px;line-height:.8;color:rgba(0,0,0,0.12);margin-bottom:16px;">"</div>
+        <p style="font-size:15px;color:var(--gray-4);line-height:1.7;font-style:italic;margin-bottom:24px;">The Chatra platform impressed us — a full-stack product with real attention to UX. Rare to see a student ship something this polished from scratch.</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,0.05);border:1px solid rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="#1d1d1f" stroke-width="1.1"/><path d="M2 17c0-3.866 3.134-7 7-7s7 3.134 7 7" stroke="#1d1d1f" stroke-width="1.1" stroke-linecap="round"/></svg></div>
+          <div><div style="font-size:13px;font-weight:600;">Competition Judge</div><div style="font-size:11px;color:var(--gray-4);">Tech Industry Mentor</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+<section class="section bg-black" style="text-align:center;">
+  <div class="container">
+    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Ready to build something?</h2>
+    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html" class="btn btn-primary">Get in touch</a>
+      <a href="projects.html" class="btn btn-ghost">See projects</a>
+    </div>
+  </div>
+</section>
+
+<footer class="apple-footer">
+  <div class="footer-links-row">
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:your@email.com">Email</a><a href="https://github.com/whynicky" target="_blank">GitHub</a><a href="https://linkedin.com/in/whynicky" target="_blank">LinkedIn</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
+    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="#" target="_blank">Resume (PDF)</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">Copyright © 2025 Whynicky. All rights reserved.</span>
+    <div class="footer-bottom-links"><a href="contact.html">Contact</a><a href="#">Privacy</a></div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
