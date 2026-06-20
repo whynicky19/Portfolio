@@ -5,7 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Whynicky — Software Developer</title>
 <meta name="description" content="Mobile developer, backend engineer, and builder based in Kazakhstan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whynicky19.github.io/Portfolio/">
+<meta property="og:title" content="Whynicky — Software Developer">
+<meta property="og:description" content="Mobile developer, backend engineer, and builder based in Kazakhstan. Flutter · FastAPI · Vue.">
+<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/appstore-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Whynicky — Software Developer">
+<meta name="twitter:description" content="Mobile developer, backend engineer, and builder based in Kazakhstan.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<script src="theme-init.js"></script>
 <style>
 
 /* ═══════════ INDEX PAGE STYLES ═══════════ */
@@ -36,7 +46,6 @@
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
   animation: gridPulse 8s ease-in-out infinite;
 }
-@keyframes gridPulse { 0%,100%{opacity:.4} 50%{opacity:.8} }
 
 .hero-content {
   position: relative; z-index: 1;
@@ -54,7 +63,6 @@
   background: var(--black); opacity: 0.4;
   animation: dotBreathe 3s ease-in-out infinite;
 }
-@keyframes dotBreathe { 0%,100%{opacity:.2} 50%{opacity:.7} }
 
 .hero-name {
   font-family: var(--font-display);
@@ -62,10 +70,6 @@
   font-weight: 700; letter-spacing: -0.055em;
   line-height: 0.9; color: var(--black);
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .2s both;
-}
-@keyframes heroFadeUp {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 .hero-role {
   font-size: clamp(18px, 2.8vw, 26px);
@@ -90,7 +94,6 @@
   background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
   animation: scrollLine 2.5s ease-in-out infinite;
 }
-@keyframes scrollLine { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
 .hero-scroll-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-5); }
 
 /* Photo card */
@@ -151,7 +154,6 @@
   animation: marquee 28s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
-@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 .marquee-item {
   display: inline-flex; align-items: center; gap: 12px;
   padding: 0 32px;
@@ -294,10 +296,16 @@
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="contact.html">
-      Say hello
-      <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg>
-    </a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="nav-cta" href="contact.html">
+        Say hello
+        <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg>
+      </a>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -455,7 +463,7 @@
   <div class="proj-strip">
     <div class="proj-strip-visual slide-left">
       <!-- PHOTO SLOT: paste your image link in src="" below. -->
-      <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
+      <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
     </div>
     <div class="proj-strip-body slide-right">
       <p class="t-eyebrow">Featured Project</p>
@@ -484,7 +492,7 @@
 <!-- STATS -->
 <section class="section bg-black">
   <div class="container">
-    <h2 class="t-headline-lg fade-up" style="max-width:600px;margin-bottom:64px;">Numbers that speak for themselves.</h2>
+    <h2 class="t-headline-lg fade-up text-gradient" style="max-width:600px;margin-bottom:64px;">Numbers that speak for themselves.</h2>
     <div class="grid-4 stagger">
       <div>
         <div class="stat-num" data-target="3" data-suffix="+">0+</div>
@@ -512,7 +520,7 @@
 <section class="cta-banner">
   <div class="cta-banner-inner">
     <p class="t-eyebrow" style="margin-bottom:20px;">Ready to build?</p>
-    <h2 class="t-headline-xl" style="margin-bottom:32px;">Let's work<br>together.</h2>
+    <h2 class="t-headline-xl text-gradient" style="margin-bottom:32px;">Let's work<br>together.</h2>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <a href="contact.html" class="btn btn-primary">Get in touch</a>
       <a href="projects.html" class="btn btn-ghost">See my work</a>
@@ -534,31 +542,5 @@
 </footer>
 
 <script src="app.js"></script>
-<script>
-/* ── RIPPLE on btn-primary ── */
-document.querySelectorAll('.btn-primary').forEach(btn => {
-  btn.style.position = 'relative';
-  btn.style.overflow = 'hidden';
-  btn.addEventListener('click', function (e) {
-    const r = document.createElement('span');
-    const rect = this.getBoundingClientRect();
-    const size = Math.max(rect.width, rect.height) * 2;
-    r.style.cssText = `
-      position:absolute; border-radius:50%; pointer-events:none;
-      width:${size}px; height:${size}px;
-      left:${e.clientX - rect.left - size/2}px;
-      top:${e.clientY - rect.top - size/2}px;
-      background:rgba(0,0,0,0.12);
-      transform:scale(0); animation:ripple .5s ease-out forwards;
-    `;
-    this.appendChild(r);
-    setTimeout(() => r.remove(), 600);
-  });
-});
-
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = '@keyframes ripple{to{transform:scale(1);opacity:0}}';
-document.head.appendChild(rippleStyle);
-</script>
 </body>
 </html>

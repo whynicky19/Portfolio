@@ -3,6 +3,40 @@
    Vanilla JS, no frameworks
 ═══════════════════════════════ */
 
+// ── DARK MODE TOGGLE ──────────────────────────────────────────────────────
+// theme-init.js (loaded in <head>) already applied the correct theme before
+// first paint. This IIFE only wires up the toggle button and cross-tab sync.
+(function () {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeToggle');
+
+  function lsGet()    { try { return localStorage.getItem('theme'); } catch(e) { return null; } }
+  function lsSet(v)   { try { localStorage.setItem('theme', v); } catch(e) {} }
+  function ckSet(v)   { document.cookie = 'theme=' + v + ';path=/;max-age=31536000;SameSite=Lax'; }
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    lsSet(theme);
+    ckSet(theme);
+  }
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // Follow system preference only when user hasn't explicitly chosen a theme
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!lsGet()) root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+  });
+
+  // Sync theme across all other open tabs/windows instantly
+  window.addEventListener('storage', e => {
+    if (e.key === 'theme' && e.newValue) root.setAttribute('data-theme', e.newValue);
+  });
+})();
+
 (function () {
   'use strict';
 
@@ -200,4 +234,19 @@
     if (!img.loading) img.loading = 'lazy';
   });
 
+})();
+
+// ── BACK TO TOP ─────────────────────────────────────────────────────────
+(function () {
+  const btn = document.createElement('button');
+  btn.className = 'back-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V4M4 7l4-4 4 4"/></svg>';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();

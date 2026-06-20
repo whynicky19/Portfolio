@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects — Whynicky</title>
+<meta name="description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whynicky19.github.io/Portfolio/projects.html">
+<meta property="og:title" content="Projects — Whynicky">
+<meta property="og:description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/appstore-card.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Projects — Whynicky">
+<meta name="twitter:description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="style.css">
+<script src="theme-init.js"></script>
 <style>
 /* ── PROJECTS PAGE ── */
 .page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
@@ -132,7 +143,13 @@
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="contact.html">Say hello <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg></a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="nav-cta" href="contact.html">Say hello <svg viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13"><path d="M1 12L12 1M4 1h8v8"/></svg></a>
+    </div>
     <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -145,7 +162,7 @@
 <section class="page-hero section">
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Portfolio</p>
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Selected<br>work.</h1>
+    <h1 class="t-headline-xl fade-up text-gradient" style="animation-delay:.1s;">Selected<br>work.</h1>
     <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Real products built from scratch. Mobile apps, full-stack platforms, and tools that ship to real users.</p>
   </div>
 </section>
@@ -154,7 +171,7 @@
 <section id="chatra" class="proj-feature">
   <div class="proj-f-visual slide-left">
     <!-- PHOTO SLOT: paste your image link in src="" below. -->
-    <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
+    <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
   </div>
   <div class="proj-f-body slide-right">
     <div class="proj-number">01 — Featured</div>
@@ -170,8 +187,8 @@
       <span class="chip">Riverpod</span>
     </div>
     <div class="proj-f-links">
-      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-primary">GitHub</a>
-      <a href="https://chatra.aican.cloud" class="btn btn-ghost">Live Demo</a>
+      <a href="chatra.html" class="btn btn-primary">Case Study</a>
+      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>
@@ -206,7 +223,7 @@
   <div class="proj-f-body slide-right">
     <div class="proj-number">03 — Hackathon</div>
     <h2 class="proj-f-title">Hackathon<br>MVP</h2>
-    <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 3 placement.</p>
+    <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 5 placement.</p>
     <div class="proj-f-chips">
       <span class="chip">Flutter</span>
       <span class="chip">Python</span>
@@ -215,7 +232,6 @@
     </div>
     <div class="proj-f-links">
       <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="btn btn-primary">GitHub</a>
-      <a href="#" class="btn btn-ghost">Demo</a>
     </div>
   </div>
 </section>

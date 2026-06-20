@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://whynicky19.github.io/Portfolio/sitemap.xml
