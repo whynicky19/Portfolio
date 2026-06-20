@@ -20,11 +20,12 @@
     ckSet(theme);
   }
 
-  if (btn) {
-    btn.addEventListener('click', () => {
+  // Bind desktop toggle (#themeToggle) + mobile sidebar toggle (#themeToggleMobile)
+  document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(function(b) {
+    b.addEventListener('click', function() {
       setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
-  }
+  });
 
   // Follow system preference only when user hasn't explicitly chosen a theme
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
@@ -163,7 +164,6 @@
   if (heroText) {
     window.addEventListener('scroll', () => {
       heroText.style.transform = `translateY(${window.scrollY * 0.25}px)`;
-      heroText.style.opacity = Math.max(0, 1 - window.scrollY / 500);
     }, { passive: true });
   }
 
@@ -199,19 +199,25 @@
   const nav = document.querySelector('.apple-nav');
   const progressBar = document.querySelector('.scroll-progress');
   if (nav) {
-    let lastY = 0;
+    let lastY = window.scrollY;
     window.addEventListener('scroll', () => {
       const y = window.scrollY;
-      // Hide nav on scroll down, show on scroll up (Apple behavior)
-      if (y > lastY && y > 80) {
+      const delta = y - lastY;
+      if (y <= 80) {
+        nav.style.transform = 'translateY(0)';
+        nav.style.transition = 'transform .3s ease';
+        if (progressBar) progressBar.classList.remove('nav-hidden');
+      } else if (delta > 6) {
         nav.style.transform = 'translateY(-100%)';
         nav.style.transition = 'transform .3s ease';
         if (progressBar) progressBar.classList.add('nav-hidden');
-      } else {
+        lastY = y;
+      } else if (delta < -6) {
         nav.style.transform = 'translateY(0)';
         if (progressBar) progressBar.classList.remove('nav-hidden');
+        lastY = y;
       }
-      lastY = y;
+      if (Math.abs(delta) > 6) lastY = y;
     }, { passive: true });
   }
 

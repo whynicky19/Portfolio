@@ -89,8 +89,12 @@
 [data-theme="dark"] .cert-thumb { border-bottom-color: var(--border); background: #fff; }
 [data-theme="dark"] .cert-thumb img { background: #fff; }
 [data-theme="dark"] .proj-mini-visual { border-bottom-color: var(--border); background: #fff; }
-[data-theme="dark"] .ach-card    { border-color: var(--border); background: var(--gray-7); }
-[data-theme="dark"] .ach-content { border-top-color: var(--border); background: var(--gray-7); }
+/* Achievement cards stay white in dark mode so images don't float on dark bg */
+[data-theme="dark"] .ach-card    { border-color: rgba(0,0,0,0.1); background: #fff; }
+[data-theme="dark"] .ach-content { border-top-color: rgba(0,0,0,0.08); background: #fff; }
+[data-theme="dark"] .ach-content .ach-label { color: #86868b; }
+[data-theme="dark"] .ach-content .ach-title { color: #1d1d1f; }
+[data-theme="dark"] .ach-content .ach-sub   { color: #86868b; }
 [data-theme="dark"] .skill-pill  { border-color: var(--border); background: var(--overlay-sm); }
 [data-theme="dark"] .skill-pill:hover { background: var(--overlay-md); }
 
@@ -102,6 +106,8 @@
 }
 [data-theme="dark"] .btn-ghost:hover { background: var(--overlay-md); }
 [data-theme="dark"] .btn-primary { background: var(--black); color: var(--white); }
+/* Prevent btn-primary hover from going #000 (black-on-black) in dark mode */
+[data-theme="dark"] .btn-primary:hover { background: #e5e5ea; }
 
 /* Structural */
 [data-theme="dark"] .divider { background: var(--border); }
@@ -167,6 +173,16 @@
 /* Quote mark */
 [data-theme="dark"] .quote-mark { color: rgba(255,255,255,0.1); }
 
+/* SVG icons with hardcoded stroke="#1d1d1f" — flip to light in dark mode */
+[data-theme="dark"] .marquee-item svg   { stroke: rgba(255,255,255,0.6); }
+[data-theme="dark"] .marquee-dot        { background: rgba(255,255,255,0.35); }
+[data-theme="dark"] .skill-pill-icon svg { stroke: var(--black); }
+[data-theme="dark"] .social-icon        { background: var(--overlay-sm); border-color: var(--border); }
+[data-theme="dark"] .social-icon svg    { stroke: var(--black); }
+[data-theme="dark"] .bento-visual svg * { stroke: var(--black); }
+[data-theme="dark"] .hero-photo-badge .badge-live { background: var(--black); }
+[data-theme="dark"] .quote-avatar svg  { stroke: var(--black); }
+
 /* ─────────────────────────────────────────
    THEME TOGGLE BUTTON
 ───────────────────────────────────────── */
@@ -190,6 +206,20 @@
 [data-theme="dark"] .icon-moon { display: block; }
 
 @media(max-width:900px) { .nav-cta { display: none; } }
+
+/* Mobile sidebar theme toggle */
+.theme-toggle-mobile {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%;
+  font-size: 24px; font-weight: 600; letter-spacing: -0.03em;
+  color: var(--black);
+  background: none; border: none;
+  border-top: 1px solid var(--border);
+  padding: 18px 0; margin-top: auto;
+  cursor: pointer; text-align: left;
+  font-family: var(--font-display);
+}
+.theme-toggle-mobile .toggle-label { flex: 1; }
 
 
 /* ─────────────────────────────────────────

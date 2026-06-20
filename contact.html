@@ -158,6 +158,11 @@
   <a href="projects.html">Projects</a>
   <a href="experience.html">Experience</a>
   <a href="contact.html">Contact</a>
+  <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
+    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <span class="toggle-label">Appearance</span>
+  </button>
 </nav>
 <div class="scroll-progress"><div class="scroll-bar"></div></div>
 
@@ -177,6 +182,15 @@
 <!-- CONTACT SPLIT -->
 <section class="section bg-black">
   <div class="container">
+    <!-- Availability banner (full-width above the grid) -->
+    <div class="avail-card fade-up" style="max-width:900px;margin:0 auto 48px;">
+      <div class="avail-dot"></div>
+      <div>
+        <div class="avail-text">Available for opportunities</div>
+        <div class="avail-sub">Internships · Freelance · Full-time · Hackathon teams</div>
+      </div>
+    </div>
+
     <div class="contact-grid">
 
       <!-- Left: form -->
@@ -204,17 +218,10 @@
         </form>
       </div>
 
-      <!-- Right: info + socials -->
+      <!-- Right: socials -->
       <div class="fade-up">
-        <div class="avail-card">
-          <div class="avail-dot"></div>
-          <div>
-            <div class="avail-text">Available for opportunities</div>
-            <div class="avail-sub">Internships · Freelance · Full-time · Hackathon teams</div>
-          </div>
-        </div>
-
         <p class="t-eyebrow" style="margin-bottom:16px;">Direct links</p>
+        <h2 class="t-headline-md" style="margin-bottom:28px;">Find me<br>online.</h2>
 
         <div class="social-row">
 
@@ -382,35 +389,49 @@ function toggleFaq(btn) {
   const btn  = document.getElementById('cfSubmit');
   if (!form) return;
 
+  function showSuccess() {
+    form.innerHTML = `
+      <div style="text-align:center;padding:48px 0;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--overlay-sm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <p style="font-size:22px;font-weight:700;letter-spacing:-0.03em;color:var(--black);">Message sent.</p>
+        <p style="color:var(--gray-4);margin-top:10px;font-size:15px;">I'll get back to you within 24 hours.</p>
+      </div>`;
+  }
+
+  function mailtoFallback(data) {
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const message = data.get('message') || '';
+    const subject = encodeURIComponent('Portfolio contact from ' + name);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+    window.location.href = 'mailto:alimzhanart@icloud.com?subject=' + subject + '&body=' + body;
+  }
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const orig = btn.textContent;
     btn.textContent = 'Sending…';
     btn.disabled = true;
+
+    const data = new FormData(form);
 
     try {
       const res = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(form),
+        body: data,
         headers: { 'Accept': 'application/json' }
       });
 
       if (res.ok) {
-        form.innerHTML = `
-          <div style="text-align:center;padding:48px 0;">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--overlay-sm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            </div>
-            <p style="font-size:22px;font-weight:700;letter-spacing:-0.03em;color:var(--black);">Message sent.</p>
-            <p style="color:var(--gray-4);margin-top:10px;font-size:15px;">I'll get back to you within 24 hours.</p>
-          </div>`;
+        showSuccess();
       } else {
-        btn.textContent = 'Error — try again';
-        btn.disabled = false;
+        mailtoFallback(data);
+        showSuccess();
       }
     } catch {
-      btn.textContent = 'Error — try again';
-      btn.disabled = false;
+      mailtoFallback(data);
+      showSuccess();
     }
   });
 })();
