@@ -184,6 +184,13 @@
 @media(max-width:900px){
   .bento-card.col-8, .bento-card.col-4, .bento-card.col-6 { grid-column: span 12; }
 }
+@media(max-width:600px){
+  .hero { padding: calc(var(--nav-h) + 44px) 20px 72px; }
+  .hero-eyebrow { font-size: 11px; flex-wrap: wrap; justify-content: center; }
+  .bento-card { padding: 28px 22px; }
+  .proj-strip { min-height: auto; }
+  .proj-strip-body { padding: 40px 24px; }
+}
 .bento-eyebrow {
   font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--gray-4); margin-bottom: 12px;
@@ -391,7 +398,7 @@
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Capabilities</p>
     <h2 class="t-headline-lg fade-up" style="margin-bottom:64px;">What I build.</h2>
-    <div class="bento fade-up">
+    <div class="bento stagger">
 
       <div class="bento-card col-8">
         <div class="bento-eyebrow">Mobile Development</div>
@@ -445,12 +452,12 @@
 
 <!-- FEATURED PROJECT -->
 <section class="section-lg bg-darker" style="padding:0;">
-  <div class="proj-strip fade-in">
-    <div class="proj-strip-visual">
+  <div class="proj-strip">
+    <div class="proj-strip-visual slide-left">
       <!-- PHOTO SLOT: paste your image link in src="" below. -->
       <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
     </div>
-    <div class="proj-strip-body">
+    <div class="proj-strip-body slide-right">
       <p class="t-eyebrow">Featured Project</p>
       <h2 class="t-headline-md" style="margin-top:12px;">Chatra</h2>
       <p class="t-body-lg" style="margin-top:16px;">A full educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress across platforms.</p>

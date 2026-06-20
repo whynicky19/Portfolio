@@ -42,6 +42,14 @@
   .proj-f-visual { min-height: 280px; }
   .proj-f-body { padding: 48px 28px; }
 }
+@media(max-width:600px){
+  .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
+  .proj-f-visual { min-height: 240px; }
+  .proj-f-body { padding: 36px 20px; }
+  .proj-f-desc { font-size: 14px; }
+  .filter-tabs { gap: 6px; }
+  .filter-tab { padding: 7px 14px; font-size: 12px; }
+}
 
 .proj-number {
   font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
@@ -143,12 +151,12 @@
 </section>
 
 <!-- FEATURED PROJECTS — Apple product-page alternating layout -->
-<section id="chatra" class="proj-feature fade-in">
-  <div class="proj-f-visual">
+<section id="chatra" class="proj-feature">
+  <div class="proj-f-visual slide-left">
     <!-- PHOTO SLOT: paste your image link in src="" below. -->
     <img src="img/appstore-card(1).svg" alt="Chatra Academy app screenshot">
   </div>
-  <div class="proj-f-body">
+  <div class="proj-f-body slide-right">
     <div class="proj-number">01 — Featured</div>
     <h2 class="proj-f-title">Chatra<br>Academy</h2>
     <p class="proj-f-desc">A complete educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress. Built end-to-end, deployed in production.</p>
@@ -168,12 +176,12 @@
   </div>
 </section>
 
-<section id="portfolio" class="proj-feature fade-in">
-  <div class="proj-f-visual">
+<section id="portfolio" class="proj-feature">
+  <div class="proj-f-visual slide-right">
     <!-- PHOTO SLOT: paste your image link in src="" below. -->
     <img src="img/macbook-card.svg" alt="Portfolio Website screenshot">
   </div>
-  <div class="proj-f-body">
+  <div class="proj-f-body slide-left">
     <div class="proj-number">02 — This Site</div>
     <h2 class="proj-f-title">Portfolio<br>Website</h2>
     <p class="proj-f-desc">This portfolio — built with vanilla HTML, CSS, and JavaScript. No React, no Vue. Apple-inspired design system with SF Pro typography, scroll animations via Intersection Observer, and a live canvas background.</p>
@@ -190,12 +198,12 @@
   </div>
 </section>
 
-<section id="hackathon" class="proj-feature fade-in">
-  <div class="proj-f-visual">
+<section id="hackathon" class="proj-feature">
+  <div class="proj-f-visual slide-left">
     <!-- PHOTO SLOT: paste your image link in src="" below. -->
     <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP screenshot">
   </div>
-  <div class="proj-f-body">
+  <div class="proj-f-body slide-right">
     <div class="proj-number">03 — Hackathon</div>
     <h2 class="proj-f-title">Hackathon<br>MVP</h2>
     <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 3 placement.</p>

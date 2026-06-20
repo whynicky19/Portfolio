@@ -76,9 +76,9 @@
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-  document.querySelectorAll('.fade-up, .fade-in, .stagger').forEach(el => io.observe(el));
+  document.querySelectorAll('.fade-up, .fade-in, .stagger, .slide-left, .slide-right, .scale-up').forEach(el => io.observe(el));
 
   // ── STAT COUNTERS ──────────────────────
   function animateCounter(el) {
