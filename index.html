@@ -265,23 +265,6 @@
 .quote-name { font-size: 15px; font-weight: 600; color: var(--black); }
 .quote-role { font-size: 13px; color: var(--gray-4); }
 
-.sf-mobile-visual {
-  display: none;
-}
-@media(max-width:900px){
-  .sf-mobile-visual {
-    display: block; margin-top: 24px;
-    border-radius: 16px; overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
-  }
-  .sf-mobile-visual img { width: 100%; display: block; max-height: 280px; object-fit: cover; }
-  .sf-mobile-terminal {
-    background: #1c1c1e; border-radius: 16px;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-  }
-}
-
 .cta-banner {
   text-align: center; padding: 120px 32px;
   position: relative; overflow: hidden;
@@ -454,28 +437,16 @@
         <span class="sf-num">01</span>
         <h3 class="sf-title">Mobile that feels native on iOS & Android.</h3>
         <p class="sf-desc">Flutter with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. Cross-platform iOS and Android from a single codebase — pixel-perfect UI, smooth 60fps animations, and everything needed to ship to the App Store.</p>
-        <div class="sf-mobile-visual"><img src="img/appstore-card.svg" alt="Chatra Academy on iOS" loading="lazy"></div>
       </div>
       <div class="sf-item" data-sf="1">
         <span class="sf-num">02</span>
         <h3 class="sf-title">Backends built for production from day one.</h3>
         <p class="sf-desc">FastAPI with PostgreSQL, containerised in Docker. JWT authentication, clean REST architecture, and automatic OpenAPI documentation. Designed for real traffic from the first commit — not just something that runs on localhost and breaks under load.</p>
-        <div class="sf-mobile-visual sf-mobile-terminal">
-          <div class="sf-terminal-bar" style="padding:10px 12px;display:flex;gap:6px;"><span class="sf-dot" style="background:#ff5f56"></span><span class="sf-dot" style="background:#ffbd2e"></span><span class="sf-dot" style="background:#27c93f"></span></div>
-          <div class="sf-terminal-body" style="padding:12px 14px;font-size:12px;">
-            <div class="sf-code-line"><span class="sf-fn">app</span> = <span class="sf-fn">FastAPI</span>(title=<span class="sf-str">"Chatra API"</span>)</div>
-            <div class="sf-code-line" style="margin-top:8px;"><span style="color:#7ee787">@app.get</span>(<span class="sf-str">"/courses"</span>)</div>
-            <div class="sf-code-line"><span class="sf-kw">async def</span> <span class="sf-fn">get_courses</span>():</div>
-            <div class="sf-code-line" style="padding-left:14px;"><span class="sf-kw">return</span> db.<span class="sf-fn">query</span>(Course).<span class="sf-fn">all</span>()</div>
-            <div class="sf-code-line" style="margin-top:10px;color:#27c93f;">✓ Uvicorn running on 8000</div>
-          </div>
-        </div>
       </div>
       <div class="sf-item" data-sf="2">
         <span class="sf-num">03</span>
         <h3 class="sf-title">Complete products shipped end to end.</h3>
         <p class="sf-desc">Mobile app, REST backend, and Nuxt.js web dashboard — designed, built, and deployed together. Chatra Academy runs in real university classrooms with students, instructors, and administrators. Every layer — design, engineering, infrastructure — handled by one developer.</p>
-        <div class="sf-mobile-visual"><img src="img/chatraweb.png" alt="Chatra web dashboard" loading="lazy"></div>
       </div>
     </div>
     <div class="sticky-visual-col">
