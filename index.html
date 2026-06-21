@@ -30,7 +30,10 @@
 
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.025) 0%, transparent 70%);
+  background:
+    radial-gradient(ellipse 55% 45% at 15% 20%, rgba(99,102,241,0.045) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 75%, rgba(59,130,246,0.035) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.018) 0%, transparent 70%);
 }
 
 .hero-grid {
@@ -62,7 +65,7 @@
 
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(72px, 13vw, 160px);
+  font-size: clamp(58px, 13vw, 160px);
   font-weight: 700; letter-spacing: -0.055em;
   line-height: 0.9; color: var(--black);
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .2s both;
@@ -415,7 +418,7 @@
   </div>
 </div>
 
-<section class="section bg-black">
+<section class="section bg-darker section-card">
   <div class="container">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Capabilities</p>
     <h2 class="t-headline-lg fade-up" style="margin-bottom:64px;">What I build.</h2>
@@ -469,11 +472,76 @@
   </div>
 </section>
 
+<section class="sticky-section">
+  <div class="container" style="padding-top:120px;padding-bottom:64px;">
+    <p class="t-eyebrow fade-up" style="margin-bottom:16px;">How I work</p>
+    <h2 class="t-headline-lg fade-up" style="margin-bottom:0;">Full stack.<br>Every time.</h2>
+  </div>
+  <div class="sticky-features">
+    <div class="sticky-text-col">
+      <div class="sf-item" data-sf="0">
+        <span class="sf-num">01</span>
+        <h3 class="sf-title">Mobile that feels native on iOS & Android.</h3>
+        <p class="sf-desc">Flutter with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. Cross-platform iOS and Android from a single codebase — pixel-perfect UI, smooth 60fps animations, and everything needed to ship to the App Store.</p>
+      </div>
+      <div class="sf-item" data-sf="1">
+        <span class="sf-num">02</span>
+        <h3 class="sf-title">Backends built for production from day one.</h3>
+        <p class="sf-desc">FastAPI with PostgreSQL, containerised in Docker. JWT authentication, clean REST architecture, and automatic OpenAPI documentation. Designed for real traffic from the first commit — not just something that runs on localhost and breaks under load.</p>
+      </div>
+      <div class="sf-item" data-sf="2">
+        <span class="sf-num">03</span>
+        <h3 class="sf-title">Complete products shipped end to end.</h3>
+        <p class="sf-desc">Mobile app, REST backend, and Nuxt.js web dashboard — designed, built, and deployed together. Chatra Academy runs in real university classrooms with students, instructors, and administrators. Every layer — design, engineering, infrastructure — handled by one developer.</p>
+      </div>
+    </div>
+    <div class="sticky-visual-col">
+      <div class="sf-visual-wrap">
+        <div class="sf-visual-item active" data-sf="0">
+          <img src="img/appstore-card.svg" alt="Chatra mobile app" class="sf-app-img">
+        </div>
+        <div class="sf-visual-item" data-sf="1">
+          <div class="sf-terminal-mock">
+            <div class="sf-terminal-bar">
+              <span class="sf-dot" style="background:#ff5f56"></span>
+              <span class="sf-dot" style="background:#ffbd2e"></span>
+              <span class="sf-dot" style="background:#27c93f"></span>
+            </div>
+            <div class="sf-terminal-body">
+              <div class="sf-code-line"><span class="sf-kw">from</span> fastapi <span class="sf-kw">import</span> FastAPI, Depends</div>
+              <div class="sf-code-line"><span class="sf-kw">from</span> sqlalchemy.orm <span class="sf-kw">import</span> Session</div>
+              <div class="sf-code-line" style="margin-top:10px;"><span class="sf-fn">app</span> = <span class="sf-fn">FastAPI</span>(title=<span class="sf-str">"Chatra API"</span>)</div>
+              <div class="sf-code-line" style="margin-top:10px;"><span style="color:#7ee787">@app.get</span>(<span class="sf-str">"/courses"</span>)</div>
+              <div class="sf-code-line"><span class="sf-kw">async def</span> <span class="sf-fn">get_courses</span>(db: Session):</div>
+              <div class="sf-code-line" style="padding-left:16px;"><span class="sf-kw">return</span> db.<span class="sf-fn">query</span>(Course).<span class="sf-fn">all</span>()</div>
+              <div class="sf-code-line" style="margin-top:14px;color:rgba(255,255,255,0.2);">──────────────────────────</div>
+              <div class="sf-code-line" style="color:#27c93f;">✓  Uvicorn running on port 8000</div>
+            </div>
+          </div>
+        </div>
+        <div class="sf-visual-item" data-sf="2">
+          <div class="sf-browser-mock">
+            <div class="sf-browser-bar">
+              <span class="sf-dot" style="background:#d2d2d7"></span>
+              <span class="sf-dot" style="background:#d2d2d7"></span>
+              <span class="sf-dot" style="background:#d2d2d7"></span>
+              <div class="sf-url-bar">chatra.academy/dashboard</div>
+            </div>
+            <div class="sf-browser-content">
+              <img src="img/chatraweb.png" alt="Chatra web dashboard">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <hr class="divider">
 
 <section class="section-lg bg-darker" style="padding:0;">
   <div class="proj-strip">
-    <div class="proj-strip-visual slide-left">
+    <div class="proj-strip-visual clip-reveal">
       
       <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
     </div>
@@ -525,9 +593,20 @@
   </div>
 </section>
 
+<section class="statement-section fade-up">
+  <div class="statement-inner">
+    <p class="t-eyebrow" style="margin-bottom:24px;">The bottom line</p>
+    <h2 class="statement-text">From idea<br>to shipped<br>product.</h2>
+    <a href="about.html" class="btn btn-link" style="margin-top:36px;font-size:17px;display:inline-flex;align-items:center;gap:6px;">
+      My story
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+    </a>
+  </div>
+</section>
+
 <hr class="divider">
 
-<section class="cta-banner">
+<section class="cta-banner section-card">
   <div class="cta-banner-inner">
     <p class="t-eyebrow" style="margin-bottom:20px;">Ready to build?</p>
     <h2 class="t-headline-xl text-gradient" style="margin-bottom:32px;">Let's work<br>together.</h2>
