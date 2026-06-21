@@ -828,6 +828,18 @@ body {
 
 .badge-live { background: #34c759 !important; opacity: 1 !important; }
 
+/* ── Tech icons (marquee + cards) ── */
+.tech-icon {
+  display: block;
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  filter: brightness(0) opacity(0.6);
+  transition: filter .25s;
+}
+[data-theme="dark"] .tech-icon {
+  filter: brightness(0) invert(1) opacity(0.75);
+}
+
 /* ── Word reveal ── */
 .wr-word {
   display: inline-block;

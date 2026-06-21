@@ -157,7 +157,6 @@
   font-size: 14px; font-weight: 500; color: var(--gray-4);
   letter-spacing: -0.01em;
 }
-.marquee-item svg { opacity: 0.55; flex-shrink: 0; }
 .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-5); }
 
 .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
@@ -341,80 +340,30 @@
 
 <div class="marquee-section">
   <div class="marquee-track">
-    
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 8h6M5 5h6M5 11h4" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Flutter
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 5l6-3 6 3M2 11l6 3 6-3" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      FastAPI
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8h12M8 2a10 10 0 010 12M8 2a10 10 0 000 12" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      Python
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="2" width="8" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="8" cy="11" r="1" fill="#1d1d1f"/></svg>
-      Dart
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,2 14,5.5 14,10.5 8,14 2,10.5 2,5.5" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      Vue / Nuxt
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="8" rx="6" ry="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8c0 1.657 2.686 3 6 3s6-1.343 6-3M2 12c0 1.657 2.686 3 6 3s6-1.343 6-3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8v4M14 8v4" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      PostgreSQL
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="9" height="9" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 5V4a4 4 0 018 0v5a2 2 0 01-2 2h-1" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Docker
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="3" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="13" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M8 6v3M8 9L4 11M8 9l4 2" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Git
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13l4-10 4 10M4.5 9.5h5" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      TypeScript
-    </span><span class="marquee-dot"></span>
-    
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 8h6M5 5h6M5 11h4" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Flutter
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v12M2 5l6-3 6 3M2 11l6 3 6-3" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      FastAPI
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8h12M8 2a10 10 0 010 12M8 2a10 10 0 000 12" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      Python
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="2" width="8" height="12" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="8" cy="11" r="1" fill="#1d1d1f"/></svg>
-      Dart
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polygon points="8,2 14,5.5 14,10.5 8,14 2,10.5 2,5.5" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      Vue / Nuxt
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="8" rx="6" ry="3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8c0 1.657 2.686 3 6 3s6-1.343 6-3M2 12c0 1.657 2.686 3 6 3s6-1.343 6-3" stroke="#1d1d1f" stroke-width="1.2"/><path d="M2 8v4M14 8v4" stroke="#1d1d1f" stroke-width="1.2"/></svg>
-      PostgreSQL
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="9" height="9" rx="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M5 5V4a4 4 0 018 0v5a2 2 0 01-2 2h-1" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Docker
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="4" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="3" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><circle cx="13" cy="12" r="2" stroke="#1d1d1f" stroke-width="1.2"/><path d="M8 6v3M8 9L4 11M8 9l4 2" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      Git
-    </span><span class="marquee-dot"></span>
-    <span class="marquee-item">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13l4-10 4 10M4.5 9.5h5" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
-      TypeScript
-    </span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter" class="tech-icon" width="18" height="18" alt="Flutter">Flutter</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/dart" class="tech-icon" width="18" height="18" alt="Dart">Dart</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/python" class="tech-icon" width="18" height="18" alt="Python">Python</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/fastapi" class="tech-icon" width="18" height="18" alt="FastAPI">FastAPI</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs" class="tech-icon" width="18" height="18" alt="Vue.js">Vue.js</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/nuxtdotjs" class="tech-icon" width="18" height="18" alt="Nuxt">Nuxt</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase" class="tech-icon" width="18" height="18" alt="Firebase">Firebase</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql" class="tech-icon" width="18" height="18" alt="PostgreSQL">PostgreSQL</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker" class="tech-icon" width="18" height="18" alt="Docker">Docker</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/github" class="tech-icon" width="18" height="18" alt="GitHub">GitHub</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript" class="tech-icon" width="18" height="18" alt="TypeScript">TypeScript</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/figma" class="tech-icon" width="18" height="18" alt="Figma">Figma</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter" class="tech-icon" width="18" height="18" alt="Flutter">Flutter</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/dart" class="tech-icon" width="18" height="18" alt="Dart">Dart</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/python" class="tech-icon" width="18" height="18" alt="Python">Python</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/fastapi" class="tech-icon" width="18" height="18" alt="FastAPI">FastAPI</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs" class="tech-icon" width="18" height="18" alt="Vue.js">Vue.js</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/nuxtdotjs" class="tech-icon" width="18" height="18" alt="Nuxt">Nuxt</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase" class="tech-icon" width="18" height="18" alt="Firebase">Firebase</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql" class="tech-icon" width="18" height="18" alt="PostgreSQL">PostgreSQL</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker" class="tech-icon" width="18" height="18" alt="Docker">Docker</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/github" class="tech-icon" width="18" height="18" alt="GitHub">GitHub</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript" class="tech-icon" width="18" height="18" alt="TypeScript">TypeScript</span><span class="marquee-dot"></span>
+    <span class="marquee-item"><img src="https://cdn.simpleicons.org/figma" class="tech-icon" width="18" height="18" alt="Figma">Figma</span><span class="marquee-dot"></span>
   </div>
 </div>
 
@@ -433,7 +382,7 @@
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
         </a>
         <div class="bento-visual">
-          <svg width="220" height="220" viewBox="0 0 220 220" fill="none"><rect x="60" y="20" width="100" height="180" rx="16" stroke="#1d1d1f" stroke-width="1.5"/><path d="M60 50h100M60 170h100" stroke="#1d1d1f" stroke-width="1"/><circle cx="110" cy="188" r="5" stroke="#1d1d1f" stroke-width="1"/></svg>
+          <svg width="220" height="220" viewBox="0 0 220 220" fill="none"><rect x="60" y="20" width="100" height="180" rx="16" stroke="currentColor" stroke-width="1.5"/><path d="M60 50h100M60 170h100" stroke="currentColor" stroke-width="1"/><circle cx="110" cy="188" r="5" stroke="currentColor" stroke-width="1"/></svg>
         </div>
       </div>
 
@@ -442,7 +391,7 @@
         <h3 class="bento-title">FastAPI backends. Production ready.</h3>
         <p class="bento-body">JWT auth, PostgreSQL, Docker. From zero to deployed.</p>
         <div class="bento-visual">
-          <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><rect x="20" y="20" width="120" height="120" rx="12" stroke="#1d1d1f" stroke-width="1.2"/><path d="M40 60h80M40 80h60M40 100h70" stroke="#1d1d1f" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><rect x="20" y="20" width="120" height="120" rx="12" stroke="currentColor" stroke-width="1.2"/><path d="M40 60h80M40 80h60M40 100h70" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
         </div>
       </div>
 
