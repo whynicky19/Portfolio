@@ -672,3 +672,23 @@ body {
 @keyframes heroFadeUp  { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
 @keyframes scrollLine  { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
 @keyframes marquee     { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+[data-theme="dark"] .hero-scroll-line {
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+}
+
+.nav-menu:hover li a:not(:hover) { color: rgba(0,0,0,0.38); }
+[data-theme="dark"] .nav-menu:hover li a:not(:hover) { color: rgba(255,255,255,0.3); }
+
+.badge-live { background: #34c759 !important; opacity: 1 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in, .slide-left, .slide-right, .scale-up {
+    opacity: 1; transform: none; transition: none;
+  }
+  .stagger > * { opacity: 1; transform: none; transition: none; }
+  .hero-grid, .hero-scroll-line, .marquee-track,
+  .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live, .avail-dot { animation: none; }
+  .hero-name, .hero-role, .hero-actions, .hero-scroll-cue,
+  .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
+}

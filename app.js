@@ -155,7 +155,7 @@
 
   
   const heroText = document.querySelector('.hero-parallax');
-  if (heroText) {
+  if (heroText && !window.matchMedia('(max-width: 768px)').matches) {
     window.addEventListener('scroll', () => {
       heroText.style.transform = `translateY(${window.scrollY * 0.25}px)`;
     }, { passive: true });
