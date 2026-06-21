@@ -265,3 +265,76 @@
 
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
+
+(function () {
+  'use strict';
+
+  const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isDesktop = window.matchMedia('(min-width: 769px)').matches;
+
+  // Split .word-reveal elements into per-word <span class="wr-word"> spans,
+  // preserving <br> and other inline elements.
+  function splitWords(el) {
+    const nodes = Array.from(el.childNodes);
+    el.innerHTML = '';
+    nodes.forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        node.textContent.split(/(\s+)/).forEach(part => {
+          if (/\S/.test(part)) {
+            const s = document.createElement('span');
+            s.className = 'wr-word';
+            s.textContent = part;
+            el.appendChild(s);
+          } else if (part) {
+            el.appendChild(document.createTextNode(part));
+          }
+        });
+      } else {
+        el.appendChild(node.cloneNode(true));
+      }
+    });
+  }
+
+  const wrEls = document.querySelectorAll('.word-reveal');
+  const ssEls = isDesktop ? document.querySelectorAll('[data-scroll-scale]') : [];
+
+  if (reduced) {
+    wrEls.forEach(el => { splitWords(el); el.querySelectorAll('.wr-word').forEach(w => { w.style.opacity = '1'; }); });
+    return;
+  }
+
+  wrEls.forEach(splitWords);
+
+  function update() {
+    const vh = window.innerHeight;
+
+    wrEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      // progress 0→1 as element top moves from 82%vh to 24%vh
+      const progress = Math.max(0, Math.min(1, (vh * 0.82 - rect.top) / (vh * 0.58)));
+      const words = el.querySelectorAll('.wr-word');
+      const n = words.length;
+      words.forEach((w, i) => {
+        const onset = n > 1 ? (i / (n - 1)) * 0.6 : 0;
+        const wp    = Math.max(0, Math.min(1, (progress - onset) / 0.4));
+        w.style.opacity = (0.15 + wp * 0.85).toFixed(3);
+      });
+    });
+
+    ssEls.forEach(el => {
+      const rect     = el.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (vh * 0.96 - rect.top) / (vh * 0.72)));
+      el.style.transform = `scale(${(0.93 + progress * 0.07).toFixed(4)})`;
+    });
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { update(); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+})();

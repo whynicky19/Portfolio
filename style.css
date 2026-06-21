@@ -828,6 +828,22 @@ body {
 
 .badge-live { background: #34c759 !important; opacity: 1 !important; }
 
+/* ── Word reveal ── */
+.wr-word {
+  display: inline-block;
+  opacity: 0.15;
+  will-change: opacity;
+}
+
+/* ── Scroll-linked scale ── */
+[data-scroll-scale] {
+  will-change: transform;
+  transform-origin: center bottom;
+}
+@media (max-width: 768px) {
+  [data-scroll-scale] { will-change: auto; transform: none !important; }
+}
+
 /* ── Mobile touch / animation improvements ── */
 @media (hover: none) {
   .card:hover,
@@ -882,4 +898,6 @@ body {
   .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live, .avail-dot { animation: none; }
   .hero-name, .hero-role, .hero-actions, .hero-scroll-cue,
   .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
+  .wr-word { opacity: 1 !important; }
+  [data-scroll-scale] { transform: none !important; }
 }
