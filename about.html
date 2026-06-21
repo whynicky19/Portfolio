@@ -63,7 +63,9 @@
   transition: background .25s cubic-bezier(.23,1,.32,1), transform .25s cubic-bezier(.23,1,.32,1);
 }
 .skill-pill:hover { background: rgba(0,0,0,0.05); transform: translateY(-2px); }
-.skill-pill-icon { display: flex; justify-content: center; margin-bottom: 10px; opacity: 0.75; }
+.skill-pill-icon { display: flex; justify-content: center; margin-bottom: 10px; }
+.skill-pill-icon .tech-icon { width: 28px; height: 28px; filter: brightness(0) opacity(0.65); }
+[data-theme="dark"] .skill-pill-icon .tech-icon { filter: brightness(0) invert(1) opacity(0.8); }
 .skill-pill-name { font-size: 12px; font-weight: 500; color: var(--gray-4); }
 
 .cert-rail-card {
@@ -251,35 +253,35 @@
     <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Tools I build with.</h2>
     <div class="skill-grid stagger">
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="22" height="22" rx="3" stroke="currentColor" stroke-width="1.2"/><path d="M9 19l5-10 5 10M10.5 16h7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/python" class="tech-icon" width="28" height="28" alt="Python"></div>
         <div class="skill-pill-name">Python</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4v20M4 9l10-5 10 5M4 19l10 5 10-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/fastapi" class="tech-icon" width="28" height="28" alt="FastAPI"></div>
         <div class="skill-pill-name">FastAPI</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="7" y="2" width="14" height="24" rx="3" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="21" r="1.5" fill="currentColor"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/flutter" class="tech-icon" width="28" height="28" alt="Flutter"></div>
         <div class="skill-pill-name">Flutter</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 7h20M4 14h20M4 21h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/javascript" class="tech-icon" width="28" height="28" alt="JavaScript"></div>
         <div class="skill-pill-name">JavaScript</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><polygon points="14,3 25,9 25,19 14,25 3,19 3,9" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/vuedotjs" class="tech-icon" width="28" height="28" alt="Vue.js"></div>
         <div class="skill-pill-name">Vue / Nuxt</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.2"/><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="1.2"/><ellipse cx="14" cy="14" rx="5.5" ry="10" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/react" class="tech-icon" width="28" height="28" alt="React"></div>
         <div class="skill-pill-name">React</div>
       </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><ellipse cx="14" cy="10" rx="8" ry="4" stroke="currentColor" stroke-width="1.2"/><path d="M6 10v8c0 2.21 3.582 4 8 4s8-1.79 8-4v-8" stroke="currentColor" stroke-width="1.2"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/postgresql" class="tech-icon" width="28" height="28" alt="PostgreSQL"></div>
         <div class="skill-pill-name">PostgreSQL</div>
-      </div> 
+      </div>
       <div class="skill-pill">
-        <div class="skill-pill-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="7" r="3" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="21" r="3" stroke="currentColor" stroke-width="1.2"/><circle cx="22" cy="21" r="3" stroke="currentColor" stroke-width="1.2"/><path d="M14 10v4M14 14l-5 4M14 14l5 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="skill-pill-icon"><img src="https://cdn.simpleicons.org/git" class="tech-icon" width="28" height="28" alt="Git"></div>
         <div class="skill-pill-name">Git</div>
       </div>
     </div>
