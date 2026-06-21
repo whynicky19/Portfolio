@@ -238,6 +238,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
+  touch-action: pan-y;
 }
 
 ::selection { background: rgba(0,0,0,0.12); }
@@ -251,6 +252,18 @@ body {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
+  transition: transform .3s ease;
+  will-change: transform;
+}
+@media (max-width: 768px) {
+  .apple-nav {
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+  }
+  .nav-mobile {
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
 }
 .nav-inner {
   width: 100%; max-width: var(--max-w);
