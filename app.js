@@ -29,21 +29,6 @@
   const reduced   = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isDesktop = window.matchMedia('(min-width: 769px)').matches;
 
-  /* ── Page transition overlay ── */
-  const overlay = document.createElement('div');
-  overlay.className = 'page-transition';
-  document.body.appendChild(overlay);
-  window.addEventListener('load', () => { overlay.style.opacity = '0'; });
-  document.addEventListener('click', e => {
-    const a = e.target.closest('a[href]');
-    if (!a) return;
-    const href = a.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http') || a.target === '_blank') return;
-    e.preventDefault();
-    overlay.style.opacity = '1';
-    setTimeout(() => { window.location.href = href; }, 300);
-  });
-
   /* ── DOM caches ── */
   const nav         = document.querySelector('.apple-nav');
   const progressBar = document.querySelector('.scroll-progress');
@@ -106,7 +91,7 @@
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
     if (isNaN(target)) return;
-    const duration = 1400, start = performance.now(), suffix = el.dataset.suffix || '';
+    const duration = Math.min(1400, Math.max(500, target * 150)), start = performance.now(), suffix = el.dataset.suffix || '';
     const tick = now => {
       const p = Math.min((now - start) / duration, 1);
       el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;

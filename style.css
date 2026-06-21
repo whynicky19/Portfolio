@@ -103,7 +103,7 @@
 [data-theme="dark"] .divider { background: var(--border); }
 [data-theme="dark"] .chip { background: var(--overlay-sm); border-color: var(--border); }
 [data-theme="dark"] .scroll-bar { background: rgba(255,255,255,0.45); }
-[data-theme="dark"] .page-transition { background: #000; }
+
 
 [data-theme="dark"] .apple-footer { border-top-color: var(--border); }
 [data-theme="dark"] .footer-links-row { border-bottom-color: var(--border); }
@@ -667,14 +667,6 @@ body {
 }
 .footer-bottom-links a:hover { color: var(--black); }
 
-.page-transition {
-  position: fixed; inset: 0; z-index: 99999;
-  background: var(--white);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .3s ease;
-}
-.page-transition.out { opacity: 1; }
 
 @media(max-width:600px){
   .footer-links-row { gap: 24px; padding: 20px; }

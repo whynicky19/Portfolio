@@ -3,17 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whynicky — Software Developer</title>
-<meta name="description" content="Mobile developer, backend engineer, and builder based in Kazakhstan.">
+<title>Whynicky — Flutter & Nuxt Developer</title>
+<meta name="description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/">
-<meta property="og:title" content="Whynicky — Software Developer">
-<meta property="og:description" content="Mobile developer, backend engineer, and builder based in Kazakhstan. Flutter · FastAPI · Vue.">
-<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/appstore-card.svg">
+<meta property="og:title" content="Whynicky — Flutter & Nuxt Developer">
+<meta property="og:description" content="Flutter & Nuxt developer building full-stack products from Kazakhstan. Mobile · Web · Backend.">
+<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Whynicky — Software Developer">
-<meta name="twitter:description" content="Mobile developer, backend engineer, and builder based in Kazakhstan.">
+<meta name="twitter:title" content="Whynicky — Flutter & Nuxt Developer">
+<meta name="twitter:description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.simpleicons.org">
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -262,6 +265,23 @@
 .quote-name { font-size: 15px; font-weight: 600; color: var(--black); }
 .quote-role { font-size: 13px; color: var(--gray-4); }
 
+.sf-mobile-visual {
+  display: none;
+}
+@media(max-width:900px){
+  .sf-mobile-visual {
+    display: block; margin-top: 24px;
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+  .sf-mobile-visual img { width: 100%; display: block; max-height: 280px; object-fit: cover; }
+  .sf-mobile-terminal {
+    background: #1c1c1e; border-radius: 16px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+}
+
 .cta-banner {
   text-align: center; padding: 120px 32px;
   position: relative; overflow: hidden;
@@ -285,6 +305,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
+      <li><a href="chatra.html">Case Study</a></li>
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -307,6 +328,7 @@
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="projects.html">Projects</a>
+  <a href="chatra.html">Case Study</a>
   <a href="experience.html">Experience</a>
   <a href="contact.html">Contact</a>
   <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
@@ -326,7 +348,7 @@
       Available for opportunities · Petropavl, Kazakhstan
     </p>
     <h1 class="hero-name">Whynicky</h1>
-    <p class="hero-role"><b>Mobile Developer</b> · Frontend Engineer · Builder</p>
+    <p class="hero-role"><b>Flutter & Nuxt</b> Developer · Builder</p>
     <div class="hero-actions">
       <a href="projects.html" class="btn btn-primary">View Projects</a>
       <a href="about.html" class="btn btn-ghost">About Me</a>
@@ -432,16 +454,28 @@
         <span class="sf-num">01</span>
         <h3 class="sf-title">Mobile that feels native on iOS & Android.</h3>
         <p class="sf-desc">Flutter with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. Cross-platform iOS and Android from a single codebase — pixel-perfect UI, smooth 60fps animations, and everything needed to ship to the App Store.</p>
+        <div class="sf-mobile-visual"><img src="img/appstore-card.svg" alt="Chatra Academy on iOS" loading="lazy"></div>
       </div>
       <div class="sf-item" data-sf="1">
         <span class="sf-num">02</span>
         <h3 class="sf-title">Backends built for production from day one.</h3>
         <p class="sf-desc">FastAPI with PostgreSQL, containerised in Docker. JWT authentication, clean REST architecture, and automatic OpenAPI documentation. Designed for real traffic from the first commit — not just something that runs on localhost and breaks under load.</p>
+        <div class="sf-mobile-visual sf-mobile-terminal">
+          <div class="sf-terminal-bar" style="padding:10px 12px;display:flex;gap:6px;"><span class="sf-dot" style="background:#ff5f56"></span><span class="sf-dot" style="background:#ffbd2e"></span><span class="sf-dot" style="background:#27c93f"></span></div>
+          <div class="sf-terminal-body" style="padding:12px 14px;font-size:12px;">
+            <div class="sf-code-line"><span class="sf-fn">app</span> = <span class="sf-fn">FastAPI</span>(title=<span class="sf-str">"Chatra API"</span>)</div>
+            <div class="sf-code-line" style="margin-top:8px;"><span style="color:#7ee787">@app.get</span>(<span class="sf-str">"/courses"</span>)</div>
+            <div class="sf-code-line"><span class="sf-kw">async def</span> <span class="sf-fn">get_courses</span>():</div>
+            <div class="sf-code-line" style="padding-left:14px;"><span class="sf-kw">return</span> db.<span class="sf-fn">query</span>(Course).<span class="sf-fn">all</span>()</div>
+            <div class="sf-code-line" style="margin-top:10px;color:#27c93f;">✓ Uvicorn running on 8000</div>
+          </div>
+        </div>
       </div>
       <div class="sf-item" data-sf="2">
         <span class="sf-num">03</span>
         <h3 class="sf-title">Complete products shipped end to end.</h3>
         <p class="sf-desc">Mobile app, REST backend, and Nuxt.js web dashboard — designed, built, and deployed together. Chatra Academy runs in real university classrooms with students, instructors, and administrators. Every layer — design, engineering, infrastructure — handled by one developer.</p>
+        <div class="sf-mobile-visual"><img src="img/chatraweb.png" alt="Chatra web dashboard" loading="lazy"></div>
       </div>
     </div>
     <div class="sticky-visual-col">
@@ -568,7 +602,7 @@
 
 <footer class="apple-footer">
   <div class="footer-links-row">
-    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="chatra.html">Case Study</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
     <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
     <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
   </div>
