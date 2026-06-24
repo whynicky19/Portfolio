@@ -124,8 +124,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 .cs-overview {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
   background: #ffffff;
 }
 .cs-overview-item {
@@ -249,7 +247,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 .cs-cta {
   text-align: center; padding: 100px 32px;
-  background: #f5f5f7; border-top: 1px solid rgba(0,0,0,0.08);
+  background: #f5f5f7;
 }
 
 @media(max-width:600px){
@@ -440,7 +438,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-section">
   <div class="cs-container">
     <div class="fade-up">
-      <p class="cs-label">The problem</p>
       <h2 class="cs-heading">Teachers were managing classrooms through Telegram chats and spreadsheets.</h2>
       <p class="cs-body">At my university, educators had no unified tool. Assignments were sent as messages, attendance was tracked in notebooks, and grades lived in disconnected Excel files. Students had no visibility into their own progress.</p>
       <p class="cs-body">The goal was clear: build a platform where teachers create classes, post assignments, track attendance, and publish grades — and where students access all of it from a single app.</p>
@@ -453,7 +450,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-iphone-section">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
-      <p class="cs-label">Mobile app</p>
       <h2 class="cs-iphone-title">Everything a student needs, in one screen.</h2>
       <p class="cs-iphone-desc">The home screen shows upcoming assignments, active courses, and recent activity — all loaded instantly. Flutter delivers 60fps animations that feel indistinguishable from a native iOS app.</p>
     </div>
@@ -476,7 +472,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
   <div class="cs-container">
     <div class="cs-two-col fade-up">
       <div>
-        <p class="cs-label">Architecture</p>
         <h2 class="cs-heading" style="font-size:clamp(24px,3vw,34px);">Three independent layers. One coherent product.</h2>
         <p class="cs-body">Every layer was designed to be independently deployable but tightly integrated via a shared REST API.</p>
       </div>
@@ -505,7 +500,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-iphone-section alt reverse">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
-      <p class="cs-label">Courses & Classes</p>
       <h2 class="cs-iphone-title">Join a class. See your schedule. Stay on track.</h2>
       <p class="cs-iphone-desc">Teachers create classes and post assignments with deadlines. Students join with a code and instantly see everything — lectures, tasks, attendance. No Telegram, no spreadsheets.</p>
     </div>
@@ -525,7 +519,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-section-alt">
   <div class="cs-container-wide">
     <div class="fade-up" style="margin-bottom:40px;">
-      <p class="cs-label">Tech stack</p>
       <h2 class="cs-heading">Every tool chosen deliberately.</h2>
     </div>
     <div class="cs-stack-grid stagger">
@@ -550,7 +543,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-iphone-section">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
-      <p class="cs-label">AI Assistant</p>
       <h2 class="cs-iphone-title">Ask anything about your course — get an answer instantly.</h2>
       <p class="cs-iphone-desc">Built-in AI chat helps students understand material without waiting for a teacher response. Ask about a lecture topic, get an explanation, move forward. Learning doesn't stop after class hours.</p>
     </div>
@@ -570,7 +562,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-section">
   <div class="cs-container">
     <div class="fade-up" style="margin-bottom:48px;">
-      <p class="cs-label">Results</p>
       <h2 class="cs-heading">Shipped. Used. Real.</h2>
     </div>
     <div class="cs-metrics stagger">
@@ -595,7 +586,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-section-alt">
   <div class="cs-container">
     <div class="fade-up">
-      <p class="cs-label">What I learned</p>
       <h2 class="cs-heading">The hard parts were the valuable parts.</h2>
       <p class="cs-body">iOS simulator networking with a local FastAPI server required a tunneling setup with ngrok — something no tutorial covered. I figured it out from first principles.</p>
       <p class="cs-body">Designing a role-based system (student, teacher, admin) across three platforms meant every API endpoint and every UI screen had to account for permission states. It forced me to think about product architecture, not just code.</p>
@@ -607,7 +597,6 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 <div class="cs-cta fade-up">
-  <p class="t-eyebrow" style="margin-bottom:20px;">View the code</p>
   <h2 class="t-headline-lg text-gradient" style="margin-bottom:32px;">See it on GitHub.</h2>
   <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
     <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-primary">Mobile App</a>
