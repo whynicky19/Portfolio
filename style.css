@@ -477,8 +477,7 @@ body {
               box-shadow .3s cubic-bezier(.23,1,.32,1);
 }
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
 }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
