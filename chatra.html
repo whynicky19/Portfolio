@@ -290,45 +290,72 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
   display: flex; justify-content: center; align-items: center;
 }
 .phone-mockup {
-  width: 220px;
+  width: 300px;
   background: #1d1d1f;
-  border-radius: 42px;
-  border: 1.5px solid #2a2a2c;
-  padding: 8px;
+  border-radius: 50px;
+  border: 1px solid #2a2a2c;
+  padding: 6px;
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,0.04),
-    0 32px 72px rgba(0,0,0,0.22),
-    0 8px 24px rgba(0,0,0,0.1);
+    0 40px 80px rgba(0,0,0,0.2),
+    0 8px 24px rgba(0,0,0,0.08);
   position: relative; flex-shrink: 0;
 }
 .phone-notch {
-  position: absolute; top: 16px; left: 50%;
+  position: absolute; top: 14px; left: 50%;
   transform: translateX(-50%);
-  width: 72px; height: 20px;
-  background: #000; border-radius: 10px;
+  width: 80px; height: 22px;
+  background: #000; border-radius: 11px;
   z-index: 2;
 }
 .phone-screen {
   width: 100%; aspect-ratio: 9/19.5;
-  border-radius: 35px; overflow: hidden; background: #000;
+  border-radius: 45px; overflow: hidden; background: #000;
 }
 .phone-screen video {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
+
+/* ── Animations ── */
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.cs-iphone-section .cs-label,
+.cs-iphone-section .cs-iphone-title,
+.cs-iphone-section .cs-iphone-desc {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity .7s cubic-bezier(.23,1,.32,1),
+              transform .7s cubic-bezier(.23,1,.32,1);
+}
+.cs-iphone-section.in-view .cs-label       { opacity:1; transform:none; transition-delay:.0s; }
+.cs-iphone-section.in-view .cs-iphone-title{ opacity:1; transform:none; transition-delay:.12s; }
+.cs-iphone-section.in-view .cs-iphone-desc { opacity:1; transform:none; transition-delay:.22s; }
+
+.cs-iphone-section .cs-iphone-visual {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .95s cubic-bezier(.23,1,.32,1) .08s,
+              transform .95s cubic-bezier(.23,1,.32,1) .08s;
+}
+.cs-iphone-section.in-view .cs-iphone-visual { opacity:1; transform:none; }
+
+/* ── Mobile ── */
 @media(max-width:768px){
   .cs-iphone-inner {
-    grid-template-columns: 1fr; gap: 48px;
+    grid-template-columns: 1fr; gap: 52px;
     text-align: center; padding: 0 24px;
   }
   .cs-iphone-section.reverse .cs-iphone-inner { direction: ltr; }
   .cs-iphone-visual { order: -1; }
   .cs-iphone-desc { max-width: 100%; }
-  .phone-mockup { width: 180px; }
+  .phone-mockup { width: min(300px, 82vw); }
 }
 @media(max-width:600px){
-  .cs-iphone-section { padding: 80px 0; }
-  .phone-mockup { width: 160px; }
+  .cs-iphone-section { padding: 88px 0; }
+  .cs-iphone-inner { padding: 0 20px; }
+  .phone-mockup { width: min(300px, 82vw); }
 }
 </style>
 </head>
@@ -423,7 +450,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section fade-up">
+<section class="cs-iphone-section">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <p class="cs-label">Mobile app</p>
@@ -475,7 +502,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section alt reverse fade-up">
+<section class="cs-iphone-section alt reverse">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <p class="cs-label">Courses & Classes</p>
@@ -520,7 +547,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section fade-up">
+<section class="cs-iphone-section">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <p class="cs-label">AI Assistant</p>
@@ -604,19 +631,35 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <script src="app.js"></script>
 <script>
 (function () {
+  // Autoplay videos on scroll
   const videos = document.querySelectorAll('[data-autoplay]');
-  if (!videos.length) return;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.play().catch(() => {});
-      } else {
-        e.target.pause();
-        e.target.currentTime = 0;
-      }
-    });
-  }, { threshold: 0.5 });
-  videos.forEach(v => obs.observe(v));
+  if (videos.length) {
+    const vObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.play().catch(() => {});
+        } else {
+          e.target.pause();
+          e.target.currentTime = 0;
+        }
+      });
+    }, { threshold: 0.4 });
+    videos.forEach(v => vObs.observe(v));
+  }
+
+  // iPhone section entrance animations
+  const sections = document.querySelectorAll('.cs-iphone-section');
+  if (sections.length) {
+    const sObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          sObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.18 });
+    sections.forEach(s => sObs.observe(s));
+  }
 })();
 </script>
 </body>
