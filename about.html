@@ -52,7 +52,6 @@
   position: relative; z-index: 1;
   margin-left: -4px;
 }
-.tl-body {}
 .tl-year { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 6px; }
 .tl-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; color: var(--black); }
 .tl-desc { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
@@ -71,38 +70,94 @@
 [data-theme="dark"] .skill-pill-icon .tech-icon { filter: brightness(0) invert(1) opacity(0.8); }
 .skill-pill-name { font-size: 12px; font-weight: 500; color: var(--gray-4); }
 
-.cert-rail-card {
-  width: 260px; flex-shrink: 0;
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--r-lg);
-  background: var(--white);
+.cert-hl-section {
+  background: var(--gray-7);
+  padding: 72px 0 48px;
   overflow: hidden;
-  transition: transform .35s cubic-bezier(.23,1,.32,1), border-color .35s cubic-bezier(.23,1,.32,1), box-shadow .35s cubic-bezier(.23,1,.32,1);
 }
-.cert-rail-card:hover { transform: translateY(-4px); border-color: rgba(0,0,0,0.18); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-.cert-thumb {
-  height: 150px; background: var(--white);
+.cert-hl-header {
+  text-align: center;
+  padding: 0 32px;
+  margin-bottom: 40px;
+}
+.cert-hl-track {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+.cert-hl-track::-webkit-scrollbar { display: none; }
+.cert-hl-track.grabbing { cursor: grabbing; }
+.cert-hl-slide {
+  flex-shrink: 0;
+  width: 100vw;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 max(16px, calc(50vw - 520px)) 8px;
+  box-sizing: border-box;
+}
+.cert-hl-img {
+  width: 100%;
+  max-height: 56vh;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05);
+  background: #fff;
   display: flex; align-items: center; justify-content: center;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  overflow: hidden; position: relative;
 }
-.cert-thumb img {
-  width: 100%; height: 100%;
+.cert-hl-img img {
+  width: 100%;
+  max-height: 56vh;
   object-fit: contain;
-  background: var(--white);
+  background: #fff;
   display: block;
 }
-.cert-thumb svg { opacity: 0.2; }
-.cert-info { padding: 18px; }
-.cert-cat { font-size: 10px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 5px; }
-.cert-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 3px; color: var(--black); }
-.cert-org { font-size: 12px; color: var(--gray-4); }
-
-.rail-wrap { display: flex; justify-content: center; }
-.rail { margin: 0 auto; }
-@media(max-width:700px){
-  .rail-wrap { justify-content: flex-start; }
-  .rail { margin: 0; }
+.cert-hl-body {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 16px;
+}
+.cert-hl-cat {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gray-5); margin-bottom: 8px;
+}
+.cert-hl-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 700; letter-spacing: -0.03em;
+  color: var(--black); margin-bottom: 6px;
+  line-height: 1.15;
+}
+.cert-hl-org { font-size: 14px; color: var(--gray-4); }
+.cert-hl-dots {
+  display: flex; gap: 6px;
+  justify-content: center;
+  margin-top: 28px;
+}
+.cert-hl-dot {
+  height: 6px; border-radius: 3px;
+  background: rgba(0,0,0,0.18);
+  transition: width .3s cubic-bezier(.23,1,.32,1), background .3s;
+  cursor: pointer;
+  width: 6px;
+  border: none; padding: 0;
+}
+.cert-hl-dot.active { width: 24px; background: var(--black); }
+[data-theme="dark"] .cert-hl-dot { background: rgba(255,255,255,0.25); }
+[data-theme="dark"] .cert-hl-dot.active { background: rgba(255,255,255,0.9); }
+@media(max-width:600px){
+  .cert-hl-section { padding: 56px 0 36px; }
+  .cert-hl-header { margin-bottom: 28px; }
+  .cert-hl-img { max-height: 38vh; }
+  .cert-hl-img img { max-height: 38vh; }
+  .cert-hl-body { margin-top: 14px; }
+  .cert-hl-dots { margin-top: 20px; }
 }
 @media(max-width:600px){
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
@@ -294,36 +349,60 @@
 
 <hr class="divider">
 
-<section class="section bg-darker">
-  <div class="container" style="padding-bottom:0;">
+<section class="cert-hl-section">
+  <div class="cert-hl-header">
     <p class="t-eyebrow fade-up" style="margin-bottom:16px;">Recognition</p>
-    <h2 class="t-headline-md fade-up" style="margin-bottom:12px;">Certificates & Awards.</h2>
-    <p class="t-body-lg fade-up" style="max-width:440px;margin-bottom:48px;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
+    <h2 class="t-headline-md fade-up" style="margin-bottom:0;">Certificates & Awards.</h2>
+    <p class="t-body-lg fade-up" style="max-width:400px;margin:16px auto 0;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
   </div>
-  <div class="rail-wrap">
-    
-    <div class="rail">
-      <div class="cert-rail-card">
-        <div class="cert-thumb"><img src="img/hackathon.png" alt="Hackathon certificate"></div>
-        <div class="cert-info"><div class="cert-cat">University Hackathon</div><div class="cert-name">Hackathon</div><div class="cert-org">University · 2026</div></div>
-      </div>
-      <div class="cert-rail-card">
-        <div class="cert-thumb"><img src="img/aisana.png" alt="AI-SANA certificate"></div>
-        <div class="cert-info"><div class="cert-cat">AI-SANA</div><div class="cert-name">Intellectual Technologies and Entrepreneurial Thinking</div><div class="cert-org">AI-SANA · 2026</div></div>
-      </div>
-      <div class="cert-rail-card">
-        <div class="cert-thumb"><img src="img/hackathon-urpaq.png" alt="Hackathon Top 2 certificate"></div>
-        <div class="cert-info"><div class="cert-cat">Hackathon</div><div class="cert-name">Top 2 Finalist</div><div class="cert-org">Digital Urpaq Hackathon · 2026</div></div>
-      </div>
-      <div class="cert-rail-card">
-        <div class="cert-thumb"><img src="img/ai-center.png" alt="AI Center certificate"></div>
-        <div class="cert-info"><div class="cert-cat">AI Center</div><div class="cert-name">Introduction to the development and integration of neural networks</div><div class="cert-org">University · 2026</div></div>
-      </div>
-      <div class="cert-rail-card">
-        <div class="cert-thumb"><img src="img/practice.png" alt="Conference certificate"></div>
-        <div class="cert-info"><div class="cert-cat">Conference</div><div class="cert-name">International scientific and practical conference</div><div class="cert-org">University · 2026</div></div>
+  <div class="cert-hl-track" id="certTrack">
+    <div class="cert-hl-slide">
+      <div class="cert-hl-img"><img src="img/hackathon.png" alt="Hackathon certificate" loading="lazy"></div>
+      <div class="cert-hl-body">
+        <p class="cert-hl-cat">University Hackathon</p>
+        <p class="cert-hl-title">Hackathon</p>
+        <p class="cert-hl-org">University · 2026</p>
       </div>
     </div>
+    <div class="cert-hl-slide">
+      <div class="cert-hl-img"><img src="img/aisana.png" alt="AI-SANA certificate" loading="lazy"></div>
+      <div class="cert-hl-body">
+        <p class="cert-hl-cat">AI-SANA</p>
+        <p class="cert-hl-title">Intellectual Technologies and Entrepreneurial Thinking</p>
+        <p class="cert-hl-org">AI-SANA · 2026</p>
+      </div>
+    </div>
+    <div class="cert-hl-slide">
+      <div class="cert-hl-img"><img src="img/hackathon-urpaq.png" alt="Hackathon Top 2" loading="lazy"></div>
+      <div class="cert-hl-body">
+        <p class="cert-hl-cat">Hackathon</p>
+        <p class="cert-hl-title">Top 2 Finalist</p>
+        <p class="cert-hl-org">Digital Urpaq Hackathon · 2026</p>
+      </div>
+    </div>
+    <div class="cert-hl-slide">
+      <div class="cert-hl-img"><img src="img/ai-center.png" alt="AI Center certificate" loading="lazy"></div>
+      <div class="cert-hl-body">
+        <p class="cert-hl-cat">AI Center</p>
+        <p class="cert-hl-title">Introduction to Neural Network Development</p>
+        <p class="cert-hl-org">University · 2026</p>
+      </div>
+    </div>
+    <div class="cert-hl-slide">
+      <div class="cert-hl-img"><img src="img/practice.png" alt="Conference certificate" loading="lazy"></div>
+      <div class="cert-hl-body">
+        <p class="cert-hl-cat">Conference</p>
+        <p class="cert-hl-title">International Scientific & Practical Conference</p>
+        <p class="cert-hl-org">University · 2026</p>
+      </div>
+    </div>
+  </div>
+  <div class="cert-hl-dots" id="certDots">
+    <button class="cert-hl-dot active" aria-label="Certificate 1"></button>
+    <button class="cert-hl-dot" aria-label="Certificate 2"></button>
+    <button class="cert-hl-dot" aria-label="Certificate 3"></button>
+    <button class="cert-hl-dot" aria-label="Certificate 4"></button>
+    <button class="cert-hl-dot" aria-label="Certificate 5"></button>
   </div>
 </section>
 
@@ -353,5 +432,43 @@
 </footer>
 
 <script src="app.js"></script>
+<script>
+(function () {
+  const track = document.getElementById('certTrack');
+  const dots  = Array.from(document.querySelectorAll('.cert-hl-dot'));
+  if (!track || !dots.length) return;
+
+  function setActive(idx) {
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  // Sync dots on scroll
+  track.addEventListener('scroll', () => {
+    const idx = Math.round(track.scrollLeft / window.innerWidth);
+    setActive(idx);
+  }, { passive: true });
+
+  // Click dot → scroll to slide
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      track.scrollTo({ left: i * window.innerWidth, behavior: 'smooth' });
+    });
+  });
+
+  // Mouse drag
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => {
+    isDown = true; track.classList.add('grabbing');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  document.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
+  track.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.2;
+  });
+})();
+</script>
 </body>
 </html>

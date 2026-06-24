@@ -89,7 +89,10 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
   font-family: var(--font-display);
   font-size: clamp(56px, 10vw, 120px);
   font-weight: 700; letter-spacing: -0.055em; line-height: 0.92;
-  color: #1d1d1f;
+  background: linear-gradient(135deg, #1d1d1f 20%, #00B1C9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 28px;
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .2s both;
 }
@@ -295,7 +298,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 <section class="cs-hero">
   <div class="cs-hero-inner">
     <p class="cs-eyebrow"><span class="cs-eyebrow-dot"></span>Case Study · 2025–2026</p>
-    <h1 class="cs-hero-title">Chatra<br>Academy</h1>
+    <h1 class="cs-hero-title">Chatra</h1>
     <p class="cs-hero-sub">A complete educational platform built from scratch — mobile app, REST backend, and web dashboard. One developer. Three platforms. Production.</p>
     <div class="cs-hero-chips">
       <span class="cs-chip">Flutter</span>
