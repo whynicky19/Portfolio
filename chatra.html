@@ -316,28 +316,55 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 }
 
 /* ── Animations ── */
-@keyframes phoneFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-12px); }
-}
 
+/* Текст — одинаковый для всех */
+@keyframes textReveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
 .cs-iphone-section .cs-label,
 .cs-iphone-section .cs-iphone-title,
-.cs-iphone-section .cs-iphone-desc {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity .7s cubic-bezier(.23,1,.32,1),
-              transform .7s cubic-bezier(.23,1,.32,1);
+.cs-iphone-section .cs-iphone-desc { opacity: 0; }
+.cs-iphone-section.in-view .cs-label {
+  animation: textReveal .6s cubic-bezier(.22,1,.36,1) .1s both;
 }
-.cs-iphone-section.in-view .cs-label       { opacity:1; transform:none; transition-delay:.0s; }
-.cs-iphone-section.in-view .cs-iphone-title{ opacity:1; transform:none; transition-delay:.12s; }
-.cs-iphone-section.in-view .cs-iphone-desc { opacity:1; transform:none; transition-delay:.22s; }
+.cs-iphone-section.in-view .cs-iphone-title {
+  animation: textReveal .6s cubic-bezier(.22,1,.36,1) .2s both;
+}
+.cs-iphone-section.in-view .cs-iphone-desc {
+  animation: textReveal .6s cubic-bezier(.22,1,.36,1) .3s both;
+}
 
-.cs-iphone-section .cs-iphone-visual {
-  opacity: 0; transform: translateY(36px);
-  transition: opacity .95s cubic-bezier(.23,1,.32,1) .08s,
-              transform .95s cubic-bezier(.23,1,.32,1) .08s;
+/* Обёртка — изначально невидима */
+.cs-iphone-section .cs-iphone-visual { opacity: 0; }
+
+/* 1й мокап — классический подъём снизу со scale, как iPhone reveal */
+@keyframes phoneReveal1 {
+  from { opacity: 0; transform: translateY(64px) scale(0.86); }
+  to   { opacity: 1; transform: none; }
 }
-.cs-iphone-section.in-view .cs-iphone-visual { opacity:1; transform:none; }
+.iphone-1.in-view .cs-iphone-visual {
+  animation: phoneReveal1 1.1s cubic-bezier(.22,1,.36,1) 0s both;
+}
+
+/* 2й мокап — влетает слева (секция reversed, телефон на левой стороне) */
+@keyframes phoneReveal2 {
+  from { opacity: 0; transform: translateX(-56px) translateY(20px) scale(0.93); }
+  to   { opacity: 1; transform: none; }
+}
+.iphone-2.in-view .cs-iphone-visual {
+  animation: phoneReveal2 1s cubic-bezier(.16,1,.3,1) 0s both;
+}
+
+/* 3й мокап — zoom + blur рассеивается, как AI материализует */
+@keyframes phoneReveal3 {
+  0%   { opacity: 0; transform: scale(0.75) translateY(24px); filter: blur(12px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+.iphone-3.in-view .cs-iphone-visual {
+  animation: phoneReveal3 1.2s cubic-bezier(.25,.46,.45,.94) 0s both;
+}
 
 /* ── Mobile ── */
 @media(max-width:768px){
@@ -447,7 +474,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section">
+<section class="cs-iphone-section iphone-1">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Everything a student needs, in one screen.</h2>
@@ -497,7 +524,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section alt reverse">
+<section class="cs-iphone-section alt reverse iphone-2">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Join a class. See your schedule. Stay on track.</h2>
@@ -540,7 +567,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 
 
-<section class="cs-iphone-section">
+<section class="cs-iphone-section iphone-3">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Ask anything about your course — get an answer instantly.</h2>
