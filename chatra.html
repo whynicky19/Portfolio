@@ -160,7 +160,7 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
   font-size: clamp(40px, 6.5vw, 72px);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1.05;
+  line-height: 1.12;
   color: #1d1d1f;
   margin-top: 64px;
   margin-bottom: 0;
@@ -171,6 +171,27 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+@keyframes taglineWord {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.tagline-word {
+  display: inline-block;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+}
+.tagline-word.go {
+  animation: taglineWord 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Apple-style segmented pill toggle */
@@ -798,6 +819,56 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
     }, { threshold: 0.18 });
     sections.forEach(s => sObs.observe(s));
   }
+})();
+
+// Apple-style tagline word-by-word animation
+(function () {
+  const tagline = document.querySelector('.cs-hero-tagline');
+  if (!tagline) return;
+
+  const BASE = 1.05;   // start after chips heroFadeUp (.6s + duration)
+  const STEP = 0.11;   // stagger between words
+  let idx = 0;
+
+  function wrapWords(node, isEm) {
+    const parts = node.textContent.split(/(\s+)/);
+    const frag = document.createDocumentFragment();
+    parts.forEach(part => {
+      if (/^\s+$/.test(part)) {
+        frag.appendChild(document.createTextNode(part));
+      } else if (part) {
+        const span = document.createElement('span');
+        span.className = 'tagline-word';
+        span.style.animationDelay = (BASE + idx * STEP).toFixed(2) + 's';
+        if (isEm) {
+          const em = document.createElement('em');
+          em.textContent = part;
+          span.appendChild(em);
+        } else {
+          span.textContent = part;
+        }
+        frag.appendChild(span);
+        idx++;
+      }
+    });
+    return frag;
+  }
+
+  const children = Array.from(tagline.childNodes);
+  tagline.innerHTML = '';
+  children.forEach(n => {
+    if (n.nodeType === Node.TEXT_NODE) {
+      tagline.appendChild(wrapWords(n, false));
+    } else if (n.nodeName === 'EM') {
+      tagline.appendChild(wrapWords(n, true));
+    } else {
+      tagline.appendChild(n.cloneNode(true));
+    }
+  });
+
+  requestAnimationFrame(() => {
+    tagline.querySelectorAll('.tagline-word').forEach(w => w.classList.add('go'));
+  });
 })();
 
 // Hero phone theme toggle
