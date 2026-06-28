@@ -457,11 +457,11 @@ body {
 .btn-link:hover svg { transform: translateX(3px); }
 .btn-link:hover { opacity: 1; color: #0066cc; }
 
-.section { padding: 120px 0; position: relative; }
-.section-sm { padding: 80px 0; }
-.section-lg { padding: 160px 0; }
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
-@media(max-width:600px){ .container{ padding: 0 20px; } .section{ padding: 80px 0; } }
+.section { padding: 160px 0; position: relative; }
+.section-sm { padding: 110px 0; }
+.section-lg { padding: 200px 0; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+@media(max-width:600px){ .container{ padding: 0 24px; } .section{ padding: 100px 0; } }
 
 .bg-black { background: var(--white); }
 .bg-dark  { background: var(--gray-8); }
@@ -493,7 +493,7 @@ body {
 
 @media(max-width:600px){
   
-  .section-lg { padding: 72px 0; }
+  .section-lg { padding: 120px 0; }
 
   
   .slide-left  { transform: translateY(28px); }
@@ -670,7 +670,7 @@ body {
 @media(max-width:600px){
   .footer-links-row { gap: 24px; padding: 20px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; padding: 14px 20px; }
-  .section-sm { padding: 60px 0; }
+  .section-sm { padding: 80px 0; }
 }
 
 .hero-photo-card img,
@@ -809,7 +809,7 @@ body {
 }
 
 .statement-section {
-  padding: 160px 32px; text-align: center;
+  padding: 200px 40px; text-align: center;
   background: var(--white); position: relative; overflow: hidden;
 }
 .statement-section::before {

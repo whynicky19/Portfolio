@@ -62,16 +62,16 @@ html[data-theme="dark"] .scroll-progress { background: rgba(0,0,0,0.06); }
 html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 
 .cs-hero {
-  min-height: 92svh;
+  min-height: 100svh;
   background: #ffffff;
   color: #1d1d1f;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 80px) 32px 100px;
+  padding: calc(var(--nav-h) + 120px) 32px 140px;
   position: relative; overflow: hidden;
 }
-.cs-hero-inner { max-width: 760px; }
+.cs-hero-inner { max-width: 820px; }
 
 .cs-eyebrow {
   font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
@@ -97,12 +97,13 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 }
 .cs-hero-sub {
   font-size: clamp(17px, 2.2vw, 22px); font-weight: 300;
-  color: #86868b; line-height: 1.5;
-  letter-spacing: -0.02em; max-width: 540px; margin: 0 auto 40px;
+  color: #86868b; line-height: 1.6;
+  letter-spacing: -0.02em; max-width: 560px; margin: 0 auto 56px;
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .4s both;
 }
 .cs-hero-chips {
   display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 4px;
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .6s both;
 }
 .cs-chip {
@@ -114,41 +115,129 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 }
 
 .cs-hero-img {
-  margin-top: 72px;
+  margin-top: 100px;
   animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .8s both;
+  display: flex; flex-direction: column; align-items: center; gap: 32px;
 }
-.cs-hero-img img {
-  max-width: min(700px, 92vw);
-  display: block; margin: 0 auto;
+
+/* Hero iPhone mockup */
+.hero-phone-mockup {
+  width: clamp(280px, 36vw, 360px);
+  background: #1d1d1f;
+  border-radius: 56px;
+  border: 1px solid #2a2a2c;
+  padding: 7px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 80px 160px rgba(0,0,0,0.22),
+    0 20px 48px rgba(0,0,0,0.12),
+    0 4px 12px rgba(0,0,0,0.08);
+  position: relative; flex-shrink: 0;
+}
+.hero-phone-notch {
+  position: absolute; top: 16px; left: 50%;
+  transform: translateX(-50%);
+  width: 88px; height: 24px;
+  background: #000; border-radius: 12px;
+  z-index: 2;
+}
+.hero-phone-screen {
+  width: 100%; aspect-ratio: 9/19.5;
+  border-radius: 50px; overflow: hidden; background: #1d1d1f;
+  position: relative;
+}
+.hero-phone-screen img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: opacity .5s cubic-bezier(.4,0,.2,1);
+}
+.hero-phone-screen img.hidden { opacity: 0; }
+
+/* Apple-style hero tagline */
+.cs-hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6.5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: #1d1d1f;
+  margin-top: 64px;
+  margin-bottom: 0;
+}
+.cs-hero-tagline em {
+  font-style: normal;
+  background: linear-gradient(135deg, #00d4ef 0%, #00B1C9 60%, #007fa0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Apple-style segmented pill toggle */
+.theme-toggle-pill {
+  display: inline-flex;
+  background: rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+  user-select: none;
+}
+.theme-toggle-pill button {
+  all: unset;
+  cursor: pointer;
+  font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+  color: #86868b;
+  padding: 7px 20px;
+  border-radius: 999px;
+  transition: color .2s, background .2s, box-shadow .2s;
+  display: flex; align-items: center; gap: 7px;
+}
+.theme-toggle-pill button.active {
+  background: #ffffff;
+  color: #1d1d1f;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12), 0 0 0 0.5px rgba(0,0,0,0.06);
+}
+.theme-toggle-icon {
+  width: 12px; height: 12px;
+  display: inline-block;
 }
 
 .cs-overview {
-  display: grid; grid-template-columns: repeat(4, 1fr);
   background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.cs-overview-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 .cs-overview-item {
-  padding: 32px 28px;
+  padding: 40px 24px;
+  text-align: center;
   border-right: 1px solid rgba(0,0,0,0.08);
 }
 .cs-overview-item:last-child { border-right: none; }
 .cs-overview-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
-  text-transform: uppercase; color: #aeaeb2; margin-bottom: 8px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #aeaeb2; margin-bottom: 10px;
 }
 .cs-overview-value {
-  font-size: 16px; font-weight: 600; letter-spacing: -0.02em;
+  font-size: 17px; font-weight: 600; letter-spacing: -0.02em;
   color: #1d1d1f; line-height: 1.3;
 }
 @media(max-width:700px){
-  .cs-overview { grid-template-columns: 1fr 1fr; }
+  .cs-overview-inner { grid-template-columns: 1fr 1fr; }
   .cs-overview-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
   .cs-overview-item:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.08); }
   .cs-overview-item:last-child { border-bottom: none; }
 }
 
-.cs-section    { padding: 100px 0; background: #ffffff; }
-.cs-section-alt { padding: 100px 0; background: #f5f5f7; }
-.cs-section-sm { padding: 72px 0; }
+.cs-section    { padding: 160px 0; background: #ffffff; }
+.cs-section-alt { padding: 160px 0; background: #f5f5f7; }
+.cs-section-sm { padding: 110px 0; }
 .cs-container      { max-width: 760px;  margin: 0 auto; padding: 0 32px; }
 .cs-container-wide { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
 
@@ -253,16 +342,16 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
 @media(max-width:600px){
   .cs-container, .cs-container-wide { padding: 0 20px; }
   .cs-gallery-header { padding: 0 20px; }
-  .cs-cta { padding: 72px 20px; }
-  .cs-section { padding: 72px 0; }
-  .cs-section-alt { padding: 72px 0; }
-  .cs-hero { padding: calc(var(--nav-h) + 48px) 20px 72px; }
-  .cs-hero-img { margin-top: 48px; }
+  .cs-cta { padding: 100px 20px; }
+  .cs-section { padding: 100px 0; }
+  .cs-section-alt { padding: 100px 0; }
+  .cs-hero { padding: calc(var(--nav-h) + 80px) 20px 100px; }
+  .cs-hero-img { margin-top: 64px; }
 }
 
 /* ── iPhone video feature sections ── */
 .cs-iphone-section {
-  padding: 120px 0;
+  padding: 160px 0;
   background: #ffffff;
 }
 .cs-iphone-section.alt { background: #f5f5f7; }
@@ -435,28 +524,61 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
       <span class="cs-chip">Docker</span>
       <span class="cs-chip">Riverpod</span>
     </div>
+    <p class="cs-hero-tagline">Every class. Every grade.<br><em>One app.</em></p>
     <div class="cs-hero-img">
-      <img src="img/appstore-card.svg" alt="Chatra Academy mobile app">
+      <div class="hero-phone-mockup">
+        <div class="hero-phone-notch"></div>
+        <div class="hero-phone-screen" id="heroPhoneScreen">
+          <img src="img/light screen.png" alt="Chatra app light theme" id="heroImgLight">
+          <img src="img/dark screen.png"  alt="Chatra app dark theme"  id="heroImgDark" class="hidden">
+        </div>
+      </div>
+      <div class="theme-toggle-pill" role="group" aria-label="App theme preview">
+        <button id="toggleLight" class="active" onclick="heroSetTheme('light')">
+          <svg class="theme-toggle-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <circle cx="6" cy="6" r="2.5" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+              <line x1="6" y1="0.5" x2="6" y2="2"/>
+              <line x1="6" y1="10" x2="6" y2="11.5"/>
+              <line x1="0.5" y1="6" x2="2" y2="6"/>
+              <line x1="10" y1="6" x2="11.5" y2="6"/>
+              <line x1="1.93" y1="1.93" x2="2.98" y2="2.98"/>
+              <line x1="9.02" y1="9.02" x2="10.07" y2="10.07"/>
+              <line x1="10.07" y1="1.93" x2="9.02" y2="2.98"/>
+              <line x1="2.98" y1="9.02" x2="1.93" y2="10.07"/>
+            </g>
+          </svg>
+          Light
+        </button>
+        <button id="toggleDark" onclick="heroSetTheme('dark')">
+          <svg class="theme-toggle-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M10.5 7.5A5 5 0 0 1 4.5 1.5a5 5 0 1 0 6 6z" fill="currentColor"/>
+          </svg>
+          Dark
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="cs-overview">
-  <div class="cs-overview-item">
-    <div class="cs-overview-label">Timeline</div>
-    <div class="cs-overview-value">2025 → 2026</div>
-  </div>
-  <div class="cs-overview-item">
-    <div class="cs-overview-label">Role</div>
-    <div class="cs-overview-value">Frontend/Mobile Developer</div>
-  </div>
-  <div class="cs-overview-item">
-    <div class="cs-overview-label">Platforms</div>
-    <div class="cs-overview-value">iOS · Android · Web</div>
-  </div>
-  <div class="cs-overview-item">
-    <div class="cs-overview-label">Status</div>
-    <div class="cs-overview-value">Live in production</div>
+  <div class="cs-overview-inner">
+    <div class="cs-overview-item">
+      <div class="cs-overview-label">Timeline</div>
+      <div class="cs-overview-value">2025 → 2026</div>
+    </div>
+    <div class="cs-overview-item">
+      <div class="cs-overview-label">Role</div>
+      <div class="cs-overview-value">Frontend/Mobile Developer</div>
+    </div>
+    <div class="cs-overview-item">
+      <div class="cs-overview-label">Platforms</div>
+      <div class="cs-overview-value">iOS · Android · Web</div>
+    </div>
+    <div class="cs-overview-item">
+      <div class="cs-overview-label">Status</div>
+      <div class="cs-overview-value">Live in production</div>
+    </div>
   </div>
 </div>
 
@@ -677,6 +799,26 @@ html[data-theme="dark"] .scroll-bar { background: rgba(0,0,0,0.25); }
     sections.forEach(s => sObs.observe(s));
   }
 })();
+
+// Hero phone theme toggle
+function heroSetTheme(mode) {
+  const imgLight = document.getElementById('heroImgLight');
+  const imgDark  = document.getElementById('heroImgDark');
+  const btnLight = document.getElementById('toggleLight');
+  const btnDark  = document.getElementById('toggleDark');
+  if (!imgLight || !imgDark) return;
+  if (mode === 'dark') {
+    imgLight.classList.add('hidden');
+    imgDark.classList.remove('hidden');
+    btnDark.classList.add('active');
+    btnLight.classList.remove('active');
+  } else {
+    imgDark.classList.add('hidden');
+    imgLight.classList.remove('hidden');
+    btnLight.classList.add('active');
+    btnDark.classList.remove('active');
+  }
+}
 </script>
 </body>
 </html>
