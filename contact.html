@@ -69,25 +69,12 @@
 .social-arrow { color: var(--gray-5); }
 .social-arrow svg { display: block; }
 
-.faq-item { border-top: 1px solid var(--border); padding: 0; }
-.faq-item:last-child { border-bottom: 1px solid var(--border); }
-.faq-btn {
-  width: 100%; display: flex; align-items: center;
-  justify-content: space-between; gap: 16px;
-  padding: 22px 0; background: none; border: none;
-  color: var(--black); text-align: left;
-  font-family: var(--font-text); font-size: 16px;
-  font-weight: 600; letter-spacing: -0.02em;
-}
-.faq-icon { flex-shrink: 0; transition: transform .25s; }
-.faq-body {
-  overflow: hidden; max-height: 0;
-  transition: max-height .35s cubic-bezier(.16,1,.3,1);
-}
-.faq-body p {
-  font-size: 15px; color: var(--gray-4);
-  line-height: 1.7; padding-bottom: 22px;
-}
+
+
+
+
+
+
 
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
@@ -122,6 +109,29 @@
 @keyframes breathe { 0%,100%{opacity:.25} 50%{opacity:.9} }
 .avail-text  { font-size: 14px; font-weight: 500; color: var(--black); }
 .avail-sub   { font-size: 12px; color: var(--gray-4); margin-top: 2px; }
+
+/* ── Q&A ── */
+.qa-section { background: var(--gray-06); }
+.qa-list {
+  max-width: 680px; margin: 0 auto;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.qa-item {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 36px 0;
+}
+.qa-q {
+  font-size: 17px; font-weight: 600;
+  letter-spacing: -0.02em; color: var(--black);
+  margin-bottom: 12px;
+}
+.qa-a {
+  font-size: 15px; color: var(--gray-4);
+  line-height: 1.65; max-width: 560px;
+}
+[data-theme="dark"] .qa-section { background: #161616; }
+[data-theme="dark"] .qa-list { border-top-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .qa-item { border-bottom-color: rgba(255,255,255,0.08); }
 </style>
 </head>
 <body>
@@ -133,7 +143,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="chatra.html">Case Study</a></li>
+      <li><a href="chatra.html">Chatra</a></li>
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
@@ -152,7 +162,7 @@
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="projects.html">Projects</a>
-  <a href="chatra.html">Case Study</a>
+  <a href="chatra.html">Chatra</a>
   <a href="experience.html">Experience</a>
   <a href="contact.html">Contact</a>
   <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
@@ -281,49 +291,33 @@
 
 
 
-<section class="section bg-darker">
-  <div class="container" style="max-width:720px;">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Common questions.</h2>
 
-    <div class="fade-up" id="faqList">
 
-      <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <span>Are you open to remote work?</span>
-          <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--gray-4)" stroke-width="1.3" stroke-linecap="round"><path d="M3 6l5 5 5-5"/></svg>
-        </button>
-        <div class="faq-body"><p>Absolutely. Remote is my preference. I'm comfortable with async communication across timezones and experienced with the tools that make it work well.</p></div>
+
+<!-- ── Q&A ── -->
+<section class="section qa-section">
+  <div class="container">
+    <h2 class="t-headline-md fade-up" style="margin-bottom:52px;">Common questions.</h2>
+    <div class="qa-list fade-up">
+      <div class="qa-item">
+        <div class="qa-q">Are you open to internships or full-time roles?</div>
+        <div class="qa-a">Yes — I'm actively looking for opportunities where I can contribute from day one. I'm interested in mobile, full-stack, and product-focused engineering roles, especially those involving Flutter, Python, or modern web stacks.</div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <span>What types of projects do you take on?</span>
-          <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--gray-4)" stroke-width="1.3" stroke-linecap="round"><path d="M3 6l5 5 5-5"/></svg>
-        </button>
-        <div class="faq-body"><p>Mobile apps (Flutter/iOS/Android), backend APIs (FastAPI/Python), full-stack web (Nuxt.js/Vue), and end-to-end products. I'm most energised by problems where I can own the full stack.</p></div>
+      <div class="qa-item">
+        <div class="qa-q">Can you join a hackathon team?</div>
+        <div class="qa-a">Absolutely. Hackathons are where I thrive — I can cover mobile (Flutter), backend (FastAPI), and basic frontend (Nuxt/Vue). If you need someone who can ship a working product in 24–48 hours, reach out.</div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <span>Are you available for hackathon teams?</span>
-          <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--gray-4)" stroke-width="1.3" stroke-linecap="round"><path d="M3 6l5 5 5-5"/></svg>
-        </button>
-        <div class="faq-body"><p>Yes — hackathons are where I do some of my best work. I've competed in 3+ and know how to contribute under real time pressure. Reach out with the event details.</p></div>
+      <div class="qa-item">
+        <div class="qa-q">Do you take on freelance projects?</div>
+        <div class="qa-a">Selectively, yes. I prefer projects with a clear problem, real users, and a timeline that allows for quality work. Mobile apps and full-stack web products are my sweet spot.</div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <span>What's your response time?</span>
-          <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--gray-4)" stroke-width="1.3" stroke-linecap="round"><path d="M3 6l5 5 5-5"/></svg>
-        </button>
-        <div class="faq-body"><p>Usually within 24 hours for email, faster on Telegram. If it's urgent, Telegram is the best channel.</p></div>
+      <div class="qa-item">
+        <div class="qa-q">How fast do you respond?</div>
+        <div class="qa-a">Within 24 hours on email. If it's urgent, Telegram is faster — I'm usually online during UTC+6 business hours.</div>
       </div>
-
     </div>
   </div>
 </section>
-
-
 
 <footer class="apple-footer">
   <div class="footer-links-row">
@@ -339,19 +333,6 @@
 
 <script src="app.js"></script>
 <script>
-// ── FAQ ACCORDION ──
-function toggleFaq(btn) {
-  const body = btn.nextElementSibling;
-  const icon = btn.querySelector('.faq-icon');
-  const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
-  document.querySelectorAll('.faq-body').forEach(b => b.style.maxHeight = '0px');
-  document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
-  if (!isOpen) {
-    body.style.maxHeight = body.scrollHeight + 'px';
-    icon.style.transform = 'rotate(180deg)';
-  }
-}
-
 // ── CONTACT FORM ──
 (function () {
   const form = document.getElementById('contactForm');

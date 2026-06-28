@@ -31,23 +31,9 @@
   background: var(--white);
 }
 
-.hero-bg {
-  position: absolute; inset: 0; z-index: 0;
-  background:
-    radial-gradient(ellipse 55% 45% at 15% 20%, rgba(99,102,241,0.045) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 75%, rgba(59,130,246,0.035) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,0,0,0.018) 0%, transparent 70%);
-}
 
-.hero-grid {
-  position: absolute; inset: 0; z-index: 0;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
-  animation: gridPulse 8s ease-in-out infinite;
-}
+
+
 
 .hero-content {
   position: relative; z-index: 1;
@@ -98,88 +84,29 @@
 }
 .hero-scroll-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-5); }
 
-.hero-photo-wrap {
-  position: relative;
-  width: min(320px, 75vw);
-  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .8s both;
-}
-.hero-photo-card {
-  width: 100%; aspect-ratio: 3/4;
-  border-radius: var(--r-xl);
-  background: var(--gray-7);
-  border: 1px solid rgba(0,0,0,0.08);
-  overflow: hidden; position: relative;
-  box-shadow: 0 60px 120px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.04);
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-photo-card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.hero-photo-placeholder {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 12px;
-}
-.hero-photo-placeholder svg { opacity: 0.25; }
-.hero-photo-placeholder span { font-size: 12px; color: var(--gray-5); letter-spacing: 0.05em; }
-.hero-photo-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
-}
-.hero-photo-badge {
-  position: absolute; bottom: 16px; left: 16px; right: 16px; z-index: 2;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: 14px; padding: 12px 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-.badge-live {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--black);
-  flex-shrink: 0; animation: dotBreathe 2s infinite;
-}
-.badge-label { font-size: 12px; font-weight: 500; color: var(--black); }
-.badge-sub   { font-size: 11px; color: var(--gray-4); }
 
-.marquee-section {
-  padding: 32px 0; overflow: hidden;
-  background: var(--gray-8);
-}
-.marquee-track {
-  display: flex; gap: 0; white-space: nowrap;
-  animation: marquee 28s linear infinite;
-}
-.marquee-track:hover { animation-play-state: paused; }
-.marquee-item {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 0 32px;
-  font-size: 14px; font-weight: 500; color: var(--gray-4);
-  letter-spacing: -0.01em;
-}
-.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-5); }
 
-.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-.bento-card {
-  border-radius: var(--r-lg); background: var(--gray-7);
-  border: 1px solid rgba(0,0,0,0.07);
-  overflow: hidden; padding: 40px 36px;
-  position: relative;
-  transition: border-color .35s cubic-bezier(.23,1,.32,1),
-              transform .35s cubic-bezier(.23,1,.32,1),
-              box-shadow .35s cubic-bezier(.23,1,.32,1);
-}
-.bento-card:hover {
-  border-color: rgba(0,0,0,0.14);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-}
-.bento-card.accent-card {
-  background: linear-gradient(135deg, var(--gray-7) 0%, rgba(0,177,201,0.07) 100%);
-}
-[data-theme="dark"] .bento-card.accent-card {
-  background: linear-gradient(135deg, var(--gray-7) 0%, rgba(0,177,201,0.13) 100%);
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[data-theme="dark"] 
 .hero-announce {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(0,0,0,0.05);
@@ -237,37 +164,25 @@
   .proj-featured-visual { padding: 60px 32px; min-height: 280px; }
   .proj-featured-body { padding: 48px 20px; }
 }
-.bento-card.col-8 { grid-column: span 8; }
-.bento-card.col-4 { grid-column: span 4; }
-.bento-card.col-6 { grid-column: span 6; }
-.bento-card.col-12 { grid-column: span 12; }
+
+
+
+
 @media(max-width:900px){
-  .bento-card.col-8, .bento-card.col-4, .bento-card.col-6 { grid-column: span 12; }
+  
 }
 @media(max-width:600px){
   .hero { padding: calc(var(--nav-h) + 44px) 20px 72px; }
   .hero-eyebrow { font-size: 11px; flex-wrap: wrap; justify-content: center; }
-  .bento-card { padding: 28px 20px; }
+  
   .proj-strip { min-height: auto; }
   .proj-strip-body { padding: 40px 20px; }
   .cta-banner { padding: 72px 20px; }
 }
-.bento-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--gray-4); margin-bottom: 12px;
-}
-.bento-title {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 2.5vw, 32px);
-  font-weight: 700; letter-spacing: -0.035em;
-  line-height: 1.1; margin-bottom: 12px;
-  color: var(--black);
-}
-.bento-body { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
-.bento-visual {
-  position: absolute; right: 0; bottom: 0;
-  opacity: 0.06; pointer-events: none;
-}
+
+
+
+
 
 .proj-strip {
   display: grid; grid-template-columns: 1fr 1fr;
@@ -344,6 +259,126 @@
   background-clip: text;
 }
 
+/* ── Apple-style stack bar ── */
+.stack-bar {
+  padding: 52px 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: var(--white);
+}
+.stack-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-5);
+  text-align: center; margin-bottom: 20px;
+}
+.stack-items {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; gap: 6px 36px;
+}
+.stack-item {
+  font-size: 15px; font-weight: 400;
+  letter-spacing: -0.01em; color: var(--gray-3);
+}
+[data-theme="dark"] .stack-bar { border-color: rgba(255,255,255,0.08); background: #111; }
+[data-theme="dark"] .cap-section { background: #111; }
+[data-theme="dark"] .cap-row { border-top-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .cap-visual { background: #1a1a1a; }
+[data-theme="dark"] .cap-row.cap-alt { background: #161616; }
+[data-theme="dark"] .cap-row.cap-alt .cap-visual { background: #111; }
+[data-theme="dark"] .apple-stats { background: #111; }
+[data-theme="dark"] .apple-stats-inner { border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .apple-stat { border-right-color: rgba(255,255,255,0.08); }
+
+/* ── Apple-style capabilities ── */
+.cap-section { background: var(--white); }
+.cap-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  min-height: 520px;
+}
+.cap-row.cap-alt { background: var(--gray-06); }
+.cap-body {
+  padding: 100px 80px;
+  display: flex; flex-direction: column; justify-content: center; gap: 20px;
+}
+.cap-eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gray-5);
+}
+.cap-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700; letter-spacing: -0.04em;
+  line-height: 1.08; color: var(--black);
+}
+.cap-desc {
+  font-size: 17px; color: var(--gray-4);
+  line-height: 1.65; max-width: 400px;
+}
+.cap-visual {
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  background: var(--gray-06);
+  position: relative;
+}
+.cap-row.cap-alt .cap-visual { background: #f0f0f5; }
+.cap-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+  transition: transform .6s cubic-bezier(.16,1,.3,1);
+}
+.cap-visual img.contain {
+  object-fit: contain;
+  padding: 48px 40px;
+  width: auto; height: auto;
+  max-width: 100%; max-height: 400px;
+}
+.cap-row:hover .cap-visual img { transform: scale(1.03); }
+@media(max-width:768px){
+  .cap-row { grid-template-columns: 1fr; min-height: auto; }
+  .cap-body { padding: 64px 32px; }
+  .cap-visual { min-height: 260px; }
+  .cap-row .cap-visual { order: -1; }
+  .cap-visual img.contain { padding: 32px 24px; }
+}
+
+/* ── Apple-style stats ── */
+.apple-stats { background: var(--white); }
+.apple-stats-inner {
+  max-width: 960px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.apple-stat {
+  text-align: center; padding: 64px 24px;
+  border-right: 1px solid rgba(0,0,0,0.08);
+}
+.apple-stat:last-child { border-right: none; }
+.apple-stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 700; letter-spacing: -0.05em;
+  line-height: 1; color: var(--black);
+  margin-bottom: 12px;
+}
+.apple-stat-label {
+  font-size: 15px; font-weight: 500;
+  letter-spacing: -0.01em; color: var(--black);
+  margin-bottom: 4px;
+}
+.apple-stat-sub {
+  font-size: 13px; color: var(--gray-5);
+}
+@media(max-width:600px){
+  .apple-stats-inner { grid-template-columns: 1fr 1fr; }
+  .apple-stat { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .apple-stat:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.08); }
+  .apple-stat:last-child { border-bottom: none; }
+  .apple-stat { padding: 44px 16px; }
+}
+
 </style>
 </head>
 <body>
@@ -355,7 +390,7 @@
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="chatra.html">Case Study</a></li>
+      <li><a href="chatra.html">Chatra</a></li>
       <li><a href="experience.html">Experience</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -374,7 +409,7 @@
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="projects.html">Projects</a>
-  <a href="chatra.html">Case Study</a>
+  <a href="chatra.html">Chatra</a>
   <a href="experience.html">Experience</a>
   <a href="contact.html">Contact</a>
   <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
@@ -386,8 +421,6 @@
 <div class="scroll-progress"><div class="scroll-bar"></div></div>
 
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
   <div class="hero-content hero-parallax">
     <p class="hero-eyebrow">
       <span class="hero-eyebrow-dot"></span>
@@ -402,84 +435,20 @@
   </div>
 </section>
 
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter" class="tech-icon" width="18" height="18" alt="Flutter">Flutter</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/dart" class="tech-icon" width="18" height="18" alt="Dart">Dart</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/python" class="tech-icon" width="18" height="18" alt="Python">Python</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/fastapi" class="tech-icon" width="18" height="18" alt="FastAPI">FastAPI</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs" class="tech-icon" width="18" height="18" alt="Vue.js">Vue.js</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/nuxtdotjs" class="tech-icon" width="18" height="18" alt="Nuxt">Nuxt</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase" class="tech-icon" width="18" height="18" alt="Firebase">Firebase</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql" class="tech-icon" width="18" height="18" alt="PostgreSQL">PostgreSQL</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker" class="tech-icon" width="18" height="18" alt="Docker">Docker</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/github" class="tech-icon" width="18" height="18" alt="GitHub">GitHub</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript" class="tech-icon" width="18" height="18" alt="TypeScript">TypeScript</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/figma" class="tech-icon" width="18" height="18" alt="Figma">Figma</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/flutter" class="tech-icon" width="18" height="18" alt="Flutter">Flutter</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/dart" class="tech-icon" width="18" height="18" alt="Dart">Dart</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/python" class="tech-icon" width="18" height="18" alt="Python">Python</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/fastapi" class="tech-icon" width="18" height="18" alt="FastAPI">FastAPI</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/vuedotjs" class="tech-icon" width="18" height="18" alt="Vue.js">Vue.js</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/nuxtdotjs" class="tech-icon" width="18" height="18" alt="Nuxt">Nuxt</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/firebase" class="tech-icon" width="18" height="18" alt="Firebase">Firebase</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/postgresql" class="tech-icon" width="18" height="18" alt="PostgreSQL">PostgreSQL</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/docker" class="tech-icon" width="18" height="18" alt="Docker">Docker</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/github" class="tech-icon" width="18" height="18" alt="GitHub">GitHub</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/typescript" class="tech-icon" width="18" height="18" alt="TypeScript">TypeScript</span><span class="marquee-dot"></span>
-    <span class="marquee-item"><img src="https://cdn.simpleicons.org/figma" class="tech-icon" width="18" height="18" alt="Figma">Figma</span><span class="marquee-dot"></span>
-  </div>
-</div>
-
-<section class="section bg-darker section-card" data-scroll-scale>
+<!-- ── Stack bar ── -->
+<section class="stack-bar">
   <div class="container">
-    <h2 class="t-headline-lg fade-up" style="margin-bottom:64px;">What I build.</h2>
-    <div class="bento stagger">
-
-      <div class="bento-card col-8 accent-card">
-        <div class="bento-eyebrow">Mobile Development</div>
-        <h3 class="bento-title">Flutter apps that<br>feel native everywhere.</h3>
-        <p class="bento-body" style="max-width:400px;">Cross-platform iOS & Android apps with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. From concept to App Store.</p>
-        <a href="projects.html" class="btn btn-link" style="margin-top:24px;display:inline-flex;align-items:center;gap:6px;font-size:15px;">
-          See projects
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
-        </a>
-        <div class="bento-visual">
-          <svg width="220" height="220" viewBox="0 0 220 220" fill="none"><rect x="60" y="20" width="100" height="180" rx="16" stroke="currentColor" stroke-width="1.5"/><path d="M60 50h100M60 170h100" stroke="currentColor" stroke-width="1"/><circle cx="110" cy="188" r="5" stroke="currentColor" stroke-width="1"/></svg>
-        </div>
-      </div>
-
-      <div class="bento-card col-4">
-        <div class="bento-eyebrow">Backend & API</div>
-        <h3 class="bento-title">FastAPI backends. Production ready.</h3>
-        <p class="bento-body">JWT auth, PostgreSQL, Docker. From zero to deployed.</p>
-        <div class="bento-visual">
-          <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><rect x="20" y="20" width="120" height="120" rx="12" stroke="currentColor" stroke-width="1.2"/><path d="M40 60h80M40 80h60M40 100h70" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
-        </div>
-      </div>
-
-      <div class="bento-card col-4">
-        <div class="bento-eyebrow">Hackathons</div>
-        <h3 class="bento-title">3+ competitions entered.</h3>
-        <p class="bento-body">Building working MVPs in 24–48 hours. Pitching to real judges. Finishing in the top.</p>
-      </div>
-
-      <div class="bento-card col-4">
-        <div class="bento-eyebrow">Web Frontend</div>
-        <h3 class="bento-title">Vue, Nuxt, and beyond.</h3>
-        <p class="bento-body">Full-stack web dashboards with Nuxt.js, including Kazakh & Russian i18n.</p>
-      </div>
-
-      <div class="bento-card col-4">
-        <div class="bento-eyebrow">Open Source</div>
-        <h3 class="bento-title">Everything ships.</h3>
-        <p class="bento-body">Real code on GitHub. Not just tutorials — actual products people use.</p>
-        <a href="https://github.com/whynicky19" target="_blank" class="btn btn-link" style="margin-top:20px;font-size:14px;display:inline-flex;align-items:center;gap:6px;">
-          GitHub
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
-        </a>
-      </div>
-
+    <p class="stack-label">Built with</p>
+    <div class="stack-items">
+      <span class="stack-item">Flutter</span>
+      <span class="stack-item">Dart</span>
+      <span class="stack-item">FastAPI</span>
+      <span class="stack-item">Python</span>
+      <span class="stack-item">PostgreSQL</span>
+      <span class="stack-item">Nuxt.js</span>
+      <span class="stack-item">Vue</span>
+      <span class="stack-item">TypeScript</span>
+      <span class="stack-item">Docker</span>
     </div>
   </div>
 </section>
@@ -491,17 +460,14 @@
   <div class="sticky-features">
     <div class="sticky-text-col">
       <div class="sf-item" data-sf="0">
-        <span class="sf-num">01</span>
         <h3 class="sf-title">Mobile that feels native on iOS & Android.</h3>
         <p class="sf-desc">Flutter with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. Cross-platform iOS and Android from a single codebase — pixel-perfect UI, smooth 60fps animations, and everything needed to ship to the App Store.</p>
       </div>
       <div class="sf-item" data-sf="1">
-        <span class="sf-num">02</span>
         <h3 class="sf-title">Backends built for production from day one.</h3>
         <p class="sf-desc">FastAPI with PostgreSQL, containerised in Docker. JWT authentication, clean REST architecture, and automatic OpenAPI documentation. Designed for real traffic from the first commit — not just something that runs on localhost and breaks under load.</p>
       </div>
       <div class="sf-item" data-sf="2">
-        <span class="sf-num">03</span>
         <h3 class="sf-title">Complete products shipped end to end.</h3>
         <p class="sf-desc">Mobile app, REST backend, and Nuxt.js web dashboard — designed, built, and deployed together. Chatra Academy runs in real university classrooms with students, instructors, and administrators. Every layer — design, engineering, infrastructure — handled by one developer.</p>
       </div>
@@ -548,7 +514,6 @@
   </div>
 </section>
 
-
 <section class="proj-featured">
   <div class="proj-featured-visual clip-reveal">
     <img src="img/appstore-card.svg" alt="Chatra Academy app" fetchpriority="high" decoding="async">
@@ -564,7 +529,7 @@
       <span class="chip chip-dark">Docker</span>
     </div>
     <div class="proj-featured-actions">
-      <a href="chatra.html" class="btn btn-primary">Case Study</a>
+      <a href="chatra.html" class="btn btn-primary">Chatra</a>
       <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-link" style="font-size:14px;display:inline-flex;align-items:center;gap:5px;">
         GitHub
         <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
@@ -573,27 +538,28 @@
   </div>
 </section>
 
-
-<section class="section bg-black">
-  <div class="container">
-    <h2 class="t-headline-lg fade-up text-gradient" style="max-width:600px;margin-bottom:64px;">Numbers that speak for themselves.</h2>
-    <div class="grid-4 stagger">
-      <div>
-        <div class="stat-num" data-target="3" data-suffix="+">0+</div>
-        <div class="stat-label">Hackathons entered</div>
-      </div>
-      <div>
-        <div class="stat-num" data-target="7" data-suffix="+">0+</div>
-        <div class="stat-label">Projects completed</div>
-      </div>
-      <div>
-        <div class="stat-num" data-target="5" data-suffix="+">0+</div>
-        <div class="stat-label">Certificates earned</div>
-      </div>
-      <div>
-        <div class="stat-num" data-target="11" data-suffix="+">0+</div>
-        <div class="stat-label">Technologies mastered</div>
-      </div>
+<!-- ── Stats ── -->
+<section class="apple-stats section">
+  <div class="apple-stats-inner">
+    <div class="apple-stat fade-up">
+      <div class="apple-stat-num">3+</div>
+      <div class="apple-stat-label">Hackathons</div>
+      <div class="apple-stat-sub">competed & shipped</div>
+    </div>
+    <div class="apple-stat fade-up" style="animation-delay:.08s">
+      <div class="apple-stat-num">7+</div>
+      <div class="apple-stat-label">Projects</div>
+      <div class="apple-stat-sub">shipped to production</div>
+    </div>
+    <div class="apple-stat fade-up" style="animation-delay:.16s">
+      <div class="apple-stat-num">5+</div>
+      <div class="apple-stat-label">Technologies</div>
+      <div class="apple-stat-sub">mastered end to end</div>
+    </div>
+    <div class="apple-stat fade-up" style="animation-delay:.24s">
+      <div class="apple-stat-num">11+</div>
+      <div class="apple-stat-label">Certificates</div>
+      <div class="apple-stat-sub">earned &amp; counting</div>
     </div>
   </div>
 </section>
@@ -621,7 +587,7 @@
 
 <footer class="apple-footer">
   <div class="footer-links-row">
-    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="chatra.html">Case Study</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="chatra.html">Chatra</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
     <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
     <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
   </div>
