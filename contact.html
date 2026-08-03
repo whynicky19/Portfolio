@@ -24,11 +24,17 @@
   padding: calc(var(--nav-h) + 100px) 32px 80px;
   background: var(--white);
 }
+
+.hl-word {
+  background: linear-gradient(90deg, #5e5ce6 0%, #64d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 @media(max-width:600px){
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
   .contact-split { max-width: 100%; }
   .social-link { padding: 14px 16px; gap: 12px; }
-  .avail-card { padding: 18px; }
 }
 
 .contact-split {
@@ -93,23 +99,6 @@
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
-.avail-card {
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--r-lg);
-  background: var(--gray-7);
-  padding: 24px;
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 36px;
-}
-.avail-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #34c759; flex-shrink: 0;
-  animation: breathe 2.5s ease-in-out infinite;
-}
-@keyframes breathe { 0%,100%{opacity:.25} 50%{opacity:.9} }
-.avail-text  { font-size: 14px; font-weight: 500; color: var(--black); }
-.avail-sub   { font-size: 12px; color: var(--gray-4); margin-top: 2px; }
-
 /* ── Q&A ── */
 .qa-section { background: var(--gray-06); }
 .qa-list {
@@ -171,11 +160,10 @@
     Appearance
   </button>
 </nav>
-<div class="scroll-progress"><div class="scroll-bar"></div></div>
 
 <section class="page-hero">
   <div class="container">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Let's build<br>something.</h1>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Let's build<br><span class="hl-word">something.</span></h1>
     <p class="t-body-xl fade-up" style="max-width:500px; margin-top:24px; animation-delay:.2s;">
       Whether you have a job opportunity, a project idea, want to collaborate on a hackathon, or just want to connect — I'd love to hear from you.
     </p>
@@ -186,15 +174,6 @@
 
 <section class="section bg-black">
   <div class="container">
-    
-    <div class="avail-card fade-up" style="max-width:900px;margin:0 auto 48px;">
-      <div class="avail-dot"></div>
-      <div>
-        <div class="avail-text">Available for opportunities</div>
-        <div class="avail-sub">Internships · Freelance · Full-time · Hackathon teams</div>
-      </div>
-    </div>
-
     <div class="contact-grid">
 
       

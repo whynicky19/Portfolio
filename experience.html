@@ -21,6 +21,13 @@
 <script src="theme-init.js"></script>
 <style>
 .page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
+
+.hl-word {
+  background: linear-gradient(90deg, #bf5af2 0%, #ff2d55 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 @media(max-width:600px){
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
   .exp-card { padding: 28px 0; }
@@ -112,11 +119,10 @@
     Appearance
   </button>
 </nav>
-<div class="scroll-progress"><div class="scroll-bar"></div></div>
 
 <section class="page-hero">
   <div class="container">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Experience<br>& Activities.</h1>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;"><span class="hl-word">Experience</span><br>& Activities.</h1>
     <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Hackathons, competitions, university events, and leadership — the full picture beyond the code.</p>
   </div>
 </section>

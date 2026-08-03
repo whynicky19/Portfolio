@@ -23,6 +23,13 @@
 
 .page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
 
+.hl-word {
+  background: linear-gradient(90deg, #30d158 0%, #64d2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .proj-feature {
   display: grid; grid-template-columns: 1fr 1fr;
 }
@@ -158,11 +165,10 @@
     Appearance
   </button>
 </nav>
-<div class="scroll-progress"><div class="scroll-bar"></div></div>
 
 <section class="page-hero section">
   <div class="container">
-    <h1 class="t-headline-xl fade-up text-gradient" style="animation-delay:.1s;">Selected<br>work.</h1>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Selected<br><span class="hl-word">work.</span></h1>
     <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Real products built from scratch. Mobile apps, full-stack platforms, and tools that ship to real users.</p>
   </div>
 </section>

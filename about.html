@@ -34,6 +34,13 @@
 }
 .page-hero-inner { position: relative; z-index: 1; }
 
+.hl-word {
+  background: linear-gradient(90deg, #ff9f0a 0%, #ff375f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .timeline { position: relative; }
 .timeline::before {
   content: '';
@@ -197,11 +204,10 @@
     Appearance
   </button>
 </nav>
-<div class="scroll-progress"><div class="scroll-bar"></div></div>
 
 <section class="page-hero">
   <div class="page-hero-inner">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Student.<br>Builder.<br>Competitor.</h1>
+    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Student.<br><span class="hl-word">Builder.</span><br>Competitor.</h1>
     <p class="t-body-xl fade-up" style="max-width:540px;margin:28px auto 0;animation-delay:.25s;">
       I'm an Information System and Management student in Petropavl, Kazakhstan — building real products with Flutter, Nuxt, and Python while competing in hackathons and chasing international opportunities.
     </p>

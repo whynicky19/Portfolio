@@ -113,7 +113,6 @@
 
 [data-theme="dark"] .divider { background: var(--border); }
 [data-theme="dark"] .chip { background: var(--overlay-sm); border-color: var(--border); }
-[data-theme="dark"] .scroll-bar { background: var(--accent); }
 
 
 [data-theme="dark"] .apple-footer { border-top-color: var(--border); }
@@ -150,7 +149,6 @@
   color: var(--black);
 }
 [data-theme="dark"] .social-link:hover { border-color: var(--border-hover); background: var(--overlay-md); }
-[data-theme="dark"] .avail-card { background: var(--gray-7); border-color: var(--border); }
 
 [data-theme="dark"] .exp-card { border-top-color: var(--border); }
 [data-theme="dark"] .exp-icon-wrap { border-color: var(--border); background: var(--overlay-xs); }
@@ -353,20 +351,6 @@ body {
   .nav-burger { display: flex; }
 }
 
-.scroll-progress {
-  position: fixed; top: var(--nav-h); left: 0; right: 0;
-  height: 2px; z-index: 8998; pointer-events: none;
-  background: transparent;
-  transition: transform .3s ease;
-}
-.scroll-progress.nav-hidden {
-  transform: translateY(calc(-1 * var(--nav-h)));
-}
-.scroll-bar {
-  height: 100%; width: 0;
-  background: var(--accent);
-  transition: width .05s linear;
-}
 
 .t-eyebrow {
   font-family: var(--font-display);
@@ -901,7 +885,7 @@ body {
   .clip-reveal { clip-path: none; opacity: 1; transition: none; }
   .sf-visual-item { transition: none; }
   .hero-grid, .hero-scroll-line, .marquee-track,
-  .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live, .avail-dot { animation: none; }
+  .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live { animation: none; }
   .hero-name, .hero-role, .hero-actions, .hero-scroll-cue,
   .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
   .wr-word { opacity: 1 !important; }

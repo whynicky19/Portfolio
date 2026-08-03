@@ -30,10 +30,8 @@
   const isDesktop = window.matchMedia('(min-width: 769px)').matches;
 
   /* ── DOM caches ── */
-  const nav         = document.querySelector('.apple-nav');
-  const progressBar = document.querySelector('.scroll-progress');
-  const scrollBar   = document.querySelector('.scroll-bar');
-  const heroText    = isDesktop ? document.querySelector('.hero-parallax') : null;
+  const nav      = document.querySelector('.apple-nav');
+  const heroText = isDesktop ? document.querySelector('.hero-parallax') : null;
 
   /* ── Back-to-top button ── */
   const backTop = document.createElement('button');
@@ -213,14 +211,10 @@
     const vh = window.innerHeight;
 
     /* Phase 1 — batch all layout reads */
-    const maxScroll = document.documentElement.scrollHeight - vh;
-    const wrRects   = wrItems.map(({ el }) => el.getBoundingClientRect());
-    const ssRects   = ssEls.map(el => el.getBoundingClientRect());
+    const wrRects = wrItems.map(({ el }) => el.getBoundingClientRect());
+    const ssRects = ssEls.map(el => el.getBoundingClientRect());
 
     /* Phase 2 — all DOM writes (no reads after this point) */
-
-    // Scroll-progress bar
-    if (scrollBar) scrollBar.style.width = (maxScroll > 0 ? (y / maxScroll) * 100 : 0) + '%';
 
     // Back-to-top visibility
     backTop.classList.toggle('visible', y > 400);
@@ -230,15 +224,12 @@
       const delta = y - navLastY;
       if (y <= 80) {
         nav.style.transform = 'translateY(0)';
-        progressBar?.classList.remove('nav-hidden');
         navLastY = y;
       } else if (delta > 6) {
         nav.style.transform = 'translateY(-100%)';
-        progressBar?.classList.add('nav-hidden');
         navLastY = y;
       } else if (delta < -6) {
         nav.style.transform = 'translateY(0)';
-        progressBar?.classList.remove('nav-hidden');
         navLastY = y;
       }
     }
