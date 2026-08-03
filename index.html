@@ -46,12 +46,6 @@
   text-transform: uppercase; color: var(--gray-4);
   display: flex; align-items: center; gap: 10px;
 }
-.hero-eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--black); opacity: 0.4;
-  animation: dotBreathe 3s ease-in-out infinite;
-}
-
 .hero-name {
   font-family: var(--font-display);
   font-size: clamp(58px, 13vw, 160px);
@@ -248,12 +242,12 @@
 .cta-banner::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,0,0,0.035) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,113,227,0.06) 0%, transparent 70%);
 }
 .cta-banner-inner { position: relative; z-index: 1; }
 
 .shipped-word {
-  background: linear-gradient(90deg, var(--black) 0%, #00B1C9 100%);
+  background: linear-gradient(90deg, #0071e3 0%, #7b61ff 55%, #ff5e9e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -423,7 +417,6 @@
 <section class="hero">
   <div class="hero-content hero-parallax">
     <p class="hero-eyebrow">
-      <span class="hero-eyebrow-dot"></span>
       Available for opportunities · Petropavl, Kazakhstan
     </p>
     <h1 class="hero-name">Whynicky</h1>
@@ -532,7 +525,7 @@
       <a href="chatra.html" class="btn btn-primary">Chatra</a>
       <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-link" style="font-size:14px;display:inline-flex;align-items:center;gap:5px;">
         GitHub
-        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
       </a>
     </div>
   </div>
@@ -569,7 +562,7 @@
     <h2 class="statement-text word-reveal">From idea<br>to <span class="wr-word shipped-word">shipped</span><br>product.</h2>
     <a href="about.html" class="btn btn-link" style="margin-top:36px;font-size:17px;display:inline-flex;align-items:center;gap:6px;">
       My story
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#2997ff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
     </a>
   </div>
 </section>
