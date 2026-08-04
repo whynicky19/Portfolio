@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="Whynicky — Flutter & Nuxt Developer">
 <meta name="twitter:description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="preconnect" href="https://cdn.simpleicons.org">
+<link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -100,27 +100,6 @@
 
 
 
-[data-theme="dark"] 
-.hero-announce {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 980px;
-  padding: 6px 16px 6px 6px;
-  font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
-  color: var(--black); text-decoration: none;
-  transition: background .2s;
-  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) 0s both;
-}
-.hero-announce:hover { background: rgba(0,0,0,0.09); }
-.hero-announce-badge {
-  background: var(--black); color: var(--white);
-  font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
-  padding: 3px 9px; border-radius: 980px;
-}
-[data-theme="dark"] .hero-announce { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
-[data-theme="dark"] .hero-announce:hover { background: rgba(255,255,255,0.14); }
-[data-theme="dark"] .hero-announce-badge { background: rgba(255,255,255,0.9); color: #1d1d1f; }
 .proj-featured {
   background: var(--white);
   display: grid;
@@ -247,7 +226,7 @@
 .cta-banner-inner { position: relative; z-index: 1; }
 
 .shipped-word {
-  background: linear-gradient(90deg, #0071e3 0%, #7b61ff 55%, #ff5e9e 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -340,7 +319,7 @@
 /* ── Apple-style stats ── */
 .apple-stats { background: var(--white); }
 .apple-stats-inner {
-  max-width: 960px; margin: 0 auto;
+  max-width: var(--w-medium); margin: 0 auto;
   display: grid; grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid rgba(0,0,0,0.08);
   border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -377,41 +356,8 @@
 </head>
 <body>
 
-<nav class="apple-nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html">Whynicky</a>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="chatra.html">Chatra</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-    </div>
-    <button class="nav-burger" id="navBurger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<nav class="nav-mobile" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Projects</a>
-  <a href="chatra.html">Chatra</a>
-  <a href="experience.html">Experience</a>
-  <a href="contact.html">Contact</a>
-  <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
-    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    Appearance
-  </button>
-</nav>
+<div id="site-nav"></div>
+<script src="partials.js"></script>
 
 <section class="hero">
   <div class="hero-content hero-parallax">
@@ -497,7 +443,7 @@
               <div class="sf-url-bar">chatra.academy/dashboard</div>
             </div>
             <div class="sf-browser-content">
-              <img src="img/chatraweb.jpg" alt="Chatra web dashboard">
+              <img src="img/chatraweb-960w.webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w, img/chatraweb-1600w.webp 1600w" sizes="(max-width: 700px) 90vw, 460px" alt="Chatra web dashboard" loading="lazy" decoding="async" width="920" height="646">
             </div>
           </div>
         </div>
@@ -533,22 +479,22 @@
 <!-- ── Stats ── -->
 <section class="apple-stats section">
   <div class="apple-stats-inner">
-    <div class="apple-stat fade-up">
+    <div class="apple-stat" data-reveal-progress>
       <div class="apple-stat-num">3+</div>
       <div class="apple-stat-label">Hackathons</div>
       <div class="apple-stat-sub">competed & shipped</div>
     </div>
-    <div class="apple-stat fade-up" style="animation-delay:.08s">
+    <div class="apple-stat" data-reveal-progress>
       <div class="apple-stat-num">7+</div>
       <div class="apple-stat-label">Projects</div>
       <div class="apple-stat-sub">shipped to production</div>
     </div>
-    <div class="apple-stat fade-up" style="animation-delay:.16s">
+    <div class="apple-stat" data-reveal-progress>
       <div class="apple-stat-num">5+</div>
       <div class="apple-stat-label">Technologies</div>
       <div class="apple-stat-sub">mastered end to end</div>
     </div>
-    <div class="apple-stat fade-up" style="animation-delay:.24s">
+    <div class="apple-stat" data-reveal-progress>
       <div class="apple-stat-num">11+</div>
       <div class="apple-stat-label">Certificates</div>
       <div class="apple-stat-sub">earned &amp; counting</div>
@@ -577,17 +523,8 @@
   </div>
 </section>
 
-<footer class="apple-footer">
-  <div class="footer-links-row">
-    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="chatra.html">Chatra</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
-    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">Copyright © 2026 Whynicky. All rights reserved.</span>
-    <div class="footer-bottom-links"><a href="contact.html">Contact</a></div>
-  </div>
-</footer>
+<div id="site-footer"></div>
+<script src="partials.js"></script>
 
 <script src="app.js"></script>
 </body>

@@ -59,13 +59,7 @@
     });
   }
 
-  /* ── Active nav links ── */
-  const page = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-menu a, .nav-mobile a').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href === page || (page === 'index.html' && href === './') || href.includes(page))
-      a.classList.add('active');
-  });
+  /* Active nav links are set by partials.js at injection time — single source of truth. */
 
   /* ── Scroll-triggered animations ── */
   const io = new IntersectionObserver((entries) => {
@@ -159,8 +153,10 @@
     });
   });
 
-  /* ── Lazy load images ── */
-  document.querySelectorAll('img').forEach(img => { if (!img.loading) img.loading = 'lazy'; });
+  /* ── Lazy load images — never override an explicit high-priority hint ── */
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.loading && img.getAttribute('fetchpriority') !== 'high') img.loading = 'lazy';
+  });
 
   /* ── Word-reveal: split headings into per-word spans ── */
   function splitWords(el) {
@@ -198,6 +194,23 @@
   /* ── Scroll-scale elements ── */
   const ssEls = (isDesktop && !reduced) ? Array.from(document.querySelectorAll('[data-scroll-scale]')) : [];
 
+  /* ── Scroll-linked reveal — continuous, reversible progress for
+     hero-moment content (stat counters, metric cards, timeline entries)
+     instead of a boolean IntersectionObserver fade-up ── */
+  const rpEls = [];
+  document.querySelectorAll('[data-reveal-progress]').forEach(el => {
+    if (reduced) {
+      el.style.opacity = '1';
+    } else {
+      rpEls.push(el);
+    }
+  });
+
+  /* ── Timeline self-drawing progress line (About page) ── */
+  const tlFill      = document.querySelector('.timeline-line-fill');
+  const tlContainer = tlFill ? tlFill.closest('.timeline') : null;
+  if (tlFill && reduced) tlFill.style.height = '100%';
+
   /* ───────────────────────────────────────────────────────
      SINGLE rAF-GATED SCROLL HANDLER
      One listener → one rAF → all reads → all writes.
@@ -213,6 +226,8 @@
     /* Phase 1 — batch all layout reads */
     const wrRects = wrItems.map(({ el }) => el.getBoundingClientRect());
     const ssRects = ssEls.map(el => el.getBoundingClientRect());
+    const rpRects = rpEls.map(el => el.getBoundingClientRect());
+    const tlRect  = tlContainer ? tlContainer.getBoundingClientRect() : null;
 
     /* Phase 2 — all DOM writes (no reads after this point) */
 
@@ -255,6 +270,20 @@
       const progress = Math.max(0, Math.min(1, (vh * 0.96 - rect.top) / (vh * 0.72)));
       el.style.transform = `scale(${(0.93 + progress * 0.07).toFixed(4)})`;
     });
+
+    // Scroll-linked reveal — opacity/lift tied continuously to scroll position
+    rpEls.forEach((el, i) => {
+      const rect     = rpRects[i];
+      const progress = Math.max(0, Math.min(1, (vh * 0.92 - rect.top) / (vh * 0.5)));
+      el.style.opacity   = progress.toFixed(3);
+      el.style.transform = `translateY(${((1 - progress) * 22).toFixed(1)}px)`;
+    });
+
+    // Timeline line draws itself as the section scrolls through view
+    if (tlFill && tlRect) {
+      const progress = Math.max(0, Math.min(1, (vh * 0.75 - tlRect.top) / (tlRect.height + vh * 0.35)));
+      tlFill.style.height = (progress * 100).toFixed(1) + '%';
+    }
 
     ticking = false;
   }

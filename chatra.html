@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="preconnect" href="https://cdn.simpleicons.org">
+<link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -45,7 +45,7 @@
   font-family: var(--font-display);
   font-size: clamp(56px, 10vw, 120px);
   font-weight: 700; letter-spacing: -0.055em; line-height: 0.92;
-  background: linear-gradient(135deg, var(--black) 20%, #00c7be 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -124,7 +124,7 @@
 }
 .cs-hero-tagline em {
   font-style: normal;
-  background: linear-gradient(135deg, #00c7be 0%, #0071e3 60%, #5e5ce6 100%);
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -187,7 +187,7 @@
   border-bottom: 1px solid var(--border);
 }
 .cs-overview-inner {
-  max-width: 960px;
+  max-width: var(--w-medium);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -216,8 +216,8 @@
 .cs-section    { padding: 160px 0; background: var(--white); }
 .cs-section-alt { padding: 160px 0; background: var(--gray-06); }
 .cs-section-sm { padding: 110px 0; }
-.cs-container      { max-width: 760px;  margin: 0 auto; padding: 0 32px; }
-.cs-container-wide { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.cs-container      { max-width: var(--w-read);    margin: 0 auto; padding: 0 32px; }
+.cs-container-wide { max-width: var(--w-content); margin: 0 auto; padding: 0 32px; }
 
 .cs-label {
   font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
@@ -250,9 +250,8 @@
   border-radius: var(--r-md);
   background: var(--white);
   padding: 20px;
-  transition: border-color .25s, transform .25s;
 }
-.cs-stack-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+/* hover physics unified in style.css: .cs-stack-card is in the shared card-hover set */
 .cs-stack-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--black); margin-bottom: 4px; }
 .cs-stack-role { font-size: 12px; color: var(--gray-5); }
 
@@ -453,39 +452,8 @@
 </head>
 <body>
 
-<nav class="apple-nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="index.html">Whynicky</a>
-    <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="chatra.html" class="active">Chatra</a></li>
-      <li><a href="experience.html">Experience</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      </button>
-    </div>
-    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<nav class="nav-mobile" id="mobileMenu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="projects.html">Projects</a>
-  <a href="chatra.html">Chatra</a>
-  <a href="experience.html">Experience</a>
-  <a href="contact.html">Contact</a>
-  <button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">
-    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    Appearance
-  </button>
-</nav>
+<div id="site-nav"></div>
+<script src="partials.js"></script>
 
 <section class="cs-hero">
   <div class="cs-hero-inner">
@@ -506,8 +474,8 @@
       <div class="hero-phone-mockup">
         <div class="hero-phone-notch"></div>
         <div class="hero-phone-screen" id="heroPhoneScreen">
-          <img src="img/chatra light.jpg" alt="Chatra app light theme" id="heroImgLight">
-          <img src="img/chatra dark.jpg"  alt="Chatra app dark theme"  id="heroImgDark" class="hidden">
+          <img src="img/chatra-light-900w.webp" srcset="img/chatra-light-480w.webp 480w, img/chatra-light-900w.webp 900w" sizes="360px" alt="Chatra app light theme" id="heroImgLight" fetchpriority="high" decoding="async">
+          <img src="img/chatra-dark-900w.webp" srcset="img/chatra-dark-480w.webp 480w, img/chatra-dark-900w.webp 900w" sizes="360px" alt="Chatra app dark theme" id="heroImgDark" class="hidden" loading="lazy">
         </div>
       </div>
       <div class="theme-toggle-pill" role="group" aria-label="App theme preview">
@@ -540,19 +508,19 @@
 
 <div class="cs-overview">
   <div class="cs-overview-inner">
-    <div class="cs-overview-item">
+    <div class="cs-overview-item" data-reveal-progress>
       <div class="cs-overview-label">Timeline</div>
       <div class="cs-overview-value">2025 → 2026</div>
     </div>
-    <div class="cs-overview-item">
+    <div class="cs-overview-item" data-reveal-progress>
       <div class="cs-overview-label">Role</div>
       <div class="cs-overview-value">Frontend/Mobile Developer</div>
     </div>
-    <div class="cs-overview-item">
+    <div class="cs-overview-item" data-reveal-progress>
       <div class="cs-overview-label">Platforms</div>
       <div class="cs-overview-value">iOS · Android · Web</div>
     </div>
-    <div class="cs-overview-item">
+    <div class="cs-overview-item" data-reveal-progress>
       <div class="cs-overview-label">Status</div>
       <div class="cs-overview-value">Live in production</div>
     </div>
@@ -690,16 +658,16 @@
     <div class="fade-up" style="margin-bottom:48px;">
       <h2 class="cs-heading">Shipped. Used. Real.</h2>
     </div>
-    <div class="cs-metrics stagger">
-      <div class="cs-metric-card">
+    <div class="cs-metrics">
+      <div class="cs-metric-card" data-reveal-progress>
         <div class="cs-metric-num">3</div>
         <div class="cs-metric-label">Platforms shipped simultaneously</div>
       </div>
-      <div class="cs-metric-card">
+      <div class="cs-metric-card" data-reveal-progress>
         <div class="cs-metric-num">2</div>
         <div class="cs-metric-label">Developers. Zero outsourcing.</div>
       </div>
-      <div class="cs-metric-card">
+      <div class="cs-metric-card" data-reveal-progress>
         <div class="cs-metric-num">∞</div>
         <div class="cs-metric-label">Things learned the hard way</div>
       </div>
@@ -731,17 +699,8 @@
   </div>
 </div>
 
-<footer class="apple-footer">
-  <div class="footer-links-row">
-    <div class="footer-col"><div class="footer-col-title">Portfolio</div><a href="index.html">Home</a><a href="about.html">About</a><a href="projects.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><div class="footer-col-title">Connect</div><a href="mailto:alimzhanart@icloud.com">Email</a><a href="https://github.com/whynicky19" target="_blank">GitHub</a><a href="https://t.me/whynicky" target="_blank">Telegram</a></div>
-    <div class="footer-col"><div class="footer-col-title">Resources</div><a href="https://github.com/whynicky19" target="_blank">Open Source</a></div>
-  </div>
-  <div class="footer-bottom">
-    <span class="footer-copy">Copyright © 2026 Whynicky. All rights reserved.</span>
-    <div class="footer-bottom-links"><a href="contact.html">Contact</a></div>
-  </div>
-</footer>
+<div id="site-footer"></div>
+<script src="partials.js"></script>
 
 <script src="app.js"></script>
 <script>

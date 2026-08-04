@@ -1,0 +1,581 @@
+<title>Design Audit — Whynicky Portfolio vs. Apple.com</title>
+<style>
+:root{
+  --paper:#f5f5f3; --paper-raised:#ffffff; --ink:#16181c; --ink-soft:#55585f; --ink-faint:#8b8e94;
+  --rule:#dadbd9; --rule-strong:#c3c5c1;
+  --critical:#c22a2a; --critical-bg:#fbeceb;
+  --important:#a8670a; --important-bg:#faf1e1;
+  --optional:#4f5a72; --optional-bg:#eef0f4;
+  --apple-blue:#0071e3;
+  --code-bg:#eceae5;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#17181b; --paper-raised:#1e2024; --ink:#ededec; --ink-soft:#a3a6ac; --ink-faint:#75787f;
+    --rule:#303338; --rule-strong:#3d4046;
+    --critical:#e0554f; --critical-bg:#2a1b1a;
+    --important:#d99a3d; --important-bg:#2a2318;
+    --optional:#8a94ad; --optional-bg:#1e222b;
+    --apple-blue:#2997ff;
+    --code-bg:#232529;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#17181b; --paper-raised:#1e2024; --ink:#ededec; --ink-soft:#a3a6ac; --ink-faint:#75787f;
+  --rule:#303338; --rule-strong:#3d4046;
+  --critical:#e0554f; --critical-bg:#2a1b1a;
+  --important:#d99a3d; --important-bg:#2a2318;
+  --optional:#8a94ad; --optional-bg:#1e222b;
+  --apple-blue:#2997ff;
+  --code-bg:#232529;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.4);
+}
+:root[data-theme="light"]{
+  --paper:#f5f5f3; --paper-raised:#ffffff; --ink:#16181c; --ink-soft:#55585f; --ink-faint:#8b8e94;
+  --rule:#dadbd9; --rule-strong:#c3c5c1;
+  --critical:#c22a2a; --critical-bg:#fbeceb;
+  --important:#a8670a; --important-bg:#faf1e1;
+  --optional:#4f5a72; --optional-bg:#eef0f4;
+  --apple-blue:#0071e3;
+  --code-bg:#eceae5;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+  -webkit-font-smoothing:antialiased;
+}
+.sans{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.mono{ font-family: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-variant-numeric: tabular-nums; }
+
+a{ color: var(--apple-blue); }
+
+.wrap{ max-width: 1180px; margin:0 auto; padding: 0 28px; }
+
+/* ── Masthead ── */
+.masthead{
+  border-bottom: 1px solid var(--rule);
+  padding: 56px 0 40px;
+}
+.kicker{
+  font-family: -apple-system, sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color: var(--critical);
+  margin: 0 0 16px;
+}
+.masthead h1{
+  font-size: clamp(32px, 4.4vw, 52px); line-height:1.05; letter-spacing:-0.01em;
+  margin: 0 0 18px; font-weight: 400; text-wrap: balance;
+}
+.masthead h1 em{ font-style: italic; color: var(--ink-soft); }
+.masthead .dek{
+  font-family: -apple-system, sans-serif; font-size:16px; line-height:1.6; color: var(--ink-soft);
+  max-width: 640px; margin:0;
+}
+.meta-row{
+  font-family: -apple-system, sans-serif; font-size:12px; color: var(--ink-faint);
+  margin-top:28px; display:flex; gap:22px; flex-wrap:wrap;
+}
+.meta-row b{ color: var(--ink-soft); font-weight:600; }
+
+/* ── layout: rail + content ── */
+.layout{ display:grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 48px 0 100px; align-items:start; }
+@media (max-width: 900px){ .layout{ grid-template-columns:1fr; gap:32px; } .rail{ position:static !important; order:2; } }
+
+.rail{
+  position: sticky; top: 28px;
+  font-family: -apple-system, sans-serif; font-size:12.5px;
+}
+.rail-title{ font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:10.5px; color:var(--ink-faint); margin-bottom:12px; }
+.rail nav{ display:flex; flex-direction:column; gap:2px; margin-bottom:28px; }
+.rail nav a{ color:var(--ink-soft); text-decoration:none; padding:5px 0; border-left:2px solid transparent; padding-left:10px; }
+.rail nav a:hover{ color:var(--ink); border-left-color: var(--rule-strong); }
+.rail-key{ display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:1px solid var(--rule); }
+.rail-key-item{ display:flex; align-items:center; gap:8px; color:var(--ink-soft); }
+.dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.dot.critical{ background:var(--critical); } .dot.important{ background:var(--important); } .dot.optional{ background:var(--optional); }
+
+.content{ max-width: 760px; }
+
+/* ── scorecard ── */
+.scorecard{
+  background: var(--paper-raised); border:1px solid var(--rule); border-radius:14px;
+  padding: 28px 28px 8px; margin-bottom:56px; box-shadow: var(--shadow);
+}
+.scorecard h2{ font-family:-apple-system,sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 20px; }
+.score-row{ display:grid; grid-template-columns: 170px 1fr 46px; gap:16px; align-items:center; padding:11px 0; border-top:1px solid var(--rule); font-family:-apple-system,sans-serif; }
+.score-row:first-of-type{ border-top:none; }
+.score-label{ font-size:13px; font-weight:600; }
+.score-track{ height:6px; background:var(--rule); border-radius:3px; overflow:hidden; }
+.score-fill{ height:100%; border-radius:3px; background: var(--critical); }
+.score-num{ font-family: ui-monospace,monospace; font-size:14px; font-weight:600; text-align:right; font-variant-numeric:tabular-nums; }
+.score-why{ grid-column: 1 / -1; font-size:12.5px; color:var(--ink-soft); margin:-2px 0 10px; line-height:1.5; }
+.score-overall{ display:flex; align-items:baseline; gap:14px; padding:20px 0 18px; margin-top:6px; border-top:1px solid var(--rule-strong); }
+.score-overall .n{ font-family:ui-monospace,monospace; font-size:34px; font-weight:700; }
+.score-overall .l{ font-size:13px; color:var(--ink-soft); font-family:-apple-system,sans-serif; }
+
+/* ── section headers ── */
+.section{ margin-bottom: 64px; scroll-margin-top: 24px; }
+.section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:8px; }
+.section-num{ font-family:ui-monospace,monospace; font-size:13px; color:var(--ink-faint); }
+.section h2{ font-size: clamp(22px,3vw,30px); font-weight:400; margin:0; letter-spacing:-0.01em; }
+.section-sub{ font-family:-apple-system,sans-serif; font-size:14px; color:var(--ink-soft); line-height:1.6; margin: 10px 0 28px; max-width:64ch; }
+
+/* ── finding card ── */
+.finding{
+  background: var(--paper-raised); border:1px solid var(--rule); border-left-width:4px;
+  border-radius: 10px; margin-bottom:16px; overflow:hidden; box-shadow: var(--shadow);
+}
+.finding.critical{ border-left-color: var(--critical); }
+.finding.important{ border-left-color: var(--important); }
+.finding.optional{ border-left-color: var(--optional); }
+.f-top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px 0; font-family:-apple-system,sans-serif; }
+.f-tag{ font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:5px; }
+.finding.critical .f-tag{ color:var(--critical); background:var(--critical-bg); }
+.finding.important .f-tag{ color:var(--important); background:var(--important-bg); }
+.finding.optional .f-tag{ color:var(--optional); background:var(--optional-bg); }
+.f-loc{ font-family:ui-monospace,monospace; font-size:11.5px; color:var(--ink-faint); }
+.f-body{ padding: 10px 18px 18px; }
+.f-body p{ font-family:-apple-system,sans-serif; font-size:14.5px; line-height:1.6; margin:0 0 10px; }
+.f-summary{ font-weight:600; color:var(--ink); font-size:15.5px !important; }
+.f-fields{ display:grid; grid-template-columns: 108px 1fr; gap:6px 14px; font-family:-apple-system,sans-serif; font-size:13.5px; margin-top:12px; }
+.f-fields dt{ color:var(--ink-faint); font-weight:600; font-size:11px; letter-spacing:.04em; text-transform:uppercase; padding-top:2px; }
+.f-fields dd{ margin:0; color:var(--ink-soft); line-height:1.55; }
+.f-fields code, .f-body code{ font-family:ui-monospace,monospace; background:var(--code-bg); padding:1px 5px; border-radius:4px; font-size:.92em; color:var(--ink); }
+.f-fields pre{ font-family:ui-monospace,monospace; background:var(--code-bg); padding:10px 12px; border-radius:6px; font-size:12.5px; line-height:1.55; overflow-x:auto; margin:2px 0 0; }
+
+/* swatch reference chip */
+.ref-chip{ display:inline-flex; align-items:center; gap:6px; font-family:ui-monospace,monospace; font-size:12px; background:var(--code-bg); padding:2px 8px 2px 4px; border-radius:20px; }
+.ref-chip .sw{ width:12px; height:12px; border-radius:50%; }
+
+/* ── AI tells ── */
+.tell-list{ display:flex; flex-direction:column; gap:14px; }
+.tell{ display:grid; grid-template-columns: 30px 1fr; gap:14px; padding:16px 0; border-top:1px solid var(--rule); }
+.tell:first-child{ border-top:none; }
+.tell-n{ font-family:ui-monospace,monospace; color:var(--ink-faint); font-size:13px; }
+.tell h3{ font-family:-apple-system,sans-serif; font-size:15px; font-weight:700; margin:0 0 6px; }
+.tell p{ font-family:-apple-system,sans-serif; font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; }
+
+/* ── redesign plan ── */
+.phase{ margin-bottom:28px; }
+.phase h3{ font-family:-apple-system,sans-serif; font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 12px; }
+.plan-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.plan-list li{ font-family:-apple-system,sans-serif; font-size:14.5px; line-height:1.6; padding-left:20px; position:relative; color:var(--ink-soft); }
+.plan-list li::before{ content:"—"; position:absolute; left:0; color:var(--ink-faint); }
+.plan-list b{ color:var(--ink); }
+
+footer.colophon{
+  border-top:1px solid var(--rule); padding: 32px 0 60px;
+  font-family:-apple-system,sans-serif; font-size:12px; color:var(--ink-faint); line-height:1.7;
+}
+
+hr.rule{ border:none; border-top:1px solid var(--rule); margin: 40px 0; }
+</style>
+
+<div class="masthead">
+  <div class="wrap">
+    <p class="kicker sans">Design &amp; Motion Audit · Confidential Draft</p>
+    <h1>Reviewed against Apple.com.<br><em>It does not hold up.</em></h1>
+    <p class="dek sans">Every finding below is cited against the live repository — file and line — not the rendered screenshot. Six HTML files, one stylesheet, one script. The verdict is closer than most portfolios get, and still a template wearing Apple's clothes.</p>
+    <div class="meta-row sans">
+      <span><b>Scope</b> index · about · projects · chatra · experience · contact</span>
+      <span><b>Method</b> full source read, no visual-only guessing</span>
+      <span><b>Benchmark</b> apple.com production patterns</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="layout">
+
+  <aside class="rail">
+    <div class="rail-title">Contents</div>
+    <nav>
+      <a href="#scorecard">Scorecard</a>
+      <a href="#system">System-wide issues</a>
+      <a href="#nav">Header &amp; nav</a>
+      <a href="#hero">Hero</a>
+      <a href="#projects">Project cards</a>
+      <a href="#about">About &amp; skills</a>
+      <a href="#footer">Footer</a>
+      <a href="#mobile">Mobile</a>
+      <a href="#perf">Performance</a>
+      <a href="#a11y">Accessibility</a>
+      <a href="#tells">AI tells</a>
+      <a href="#plan">Redesign plan</a>
+    </nav>
+    <div class="rail-key">
+      <div class="rail-key-item"><span class="dot critical"></span>Critical</div>
+      <div class="rail-key-item"><span class="dot important"></span>Important</div>
+      <div class="rail-key-item"><span class="dot optional"></span>Optional</div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <section class="section" id="scorecard">
+      <div class="scorecard">
+        <h2>Scorecard — 0 to 100</h2>
+
+        <div class="score-row"><div class="score-label">Visual design</div><div class="score-track"><div class="score-fill" style="width:61%;background:var(--important)"></div></div><div class="score-num">61</div></div>
+        <div class="score-why">Grid math and the single accent blue are correctly Apple. Six unrelated one-off text gradients and a dozen arbitrary content widths (below) undercut the coherence a real Apple page never loses.</div>
+
+        <div class="score-row"><div class="score-label">Motion design</div><div class="score-track"><div class="score-fill" style="width:54%;background:var(--important)"></div></div><div class="score-num">54</div></div>
+        <div class="score-why">The easing curve is lifted correctly from Apple's own CSS, then pasted onto every single transition as one blanket "fade up 36px on view" recipe. Apple's motion is scroll-scrubbed and content-specific; this is a switch that flips once.</div>
+
+        <div class="score-row"><div class="score-label">Typography</div><div class="score-track"><div class="score-fill" style="width:42%;background:var(--critical)"></div></div><div class="score-num">42</div></div>
+        <div class="score-why">The entire type system is a promise, not a delivery: <code>"SF Pro Display"</code> is referenced but never shipped as a font file, so most non-Apple visitors are reading Arial.</div>
+
+        <div class="score-row"><div class="score-label">User experience</div><div class="score-track"><div class="score-fill" style="width:57%;background:var(--important)"></div></div><div class="score-num">57</div></div>
+        <div class="score-why">Footer navigation silently differs page to page, a secondary button's hover state is a no-op, and a fully-styled filter UI exists in CSS with no markup anywhere to drive it.</div>
+
+        <div class="score-row"><div class="score-label">Responsiveness</div><div class="score-track"><div class="score-fill" style="width:66%;background:var(--important)"></div></div><div class="score-num">66</div></div>
+        <div class="score-why">Breakpoints are sane and the sticky feature grid degrades honestly. The full-screen 24px mobile menu with staggered link entrance reads as a generic template gesture, not Apple's actual compact pattern.</div>
+
+        <div class="score-row"><div class="score-label">Performance</div><div class="score-track"><div class="score-fill" style="width:48%;background:var(--critical)"></div></div><div class="score-num">48</div></div>
+        <div class="score-why">Projects alone ships ~1.9MB of duplicate "SVG" mockup art. No responsive images anywhere in the codebase. The global lazy-load script actively overrides the one image the markup asked the browser to prioritize.</div>
+
+        <div class="score-row"><div class="score-label">Apple authenticity</div><div class="score-track"><div class="score-fill" style="width:55%;background:var(--important)"></div></div><div class="score-num">55</div></div>
+        <div class="score-why">The nav blur values, the 980px pill buttons, and the cubic-bezier easing are copied correctly from Apple's real production CSS. But the type never renders as SF Pro, six pages invent six different gradients, and the grid has no fixed column system — the net read is "Apple-inspired template," not an Apple page.</div>
+
+        <div class="score-overall">
+          <span class="n">54<span style="font-size:16px;color:var(--ink-faint)">/100</span></span>
+          <span class="l">Overall — a well-read Apple imitation with the details that separate imitation from authorship still unresolved.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="system">
+      <div class="section-head"><span class="section-num">01</span><h2>System-wide issues</h2></div>
+      <p class="section-sub">These aren't confined to one page — they're decisions (or non-decisions) that repeat across all six files, which is exactly why they read as systemic rather than incidental.</p>
+
+      <div class="finding critical">
+        <div class="f-top"><span class="f-tag">Critical</span><span class="f-loc">style.css:4–5 · every &lt;head&gt;</span></div>
+        <div class="f-body">
+          <p class="f-summary">SF Pro is referenced, never shipped — most visitors read Arial.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> the entire typographic identity of the site rests on <code>-apple-system, "SF Pro Display", "Helvetica Neue", Arial</code>. <code>-apple-system</code> only resolves to SF Pro inside Safari/WebKit on Apple hardware. Everywhere else — Chrome or Edge on Windows, Android, Linux, even Chrome on macOS in some configurations — there is no font literally named "SF Pro Display" installed, "Helvetica Neue" doesn't exist on Windows or Android either, and the stack quietly bottoms out at Arial. Apple.com never takes this risk: it self-hosts SF Pro as <code>@font-face</code> woff2 files specifically so non-Apple visitors still see SF Pro.</p>
+          <dl class="f-fields">
+            <dt>How Apple solves it</dt><dd>Self-host the display and text weights as <code>@font-face</code>, with the system stack only as the very first, fastest-resolving candidate — not the whole strategy.</dd>
+            <dt>Fix</dt><dd><pre>@font-face{
+  font-family:"SF Pro Display";
+  src:url("/fonts/sf-pro-display.woff2") format("woff2");
+  font-weight:400 700; font-display:swap;
+}
+/* keep -apple-system first for zero-latency on Apple devices,
+   but the named face now actually exists for everyone else */</pre></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">6 files, 6 different gradients</span></div>
+        <div class="f-body">
+          <p class="f-summary">Every page invents its own rainbow "highlight word" — there is no house accent.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> a real Apple product page uses <em>one</em> signature gradient per product story, repeated consistently everywhere that story appears. Here, every page's <code>.hl-word</code> / <code>.shipped-word</code> gets its own two-stop gradient with no relationship to the others:</p>
+          <dl class="f-fields">
+            <dt>index.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(90deg,#0071e3,#7b61ff)"></span>#0071e3 → #7b61ff → #ff5e9e</span> <code>.shipped-word</code></dd>
+            <dt>about.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(90deg,#ff9f0a,#ff375f)"></span>#ff9f0a → #ff375f</span></dd>
+            <dt>projects.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(90deg,#30d158,#64d2ff)"></span>#30d158 → #64d2ff</span></dd>
+            <dt>contact.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(90deg,#5e5ce6,#64d2ff)"></span>#5e5ce6 → #64d2ff</span></dd>
+            <dt>experience.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(90deg,#bf5af2,#ff2d55)"></span>#bf5af2 → #ff2d55</span></dd>
+            <dt>chatra.html</dt><dd><span class="ref-chip"><span class="sw" style="background:linear-gradient(135deg,#00c7be,#0071e3,#5e5ce6)"></span>#00c7be → #0071e3 → #5e5ce6</span> (title uses a second one: black → #00c7be)</dd>
+            <dt>Fix</dt><dd>Pick one gradient token, put it in <code>:root</code>, use it everywhere a highlight word appears. If a page needs its own identity color, make it a solid <code>--accent</code> swap, not a new gradient invention.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">12+ one-off <code>max-width</code> values</span></div>
+        <div class="f-body">
+          <p class="f-summary">There is no grid system — there's a max-width picked per component.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> "perfect alignment" is on your own list for a reason — it's the thing that reads as intentional versus improvised. This codebase defines <code>--max-w:1200px</code> as its one system token, then overrides it ad hoc everywhere: <code>960px</code> (cs-overview-inner), <code>1100px</code> (cs-container-wide), <code>900px</code> (contact-grid), <code>820px</code> (cs-hero-inner), <code>760px</code> (cs-container), <code>700px</code> (about timeline), <code>680px</code> (qa-list), <code>560px</code>/<code>540px</code>/<code>520px</code>/<code>500px</code> (assorted hero subcopy), <code>480px</code> (contact-split), <code>420px</code>/<code>400px</code>/<code>380px</code> (assorted CTA copy). None of these trace back to a shared token.</p>
+          <dl class="f-fields">
+            <dt>Fix</dt><dd>Collapse to three tokens — <code>--w-read: 680px</code> (prose), <code>--w-content: 1200px</code> (page container, already exists), <code>--w-wide: 1440px</code> (full-bleed) — and rewrite every inline max-width to reference one of the three.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">app.js:71–86 · style.css:484–535</span></div>
+        <div class="f-body">
+          <p class="f-summary">One motion recipe — fade up 36px on 8% visibility — is applied to almost everything.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> hero stat numbers, timeline entries, stack cards, certificate headers, section titles, and CTA copy all share the exact same <code>IntersectionObserver</code> trigger (<code>threshold:0.08</code>) and the exact same <code>opacity 0 → 1, translateY(36px) → 0</code> transform. It's a switch, not a scrub. Apple's actual signature is progress-linked motion: transform values computed continuously from scroll position, reversible, and specific to what's moving (a phone tilts, a chip data-flows, a title's opacity binds to a percentage — not a boolean). This codebase does exactly that in exactly two places — the word-reveal effect and <code>[data-scroll-scale]</code> — and everywhere else falls back to the one generic reveal.</p>
+          <dl class="f-fields">
+            <dt>Fix</dt><dd>Reserve the binary fade-up for genuinely secondary content (footer links, chip rows). Anything positioned as a hero moment — stat counters, the phone mockups, section title reveals — should read scroll progress the way <code>ssEls</code> already does for <code>[data-scroll-scale]</code>, not just cross an 8% threshold once.</dd>
+          </dl>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="nav">
+      <div class="section-head"><span class="section-num">02</span><h2>Header &amp; navigation</h2></div>
+
+      <div class="finding critical">
+        <div class="f-top"><span class="f-tag">Critical</span><span class="f-loc">style.css:418–424</span></div>
+        <div class="f-body">
+          <p class="f-summary"><code>.btn-ghost</code>'s hover state is dead — nothing changes when you hover it.</p>
+          <p><strong>Location:</strong> every "About Me" / "See my work" / secondary CTA button sitewide.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> a microinteraction that silently does nothing is worse than none at all, because a cursor pointer promises feedback the UI doesn't deliver. Trace the cascade: base rule sets <code>background: var(--overlay-md)</code>. Generic <code>.btn:hover{opacity:.75}</code> fires first. Then <code>.btn-ghost:hover{opacity:1; background:var(--overlay-md)}</code> — the identical variable — fires second and wins on specificity, restoring opacity to 1 and leaving the background exactly where it started. Net visible change on hover: none.</p>
+          <dl class="f-fields">
+            <dt>Current</dt><dd><pre>.btn-ghost { background: var(--overlay-md); }
+.btn-ghost:hover { opacity: 1; background: var(--overlay-md); }</pre></dd>
+            <dt>Fix</dt><dd><pre>.btn-ghost:hover {
+  opacity: 1;
+  background: var(--border-hover); /* a token one step darker than overlay-md */
+  border-color: var(--border-strong);
+}</pre></dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">style.css:307–347</span></div>
+        <div class="f-body">
+          <p class="f-summary">The mobile menu is a generic full-screen takeover, not Apple's compact pattern.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> 24px bold links stacked full-bleed with a staggered <code>navLinkIn</code> entrance per row is the default hamburger-menu gesture of every Webflow/Framer portfolio template — it is not what apple.com does on mobile, where the nav stays compact and list rows are closer to 17–19px with tighter vertical rhythm, not treated as a second hero.</p>
+          <dl class="f-fields">
+            <dt>Fix</dt><dd>Drop link size to 19–20px, tighten <code>padding:18px 0</code> to 14px, and remove the per-row staggered <code>animation-delay</code> chain — Apple's mobile nav appears, it doesn't perform.</dd>
+          </dl>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="hero">
+      <div class="section-head"><span class="section-num">03</span><h2>Hero</h2></div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">index.html:103–123</span></div>
+        <div class="f-body">
+          <p class="f-summary"><code>.hero-announce</code> is fully built and never used.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> a pill-badge component — background, border, dark-mode override, hover state, ~20 lines — exists solely in the <code>&lt;style&gt;</code> block with zero matching element anywhere in <code>index.html</code>'s body. Apple ships nothing it didn't finish; leftover scaffolding like this is the tell of a draft that got abandoned mid-iteration, not cleaned up.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Delete it, or finish it and put it in the hero eyebrow slot it was clearly built for.</dd></dl>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">index.html:418–420</span></div>
+        <div class="f-body">
+          <p class="f-summary">"Available for opportunities" reads as job-seeker convention, not product-hero convention.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> Apple heroes state what the thing <em>is</em>. A personal-availability status line is a LinkedIn-banner habit, not a product-story habit — worth keeping for the recruiter audience, but it's the first thing that signals "portfolio template" rather than "authored page."</p>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">index.html:54–115 inline <code>animation-delay</code></span></div>
+        <div class="f-body">
+          <p class="f-summary">Hero entrance timing is hardcoded to seconds, not tied to actual readiness.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>.hero-name</code> fires at <code>.2s</code>, <code>.hero-role</code> at <code>.4s</code>, actions at <code>.6s</code>, the scroll cue at <code>1.4s</code> — a fixed choreography that assumes CSS and fonts are ready by then. Given the SF Pro gap above, on a slow connection the fallback font can still be swapping in mid-animation, which desyncs the whole sequence from what's actually painted.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Gate the entrance class on a real signal — <code>document.fonts.ready</code> or a <code>load</code> listener — the way the scroll-triggered sections already do via <code>IntersectionObserver</code>, instead of a blind timer.</dd></dl>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-head"><span class="section-num">04</span><h2>Project cards</h2></div>
+
+      <div class="finding critical">
+        <div class="f-top"><span class="f-tag">Critical</span><span class="f-loc">projects.html:204, 226, 324</span></div>
+        <div class="f-body">
+          <p class="f-summary">~1.9MB of "vector" mockup art loads as static, eager images on one page.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>img/macbook-card.svg</code> is 668KB and <code>img/crypto-macbook-card.svg</code> is 624KB — for an <code>.svg</code>, that means it isn't clean vector markup, it's raster data wrapped in an SVG shell, carrying all the weight of a PNG with none of the caching/compression benefit browsers give real bitmap formats. The crypto file loads <em>twice</em> on the same page (Hackathon MVP section and again in Practice work). Apple product pages hold themselves to sub-200KB hero imagery per breakpoint, srcset-served.</p>
+          <dl class="f-fields">
+            <dt>Fix</dt><dd>Re-export as actual optimized vector paths, or convert to AVIF/WebP at the real display size. Reuse the single crypto-macbook asset via one cached reference rather than two independent requests.</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">projects.html:125–135</span></div>
+        <div class="f-body">
+          <p class="f-summary">A filter-tab UI is fully styled in CSS and never appears in the page.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>.filter-tabs</code>, <code>.filter-tab</code>, <code>.filter-tab.active</code>, and the hover/active states are all defined — pill shape, dark background on active, border transitions — but there is no <code>&lt;div class="filter-tabs"&gt;</code> anywhere in the document. The page presents "Chatra / Portfolio / Hackathon MVP" as flat sequential sections with no way to filter, despite the UI clearly having been designed to support it. This is the second instance (after <code>.hero-announce</code>) of a fully-styled, never-wired feature — a pattern, not a one-off.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Either wire real filtering (category chips that show/hide <code>.proj-mini</code> and the three featured sections by a <code>data-category</code> attribute), or delete the dead CSS.</dd></dl>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">style.css vs. experience.html vs. chatra.html</span></div>
+        <div class="f-body">
+          <p class="f-summary">Three card components, three different hover physics, same affordance.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>.proj-mini:hover</code> changes only border-color and box-shadow (no movement). <code>.ach-card:hover</code> (Experience page) scales to <code>1.02</code>. <code>.cs-stack-card:hover</code> (Chatra page) lifts <code>translateY(-2px)</code>. All three are "here's a card, it's not clickable-but-feels-clickable" — Apple keeps one hover physics per affordance class sitewide.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head"><span class="section-num">05</span><h2>About &amp; skills</h2></div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">about.html skill-pill icons · contact.html social icons</span></div>
+        <div class="f-body">
+          <p class="f-summary">Skill and social icons are fetched live from a third-party CDN with no fallback.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> every icon in the skills grid and the contact social row is <code>&lt;img src="https://cdn.simpleicons.org/…"&gt;</code> — eight separate cross-origin requests on About alone. Apple never depends on a runtime third party for iconography; if that subdomain is slow, rate-limited, or blocked by an ad-blocker (icon-serving CDNs are a common blocklist pattern), the skills grid silently renders blank squares where the Python/Flutter/React marks should be.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Vendor the ~15 icons actually used as local SVGs. It's a one-time download, removes eight round trips, and removes the failure mode entirely.</dd></dl>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">about.html cert-hl-track</span></div>
+        <div class="f-body">
+          <p class="f-summary">The certificate carousel has no desktop affordance beyond tiny dots.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> drag-to-scroll plus 6px dots works for touch, but a mouse user gets no arrow control and no visual hint that the row scrolls at all until they happen to drag it — Apple's own carousels (e.g. App Store "Today" cards) always pair drag with a visible, clickable arrow.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="footer">
+      <div class="section-head"><span class="section-num">06</span><h2>Footer</h2></div>
+
+      <div class="finding critical">
+        <div class="f-top"><span class="f-tag">Critical</span><span class="f-loc">all 6 footers</span></div>
+        <div class="f-body">
+          <p class="f-summary">The Chatra link exists in exactly one of six footers.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>index.html</code>'s footer "Portfolio" column lists all six pages including Chatra. <code>about.html</code>, <code>projects.html</code>, <code>chatra.html</code>, <code>experience.html</code>, and <code>contact.html</code> all list only five — Chatra is silently missing from every one of them. Confirmed by grepping every footer block: <code>href="chatra.html"</code> occurs once across the entire site's footers, <code>href="about.html"</code> occurs six times. This is what happens when a shared partial doesn't exist and six independent HTML files are hand/AI-copied with a stray edit in only one — global navigation should never depend on which page you happened to start from.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Add <code>&lt;a href="chatra.html"&gt;Chatra&lt;/a&gt;</code> to the other five footers, and treat the header/footer markup as a single source of truth from here — even a client-side include or a tiny build step prevents this class of bug outright.</dd></dl>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">all 6 &lt;head&gt; blocks, line ~12</span></div>
+        <div class="f-body">
+          <p class="f-summary">Every page shares one Open Graph image.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>og:image</code> is <code>chatraweb.jpg</code> on the homepage, About, Projects, Chatra, Experience, <em>and</em> Contact — six distinct pages, one social preview. A link to the Contact page and a link to the Chatra case study render identically in a shared preview card.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="mobile">
+      <div class="section-head"><span class="section-num">07</span><h2>Mobile</h2></div>
+      <p class="section-sub">Breakpoints are consistent (900 / 768 / 700 / 600) and the sticky feature grid correctly drops its sticky visual column below 900px rather than breaking. The two real issues are covered above: the full-screen nav takeover (§ Header) and no responsive image sizing at all (§ Performance) — on mobile data, every image ships its full desktop weight.</p>
+    </section>
+
+    <section class="section" id="perf">
+      <div class="section-head"><span class="section-num">08</span><h2>Performance</h2></div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">app.js:163 · index.html:511</span></div>
+        <div class="f-body">
+          <p class="f-summary">The global lazy-load loop overrides the one image marked high-priority.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>index.html:511</code> deliberately marks the Chatra app image <code>fetchpriority="high" decoding="async"</code> with no <code>loading</code> attribute — a real attempt at LCP tuning. But <code>app.js:163</code> runs <code>document.querySelectorAll('img').forEach(img =&gt; { if (!img.loading) img.loading = 'lazy' })</code> globally, on every image with no exclusion list. Since that image never had <code>loading</code> set, the script stamps it <code>loading="lazy"</code> after the fact — directly contradicting the priority hint sitting right next to it in the markup.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd><code>if (!img.loading &amp;&amp; img.getAttribute('fetchpriority') !== 'high') img.loading = 'lazy';</code></dd></dl>
+        </div>
+      </div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">entire codebase</span></div>
+        <div class="f-body">
+          <p class="f-summary">Zero <code>srcset</code>/<code>sizes</code> anywhere — every image ships one resolution to every screen.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> Apple serves a phone-width visitor a phone-width image. Here, a certificate photo or the Chatra dashboard screenshot ships the same byte count to a 390px iPhone viewport and a 2560px desktop monitor — there is no <code>srcset</code> in any of the six HTML files.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="a11y">
+      <div class="section-head"><span class="section-num">09</span><h2>Accessibility</h2></div>
+
+      <div class="finding important">
+        <div class="f-top"><span class="f-tag">Important</span><span class="f-loc">chatra.html:385–434 — no matching query</span></div>
+        <div class="f-body">
+          <p class="f-summary">Chatra's page-specific animations ignore <code>prefers-reduced-motion</code>.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>style.css:880–893</code> has a genuinely thorough reduced-motion block covering the shared fade/slide/stagger utilities. But Chatra's own <code>&lt;style&gt;</code> block defines three separate phone-reveal keyframes (<code>phoneReveal1/2/3</code>, including an 12px-blur zoom-in) and the word-by-word <code>.tagline-word</code> blur-in, none of which are referenced by that shared query — a vestibular-sensitive visitor with the OS setting on still gets the full blur/scale/translate sequence on this page specifically.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd>Add the same <code>@media (prefers-reduced-motion: reduce)</code> guard inside <code>chatra.html</code>'s own style block, disabling <code>.tagline-word</code> and the three <code>phoneReveal</code> animations.</dd></dl>
+        </div>
+      </div>
+
+      <div class="finding optional">
+        <div class="f-top"><span class="f-tag">Optional</span><span class="f-loc">style.css:232</span></div>
+        <div class="f-body">
+          <p class="f-summary">Text-selection highlight has no dark-mode value.</p>
+          <p><strong>Why it doesn't feel like Apple:</strong> <code>::selection{background:rgba(0,0,0,.12)}</code> is defined once, with no <code>[data-theme="dark"]</code> override — a black-tinted highlight at 12% opacity is nearly invisible against the dark palette's near-black background.</p>
+          <dl class="f-fields"><dt>Fix</dt><dd><code>[data-theme="dark"] ::selection{ background: rgba(255,255,255,.16); }</code></dd></dl>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section" id="tells">
+      <div class="section-head"><span class="section-num">10</span><h2>Things that immediately reveal this was made by AI</h2></div>
+      <p class="section-sub">Not a moral judgment — a pattern-recognition exercise. These are the specific fingerprints, cited against the code, not a general impression.</p>
+
+      <div class="tell-list">
+        <div class="tell">
+          <span class="tell-n">01</span>
+          <div><h3>A fresh gradient invented per page instead of one reused system</h3><p>Six pages, six unrelated two/three-stop gradients for the exact same "highlight word" role. A single author building a design system reaches for the same token six times; six independent generation passes each invent their own.</p></div>
+        </div>
+        <div class="tell">
+          <span class="tell-n">02</span>
+          <div><h3>Fully-styled UI with nothing wired to it — twice</h3><p><code>.hero-announce</code> on the homepage and <code>.filter-tabs</code> on Projects are both complete, production-quality CSS components with zero corresponding markup. Both read as a feature that got scaffolded in one generation pass and abandoned when the prompt moved on, with nothing pruned afterward.</p></div>
+        </div>
+        <div class="tell">
+          <span class="tell-n">03</span>
+          <div><h3>The same effect, built twice, two different ways</h3><p>Word-by-word reveal exists as a real scroll-linked opacity system in <code>app.js</code> (lines 165–196) <em>and</em> as a separate fixed-delay CSS keyframe stagger written inline inside <code>chatra.html</code> (lines 780–828). One codebase, one visual idea, two independent implementations — a sign each was generated fresh rather than reused.</p></div>
+        </div>
+        <div class="tell">
+          <span class="tell-n">04</span>
+          <div><h3>Six copy-pasted documents standing in for a template</h3><p>There's no include system — the <code>&lt;nav&gt;</code>, mobile menu, and <code>&lt;footer&gt;</code> markup is duplicated byte-for-byte across all six HTML files. That's exactly why the footer's Chatra link could silently diverge in five of six copies without anyone noticing — a shared partial makes that class of bug structurally impossible.</p></div>
+        </div>
+        <div class="tell">
+          <span class="tell-n">05</span>
+          <div><h3>The same headline cadence on every page</h3><p>"Student. Builder. Competitor." / "Selected work." / "Let's build something." / "Experience &amp; Activities." — a two-or-three-word declarative fragment, one gradient-highlighted word, one supporting sentence underneath. It's a recognizable generator cadence, not six distinct editorial voices.</p></div>
+        </div>
+        <div class="tell">
+          <span class="tell-n">06</span>
+          <div><h3>One easing curve, pasted everywhere</h3><p><code>cubic-bezier(.16,1,.3,1)</code> and its sibling <code>cubic-bezier(.23,1,.32,1)</code> — genuinely Apple's own curves — appear on roughly 40 separate transition declarations across the stylesheet. Apple uses a small, curated set of eases tied to what's moving; applying the same one everywhere is the tell of a find-and-replace default, not a motion decision made per element.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="plan">
+      <div class="section-head"><span class="section-num">11</span><h2>Redesign plan</h2></div>
+      <p class="section-sub">Not a rebuild — the structural bones (grid, dark mode tokens, IntersectionObserver reveal system, nav blur values) are closer to Apple's real implementation than most portfolios get. The gap is entirely in the details above. Sequenced by what actually moves the score.</p>
+
+      <div class="phase">
+        <h3>Phase 1 — Fix what's broken, not just imperfect</h3>
+        <ul class="plan-list">
+          <li><b>Ship SF Pro as a real font file.</b> Everything downstream of typography — letter-spacing, weight contrast, the entire "premium" read — depends on this one fix landing first.</li>
+          <li><b>Fix the <code>.btn-ghost</code> hover no-op.</b> A dead microinteraction on every secondary CTA sitewide is a one-line fix with outsized visible impact.</li>
+          <li><b>Restore the Chatra footer link on the five pages missing it,</b> and extract nav/footer into one shared source so this can't silently re-diverge.</li>
+          <li><b>Re-export or replace the two 600KB+ "SVG" mockups on Projects.</b> Single biggest performance lever on the site.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 2 — Make the system actually a system</h3>
+        <ul class="plan-list">
+          <li><b>Collapse six gradients into one accent token.</b> Reuse it; stop inventing a new one per page.</li>
+          <li><b>Collapse a dozen max-widths into three tokens</b> (<code>--w-read</code>, <code>--w-content</code>, <code>--w-wide</code>) and rewrite every component to reference one.</li>
+          <li><b>Either finish or delete <code>.hero-announce</code> and <code>.filter-tabs</code>.</b> Both directions are fine; leaving fully-styled dead code in place is not.</li>
+          <li><b>Vendor the icon set locally</b> instead of depending on <code>cdn.simpleicons.org</code> at runtime.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <h3>Phase 3 — Motion and polish</h3>
+        <ul class="plan-list">
+          <li><b>Promote 2–3 hero moments to scroll-scrubbed motion</b> (stat counters, phone mockups) instead of the universal binary fade-up.</li>
+          <li><b>Unify card hover physics</b> — one lift value, one shadow curve, applied to <code>.proj-mini</code>, <code>.ach-card</code>, and <code>.cs-stack-card</code> alike.</li>
+          <li><b>Add responsive <code>srcset</code></b> to every content photograph; stop shipping desktop-resolution images to phones.</li>
+          <li><b>Extend the reduced-motion query into <code>chatra.html</code>'s page-specific keyframes.</b></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<footer class="colophon">
+  <div class="wrap">
+    Audit conducted against the working tree as of Aug 4, 2026 — 6 HTML files, style.css (893 lines), app.js (271 lines). Every citation above is a real file:line, independently grepped where a claim was checkable. Priority reflects visible-impact-to-effort, not severity alone.
+  </div>
+</footer>

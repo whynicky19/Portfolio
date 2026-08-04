@@ -1,8 +1,23 @@
 
 
+/* ── Self-hosted type ──
+   SF Pro is Apple hardware/software only — its license does not permit
+   redistribution on a public, cross-platform website. Inter is metrically
+   close, open-licensed (SIL OFL), and self-hosted here as a single variable
+   woff2 (weights 400–700) so every non-Apple visitor gets a controlled,
+   intentional typeface instead of falling through to Arial. -apple-system
+   still wins first on real Apple hardware — this only fills the gap. */
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Latin-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --font-display: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-  --font-text:    -apple-system, "SF Pro Text",    "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-text:    -apple-system, BlinkMacSystemFont, "SF Pro Text",    "Inter", "Helvetica Neue", Arial, sans-serif;
 
   --black:    #1d1d1f;
   --white:    #ffffff;
@@ -17,7 +32,7 @@
   --gray-8:   #fbfbfd;
   --true-black: #000000;
 
-  
+
   --border:        rgba(0,0,0,0.08);
   --border-md:     rgba(0,0,0,0.12);
   --border-strong: rgba(0,0,0,0.14);
@@ -25,6 +40,7 @@
   --overlay-xs:    rgba(0,0,0,0.025);
   --overlay-sm:    rgba(0,0,0,0.04);
   --overlay-md:    rgba(0,0,0,0.05);
+  --overlay-lg:    rgba(0,0,0,0.08);
   --nav-bg:        rgba(255,255,255,0.82);
 
   --accent:        #0071e3;
@@ -33,12 +49,38 @@
   --accent-soft:   rgba(0,113,227,0.1);
   --green:         #34c759;
 
+  /* one house gradient — replaces six unrelated per-page gradients */
+  --accent-gradient: linear-gradient(90deg, #0071e3 0%, #5e5ce6 50%, #af52de 100%);
+
   --nav-h: 48px;
   --max-w: 1200px;
   --r-sm: 12px;
   --r-md: 18px;
   --r-lg: 24px;
   --r-xl: 32px;
+
+  /* ── spacing scale — every gap/padding traces back to one of these ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 160px;
+
+  /* ── layout width scale — replaces a dozen arbitrary max-width values ── */
+  --w-read:    680px;   /* prose / single-column reading copy */
+  --w-medium:  960px;   /* 3–4up rows: stat grids, overview strips */
+  --w-content: 1200px;  /* standard page container (= --max-w) */
+  --w-wide:    1440px;  /* full-bleed / wide grids */
+
+  /* ── one card hover physics, reused by every card component ── */
+  --card-hover-lift: -4px;
+  --card-hover-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  --ease-apple: cubic-bezier(.16,1,.3,1);
 }
 
 [data-theme="dark"] {
@@ -230,6 +272,7 @@ body {
 }
 
 ::selection { background: rgba(0,0,0,0.12); }
+[data-theme="dark"] ::selection { background: rgba(255,255,255,0.18); }
 
 .apple-nav {
   position: fixed; top: 0; left: 0; right: 0;
@@ -329,22 +372,22 @@ body {
               visibility 0s linear 0s;
 }
 .nav-mobile a {
-  font-size: 24px; font-weight: 600; color: var(--black);
-  text-decoration: none; padding: 18px 0;
+  font-size: 19px; font-weight: 600; color: var(--black);
+  text-decoration: none; padding: 13px 0;
   border-bottom: 1px solid var(--border);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   touch-action: manipulation;
 }
 @keyframes navLinkIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.nav-mobile.open a:nth-child(1) { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .06s both; }
-.nav-mobile.open a:nth-child(2) { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .11s both; }
-.nav-mobile.open a:nth-child(3) { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .16s both; }
-.nav-mobile.open a:nth-child(4) { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .21s both; }
-.nav-mobile.open a:nth-child(5) { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .26s both; }
-.nav-mobile.open .theme-toggle-mobile { animation: navLinkIn .32s cubic-bezier(.16,1,.3,1) .31s both; }
+.nav-mobile.open a:nth-child(1) { animation: navLinkIn .22s var(--ease-apple) .02s both; }
+.nav-mobile.open a:nth-child(2) { animation: navLinkIn .22s var(--ease-apple) .05s both; }
+.nav-mobile.open a:nth-child(3) { animation: navLinkIn .22s var(--ease-apple) .08s both; }
+.nav-mobile.open a:nth-child(4) { animation: navLinkIn .22s var(--ease-apple) .11s both; }
+.nav-mobile.open a:nth-child(5) { animation: navLinkIn .22s var(--ease-apple) .14s both; }
+.nav-mobile.open .theme-toggle-mobile { animation: navLinkIn .22s var(--ease-apple) .17s both; }
 
 @media (max-width: 900px) {
   .nav-menu, .nav-cta, .theme-toggle { display: none; }
@@ -420,8 +463,9 @@ body {
   color: var(--black);
   padding: 10px 22px; border-radius: 980px;
   border: 1px solid var(--border-strong);
+  transition: background .2s, border-color .2s;
 }
-.btn-ghost:hover { opacity: 1; background: var(--overlay-md); }
+.btn-ghost:hover { opacity: 1; background: var(--overlay-lg); border-color: var(--border-hover); }
 
 .btn-link {
   background: none; color: var(--accent);
@@ -447,11 +491,28 @@ body {
   background: var(--gray-7);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform .3s cubic-bezier(.23,1,.32,1),
-              box-shadow .3s cubic-bezier(.23,1,.32,1);
+  transition: transform .3s var(--ease-apple),
+              box-shadow .3s var(--ease-apple),
+              border-color .3s var(--ease-apple);
 }
 .card:hover {
-  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  transform: translateY(var(--card-hover-lift));
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--border-hover);
+}
+
+/* ── One hover physics, shared by every interactive card in the site ── */
+.proj-mini, .ach-card, .cs-stack-card, .bento-card, .cert-rail-card, .skill-pill {
+  transition: transform .3s var(--ease-apple),
+              box-shadow .3s var(--ease-apple),
+              border-color .3s var(--ease-apple),
+              background .3s var(--ease-apple);
+}
+.proj-mini:hover, .ach-card:hover, .cs-stack-card:hover,
+.bento-card:hover, .cert-rail-card:hover, .skill-pill:hover {
+  transform: translateY(var(--card-hover-lift));
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--border-hover);
 }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -834,6 +895,20 @@ body {
   [data-scroll-scale] { will-change: auto; transform: none !important; }
 }
 
+/* ── Scroll-linked reveal — continuous, reversible progress instead of a
+   one-shot IntersectionObserver trigger. Reserved for hero-moment content
+   (stat counters, metric cards, timeline entries); everything secondary
+   keeps the simpler .fade-up. ── */
+[data-reveal-progress] { will-change: transform, opacity; }
+
+/* ── Timeline self-drawing progress line (About → "The road so far") ── */
+.timeline-line-fill {
+  position: absolute; left: 0; top: 8px; width: 1px; height: 0;
+  background: var(--accent);
+  will-change: height;
+}
+[data-theme="dark"] .timeline-line-fill { background: var(--accent); }
+
 /* ── Mobile touch / animation improvements ── */
 @media (hover: none) {
   .card:hover,
@@ -890,4 +965,11 @@ body {
   .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
   .wr-word { opacity: 1 !important; }
   [data-scroll-scale] { transform: none !important; }
+  [data-reveal-progress] { opacity: 1 !important; transform: none !important; }
+  .timeline-line-fill { height: 100% !important; }
+  .tagline-word { animation: none !important; opacity: 1 !important; }
+  .cs-iphone-section .cs-iphone-visual,
+  .cs-iphone-section .cs-label,
+  .cs-iphone-section .cs-iphone-title,
+  .cs-iphone-section .cs-iphone-desc { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
 }
