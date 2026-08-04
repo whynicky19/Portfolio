@@ -17,6 +17,8 @@
 <meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -238,7 +240,7 @@
     <h2 class="t-headline-md fade-up" style="margin-bottom:52px;">The road so far.</h2>
     <div class="timeline">
       <div class="timeline-line-fill"></div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item cv-auto" data-reveal-progress>
         <div class="tl-dot"></div>
         <div class="tl-body">
           <div class="tl-year">2023</div>
@@ -246,7 +248,7 @@
           <div class="tl-desc">Competed in my first hackathon. Built a working MVP in 48 hours, pitched it to a panel of judges, and finished in the top 5. Completely changed how I think about building software.</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item cv-auto" data-reveal-progress>
         <div class="tl-dot"></div>
         <div class="tl-body">
           <div class="tl-year">2025</div>
@@ -254,7 +256,7 @@
           <div class="tl-desc">Began university studies in Petropavl. Wrote my first programs in Python. Discovered that building things with code was the most satisfying thing I'd ever done.</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item cv-auto" data-reveal-progress>
         <div class="tl-dot"></div>
         <div class="tl-body">
           <div class="tl-year">2025–2026</div>
@@ -262,7 +264,7 @@
           <div class="tl-desc">Went deep on Flutter/Dart for mobile, FastAPI for backend, and Vue/Nuxt for web. Built Chatra Academy — a complete educational platform used in real classrooms.</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item cv-auto" data-reveal-progress>
         <div class="tl-dot"></div>
         <div class="tl-body">
           <div class="tl-year">2026</div>
@@ -270,7 +272,7 @@
           <div class="tl-desc">Completed Harvard's Python course (CS50P) to deepen my foundations. Strict about writing code manually — not copy-pasting or AI-generating — to actually learn.</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item cv-auto" data-reveal-progress>
         <div class="tl-dot"></div>
         <div class="tl-body">
           <div class="tl-year">2026</div>
@@ -287,7 +289,7 @@
 <section class="section bg-black">
   <div class="container">
     <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Tools I build with.</h2>
-    <div class="skill-grid stagger">
+    <div class="skill-grid depth-stagger">
       <div class="skill-pill">
         <div class="skill-pill-icon"><img src="img/icons/python.svg" class="tech-icon" width="28" height="28" alt="Python" loading="lazy"></div>
         <div class="skill-pill-name">Python</div>
@@ -332,7 +334,7 @@
     <p class="t-body-lg fade-up" style="max-width:400px;margin:16px auto 0;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
   </div>
   <div class="cert-hl-track" id="certTrack">
-    <div class="cert-hl-slide">
+    <div class="cert-hl-slide cv-auto">
       <div class="cert-hl-img"><img src="img/hackathon-1200w.webp" srcset="img/hackathon-640w.webp 640w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px" alt="Hackathon certificate" loading="lazy" decoding="async"></div>
       <div class="cert-hl-body">
         <p class="cert-hl-cat">University Hackathon</p>
@@ -340,7 +342,7 @@
         <p class="cert-hl-org">University · 2026</p>
       </div>
     </div>
-    <div class="cert-hl-slide">
+    <div class="cert-hl-slide cv-auto">
       <div class="cert-hl-img"><img src="img/aisana-1200w.webp" srcset="img/aisana-640w.webp 640w, img/aisana-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px" alt="AI-SANA certificate" loading="lazy" decoding="async"></div>
       <div class="cert-hl-body">
         <p class="cert-hl-cat">AI-SANA</p>
@@ -348,7 +350,7 @@
         <p class="cert-hl-org">AI-SANA · 2026</p>
       </div>
     </div>
-    <div class="cert-hl-slide">
+    <div class="cert-hl-slide cv-auto">
       <div class="cert-hl-img"><img src="img/hackathon-urpaq-1200w.webp" srcset="img/hackathon-urpaq-640w.webp 640w, img/hackathon-urpaq-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px" alt="Hackathon Top 2" loading="lazy" decoding="async"></div>
       <div class="cert-hl-body">
         <p class="cert-hl-cat">Hackathon</p>
@@ -356,7 +358,7 @@
         <p class="cert-hl-org">Digital Urpaq Hackathon · 2026</p>
       </div>
     </div>
-    <div class="cert-hl-slide">
+    <div class="cert-hl-slide cv-auto">
       <div class="cert-hl-img"><img src="img/ai-center-1200w.webp" srcset="img/ai-center-640w.webp 640w, img/ai-center-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px" alt="AI Center certificate" loading="lazy" decoding="async"></div>
       <div class="cert-hl-body">
         <p class="cert-hl-cat">AI Center</p>
@@ -364,7 +366,7 @@
         <p class="cert-hl-org">University · 2026</p>
       </div>
     </div>
-    <div class="cert-hl-slide">
+    <div class="cert-hl-slide cv-auto">
       <div class="cert-hl-img"><img src="img/practice-1200w.webp" srcset="img/practice-640w.webp 640w, img/practice-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px" alt="Conference certificate" loading="lazy" decoding="async"></div>
       <div class="cert-hl-body">
         <p class="cert-hl-cat">Conference</p>
@@ -398,6 +400,8 @@
 <div id="site-footer"></div>
 <script src="partials.js"></script>
 
+<script src="utils.js"></script>
+<script src="components.js"></script>
 <script src="app.js"></script>
 <script>
 (function () {

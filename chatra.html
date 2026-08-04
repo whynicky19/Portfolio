@@ -14,6 +14,8 @@
 <meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -151,12 +153,11 @@
   animation: taglineWord 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Apple-style segmented pill toggle */
+/* Apple-style segmented pill toggle — Liquid Glass housing, solid
+   "thumb" on the active segment so it stays legible over any photo. */
 .theme-toggle-pill {
   display: inline-flex;
-  background: var(--overlay-md);
-  border: 1px solid var(--border-md);
-  border-radius: 999px;
+  border-radius: var(--r-pill);
   padding: 3px;
   gap: 2px;
   user-select: none;
@@ -167,8 +168,8 @@
   font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
   color: var(--gray-4);
   padding: 7px 20px;
-  border-radius: 999px;
-  transition: color .2s, background .2s, box-shadow .2s;
+  border-radius: var(--r-pill);
+  transition: color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
   display: flex; align-items: center; gap: 7px;
 }
 .theme-toggle-pill button.active {
@@ -176,6 +177,7 @@
   color: var(--black);
   box-shadow: 0 1px 4px rgba(0,0,0,0.12), 0 0 0 0.5px rgba(0,0,0,0.06);
 }
+.theme-toggle-pill button:focus-visible { box-shadow: var(--focus-ring); }
 .theme-toggle-icon {
   width: 12px; height: 12px;
   display: inline-block;
@@ -471,14 +473,14 @@
     </div>
     <p class="cs-hero-tagline">Every class. Every grade.<br><em>One app.</em></p>
     <div class="cs-hero-img">
-      <div class="hero-phone-mockup">
+      <div class="hero-phone-mockup" data-parallax style="--parallax-depth:0.07">
         <div class="hero-phone-notch"></div>
         <div class="hero-phone-screen" id="heroPhoneScreen">
           <img src="img/chatra-light-1179w.webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px" alt="Chatra app light theme" id="heroImgLight" fetchpriority="high" decoding="async">
           <img src="img/chatra-dark-1179w.webp" srcset="img/chatra-dark-600w.webp 600w, img/chatra-dark-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px" alt="Chatra app dark theme" id="heroImgDark" class="hidden" loading="lazy">
         </div>
       </div>
-      <div class="theme-toggle-pill" role="group" aria-label="App theme preview">
+      <div class="theme-toggle-pill glass" role="group" aria-label="App theme preview">
         <button id="toggleLight" class="active" onclick="heroSetTheme('light')">
           <svg class="theme-toggle-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
             <circle cx="6" cy="6" r="2.5" fill="currentColor"/>
@@ -541,7 +543,7 @@
 
 
 
-<section class="cs-iphone-section iphone-1">
+<section class="cs-iphone-section iphone-1 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Join a class. See your schedule. Stay on track.</h2>
@@ -591,7 +593,7 @@
 
 
 
-<section class="cs-iphone-section alt reverse iphone-2">
+<section class="cs-iphone-section alt reverse iphone-2 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Every subject, organized in one place.</h2>
@@ -615,7 +617,7 @@
     <div class="fade-up" style="margin-bottom:40px;">
       <h2 class="cs-heading">Every tool chosen deliberately.</h2>
     </div>
-    <div class="cs-stack-grid stagger">
+    <div class="cs-stack-grid depth-stagger">
       <div class="cs-stack-card"><div class="cs-stack-name">Flutter / Dart</div><div class="cs-stack-role">Cross-platform mobile</div></div>
       <div class="cs-stack-card"><div class="cs-stack-name">Riverpod</div><div class="cs-stack-role">State management</div></div>
       <div class="cs-stack-card"><div class="cs-stack-name">GoRouter</div><div class="cs-stack-role">Navigation</div></div>
@@ -634,7 +636,7 @@
 
 
 
-<section class="cs-iphone-section iphone-3">
+<section class="cs-iphone-section iphone-3 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
       <h2 class="cs-iphone-title">Ask anything about your course — get an answer instantly.</h2>
@@ -702,6 +704,8 @@
 <div id="site-footer"></div>
 <script src="partials.js"></script>
 
+<script src="utils.js"></script>
+<script src="components.js"></script>
 <script src="app.js"></script>
 <script>
 (function () {

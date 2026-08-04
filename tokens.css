@@ -1,0 +1,164 @@
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — single source of truth for every color, spacing,
+   radius, shadow, motion and z-index value in the site.
+   Nothing outside this file should hardcode a raw hex, px, ms or
+   cubic-bezier for anything reused more than once.
+═══════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Latin-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ── Type ── */
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-text:    -apple-system, BlinkMacSystemFont, "SF Pro Text",    "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  /* ── Color — neutrals ── */
+  --black:      #1d1d1f;
+  --white:      #ffffff;
+  --gray-06:    #f5f5f7;
+  --gray-1:     #e8e8ed;
+  --gray-2:     #d2d2d7;
+  --gray-3:     #6e6e73;
+  --gray-4:     #6e6e73;
+  --gray-5:     #86868b;
+  --gray-6:     #d2d2d7;
+  --gray-7:     #f5f5f7;
+  --gray-8:     #fbfbfd;
+  --true-black: #000000;
+
+  --border:        rgba(0,0,0,0.08);
+  --border-md:     rgba(0,0,0,0.12);
+  --border-strong: rgba(0,0,0,0.14);
+  --border-hover:  rgba(0,0,0,0.18);
+  --overlay-xs:    rgba(0,0,0,0.025);
+  --overlay-sm:    rgba(0,0,0,0.04);
+  --overlay-md:    rgba(0,0,0,0.05);
+  --overlay-lg:    rgba(0,0,0,0.08);
+  --nav-bg:        rgba(255,255,255,0.82);
+
+  /* ── Color — accent ── */
+  --accent:        #0071e3;
+  --accent-hover:  #0077ed;
+  --accent-active: #0066cc;
+  --accent-soft:   rgba(0,113,227,0.1);
+  --green:         #34c759;
+  --accent-gradient: linear-gradient(90deg, #0071e3 0%, #5e5ce6 50%, #af52de 100%);
+
+  /* ── Color — focus ring (keyboard navigation) ── */
+  --focus-ring: 0 0 0 2px var(--white), 0 0 0 4.5px var(--accent);
+
+  /* ── Liquid Glass material ── */
+  --glass-bg:        rgba(255,255,255,0.55);
+  --glass-bg-thick:  rgba(255,255,255,0.74);
+  --glass-border:    rgba(255,255,255,0.4);
+  --glass-highlight: rgba(255,255,255,0.85);
+  --glass-shadow:    0 8px 32px rgba(0,0,0,0.10), 0 1px 1px rgba(0,0,0,0.04);
+  --glass-blur:      22px;
+  --glass-saturate:  180%;
+
+  /* ── Layout ── */
+  --nav-h:     48px;
+  --max-w:     1200px;
+  --w-read:    680px;   /* prose / single-column reading copy */
+  --w-medium:  960px;   /* 3–4up rows: stat grids, overview strips */
+  --w-content: 1200px;  /* standard page container (= --max-w) */
+  --w-wide:    1440px;  /* full-bleed / wide grids */
+
+  /* ── Radius scale ── */
+  --r-sm:   12px;
+  --r-md:   18px;
+  --r-lg:   24px;
+  --r-xl:   32px;
+  --r-pill: 980px;
+
+  /* ── Spacing scale — every gap/padding traces back to one of these ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 160px;
+
+  /* ── Shadow / elevation scale — depth increases with interaction weight ── */
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.04), 0 1px 1px rgba(0,0,0,0.03);
+  --shadow-2: 0 4px 14px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-3: 0 16px 40px rgba(0,0,0,0.12);
+  --shadow-4: 0 24px 64px rgba(0,0,0,0.16), 0 4px 12px rgba(0,0,0,0.06);
+
+  /* card hover: alias onto the shared scale so every card uses one physics */
+  --card-hover-lift:   -4px;
+  --card-hover-shadow: var(--shadow-3);
+
+  /* ── Motion durations — pick by what's moving, not by habit ── */
+  --dur-instant: 120ms; /* press feedback */
+  --dur-fast:    200ms; /* hover in/out */
+  --dur-base:    320ms; /* card lifts, toggles */
+  --dur-slow:    550ms; /* section reveals */
+  --dur-slower:  900ms; /* hero entrances */
+
+  /* ── Motion easings — each has one job ── */
+  --ease-apple:    cubic-bezier(.16,1,.3,1);     /* scroll reveals: decelerate, no overshoot */
+  --ease-spring:   cubic-bezier(.34,1.56,.64,1); /* press/tap feedback: alive, slight overshoot */
+  --ease-out:      cubic-bezier(.22,.61,.36,1);  /* hover in/out: quick, controlled */
+  --ease-in-out:   cubic-bezier(.65,0,.35,1);    /* symmetric state toggles */
+
+  /* ── Z-index scale ── */
+  --z-card:       10;
+  --z-sticky:     100;
+  --z-mobile-nav: 8999;
+  --z-nav:        9000;
+  --z-float:      9500;
+}
+
+[data-theme="dark"] {
+  --black:      #f5f5f7;
+  --white:      #000000;
+  --gray-06:    #1c1c1e;
+  --gray-1:     #2c2c2e;
+  --gray-2:     #3a3a3c;
+  --gray-3:     #a1a1a6;
+  --gray-4:     #a1a1a6;
+  --gray-5:     #6e6e73;
+  --gray-6:     #3a3a3c;
+  --gray-7:     #1c1c1e;
+  --gray-8:     #111111;
+  --true-black: #ffffff;
+
+  --border:        rgba(255,255,255,0.1);
+  --border-md:     rgba(255,255,255,0.13);
+  --border-strong: rgba(255,255,255,0.16);
+  --border-hover:  rgba(255,255,255,0.24);
+  --overlay-xs:    rgba(255,255,255,0.02);
+  --overlay-sm:    rgba(255,255,255,0.04);
+  --overlay-md:    rgba(255,255,255,0.06);
+  --overlay-lg:    rgba(255,255,255,0.1);
+  --nav-bg:        rgba(0,0,0,0.82);
+
+  --accent:        #2997ff;
+  --accent-hover:  #47a9ff;
+  --accent-active: #0077ed;
+  --accent-soft:   rgba(41,151,255,0.14);
+
+  --focus-ring: 0 0 0 2px var(--gray-8), 0 0 0 4.5px var(--accent);
+
+  --glass-bg:        rgba(28,28,30,0.55);
+  --glass-bg-thick:  rgba(18,18,20,0.76);
+  --glass-border:    rgba(255,255,255,0.12);
+  --glass-highlight: rgba(255,255,255,0.16);
+  --glass-shadow:    0 8px 32px rgba(0,0,0,0.5), 0 1px 1px rgba(255,255,255,0.04);
+
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.3), 0 1px 1px rgba(0,0,0,0.2);
+  --shadow-2: 0 4px 14px rgba(0,0,0,0.35);
+  --shadow-3: 0 16px 40px rgba(0,0,0,0.45);
+  --shadow-4: 0 24px 64px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.3);
+}

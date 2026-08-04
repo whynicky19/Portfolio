@@ -1,116 +1,9 @@
 
 
-/* ── Self-hosted type ──
-   SF Pro is Apple hardware/software only — its license does not permit
-   redistribution on a public, cross-platform website. Inter is metrically
-   close, open-licensed (SIL OFL), and self-hosted here as a single variable
-   woff2 (weights 400–700) so every non-Apple visitor gets a controlled,
-   intentional typeface instead of falling through to Arial. -apple-system
-   still wins first on real Apple hardware — this only fills the gap. */
-@font-face {
-  font-family: "Inter";
-  src: url("fonts/Inter-Latin-Variable.woff2") format("woff2");
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-text:    -apple-system, BlinkMacSystemFont, "SF Pro Text",    "Inter", "Helvetica Neue", Arial, sans-serif;
-
-  --black:    #1d1d1f;
-  --white:    #ffffff;
-  --gray-06:  #f5f5f7;
-  --gray-1:   #e8e8ed;
-  --gray-2:   #d2d2d7;
-  --gray-3:   #6e6e73;
-  --gray-4:   #6e6e73;
-  --gray-5:   #86868b;
-  --gray-6:   #d2d2d7;
-  --gray-7:   #f5f5f7;
-  --gray-8:   #fbfbfd;
-  --true-black: #000000;
-
-
-  --border:        rgba(0,0,0,0.08);
-  --border-md:     rgba(0,0,0,0.12);
-  --border-strong: rgba(0,0,0,0.14);
-  --border-hover:  rgba(0,0,0,0.18);
-  --overlay-xs:    rgba(0,0,0,0.025);
-  --overlay-sm:    rgba(0,0,0,0.04);
-  --overlay-md:    rgba(0,0,0,0.05);
-  --overlay-lg:    rgba(0,0,0,0.08);
-  --nav-bg:        rgba(255,255,255,0.82);
-
-  --accent:        #0071e3;
-  --accent-hover:  #0077ed;
-  --accent-active: #0066cc;
-  --accent-soft:   rgba(0,113,227,0.1);
-  --green:         #34c759;
-
-  /* one house gradient — replaces six unrelated per-page gradients */
-  --accent-gradient: linear-gradient(90deg, #0071e3 0%, #5e5ce6 50%, #af52de 100%);
-
-  --nav-h: 48px;
-  --max-w: 1200px;
-  --r-sm: 12px;
-  --r-md: 18px;
-  --r-lg: 24px;
-  --r-xl: 32px;
-
-  /* ── spacing scale — every gap/padding traces back to one of these ── */
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 12px;
-  --sp-4: 16px;
-  --sp-5: 24px;
-  --sp-6: 32px;
-  --sp-7: 48px;
-  --sp-8: 64px;
-  --sp-9: 96px;
-  --sp-10: 160px;
-
-  /* ── layout width scale — replaces a dozen arbitrary max-width values ── */
-  --w-read:    680px;   /* prose / single-column reading copy */
-  --w-medium:  960px;   /* 3–4up rows: stat grids, overview strips */
-  --w-content: 1200px;  /* standard page container (= --max-w) */
-  --w-wide:    1440px;  /* full-bleed / wide grids */
-
-  /* ── one card hover physics, reused by every card component ── */
-  --card-hover-lift: -4px;
-  --card-hover-shadow: 0 16px 40px rgba(0,0,0,0.12);
-  --ease-apple: cubic-bezier(.16,1,.3,1);
-}
-
-[data-theme="dark"] {
-  --black:    #f5f5f7;
-  --white:    #000000;
-  --gray-06:  #1c1c1e;
-  --gray-1:   #2c2c2e;
-  --gray-2:   #3a3a3c;
-  --gray-3:   #a1a1a6;
-  --gray-4:   #a1a1a6;
-  --gray-5:   #6e6e73;
-  --gray-6:   #3a3a3c;
-  --gray-7:   #1c1c1e;
-  --gray-8:   #111111;
-  --true-black: #ffffff;
-
-  --border:        rgba(255,255,255,0.1);
-  --border-md:     rgba(255,255,255,0.13);
-  --border-strong: rgba(255,255,255,0.16);
-  --border-hover:  rgba(255,255,255,0.24);
-  --overlay-xs:    rgba(255,255,255,0.02);
-  --overlay-sm:    rgba(255,255,255,0.04);
-  --overlay-md:    rgba(255,255,255,0.06);
-  --nav-bg:        rgba(0,0,0,0.82);
-
-  --accent:        #2997ff;
-  --accent-hover:  #47a9ff;
-  --accent-active: #0077ed;
-  --accent-soft:   rgba(41,151,255,0.14);
-}
+/* Design tokens live in tokens.css — colors, spacing, radius, shadow,
+   motion and z-index. Keyframes and scroll-reveal utilities live in
+   animations.css. Both are linked before this file in every page's
+   <head>; this file is component structure only. */
 
 [data-theme="dark"] .apple-nav {
   background: var(--nav-bg);
@@ -246,7 +139,42 @@
 }
 .theme-toggle-mobile svg { opacity: 0.7; flex-shrink: 0; }
 
-.back-top { display: none; }
+/* Floating glass back-to-top — appears past 400px of scroll, a real
+   Liquid Glass component: blur, specular top edge, elevation shadow.
+   Specificity note: .glass sets position:relative (it needs *some*
+   positioned ancestor for its ::before specular highlight) — for any
+   component that needs fixed/absolute/sticky instead, that component's
+   own position must win via a compound selector like .back-top.glass
+   below, not just .back-top, or .glass's later position:relative in
+   the cascade silently wins on equal specificity. */
+.back-top,
+.back-top.glass {
+  position: fixed;
+  right: var(--sp-5); bottom: var(--sp-5);
+  z-index: var(--z-float);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black);
+  cursor: pointer;
+  opacity: 0; visibility: hidden;
+  transform: translateY(12px) scale(.9);
+  transition: opacity var(--dur-base) var(--ease-apple),
+              transform var(--dur-base) var(--ease-spring),
+              visibility 0s linear var(--dur-base);
+}
+.back-top.visible {
+  opacity: 1; visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity var(--dur-base) var(--ease-apple),
+              transform var(--dur-base) var(--ease-spring),
+              visibility 0s linear 0s;
+}
+.back-top:hover { transform: translateY(-3px) scale(1.04); box-shadow: var(--shadow-3); }
+.back-top:active { transform: translateY(-1px) scale(.96); }
+@media (max-width: 600px) {
+  .back-top { right: var(--sp-4); bottom: var(--sp-4); width: 40px; height: 40px; }
+}
 
 .text-gradient {
   background: linear-gradient(135deg, var(--black) 0%, var(--gray-4) 100%);
@@ -259,6 +187,26 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+/* ── Keyboard navigation — visible only for keyboard focus, never for a
+   mouse click, matching how Safari/macOS actually draws focus. ── */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--r-sm);
+}
+.btn-primary:focus-visible, .btn-ghost:focus-visible { box-shadow: var(--focus-ring), 0 0 0 0 transparent; border-radius: var(--r-pill); }
+.nav-menu a:focus-visible, .footer-col a:focus-visible { border-radius: 4px; }
+.theme-toggle:focus-visible, .back-top:focus-visible, .social-icon:focus-visible { border-radius: 50%; }
+
+/* ── Performance: skip paint/layout work for off-screen repeating blocks
+   (cert slides, timeline entries, project cards) until they're close to
+   the viewport. contain-intrinsic-size keeps scrollbar geometry stable
+   before the real size is known. ── */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); font-size: 16px; overflow-x: clip; }
 
 body {
@@ -274,17 +222,62 @@ body {
 ::selection { background: rgba(0,0,0,0.12); }
 [data-theme="dark"] ::selection { background: rgba(255,255,255,0.18); }
 
+/* ═══════════════════════════════════════════════════════════════
+   LIQUID GLASS — the translucent material used for every piece of
+   floating chrome: nav, mobile nav, the back-to-top button, the
+   filter pills, the theme segmented control. Three ingredients make
+   it read as glass rather than "blurred div": a backdrop blur+
+   saturate (light bends through it), a 1px specular highlight along
+   the top edge (light catches the upper rim), and a soft elevation
+   shadow (it sits above the page, not on it). Never applied to
+   backgrounds or text-bearing surfaces — blur there only costs
+   legibility for no material benefit.
+═══════════════════════════════════════════════════════════════ */
+.glass {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  isolation: isolate;
+}
+.glass::before {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  opacity: .55;
+  pointer-events: none;
+}
+.glass-thick { background: var(--glass-bg-thick); }
+
 .apple-nav {
   position: fixed; top: 0; left: 0; right: 0;
-  z-index: 9000;
+  z-index: var(--z-nav);
   height: var(--nav-h);
   background: var(--nav-bg);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(var(--glass-saturate)) blur(var(--glass-blur));
+  -webkit-backdrop-filter: saturate(var(--glass-saturate)) blur(var(--glass-blur));
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
-  transition: transform .3s ease;
+  transition: transform var(--dur-base) ease;
   will-change: transform;
+}
+.apple-nav::after {
+  content: '';
+  position: absolute; inset: 0 0 auto 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+  opacity: .35;
+  pointer-events: none;
+}
+/* Adaptive glass — the material thickens once there's content behind it
+   to scroll past, exactly like visionOS chrome responding to depth.
+   Toggled by components.js, driven by app.js's single scroll handler. */
+.apple-nav.glass-thick {
+  background: var(--nav-bg);
+  backdrop-filter: saturate(var(--glass-saturate)) blur(calc(var(--glass-blur) + 6px));
+  -webkit-backdrop-filter: saturate(var(--glass-saturate)) blur(calc(var(--glass-blur) + 6px));
+  box-shadow: 0 1px 0 var(--border), 0 12px 24px -12px rgba(0,0,0,0.12);
 }
 @media (max-width: 768px) {
   .apple-nav {
@@ -377,10 +370,6 @@ body {
   border-bottom: 1px solid var(--border);
   letter-spacing: -0.02em;
   touch-action: manipulation;
-}
-@keyframes navLinkIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 .nav-mobile.open a:nth-child(1) { animation: navLinkIn .22s var(--ease-apple) .02s both; }
 .nav-mobile.open a:nth-child(2) { animation: navLinkIn .22s var(--ease-apple) .05s both; }
@@ -491,26 +480,31 @@ body {
   background: var(--gray-7);
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: transform .3s var(--ease-apple),
-              box-shadow .3s var(--ease-apple),
-              border-color .3s var(--ease-apple);
+  transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform var(--dur-base) var(--ease-apple),
+              box-shadow var(--dur-base) var(--ease-apple),
+              border-color var(--dur-base) var(--ease-apple);
 }
 .card:hover {
-  transform: translateY(var(--card-hover-lift));
+  transform: perspective(800px) translateY(var(--card-hover-lift)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   box-shadow: var(--card-hover-shadow);
   border-color: var(--border-hover);
 }
 
-/* ── One hover physics, shared by every interactive card in the site ── */
+/* ── One hover physics, shared by every interactive card in the site ──
+   --tilt-x/--tilt-y default to 0deg (no-op) and are only ever written by
+   components.js's pointer-tilt on cards that opt in — every other card
+   here just gets the plain lift, unaffected. */
 .proj-mini, .ach-card, .cs-stack-card, .bento-card, .cert-rail-card, .skill-pill {
-  transition: transform .3s var(--ease-apple),
-              box-shadow .3s var(--ease-apple),
-              border-color .3s var(--ease-apple),
-              background .3s var(--ease-apple);
+  transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform var(--dur-base) var(--ease-apple),
+              box-shadow var(--dur-base) var(--ease-apple),
+              border-color var(--dur-base) var(--ease-apple),
+              background var(--dur-base) var(--ease-apple);
 }
 .proj-mini:hover, .ach-card:hover, .cs-stack-card:hover,
 .bento-card:hover, .cert-rail-card:hover, .skill-pill:hover {
-  transform: translateY(var(--card-hover-lift));
+  transform: perspective(800px) translateY(var(--card-hover-lift)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   box-shadow: var(--card-hover-shadow);
   border-color: var(--border-hover);
 }
@@ -541,59 +535,6 @@ body {
   
   .btn-primary, .btn-ghost { padding: 13px 24px; font-size: 15px; }
 }
-
-.fade-up {
-  opacity: 0; transform: translateY(36px);
-  transition: opacity .75s cubic-bezier(.16,1,.3,1),
-              transform .75s cubic-bezier(.16,1,.3,1);
-  will-change: transform, opacity;
-}
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-.fade-in {
-  opacity: 0;
-  transition: opacity .9s cubic-bezier(.16,1,.3,1);
-  will-change: opacity;
-}
-.fade-in.visible { opacity: 1; }
-
-.slide-left {
-  opacity: 0; transform: translateX(-48px);
-  transition: opacity .8s cubic-bezier(.16,1,.3,1),
-              transform .8s cubic-bezier(.16,1,.3,1);
-  will-change: transform, opacity;
-}
-.slide-left.visible { opacity: 1; transform: translateX(0); }
-
-.slide-right {
-  opacity: 0; transform: translateX(48px);
-  transition: opacity .8s .06s cubic-bezier(.16,1,.3,1),
-              transform .8s .06s cubic-bezier(.16,1,.3,1);
-  will-change: transform, opacity;
-}
-.slide-right.visible { opacity: 1; transform: translateX(0); }
-
-.scale-up {
-  opacity: 0; transform: scale(0.94);
-  transition: opacity .75s cubic-bezier(.16,1,.3,1),
-              transform .75s cubic-bezier(.16,1,.3,1);
-  will-change: transform, opacity;
-}
-.scale-up.visible { opacity: 1; transform: scale(1); }
-
-.stagger > * {
-  opacity: 0; transform: translateY(28px);
-  transition: opacity .65s cubic-bezier(.16,1,.3,1),
-              transform .65s cubic-bezier(.16,1,.3,1);
-  will-change: transform, opacity;
-}
-.stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:.04s; }
-.stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.1s; }
-.stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.16s; }
-.stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.22s; }
-.stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:.28s; }
-.stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:.34s; }
-.stagger.visible > *:nth-child(n+7) { opacity:1; transform:none; transition-delay:.40s; }
 
 .rail-wrap {
   overflow-x: auto; overflow-y: visible;
@@ -729,22 +670,9 @@ body {
   object-fit: contain;
 }
 
-@keyframes gridPulse   { 0%,100%{opacity:.4} 50%{opacity:.8} }
-@keyframes dotBreathe  { 0%,100%{opacity:.2} 50%{opacity:.7} }
-@keyframes heroFadeUp  { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
-@keyframes scrollLine  { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
-@keyframes marquee     { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-
 [data-theme="dark"] .hero-scroll-line {
   background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
 }
-
-.clip-reveal {
-  clip-path: inset(0 0 100% 0);
-  opacity: 0;
-  transition: clip-path 1.1s cubic-bezier(.16,1,.3,1), opacity .4s ease;
-}
-.clip-reveal.visible { clip-path: inset(0 0 0% 0); opacity: 1; }
 
 .section-card {
   margin: 0 16px;
@@ -879,97 +807,5 @@ body {
   filter: brightness(0) invert(1) opacity(0.75);
 }
 
-/* ── Word reveal ── */
-.wr-word {
-  display: inline-block;
-  opacity: 0.15;
-  will-change: opacity;
-}
-
-/* ── Scroll-linked scale ── */
-[data-scroll-scale] {
-  will-change: transform;
-  transform-origin: center bottom;
-}
-@media (max-width: 768px) {
-  [data-scroll-scale] { will-change: auto; transform: none !important; }
-}
-
-/* ── Scroll-linked reveal — continuous, reversible progress instead of a
-   one-shot IntersectionObserver trigger. Reserved for hero-moment content
-   (stat counters, metric cards, timeline entries); everything secondary
-   keeps the simpler .fade-up. ── */
-[data-reveal-progress] { will-change: transform, opacity; }
-
-/* ── Timeline self-drawing progress line (About → "The road so far") ── */
-.timeline-line-fill {
-  position: absolute; left: 0; top: 8px; width: 1px; height: 0;
-  background: var(--accent);
-  will-change: height;
-}
-[data-theme="dark"] .timeline-line-fill { background: var(--accent); }
-
-/* ── Mobile touch / animation improvements ── */
-@media (hover: none) {
-  .card:hover,
-  .bento-card:hover,
-  .cert-rail-card:hover,
-  .proj-mini:hover,
-  .ach-card:hover,
-  .skill-pill:hover,
-  .cs-stack-card:hover { transform: none !important; box-shadow: none !important; }
-
-  .btn-primary:active { opacity: .8; transform: scale(.98); }
-  .btn-ghost:active   { opacity: .7; }
-  .btn-link:active    { opacity: .6; }
-  .social-link:active { background: var(--gray-1); }
-  .nav-mobile a:active { opacity: .5; }
-  .nav-burger:active span { opacity: .5; }
-  .back-top:active { transform: translateY(-2px) !important; }
-}
-
-@media (max-width: 600px) {
-  .fade-up {
-    transform: translateY(20px);
-    transition-duration: .6s;
-  }
-  .stagger > * {
-    transform: translateY(16px);
-    transition-duration: .55s;
-  }
-  .stagger.visible > *:nth-child(1) { transition-delay: .03s; }
-  .stagger.visible > *:nth-child(2) { transition-delay: .08s; }
-  .stagger.visible > *:nth-child(3) { transition-delay: .13s; }
-  .stagger.visible > *:nth-child(4) { transition-delay: .18s; }
-  .stagger.visible > *:nth-child(5) { transition-delay: .23s; }
-  .stagger.visible > *:nth-child(6) { transition-delay: .28s; }
-  .stagger.visible > *:nth-child(n+7) { transition-delay: .33s; }
-
-  .scale-up { transform: translateY(16px) scale(1); }
-  .scale-up.visible { transform: translateY(0) scale(1); }
-
-  .slide-left  { transition-duration: .6s; }
-  .slide-right { transition-duration: .6s; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .fade-up, .fade-in, .slide-left, .slide-right, .scale-up {
-    opacity: 1; transform: none; transition: none;
-  }
-  .stagger > * { opacity: 1; transform: none; transition: none; }
-  .clip-reveal { clip-path: none; opacity: 1; transition: none; }
-  .sf-visual-item { transition: none; }
-  .hero-grid, .hero-scroll-line, .marquee-track,
-  .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live { animation: none; }
-  .hero-name, .hero-role, .hero-actions, .hero-scroll-cue,
-  .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
-  .wr-word { opacity: 1 !important; }
-  [data-scroll-scale] { transform: none !important; }
-  [data-reveal-progress] { opacity: 1 !important; transform: none !important; }
-  .timeline-line-fill { height: 100% !important; }
-  .tagline-word { animation: none !important; opacity: 1 !important; }
-  .cs-iphone-section .cs-iphone-visual,
-  .cs-iphone-section .cs-label,
-  .cs-iphone-section .cs-iphone-title,
-  .cs-iphone-section .cs-iphone-desc { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
-}
+/* Scroll-reveal utilities, keyframes, parallax, depth-stagger, and the
+   reduced-motion / touch overrides all live in animations.css. */

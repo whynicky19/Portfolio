@@ -17,6 +17,8 @@
 <meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
@@ -121,20 +123,26 @@
 
 .grid-3 { align-items: stretch; }
 
-.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+/* One glass housing for the whole segmented control — cheaper than a
+   backdrop-filter per pill, and it's how Apple actually builds these
+   (Settings.app, Control Center): one material, several hit targets. */
+.filter-tabs {
+  display: inline-flex; gap: 2px; flex-wrap: wrap;
+  margin-bottom: 40px; padding: 4px; border-radius: var(--r-pill);
+}
 .filter-tab {
-  padding: 8px 18px; border-radius: 980px;
+  padding: 7px 16px; border-radius: var(--r-pill);
   font-size: 13px; font-weight: 500;
-  border: 1px solid rgba(0,0,0,0.14);
+  border: none;
   background: transparent; color: var(--gray-4);
-  cursor: pointer; transition: background .2s, border-color .2s, color .2s;
+  cursor: pointer; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
   font-family: var(--font-text);
 }
-.filter-tab:hover { background: rgba(0,0,0,0.04); }
-.filter-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.filter-tab:hover { background: var(--overlay-sm); }
+.filter-tab.active { background: var(--black); color: var(--white); }
+.filter-tab:focus-visible { box-shadow: var(--focus-ring); }
 
 .proj-hidden { display: none !important; }
-[data-theme="dark"] .filter-tab:hover { background: rgba(255,255,255,0.06); }
 </style>
 </head>
 <body>
@@ -146,7 +154,7 @@
   <div class="container">
     <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Selected<br><span class="hl-word">work.</span></h1>
     <p class="t-body-xl fade-up" style="max-width:520px;margin-top:24px;animation-delay:.2s;">Real products built from scratch. Mobile apps, full-stack platforms, and tools that ship to real users.</p>
-    <div class="filter-tabs fade-up" style="animation-delay:.28s;" role="group" aria-label="Filter projects by category">
+    <div class="filter-tabs glass fade-up" style="animation-delay:.28s;" role="group" aria-label="Filter projects by category">
       <button class="filter-tab active" data-filter="all">All</button>
       <button class="filter-tab" data-filter="fullstack">Full-Stack</button>
       <button class="filter-tab" data-filter="mobile">Mobile</button>
@@ -229,9 +237,9 @@
 <section class="section bg-darker">
   <div class="container">
     <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Other projects.</h2>
-    <div class="grid-3 stagger">
+    <div class="grid-3 depth-stagger">
 
-      <div class="proj-mini" id="api" data-cat="fullstack">
+      <div class="proj-mini cv-auto" id="api" data-cat="fullstack">
         <div class="proj-mini-visual">
           <img src="img/fastqpi-960w.webp" srcset="img/fastqpi-480w.webp 480w, img/fastqpi-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px" alt="FastAPI Template screenshot" loading="lazy">
         </div>
@@ -248,7 +256,7 @@
         </div>
       </div>
 
-      <div class="proj-mini" data-cat="fullstack web">
+      <div class="proj-mini cv-auto" data-cat="fullstack web">
         <div class="proj-mini-visual">
           <img src="img/digital-urpaq-960w.webp" srcset="img/digital-urpaq-480w.webp 480w, img/digital-urpaq-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px" alt="Digital Urpaq screenshot" loading="lazy">
         </div>
@@ -262,7 +270,7 @@
         </div>
       </div>
 
-      <div class="proj-mini" data-cat="web">
+      <div class="proj-mini cv-auto" data-cat="web">
         <div class="proj-mini-visual">
           <img src="img/chatraweb-960w.webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px" alt="Chatra Web Dashboard screenshot" loading="lazy">
         </div>
@@ -286,9 +294,9 @@
   <div class="container">
     <h2 class="t-headline-md fade-up" style="margin-bottom:12px;">Practice work.</h2>
     <p class="t-body-lg fade-up" style="max-width:520px;margin-bottom:40px;">Smaller explorations, coursework, and side projects where I tested ideas and sharpened skills.</p>
-    <div class="grid-3 stagger">
+    <div class="grid-3 depth-stagger">
 
-      <div class="proj-mini" data-cat="practice">
+      <div class="proj-mini cv-auto" data-cat="practice">
         <div class="proj-mini-visual">
           <img src="img/cs50p-960w.webp" srcset="img/cs50p-480w.webp 480w, img/cs50p-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px" alt="CS50P Problem Sets screenshot" loading="lazy">
         </div>
@@ -302,7 +310,7 @@
         </div>
       </div>
 
-      <div class="proj-mini" data-cat="web practice">
+      <div class="proj-mini cv-auto" data-cat="web practice">
         <div class="proj-mini-visual">
           <img src="img/crypto-macbook-card.svg" alt="Rugpull Frontend screenshot" loading="lazy">
         </div>
@@ -316,7 +324,7 @@
         </div>
       </div>
 
-      <div class="proj-mini" data-cat="mobile practice">
+      <div class="proj-mini cv-auto" data-cat="mobile practice">
         <div class="proj-mini-visual">
           <img src="img/freelanceOS-960w.webp" srcset="img/freelanceOS-480w.webp 480w, img/freelanceOS-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px" alt="FreelanceOS screenshot" loading="lazy">
         </div>
@@ -350,6 +358,8 @@
 <div id="site-footer"></div>
 <script src="partials.js"></script>
 
+<script src="utils.js"></script>
+<script src="components.js"></script>
 <script src="app.js"></script>
 <script>
 (function () {

@@ -33,13 +33,9 @@
   const nav      = document.querySelector('.apple-nav');
   const heroText = isDesktop ? document.querySelector('.hero-parallax') : null;
 
-  /* ── Back-to-top button ── */
-  const backTop = document.createElement('button');
-  backTop.className = 'back-top';
-  backTop.setAttribute('aria-label', 'Back to top');
-  backTop.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12V4M4 7l4-4 4 4"/></svg>';
-  document.body.appendChild(backTop);
-  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  /* ── Floating glass back-to-top + adaptive nav glass ── */
+  const backTop      = window.Components.createBackToTop();
+  const updateNavGlass = window.Components.initGlassNav(nav);
 
   /* ── Mobile menu ── */
   const burger     = document.getElementById('navBurger');
@@ -76,7 +72,7 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-  document.querySelectorAll('.fade-up, .fade-in, .stagger, .slide-left, .slide-right, .scale-up, .clip-reveal')
+  document.querySelectorAll('.fade-up, .fade-in, .stagger, .depth-stagger, .slide-left, .slide-right, .scale-up, .clip-reveal')
     .forEach(el => io.observe(el));
 
   /* ── Animated counters ── */
@@ -92,12 +88,7 @@
     requestAnimationFrame(tick);
   }
 
-  const counterIO = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { animateCounter(entry.target); counterIO.unobserve(entry.target); }
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-target]').forEach(el => counterIO.observe(el));
+  window.PortfolioUtils.onIntersect('[data-target]', animateCounter, { threshold: 0.5 });
 
   /* ── Rail drag-to-scroll ── */
   document.querySelectorAll('.rail-wrap').forEach(wrap => {
@@ -194,6 +185,12 @@
   /* ── Scroll-scale elements ── */
   const ssEls = (isDesktop && !reduced) ? Array.from(document.querySelectorAll('[data-scroll-scale]')) : [];
 
+  /* ── Layered parallax — rect-relative, not raw scrollY, so any element
+     anywhere on the page (not just ones pinned to the top) drifts toward
+     the viewer as it approaches viewport center and recedes as it leaves.
+     Depth per element via --parallax-depth (set inline in the markup). ── */
+  const pxEls = (isDesktop && !reduced) ? Array.from(document.querySelectorAll('[data-parallax]')) : [];
+
   /* ── Scroll-linked reveal — continuous, reversible progress for
      hero-moment content (stat counters, metric cards, timeline entries)
      instead of a boolean IntersectionObserver fade-up ── */
@@ -217,7 +214,6 @@
      Eliminates multiple forced reflows per frame.
   ─────────────────────────────────────────────────────── */
   let navLastY = window.scrollY;
-  let ticking  = false;
 
   function processScroll() {
     const y  = window.scrollY;
@@ -227,12 +223,14 @@
     const wrRects = wrItems.map(({ el }) => el.getBoundingClientRect());
     const ssRects = ssEls.map(el => el.getBoundingClientRect());
     const rpRects = rpEls.map(el => el.getBoundingClientRect());
+    const pxRects = pxEls.map(el => el.getBoundingClientRect());
     const tlRect  = tlContainer ? tlContainer.getBoundingClientRect() : null;
 
     /* Phase 2 — all DOM writes (no reads after this point) */
 
-    // Back-to-top visibility
+    // Back-to-top visibility + adaptive nav glass thickness
     backTop.classList.toggle('visible', y > 400);
+    updateNavGlass(y);
 
     // Nav hide / show — transition lives in CSS, only set transform here
     if (nav) {
@@ -285,16 +283,22 @@
       tlFill.style.height = (progress * 100).toFixed(1) + '%';
     }
 
-    ticking = false;
+    // Layered parallax — offset grows as the element's center diverges
+    // from the viewport's center; zero when perfectly centered.
+    pxEls.forEach((el, i) => {
+      const rect   = pxRects[i];
+      const center = rect.top + rect.height / 2;
+      const delta  = (vh / 2 - center);
+      el.style.setProperty('--parallax-y', delta.toFixed(1) + 'px');
+    });
   }
 
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(processScroll);
-      ticking = true;
-    }
-  }, { passive: true });
+  window.addEventListener('scroll', window.PortfolioUtils.rafThrottle(processScroll), { passive: true });
 
   processScroll(); // initial render
+
+  /* ── Pointer-driven depth tilt — opt-in per component, desktop only ── */
+  window.Components.initCardTilt('.proj-mini', 5);
+  window.Components.initCardTilt('.cs-stack-card', 3);
 
 })();

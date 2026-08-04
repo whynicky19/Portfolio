@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════════════════
+   MOTION SYSTEM — every keyframe and scroll-reveal utility in the
+   site lives here. Three tiers, each with a distinct job:
+
+   1. Reveal utilities   (.fade-up, .slide-*, .scale-up, .stagger)
+      — binary IntersectionObserver triggers, for secondary content
+      (chip rows, footer copy, CTA blocks) where a one-shot fade is
+      honest about what's happening: it appeared, once.
+
+   2. Depth utilities     (.depth-stagger)
+      — layered, staggered entrance with scale + blur, for card
+      grids that should feel like they're arriving from behind the
+      glass rather than sliding up a flat plane.
+
+   3. Progress utilities  ([data-reveal-progress], [data-scroll-scale],
+      .timeline-line-fill, .wr-word)
+      — continuously scroll-linked, reversible, driven every frame by
+      app.js. Reserved for hero-moment content.
+═══════════════════════════════════════════════════════════════ */
+
+@keyframes gridPulse   { 0%,100%{opacity:.4} 50%{opacity:.8} }
+@keyframes dotBreathe  { 0%,100%{opacity:.2} 50%{opacity:.7} }
+@keyframes heroFadeUp  { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+@keyframes scrollLine  { 0%,100%{opacity:.3;transform:scaleY(0.5);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+@keyframes marquee     { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes navLinkIn   { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+
+/* Liquid Glass specular sweep — used once, on first paint, never looped */
+@keyframes glassSheen {
+  from { transform: translateX(-120%) skewX(-12deg); }
+  to   { transform: translateX(220%)  skewX(-12deg); }
+}
+
+/* ── Tier 1: binary reveal utilities ── */
+
+.fade-up {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity var(--dur-slow) var(--ease-apple),
+              transform var(--dur-slow) var(--ease-apple);
+  will-change: transform, opacity;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.fade-in {
+  opacity: 0;
+  transition: opacity var(--dur-slower) var(--ease-apple);
+  will-change: opacity;
+}
+.fade-in.visible { opacity: 1; }
+
+.slide-left {
+  opacity: 0; transform: translateX(-48px);
+  transition: opacity .8s var(--ease-apple), transform .8s var(--ease-apple);
+  will-change: transform, opacity;
+}
+.slide-left.visible { opacity: 1; transform: translateX(0); }
+
+.slide-right {
+  opacity: 0; transform: translateX(48px);
+  transition: opacity .8s .06s var(--ease-apple), transform .8s .06s var(--ease-apple);
+  will-change: transform, opacity;
+}
+.slide-right.visible { opacity: 1; transform: translateX(0); }
+
+.scale-up {
+  opacity: 0; transform: scale(0.94);
+  transition: opacity var(--dur-slow) var(--ease-apple), transform var(--dur-slow) var(--ease-apple);
+  will-change: transform, opacity;
+}
+.scale-up.visible { opacity: 1; transform: scale(1); }
+
+.stagger > * {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .65s var(--ease-apple), transform .65s var(--ease-apple);
+  will-change: transform, opacity;
+}
+.stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:.04s; }
+.stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.1s; }
+.stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.16s; }
+.stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.22s; }
+.stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:.28s; }
+.stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:.34s; }
+.stagger.visible > *:nth-child(n+7) { opacity:1; transform:none; transition-delay:.40s; }
+
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0;
+  transition: clip-path 1.1s var(--ease-apple), opacity .4s ease;
+}
+.clip-reveal.visible { clip-path: inset(0 0 0% 0); opacity: 1; }
+
+/* ── Tier 2: depth reveal — cards arrive from behind the glass ──
+   Distinct from .stagger: adds scale + blur so the motion reads as
+   depth (an object approaching the viewer) rather than a flat slide.
+   Use on grids where every item is equally important (skills, stack,
+   achievements) — never on hero-moment singles. */
+.depth-stagger > * {
+  opacity: 0;
+  transform: translateY(22px) scale(0.96);
+  filter: blur(6px);
+  transition: opacity var(--dur-slow) var(--ease-apple),
+              transform var(--dur-slow) var(--ease-apple),
+              filter var(--dur-slow) var(--ease-apple);
+  will-change: transform, opacity, filter;
+}
+.depth-stagger.visible > * {
+  opacity: 1; transform: none; filter: blur(0);
+}
+.depth-stagger.visible > *:nth-child(1) { transition-delay: .02s; }
+.depth-stagger.visible > *:nth-child(2) { transition-delay: .07s; }
+.depth-stagger.visible > *:nth-child(3) { transition-delay: .12s; }
+.depth-stagger.visible > *:nth-child(4) { transition-delay: .17s; }
+.depth-stagger.visible > *:nth-child(5) { transition-delay: .22s; }
+.depth-stagger.visible > *:nth-child(6) { transition-delay: .27s; }
+.depth-stagger.visible > *:nth-child(7) { transition-delay: .32s; }
+.depth-stagger.visible > *:nth-child(8) { transition-delay: .37s; }
+.depth-stagger.visible > *:nth-child(n+9) { transition-delay: .42s; }
+
+/* ── Tier 3: continuous scroll-linked progress (driven by app.js) ── */
+
+.wr-word {
+  display: inline-block;
+  opacity: 0.15;
+  will-change: opacity;
+}
+
+[data-scroll-scale] {
+  will-change: transform;
+  transform-origin: center bottom;
+}
+@media (max-width: 768px) {
+  [data-scroll-scale] { will-change: auto; transform: none !important; }
+}
+
+[data-reveal-progress] { will-change: transform, opacity; }
+
+/* Parallax layer — app.js writes --parallax-y each frame; the element
+   itself declares how far it travels relative to scroll, so a single
+   handler can drive backgrounds, images and copy at different depths
+   without per-element JS branches. */
+[data-parallax] {
+  transform: translateY(calc(var(--parallax-y, 0px) * var(--parallax-depth, 0.2)));
+  will-change: transform;
+}
+@media (max-width: 768px) {
+  [data-parallax] { transform: none !important; will-change: auto; }
+}
+
+.timeline-line-fill {
+  position: absolute; left: 0; top: 8px; width: 1px; height: 0;
+  background: var(--accent);
+  will-change: height;
+}
+
+/* ── Mobile-tuned durations — shorter travel, shorter time ── */
+@media (max-width: 600px) {
+  .fade-up { transform: translateY(20px); transition-duration: .6s; }
+  .stagger > * { transform: translateY(16px); transition-duration: .55s; }
+  .stagger.visible > *:nth-child(1) { transition-delay: .03s; }
+  .stagger.visible > *:nth-child(2) { transition-delay: .08s; }
+  .stagger.visible > *:nth-child(3) { transition-delay: .13s; }
+  .stagger.visible > *:nth-child(4) { transition-delay: .18s; }
+  .stagger.visible > *:nth-child(5) { transition-delay: .23s; }
+  .stagger.visible > *:nth-child(6) { transition-delay: .28s; }
+  .stagger.visible > *:nth-child(n+7) { transition-delay: .33s; }
+  .depth-stagger > * { transform: translateY(14px) scale(0.98); filter: blur(4px); transition-duration: .5s; }
+
+  .scale-up { transform: translateY(16px) scale(1); }
+  .scale-up.visible { transform: translateY(0) scale(1); }
+
+  .slide-left  { transition-duration: .6s; }
+  .slide-right { transition-duration: .6s; }
+}
+
+/* ── Touch: no hover physics, only press feedback ── */
+@media (hover: none) {
+  .card:hover,
+  .bento-card:hover,
+  .cert-rail-card:hover,
+  .proj-mini:hover,
+  .ach-card:hover,
+  .skill-pill:hover,
+  .cs-stack-card:hover { transform: none !important; box-shadow: none !important; }
+
+  .btn-primary:active { opacity: .8; transform: scale(.98); }
+  .btn-ghost:active   { opacity: .7; transform: scale(.98); }
+  .btn-link:active    { opacity: .6; }
+  .social-link:active { background: var(--gray-1); }
+  .nav-mobile a:active { opacity: .5; }
+  .nav-burger:active span { opacity: .5; }
+  .back-top:active { transform: translateY(-2px) scale(.96) !important; }
+  .glass:active { transform: scale(.97); }
+}
+
+/* ── Respect the user's actual preference, not our ambition ── */
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-in, .slide-left, .slide-right, .scale-up {
+    opacity: 1; transform: none; transition: none;
+  }
+  .stagger > *, .depth-stagger > * {
+    opacity: 1; transform: none; filter: none; transition: none;
+  }
+  .clip-reveal { clip-path: none; opacity: 1; transition: none; }
+  .sf-visual-item { transition: none; }
+  .hero-grid, .hero-scroll-line, .marquee-track,
+  .hero-eyebrow-dot, .cs-eyebrow-dot, .badge-live, .glass-sheen { animation: none; }
+  .hero-name, .hero-role, .hero-actions, .hero-scroll-cue,
+  .cs-hero-title, .cs-hero-sub, .cs-hero-chips, .cs-hero-img { animation: none; opacity: 1; transform: none; }
+  .wr-word { opacity: 1 !important; }
+  [data-scroll-scale] { transform: none !important; }
+  [data-reveal-progress] { opacity: 1 !important; transform: none !important; }
+  [data-parallax] { transform: none !important; }
+  .timeline-line-fill { height: 100% !important; }
+  .tagline-word { animation: none !important; opacity: 1 !important; }
+  .cs-iphone-section .cs-iphone-visual,
+  .cs-iphone-section .cs-label,
+  .cs-iphone-section .cs-iphone-title,
+  .cs-iphone-section .cs-iphone-desc { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+}
