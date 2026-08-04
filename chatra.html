@@ -14,6 +14,8 @@
 <meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" href="img/chatra-light-600w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
+<link rel="preload" as="image" type="image/webp" href="img/chatra-light-600w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
@@ -476,8 +478,16 @@
       <div class="hero-phone-mockup" data-parallax style="--parallax-depth:0.07">
         <div class="hero-phone-notch"></div>
         <div class="hero-phone-screen" id="heroPhoneScreen">
-          <img src="img/chatra-light-1179w.webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px" alt="Chatra app light theme" id="heroImgLight" fetchpriority="high" decoding="async">
-          <img src="img/chatra-dark-1179w.webp" srcset="img/chatra-dark-600w.webp 600w, img/chatra-dark-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px" alt="Chatra app dark theme" id="heroImgDark" class="hidden" loading="lazy">
+          <picture>
+            <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
+            <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
+            <img src="img/chatra light.jpg" alt="Chatra app light theme" id="heroImgLight" fetchpriority="high" decoding="async">
+          </picture>
+          <picture>
+            <source type="image/avif" srcset="img/chatra-dark-600w.avif 600w, img/chatra-dark-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
+            <source type="image/webp" srcset="img/chatra-dark-600w.webp 600w, img/chatra-dark-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
+            <img src="img/chatra dark.jpg" alt="Chatra app dark theme" id="heroImgDark" class="hidden" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
       <div class="theme-toggle-pill glass" role="group" aria-label="App theme preview">

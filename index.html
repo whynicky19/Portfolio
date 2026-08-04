@@ -17,6 +17,12 @@
 <meta name="twitter:description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Idle-time prefetch for the two pages most visitors go to next from
+     the homepage — low priority, never competes with this page's own
+     critical resources; the browser only fetches it once the network
+     is otherwise quiet. -->
+<link rel="prefetch" href="chatra.html">
+<link rel="prefetch" href="projects.html">
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
@@ -445,7 +451,11 @@
               <div class="sf-url-bar">chatra.academy/dashboard</div>
             </div>
             <div class="sf-browser-content">
-              <img src="img/chatraweb-960w.webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w, img/chatraweb-1600w.webp 1600w" sizes="(max-width: 700px) 90vw, 460px" alt="Chatra web dashboard" loading="lazy" decoding="async" width="920" height="646">
+              <picture>
+                <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w, img/chatraweb-1600w.avif 1600w" sizes="(max-width: 700px) 90vw, 460px">
+                <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w, img/chatraweb-1600w.webp 1600w" sizes="(max-width: 700px) 90vw, 460px">
+                <img src="img/chatraweb.jpg" alt="Chatra web dashboard" loading="lazy" decoding="async" width="920" height="646">
+              </picture>
             </div>
           </div>
         </div>

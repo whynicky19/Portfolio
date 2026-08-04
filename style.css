@@ -162,6 +162,7 @@
   transition: opacity var(--dur-base) var(--ease-apple),
               transform var(--dur-base) var(--ease-spring),
               visibility 0s linear var(--dur-base);
+  contain: layout paint;
 }
 .back-top.visible {
   opacity: 1; visibility: visible;
@@ -262,6 +263,7 @@ body {
   display: flex; align-items: center;
   transition: transform var(--dur-base) ease;
   will-change: transform;
+  contain: layout paint;
 }
 .apple-nav::after {
   content: '';
@@ -507,6 +509,24 @@ body {
   transform: perspective(800px) translateY(var(--card-hover-lift)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   box-shadow: var(--card-hover-shadow);
   border-color: var(--border-hover);
+}
+/* will-change only during the actual interaction — a persistent compositor
+   layer on every idle card costs memory for no benefit; scoping it to
+   :hover promotes it right before the transform animates and lets it go
+   the moment the pointer leaves. */
+.card:hover, .proj-mini:hover, .ach-card:hover, .cs-stack-card:hover,
+.bento-card:hover, .cert-rail-card:hover, .skill-pill:hover { will-change: transform, box-shadow; }
+
+/* Desktop press feedback — a quick spring settle on click, distinct from
+   the slower hover lift. Touch already gets this via the (hover:none)
+   block in animations.css; this is the fine-pointer equivalent. */
+@media (hover: hover) and (pointer: fine) {
+  .card:active, .proj-mini:active, .ach-card:active, .cs-stack-card:active,
+  .bento-card:active, .cert-rail-card:active, .skill-pill:active {
+    transform: perspective(800px) translateY(calc(var(--card-hover-lift) * 0.4)) scale(.985)
+               rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform var(--dur-instant) var(--ease-spring);
+  }
 }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }

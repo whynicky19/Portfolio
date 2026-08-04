@@ -52,11 +52,11 @@ window.Components = (function () {
         const py = (e.clientY - r.top) / r.height - 0.5;
         card.style.setProperty('--tilt-x', (py * -deg).toFixed(2) + 'deg');
         card.style.setProperty('--tilt-y', (px * deg).toFixed(2) + 'deg');
-      });
+      }, { passive: true });
       card.addEventListener('pointerleave', () => {
         card.style.setProperty('--tilt-x', '0deg');
         card.style.setProperty('--tilt-y', '0deg');
-      });
+      }, { passive: true });
     });
   }
 

@@ -93,10 +93,12 @@
   /* ── Rail drag-to-scroll ── */
   document.querySelectorAll('.rail-wrap').forEach(wrap => {
     let isDown = false, startX, scrollLeft;
-    wrap.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft; });
-    wrap.addEventListener('mouseleave', () => { isDown = false; });
-    wrap.addEventListener('mouseup',    () => { isDown = false; });
+    wrap.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft; }, { passive: true });
+    wrap.addEventListener('mouseleave', () => { isDown = false; }, { passive: true });
+    wrap.addEventListener('mouseup',    () => { isDown = false; }, { passive: true });
     wrap.addEventListener('mousemove',  e => {
+      // Not passive: this one drags the rail and must call preventDefault
+      // to stop native text-selection while the pointer is down.
       if (!isDown) return;
       e.preventDefault();
       wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX) * 1.3;
@@ -213,11 +215,23 @@
      One listener → one rAF → all reads → all writes.
      Eliminates multiple forced reflows per frame.
   ─────────────────────────────────────────────────────── */
-  let navLastY = window.scrollY;
+  let navLastY   = window.scrollY;
+  let velocityY   = 0;   // smoothed scroll velocity, px/frame — drives the inertia lag below
+  let lastY       = window.scrollY;
+  let lastT       = performance.now();
 
   function processScroll() {
     const y  = window.scrollY;
     const vh = window.innerHeight;
+
+    // Instantaneous velocity, smoothed (lerped) so parallax lags gently
+    // behind a flick instead of snapping — a cheap, honest stand-in for
+    // true physics-based inertia that costs nothing extra to compute.
+    const now    = performance.now();
+    const dt     = Math.max(1, now - lastT);
+    const rawV   = (y - lastY) / dt * 16.67; // normalize to px/frame @60fps
+    velocityY    = window.PortfolioUtils.lerp(velocityY, rawV, 0.25);
+    lastY = y; lastT = now;
 
     /* Phase 1 — batch all layout reads */
     const wrRects = wrItems.map(({ el }) => el.getBoundingClientRect());
@@ -284,11 +298,14 @@
     }
 
     // Layered parallax — offset grows as the element's center diverges
-    // from the viewport's center; zero when perfectly centered.
+    // from the viewport's center; zero when perfectly centered. A small,
+    // clamped velocity term rides on top so a fast flick makes the layer
+    // lag half a beat behind the page — inertia, without a physics sim.
+    const velocityLag = window.PortfolioUtils.clamp(-14, velocityY * 0.4, 14);
     pxEls.forEach((el, i) => {
       const rect   = pxRects[i];
       const center = rect.top + rect.height / 2;
-      const delta  = (vh / 2 - center);
+      const delta  = (vh / 2 - center) - velocityLag;
       el.style.setProperty('--parallax-y', delta.toFixed(1) + 'px');
     });
   }
