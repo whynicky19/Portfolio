@@ -67,9 +67,6 @@
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
   .proj-f-visual { min-height: 240px; }
   .proj-f-body { padding: 36px 20px; }
-  .proj-f-desc { font-size: 14px; }
-  .filter-tabs { gap: 6px; }
-  .filter-tab { padding: 7px 14px; font-size: 12px; }
 }
 
 .proj-number {
@@ -141,6 +138,33 @@
 .filter-tab:hover { background: var(--overlay-sm); }
 .filter-tab.active { background: var(--black); color: var(--white); }
 .filter-tab:focus-visible { box-shadow: var(--focus-ring); }
+
+/* On desktop this is one pill housing with room for all five tabs on one
+   line. At phone widths five tabs don't fit — letting them wrap turns a
+   stadium-radius pill into a lopsided two-row blob once the last tab
+   spills onto its own row. Fix: keep it a single row and let it scroll
+   horizontally instead, the same pattern the certificate rail already
+   uses elsewhere on the site. A moderate corner radius (not a full pill)
+   means the scroll clipping doesn't cut into the edge buttons the way a
+   true stadium shape would.
+   NOTE: this block must stay after the base .filter-tabs/.filter-tab
+   rules above — at equal specificity the later declaration wins, so a
+   mobile override placed *before* the base rule (as this one used to be,
+   nested in the unrelated @media block near the top of this stylesheet)
+   is silently cancelled by it regardless of viewport width. */
+@media (max-width: 600px) {
+  .proj-f-desc { font-size: 14px; }
+  .filter-tabs {
+    display: flex; flex-wrap: nowrap;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: var(--r-lg);
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+  .filter-tab { padding: 7px 14px; font-size: 12px; flex-shrink: 0; white-space: nowrap; }
+}
 
 .proj-hidden { display: none !important; }
 </style>
@@ -234,7 +258,7 @@
 
 
 
-<section class="section bg-darker">
+<section class="section bg-darker filter-group">
   <div class="container">
     <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Other projects.</h2>
     <div class="grid-3 depth-stagger">
@@ -302,7 +326,7 @@
 
 
 
-<section class="section bg-black">
+<section class="section bg-black filter-group">
   <div class="container">
     <h2 class="t-headline-md fade-up" style="margin-bottom:12px;">Practice work.</h2>
     <p class="t-body-lg fade-up" style="max-width:520px;margin-bottom:40px;">Smaller explorations, coursework, and side projects where I tested ideas and sharpened skills.</p>
@@ -383,8 +407,14 @@
 <script src="app.js"></script>
 <script>
 (function () {
-  var tabs  = document.querySelectorAll('.filter-tab');
-  var items = document.querySelectorAll('[data-cat]');
+  var tabs   = document.querySelectorAll('.filter-tab');
+  var items  = document.querySelectorAll('[data-cat]');
+  // "Other projects." / "Practice work." are section headings that sit
+  // above a grid of filterable cards but aren't themselves filterable —
+  // hiding every card inside a filter used to leave the heading (and its
+  // now-empty grid) stranded on screen. Track each such section so it can
+  // be hidden as a whole once none of its cards match the active filter.
+  var groups = document.querySelectorAll('.filter-group');
   if (!tabs.length || !items.length) return;
 
   tabs.forEach(function (tab) {
@@ -396,6 +426,10 @@
         var cats = (item.dataset.cat || '').split(' ');
         var show = filter === 'all' || cats.indexOf(filter) !== -1;
         item.classList.toggle('proj-hidden', !show);
+      });
+      groups.forEach(function (group) {
+        var anyVisible = group.querySelector('[data-cat]:not(.proj-hidden)');
+        group.classList.toggle('proj-hidden', !anyVisible);
       });
     });
   });

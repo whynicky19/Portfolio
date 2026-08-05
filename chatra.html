@@ -446,6 +446,15 @@
   .cs-iphone-visual { order: -1; }
   .cs-iphone-desc { max-width: 100%; }
   .phone-mockup { width: min(300px, 82vw); }
+
+  /* This section is content-visibility:auto (.cv-auto, style.css) with a
+     generic 420px placeholder height for off-screen sections. Stacked
+     single-column on mobile — text block + phone mockup one above the
+     other — it actually runs 600–1100px tall, so the generic placeholder
+     badly under-reserves space. That mismatch is exactly what produces a
+     visible jump/reflow as each section is promoted while scrolling:
+     fix it with a size hint close to the real stacked-layout height. */
+  .cs-iphone-section.cv-auto { contain-intrinsic-size: auto 850px; }
 }
 @media(max-width:600px){
   .cs-iphone-section { padding: 88px 0; }

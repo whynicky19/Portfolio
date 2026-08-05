@@ -286,10 +286,10 @@ body {
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
   }
-  .nav-mobile {
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-  }
+  /* .nav-mobile's lighter mobile blur lives further down, right after its
+     base rule — .nav-mobile's base declares its own backdrop-filter later
+     in this file, so a copy here would be silently cancelled by it (equal
+     specificity, later source wins). See the note by that rule. */
 }
 .nav-inner {
   width: 100%; max-width: var(--max-w);
@@ -365,6 +365,12 @@ body {
   transition: opacity .32s cubic-bezier(.16,1,.3,1),
               transform .32s cubic-bezier(.16,1,.3,1),
               visibility 0s linear 0s;
+}
+@media (max-width: 768px) {
+  .nav-mobile {
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
 }
 .nav-mobile a {
   font-size: 19px; font-weight: 600; color: var(--black);
@@ -541,18 +547,15 @@ body {
 }
 
 @media(max-width:600px){
-  
+
   .section-lg { padding: 120px 0; }
 
-  
+
   .slide-left  { transform: translateY(28px); }
   .slide-right { transform: translateY(28px); transition-delay: 0s; }
   .slide-left.visible, .slide-right.visible { transform: translateY(0); }
 
-  
-  .stat-num { font-size: 40px; }
 
-  
   .btn-primary, .btn-ghost { padding: 13px 24px; font-size: 15px; }
 }
 
@@ -597,6 +600,9 @@ body {
 .stat-label {
   font-size: 14px; color: var(--gray-4);
   letter-spacing: -0.01em; margin-top: 6px;
+}
+@media (max-width: 600px) {
+  .stat-num { font-size: 40px; }
 }
 
 .input, .textarea {
