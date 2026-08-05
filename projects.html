@@ -49,8 +49,26 @@
   border-radius: 0;
   box-shadow: none;
   object-fit: cover;
+  transition: transform .6s var(--ease-apple);
 }
-.proj-f-visual-inner { opacity: 0.15; }
+.proj-feature:hover .proj-f-visual img { transform: scale(1.015); }
+/* Soft light falloff at the top/bottom edges — the same cue a real
+   product photograph uses so the image reads as lit, not pasted flat. */
+.proj-f-visual::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, transparent 28%, transparent 72%, rgba(0,0,0,0.05) 100%);
+  pointer-events: none;
+}
+/* Dark mode pairs a light device screenshot against a near-black text
+   panel — without a horizontal fade too, that's a hard seam down the
+   middle. The side vignette eases both edges since which side is
+   "inner" flips with .proj-feature:nth-child(even). */
+[data-theme="dark"] .proj-f-visual::after {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.12) 0%, transparent 28%, transparent 72%, rgba(0,0,0,0.18) 100%),
+    linear-gradient(90deg, rgba(0,0,0,0.22) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.22) 100%);
+}
 .proj-f-body {
   padding: 100px 72px;
   display: flex; flex-direction: column; justify-content: center;
@@ -194,7 +212,7 @@
     <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
   </div>
   <div class="proj-f-body slide-right">
-    
+    <p class="proj-number">01 — Full-Stack Platform</p>
     <h2 class="proj-f-title">Chatra<br>Academy</h2>
     <p class="proj-f-desc">A complete educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress. Built end-to-end, deployed in production.</p>
     <div class="proj-f-chips">
@@ -219,7 +237,7 @@
     <img src="img/macbook-card.svg" alt="Portfolio Website screenshot">
   </div>
   <div class="proj-f-body slide-left">
-    
+    <p class="proj-number">02 — Web</p>
     <h2 class="proj-f-title">Portfolio<br>Website</h2>
     <p class="proj-f-desc">This portfolio — built with vanilla HTML, CSS, and JavaScript. No React, no Vue. Apple-inspired design system with SF Pro typography, scroll animations via Intersection Observer, and a live canvas background.</p>
     <div class="proj-f-chips">
@@ -241,7 +259,7 @@
     <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP screenshot">
   </div>
   <div class="proj-f-body slide-right">
-    
+    <p class="proj-number">03 — Hackathon</p>
     <h2 class="proj-f-title">Hackathon<br>MVP</h2>
     <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 5 placement.</p>
     <div class="proj-f-chips">

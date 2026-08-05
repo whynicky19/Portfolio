@@ -39,10 +39,6 @@
   background: var(--white);
 }
 
-
-
-
-
 .hero-content {
   position: relative; z-index: 1;
   display: flex; flex-direction: column;
@@ -75,7 +71,7 @@
 }
 
 .hero-scroll-cue {
-  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  position: absolute; z-index: 1; bottom: 36px; left: 50%; transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
   animation: heroFadeUp .9s 1.4s both;
 }
@@ -112,19 +108,69 @@
   background: var(--white);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 640px;
+  min-height: 680px;
 }
 .proj-featured-visual {
   display: flex; align-items: center; justify-content: center;
-  padding: 80px 48px; background: var(--white);
+  padding: 96px 56px; background: var(--white);
   position: relative; overflow: hidden;
 }
+/* Soft contact shadow under the device mockup — a flat screenshot reads
+   as a real object sitting on a lit surface once it has one, the same
+   cue every actual Apple product photo relies on. In dark mode the panel
+   itself goes black, so a black shadow would vanish — a faint light
+   halo reads as ambient bounce light instead. */
+.proj-featured-visual::after {
+  content: '';
+  position: absolute; left: 50%; bottom: 9%;
+  width: 62%; height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
+  filter: blur(6px);
+  pointer-events: none;
+}
+[data-theme="dark"] .proj-featured-visual::after { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 72%); }
 .proj-featured-visual img {
   max-height: 480px; width: auto; max-width: 100%;
   filter: none;
+  position: relative; z-index: 1;
+}
+
+/* Chatra spotlight — real app screenshot inside an iPhone frame, the
+   same mockup treatment chatra.html's own hero uses, sized down for
+   this grid cell. */
+.proj-phone-mockup {
+  width: clamp(220px, 22vw, 280px);
+  background: #1d1d1f;
+  border-radius: 44px;
+  border: 1px solid #2a2a2c;
+  padding: 6px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 60px 120px rgba(0,0,0,0.22),
+    0 16px 36px rgba(0,0,0,0.12),
+    0 4px 10px rgba(0,0,0,0.08);
+  position: relative; z-index: 1; flex-shrink: 0;
+}
+.proj-phone-notch {
+  position: absolute; top: 13px; left: 50%;
+  transform: translateX(-50%);
+  width: 70px; height: 19px;
+  background: #000; border-radius: 10px;
+  z-index: 2;
+}
+.proj-phone-screen {
+  width: 100%; aspect-ratio: 9/19.5;
+  border-radius: 39px; overflow: hidden; background: #1d1d1f;
+  position: relative;
+}
+.proj-featured-visual .proj-phone-screen img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; max-height: none; max-width: none;
+  object-fit: cover; display: block;
 }
 .proj-featured-body {
-  padding: 80px 64px;
+  padding: 96px 72px;
   display: flex; flex-direction: column; justify-content: center; gap: 20px;
 }
 .proj-featured-title {
@@ -143,6 +189,8 @@
 @media(max-width:700px){
   .proj-featured { grid-template-columns: 1fr; }
   .proj-featured-visual { padding: 60px 32px; min-height: 280px; }
+  .proj-featured-visual::after { bottom: 6%; width: 70%; }
+  .proj-phone-mockup { width: clamp(180px, 44vw, 220px); }
   .proj-featured-body { padding: 48px 20px; }
 }
 
@@ -160,62 +208,6 @@
 
 
 
-
-.proj-strip {
-  display: grid; grid-template-columns: 1fr 1fr;
-  min-height: 640px;
-}
-.proj-strip-visual {
-  background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  padding: 0;
-}
-.proj-strip-visual img {
-  width: 100%; height: 100%;
-  max-width: 100%; max-height: 100%;
-  border-radius: 0;
-  box-shadow: none;
-  object-fit: cover;
-}
-.proj-strip-visual svg { opacity: 0.15; }
-.proj-strip-body {
-  padding: 80px 64px;
-  display: flex; flex-direction: column; justify-content: center; gap: 20px;
-  background: var(--gray-8);
-}
-@media(max-width:700px){
-  .proj-strip { grid-template-columns: 1fr; }
-  .proj-strip-visual { min-height: 240px; }
-  .proj-strip-body { padding: 48px 20px; }
-}
-
-.quote-section { background: var(--gray-8); }
-.quote-mark {
-  font-family: Georgia, serif;
-  font-size: 80px; line-height: 0.8;
-  color: rgba(0,0,0,0.1);
-  margin-bottom: 20px;
-  display: block;
-}
-.quote-text {
-  font-family: var(--font-display);
-  font-size: clamp(22px, 3vw, 34px);
-  font-weight: 600; letter-spacing: -0.03em;
-  line-height: 1.3; color: var(--black);
-  margin-bottom: 28px;
-}
-.quote-author {
-  display: flex; align-items: center; gap: 14px;
-}
-.quote-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.08);
-  display: flex; align-items: center; justify-content: center;
-}
-.quote-name { font-size: 15px; font-weight: 600; color: var(--black); }
-.quote-role { font-size: 13px; color: var(--gray-4); }
 
 .cta-banner {
   text-align: center; padding: 120px 32px;
@@ -257,68 +249,9 @@
   letter-spacing: -0.01em; color: var(--gray-3);
 }
 [data-theme="dark"] .stack-bar { border-color: rgba(255,255,255,0.08); background: #111; }
-[data-theme="dark"] .cap-section { background: #111; }
-[data-theme="dark"] .cap-row { border-top-color: rgba(255,255,255,0.07); }
-[data-theme="dark"] .cap-visual { background: #1a1a1a; }
-[data-theme="dark"] .cap-row.cap-alt { background: #161616; }
-[data-theme="dark"] .cap-row.cap-alt .cap-visual { background: #111; }
 [data-theme="dark"] .apple-stats { background: #111; }
 [data-theme="dark"] .apple-stats-inner { border-color: rgba(255,255,255,0.08); }
 [data-theme="dark"] .apple-stat { border-right-color: rgba(255,255,255,0.08); }
-
-/* ── Apple-style capabilities ── */
-.cap-section { background: var(--white); }
-.cap-row {
-  display: grid; grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  min-height: 520px;
-}
-.cap-row.cap-alt { background: var(--gray-06); }
-.cap-body {
-  padding: 100px 80px;
-  display: flex; flex-direction: column; justify-content: center; gap: 20px;
-}
-.cap-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--gray-5);
-}
-.cap-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.5vw, 44px);
-  font-weight: 700; letter-spacing: -0.04em;
-  line-height: 1.08; color: var(--black);
-}
-.cap-desc {
-  font-size: 17px; color: var(--gray-4);
-  line-height: 1.65; max-width: 400px;
-}
-.cap-visual {
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  background: var(--gray-06);
-  position: relative;
-}
-.cap-row.cap-alt .cap-visual { background: #f0f0f5; }
-.cap-visual img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  display: block;
-  transition: transform .6s cubic-bezier(.16,1,.3,1);
-}
-.cap-visual img.contain {
-  object-fit: contain;
-  padding: 48px 40px;
-  width: auto; height: auto;
-  max-width: 100%; max-height: 400px;
-}
-.cap-row:hover .cap-visual img { transform: scale(1.03); }
-@media(max-width:768px){
-  .cap-row { grid-template-columns: 1fr; min-height: auto; }
-  .cap-body { padding: 64px 32px; }
-  .cap-visual { min-height: 260px; }
-  .cap-row .cap-visual { order: -1; }
-  .cap-visual img.contain { padding: 32px 24px; }
-}
 
 /* ── Apple-style stats ── */
 .apple-stats { background: var(--white); }
@@ -329,7 +262,7 @@
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .apple-stat {
-  text-align: center; padding: 64px 24px;
+  text-align: center; padding: 76px 24px;
   border-right: 1px solid rgba(0,0,0,0.08);
 }
 .apple-stat:last-child { border-right: none; }
@@ -375,6 +308,10 @@
       <a href="projects.html" class="btn btn-primary">View Projects</a>
       <a href="about.html" class="btn btn-ghost">About Me</a>
     </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <span class="hero-scroll-line"></span>
+    <span class="hero-scroll-label">Scroll</span>
   </div>
 </section>
 
@@ -463,9 +400,19 @@
 
 <section class="proj-featured">
   <div class="proj-featured-visual clip-reveal">
-    <img src="img/appstore-card.svg" alt="Chatra Academy app" fetchpriority="high" decoding="async">
+    <div class="proj-phone-mockup">
+      <div class="proj-phone-notch"></div>
+      <div class="proj-phone-screen">
+        <picture>
+          <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 700px) 44vw, 280px">
+          <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 700px) 44vw, 280px">
+          <img src="img/chatra light.jpg" alt="Chatra app" fetchpriority="high" decoding="async">
+        </picture>
+      </div>
+    </div>
   </div>
   <div class="proj-featured-body slide-right">
+    <p class="t-eyebrow">Featured project</p>
     <h2 class="proj-featured-title">Chatra</h2>
     <p class="proj-featured-desc">A full educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress across platforms.</p>
     <div class="proj-featured-chips">

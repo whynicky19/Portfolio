@@ -219,7 +219,6 @@
 
 .cs-section    { padding: 160px 0; background: var(--white); }
 .cs-section-alt { padding: 160px 0; background: var(--gray-06); }
-.cs-section-sm { padding: 110px 0; }
 .cs-container      { max-width: var(--w-read);    margin: 0 auto; padding: 0 32px; }
 .cs-container-wide { max-width: var(--w-content); margin: 0 auto; padding: 0 32px; }
 
@@ -278,43 +277,6 @@
   .cs-metric-num { font-size: 40px; }
 }
 
-.cs-gallery-section {
-  background: var(--white);
-  padding: 80px 0 0;
-  overflow: hidden;
-}
-.cs-gallery-header {
-  max-width: 1100px; margin: 0 auto 56px; padding: 0 32px;
-}
-
-.cs-gallery-hero {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-.cs-gallery-hero img {
-  width: 100%; display: block;
-  border-radius: 24px 24px 0 0;
-  
-}
-
-.cs-gallery-pair {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 3px; margin-top: 3px;
-}
-.cs-gallery-item { overflow: hidden; background: var(--white); }
-.cs-gallery-item img {
-  width: 100%; display: block;
-  aspect-ratio: 4/3; object-fit: cover;
-  transition: transform .6s cubic-bezier(.23,1,.32,1);
-}
-.cs-gallery-item:hover img { transform: scale(1.03); }
-@media(max-width:600px){
-  .cs-gallery-section { padding: 60px 0 0; }
-  .cs-gallery-hero { padding: 0 16px; }
-  .cs-gallery-pair { grid-template-columns: 1fr; }
-}
-
 .cs-cta {
   text-align: center; padding: 100px 32px;
   background: var(--gray-06);
@@ -322,7 +284,6 @@
 
 @media(max-width:600px){
   .cs-container, .cs-container-wide { padding: 0 20px; }
-  .cs-gallery-header { padding: 0 20px; }
   .cs-cta { padding: 100px 20px; }
   .cs-section { padding: 100px 0; }
   .cs-section-alt { padding: 100px 0; }
@@ -565,6 +526,7 @@
 <section class="cs-iphone-section iphone-1 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
+      <p class="cs-label">Classes</p>
       <h2 class="cs-iphone-title">Join a class. See your schedule. Stay on track.</h2>
       <p class="cs-iphone-desc">Teachers create classes and post assignments with deadlines. Students join with a code and instantly see everything — lectures, tasks, attendance. No Telegram, no spreadsheets.</p>
     </div>
@@ -615,6 +577,7 @@
 <section class="cs-iphone-section alt reverse iphone-2 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
+      <p class="cs-label">Subjects</p>
       <h2 class="cs-iphone-title">Every subject, organized in one place.</h2>
       <p class="cs-iphone-desc">Materials, assignments, and grades are grouped by subject instead of buried in a chat feed. Students open a subject and see exactly what's due, what's graded, and what's next.</p>
     </div>
@@ -658,6 +621,7 @@
 <section class="cs-iphone-section iphone-3 cv-auto">
   <div class="cs-iphone-inner">
     <div class="cs-iphone-text">
+      <p class="cs-label">AI Assistant</p>
       <h2 class="cs-iphone-title">Ask anything about your course — get an answer instantly.</h2>
       <p class="cs-iphone-desc">Built-in AI chat helps students understand material without waiting for a teacher response. Ask about a lecture topic, get an explanation, move forward. Learning doesn't stop after class hours.</p>
     </div>

@@ -37,11 +37,6 @@
   .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
 }
 
-.contact-split {
-  max-width: 480px;
-  margin: 0 auto;
-}
-
 .social-row {
   display: flex; flex-direction: column; gap: 10px;
 }
@@ -88,12 +83,19 @@
 }
 .form-success {
   text-align: center; padding: 56px 0;
+  animation: heroFadeUp .5s var(--ease-apple) both;
 }
 .form-success-icon {
   width: 56px; height: 56px; border-radius: 50%;
   background: var(--overlay-sm); border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 20px;
+}
+.form-success-title {
+  font-size: 22px; font-weight: 700; letter-spacing: -0.03em; color: var(--black);
+}
+.form-success-sub {
+  color: var(--gray-4); margin-top: 10px; font-size: 15px;
 }
 @media(max-width:720px) {
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -122,7 +124,6 @@
 [data-theme="dark"] .qa-list { border-top-color: rgba(255,255,255,0.08); }
 [data-theme="dark"] .qa-item { border-bottom-color: rgba(255,255,255,0.08); }
 @media (max-width: 600px) {
-  .contact-split { max-width: 100%; }
   .social-link { padding: 14px 16px; gap: 12px; }
 }
 </style>
@@ -284,12 +285,12 @@
 
   function showSuccess() {
     form.innerHTML = `
-      <div style="text-align:center;padding:48px 0;">
-        <div style="width:52px;height:52px;border-radius:50%;background:var(--overlay-sm);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+      <div class="form-success">
+        <div class="form-success-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
-        <p style="font-size:22px;font-weight:700;letter-spacing:-0.03em;color:var(--black);">Message sent.</p>
-        <p style="color:var(--gray-4);margin-top:10px;font-size:15px;">I'll get back to you within 24 hours.</p>
+        <p class="form-success-title">Message sent.</p>
+        <p class="form-success-sub">I'll get back to you within 24 hours.</p>
       </div>`;
   }
 
