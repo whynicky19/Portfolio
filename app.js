@@ -90,21 +90,6 @@
 
   window.PortfolioUtils.onIntersect('[data-target]', animateCounter, { threshold: 0.5 });
 
-  /* ── Rail drag-to-scroll ── */
-  document.querySelectorAll('.rail-wrap').forEach(wrap => {
-    let isDown = false, startX, scrollLeft;
-    wrap.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft; }, { passive: true });
-    wrap.addEventListener('mouseleave', () => { isDown = false; }, { passive: true });
-    wrap.addEventListener('mouseup',    () => { isDown = false; }, { passive: true });
-    wrap.addEventListener('mousemove',  e => {
-      // Not passive: this one drags the rail and must call preventDefault
-      // to stop native text-selection while the pointer is down.
-      if (!isDown) return;
-      e.preventDefault();
-      wrap.scrollLeft = scrollLeft - (e.pageX - wrap.offsetLeft - startX) * 1.3;
-    });
-  });
-
   /* ── Sticky "How I work" features ── */
   const sfItems   = document.querySelectorAll('.sf-item[data-sf]');
   const sfVisuals = document.querySelectorAll('.sf-visual-item[data-sf]');

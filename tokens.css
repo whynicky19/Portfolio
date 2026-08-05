@@ -65,6 +65,7 @@
   /* ── Layout ── */
   --nav-h:     48px;
   --max-w:     1200px;
+  --w-narrow:  520px;   /* hero sub-copy under a page-title */
   --w-read:    680px;   /* prose / single-column reading copy */
   --w-medium:  960px;   /* 3–4up rows: stat grids, overview strips */
   --w-content: 1200px;  /* standard page container (= --max-w) */

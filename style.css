@@ -23,9 +23,6 @@
 [data-theme="dark"] .proj-mini   { border-color: var(--border); background: var(--gray-7); }
 [data-theme="dark"] .proj-mini:hover { border-color: var(--border-hover); }
 [data-theme="dark"] .bento-card:hover { border-color: var(--border-md); }
-[data-theme="dark"] .cert-rail-card { border-color: var(--border); background: var(--gray-7); }
-[data-theme="dark"] .cert-thumb { border-bottom-color: var(--border); background: #fff; }
-[data-theme="dark"] .cert-thumb img { background: #fff; }
 [data-theme="dark"] .proj-mini-visual { border-bottom-color: var(--border); background: #fff; }
 
 [data-theme="dark"] .ach-card    { border-color: rgba(0,0,0,0.1); background: #fff; }
@@ -111,20 +108,44 @@
   display: flex; align-items: center; gap: 12px;
 }
 .theme-toggle {
+  position: relative;
   width: 32px; height: 32px; border-radius: 50%;
   background: none; border: 1px solid var(--border);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: rgba(0,0,0,0.6);
-  transition: background .2s, border-color .2s, color .2s;
+  transition: background .2s, border-color .2s, color .2s,
+              transform var(--dur-instant) var(--ease-spring);
   flex-shrink: 0;
 }
 .theme-toggle:hover { background: var(--overlay-sm); }
+/* Press feedback fires on pointer-down (CSS :active), not on release —
+   the toggle should feel grabbed the instant it's touched. */
+.theme-toggle:active { transform: scale(.88); }
 [data-theme="dark"] .theme-toggle { color: rgba(255,255,255,0.65); border-color: var(--border); }
 [data-theme="dark"] .theme-toggle:hover { background: var(--overlay-sm); }
 
 .icon-moon { display: none; }
 [data-theme="dark"] .icon-sun  { display: none; }
 [data-theme="dark"] .icon-moon { display: block; }
+
+/* Desktop toggle gets a real crossfade — sun and moon swap with a small
+   counter-rotation instead of an instant display cut, so flipping theme
+   reads as one glyph turning into the other rather than a hard swap.
+   Higher specificity than the display:none rules above, so it wins
+   without touching the mobile row's simpler swap. */
+.theme-toggle svg {
+  position: absolute;
+  transition: opacity var(--dur-fast) var(--ease-apple),
+              transform var(--dur-fast) var(--ease-apple);
+}
+.theme-toggle .icon-moon { display: block; opacity: 0; transform: rotate(-45deg) scale(.6); }
+.theme-toggle .icon-sun  { opacity: 1; transform: rotate(0deg) scale(1); }
+[data-theme="dark"] .theme-toggle .icon-sun  { opacity: 0; transform: rotate(45deg) scale(.6); }
+[data-theme="dark"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle svg { transition: opacity var(--dur-fast) linear; transform: none !important; }
+  .theme-toggle:active { transform: none; }
+}
 
 .theme-toggle-mobile {
   display: flex; align-items: center; gap: 12px;
@@ -261,7 +282,7 @@ body {
   -webkit-backdrop-filter: saturate(var(--glass-saturate)) blur(var(--glass-blur));
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
-  transition: transform var(--dur-base) ease;
+  transition: transform var(--dur-base) var(--ease-apple);
   will-change: transform;
   contain: layout paint;
 }
@@ -503,7 +524,7 @@ body {
    --tilt-x/--tilt-y default to 0deg (no-op) and are only ever written by
    components.js's pointer-tilt on cards that opt in — every other card
    here just gets the plain lift, unaffected. */
-.proj-mini, .ach-card, .cs-stack-card, .bento-card, .cert-rail-card, .skill-pill {
+.proj-mini, .ach-card, .cs-stack-card, .bento-card, .skill-pill {
   transform: perspective(800px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   transition: transform var(--dur-base) var(--ease-apple),
               box-shadow var(--dur-base) var(--ease-apple),
@@ -511,7 +532,7 @@ body {
               background var(--dur-base) var(--ease-apple);
 }
 .proj-mini:hover, .ach-card:hover, .cs-stack-card:hover,
-.bento-card:hover, .cert-rail-card:hover, .skill-pill:hover {
+.bento-card:hover, .skill-pill:hover {
   transform: perspective(800px) translateY(var(--card-hover-lift)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
   box-shadow: var(--card-hover-shadow);
   border-color: var(--border-hover);
@@ -521,14 +542,14 @@ body {
    :hover promotes it right before the transform animates and lets it go
    the moment the pointer leaves. */
 .card:hover, .proj-mini:hover, .ach-card:hover, .cs-stack-card:hover,
-.bento-card:hover, .cert-rail-card:hover, .skill-pill:hover { will-change: transform, box-shadow; }
+.bento-card:hover, .skill-pill:hover { will-change: transform, box-shadow; }
 
 /* Desktop press feedback — a quick spring settle on click, distinct from
    the slower hover lift. Touch already gets this via the (hover:none)
    block in animations.css; this is the fine-pointer equivalent. */
 @media (hover: hover) and (pointer: fine) {
   .card:active, .proj-mini:active, .ach-card:active, .cs-stack-card:active,
-  .bento-card:active, .cert-rail-card:active, .skill-pill:active {
+  .bento-card:active, .skill-pill:active {
     transform: perspective(800px) translateY(calc(var(--card-hover-lift) * 0.4)) scale(.985)
                rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: transform var(--dur-instant) var(--ease-spring);
@@ -558,22 +579,6 @@ body {
 
   .btn-primary, .btn-ghost { padding: 13px 24px; font-size: 15px; }
 }
-
-.rail-wrap {
-  overflow-x: auto; overflow-y: visible;
-  padding-bottom: 24px;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-}
-.rail-wrap:active { cursor: grabbing; }
-.rail-wrap::-webkit-scrollbar { display: none; }
-.rail {
-  display: flex; gap: 16px;
-  padding: 0 32px;
-  width: max-content;
-}
-@media(max-width:600px){ .rail{ padding: 0 20px; } }
 
 .divider {
   width: 100%; height: 1px;
@@ -677,7 +682,6 @@ body {
 
 .hero-photo-card img,
 .bio-photo img,
-.cert-thumb img,
 .proj-f-visual img,
 .proj-mini-visual img,
 .ach-visual img {
