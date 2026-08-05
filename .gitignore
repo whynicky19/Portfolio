@@ -3,3 +3,12 @@ __MACOSX/
 *.pyc
 node_modules/
 
+# Claude skills
+.agents/
+.claude/skills/
+
+# Local audits
+_audit/
+
+# Temporary QA files
+*.qa.html
