@@ -106,32 +106,32 @@
 }
 .about-body p strong { color: var(--black); font-weight: 600; }
 
-/* === Story pillars === */
+/* === Story pillars — three soft pastel cards (Apple family) === */
 .story-pillars {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
+  gap: 16px;
   margin-top: 80px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
 }
 .story-pillar {
-  background: var(--white);
+  border-radius: 20px;
   padding: 40px 32px;
   display: flex; flex-direction: column;
 }
+.story-pillar:nth-child(1) { background: var(--tint-sage); }
+.story-pillar:nth-child(2) { background: var(--tint-cream); }
+.story-pillar:nth-child(3) { background: var(--tint-sky); }
 .story-pillar-num {
   font-size: 12px; font-weight: 500;
   color: var(--gray-5);
   letter-spacing: 0.04em;
   margin-bottom: 24px;
+  font-family: var(--font-mono, monospace);
 }
 .story-pillar-title {
   font-family: var(--font-display);
   font-size: clamp(22px, 2vw, 28px);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--black);
   margin-bottom: 12px;
@@ -217,28 +217,29 @@
   line-height: 1.55;
 }
 
-/* === Certificate gallery === */
+/* === Certificate gallery — light cards on a tinted dark surface === */
 .cert-stage {
   margin-top: 64px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
+  gap: 20px;
 }
 .cert-card {
-  border-radius: 18px;
-  background: var(--gray-06);
+  border-radius: 20px;
+  background: var(--tint-sand);
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 32px;
   padding: 32px;
   align-items: center;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 .cert-card-img {
   background: var(--white);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
   display: flex; align-items: center; justify-content: center;
   max-height: 320px;
 }
@@ -258,13 +259,13 @@
   font-size: clamp(22px, 2.4vw, 30px);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--white);
+  color: var(--black);
   line-height: 1.15;
   margin-bottom: 12px;
 }
 .cert-card-org {
   font-size: 14px;
-  color: rgba(255,255,255,0.6);
+  color: var(--gray-4);
   letter-spacing: -0.01em;
 }
 
@@ -351,7 +352,7 @@
 </section>
 
 <!-- ══════════════ STORY ══════════════ -->
-<section class="section section-tint">
+<section class="section section-tint" style="background: var(--tint-rose);">
   <div class="section-inner">
     <p class="sec-eyebrow fade-up">The story</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">

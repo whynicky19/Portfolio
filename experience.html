@@ -148,24 +148,33 @@
   margin-top: 64px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 .rec-card {
-  background: var(--gray-06);
+  background: var(--white);
   border-radius: 18px;
   overflow: hidden;
   display: flex; flex-direction: column;
+  border: 1px solid var(--border);
+  transition: transform 0.4s var(--ease-apple), background 0.4s;
 }
+.rec-card:hover { transform: translateY(-2px); }
+.rec-card:nth-child(3n+1):hover { background: var(--tint-mint); }
+.rec-card:nth-child(3n+2):hover { background: var(--tint-cream); }
+.rec-card:nth-child(3n+3):hover { background: var(--tint-sky); }
 .rec-card-img {
   aspect-ratio: 4/3;
   background: var(--white);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
+  margin: 12px 12px 0;
+  border-radius: 12px;
 }
 .rec-card-img img {
   width: 100%; height: 100%;
   object-fit: contain;
   background: var(--white);
+  border-radius: 12px;
 }
 .rec-card-body {
   padding: 24px;
@@ -342,7 +351,7 @@
 </section>
 
 <!-- ══════════════ RECOGNITION ══════════════ -->
-<section class="section section-tint">
+<section class="section section-tint" style="background: var(--tint-rose);">
   <div class="section-inner">
     <p class="sec-eyebrow fade-up">Recognition</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">

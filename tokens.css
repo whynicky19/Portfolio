@@ -43,6 +43,20 @@
   --overlay-lg:    rgba(0,0,0,0.08);
   --nav-bg:        rgba(255,255,255,0.82);
 
+  /* ── Color — pastel tints (Apple product-page family).
+     Low saturation, low contrast against white. Used to give
+     sections and cards a soft warm/cool mood without turning
+     the page into a rainbow. ── */
+  --tint-cream:    #fdf5e6;
+  --tint-mint:     #e8f3ec;
+  --tint-peach:    #fde8d8;
+  --tint-sky:      #e6f0fa;
+  --tint-lavender: #f0e9ff;
+  --tint-rose:     #f5e8ea;
+  --tint-sage:     #eef0e8;
+  --tint-sand:     #f6efe6;
+  --tint-cocoa:    #efe6e0;
+
   /* ── Color — accent (Apple systemBlue, used sparingly) ── */
   --accent:        #0071e3;
   --accent-hover:  #0077ed;

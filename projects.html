@@ -134,8 +134,7 @@
   display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
 }
 
-/* === Project tiles — no image cropping, full image inside
-       a soft-light rounded frame =================================== */
+/* === Project tiles — soft pastel hover washes (Apple-style) === */
 .section { padding: var(--section-y, 140px) 0; position: relative; }
 .section-inner { max-width: var(--proj-max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 .section-light { background: var(--white); }
@@ -172,12 +171,18 @@
   text-decoration: none; color: inherit;
   position: relative;
   border: 1px solid var(--border);
-  transition: transform 0.4s var(--ease-apple), border-color 0.3s;
+  transition: transform 0.4s var(--ease-apple), border-color 0.3s, background 0.4s var(--ease-apple);
 }
 .work-tile:hover {
   transform: translateY(-2px);
   border-color: var(--gray-3);
 }
+/* Subtle Apple-style pastel washes on hover, one per tile.
+   All from the same low-saturation family so the page reads as
+   one composition, not a rainbow. */
+.work-tile:nth-child(3n+1):hover { background: var(--tint-mint); }
+.work-tile:nth-child(3n+2):hover { background: var(--tint-cream); }
+.work-tile:nth-child(3n+3):hover { background: var(--tint-sky); }
 .section-tint .work-tile { background: var(--white); }
 
 .work-tile-img {
@@ -187,7 +192,7 @@
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 22px;
-  background: var(--gray-06);
+  background: var(--white);
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--border);
 }
@@ -326,7 +331,7 @@
 </section>
 
 <!-- ══════════════ FEATURED CASE STUDY — CHATRA ══════════════ -->
-<section class="section section-light" id="chatra">
+<section class="section section-light" id="chatra" style="background: var(--tint-sage);">
   <div class="case-feature">
     <div class="case-visual">
       <div class="case-iphone" data-parallax style="--parallax-depth:0.05">
@@ -455,7 +460,7 @@
 </section>
 
 <!-- ══════════════ PRACTICE / EXPLORATIONS ══════════════ -->
-<section class="section section-tint">
+<section class="section section-tint" style="background: var(--tint-cream);">
   <div class="section-inner">
     <p class="sec-eyebrow fade-up">Practice</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
