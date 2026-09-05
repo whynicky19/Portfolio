@@ -23,11 +23,21 @@
 <script src="theme-init.js"></script>
 <style>
 
+/* ===========================================================
+   PROJECTS — Apple-style case-study page
+   - Featured case (Chatra) gets a real iPhone mockup
+   - Other tiles show full images (no cropping) with light chrome
+   =========================================================== */
+
+:root { --proj-max: 1200px; }
+
 .page-hero {
-  padding: calc(var(--nav-h) + 120px) 32px 100px;
+  padding: calc(var(--nav-h) + 120px) 32px 80px;
   background: var(--white);
+  position: relative;
+  overflow: hidden;
 }
-.page-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+.page-hero-inner { max-width: var(--proj-max); margin: 0 auto; }
 .page-hero-title {
   font-family: var(--font-display);
   font-size: var(--display-xl);
@@ -35,6 +45,7 @@
   letter-spacing: var(--em-tightest);
   line-height: 0.92;
   color: var(--black);
+  margin: 0;
 }
 .page-hero-title em {
   font-style: normal;
@@ -50,15 +61,85 @@
   line-height: 1.55;
   color: var(--gray-4);
   max-width: 560px;
-  margin-top: 32px;
+  margin: 32px 0 0;
 }
 
-/* === Section scaffolding === */
-.section { padding: var(--section-y, 160px) 0; position: relative; }
-.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+/* featured case — full-bleed composition with iPhone + copy */
+.case-feature {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  max-width: var(--proj-max);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+}
+.case-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 0;
+}
+.case-visual::after {
+  content: '';
+  position: absolute; left: 50%; bottom: -10%;
+  width: 70%; height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+[data-theme="dark"] .case-visual::after {
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 72%);
+}
+.case-iphone {
+  width: clamp(240px, 26vw, 340px);
+  position: relative; z-index: 1;
+}
+
+.case-meta { display: flex; flex-direction: column; gap: 28px; }
+.case-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+}
+.case-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--black);
+  margin: 0;
+  text-wrap: balance;
+}
+.case-prose {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 40px;
+}
+.case-block-label {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 10px;
+}
+.case-block p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+.case-actions {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+
+/* === Project tiles — no image cropping, full image inside
+       a soft-light rounded frame =================================== */
+.section { padding: var(--section-y, 140px) 0; position: relative; }
+.section-inner { max-width: var(--proj-max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 .section-light { background: var(--white); }
 .section-tint  { background: var(--gray-06); }
-.section-dark  { background: #000; color: var(--white); }
 
 .sec-eyebrow {
   font-size: 12px; font-weight: 600;
@@ -73,192 +154,156 @@
   letter-spacing: -0.045em;
   line-height: 0.98;
   color: var(--black);
-}
-.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
-.section-dark .sec-heading { color: var(--white); }
-
-/* === Featured case study — Chatra === */
-.case-feature {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  padding-top: 24px;
-}
-.case-visual {
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.case-visual::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -10%;
-  width: 70%; height: 40px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
-  filter: blur(8px);
-}
-[data-theme="dark"] .case-visual::after {
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 72%);
-}
-.case-iphone {
-  width: clamp(260px, 28vw, 360px);
-  position: relative; z-index: 1;
-}
-.case-iphone::after { display: none; }
-.case-meta {
-  display: flex; flex-direction: column; gap: 24px;
-}
-.case-tag-row {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-}
-.case-tag-row .case-num {
-  color: var(--gray-4); font-weight: 500;
-}
-.case-title {
-  font-family: var(--font-display);
-  font-size: var(--display-lg);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--black);
   margin: 0;
-}
-.case-title em {
-  font-style: normal;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.case-prose {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px 48px;
-  margin-top: 8px;
-}
-.case-block-label {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 12px;
-}
-.case-block p {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--gray-4);
-  letter-spacing: -0.005em;
-}
-.case-stack {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-top: 8px;
-}
-.case-stack .chip {
-  font-size: 11px;
-  padding: 4px 10px;
-  color: var(--gray-4);
-  background: var(--gray-06);
-  border: 1px solid var(--border);
-}
-.case-actions {
-  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
-  margin-top: 12px;
+  text-wrap: balance;
 }
 
-/* === Other work — minimal grid === */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
+  gap: 28px;
   margin-top: 64px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
 }
 .work-tile {
   background: var(--white);
-  padding: 40px;
+  border-radius: 22px;
+  padding: 28px;
   display: flex; flex-direction: column;
   text-decoration: none; color: inherit;
   position: relative;
-  min-height: 320px;
+  border: 1px solid var(--border);
+  transition: transform 0.4s var(--ease-apple), border-color 0.3s;
 }
-.section-dark .work-tile { background: #111; color: var(--white); }
+.work-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--gray-3);
+}
+.section-tint .work-tile { background: var(--white); }
+
 .work-tile-img {
   width: 100%;
-  height: 180px;
-  border-radius: 12px;
+  /* Fixed aspect ratio that respects the original image's content */
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   background: var(--gray-06);
   display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border);
 }
-.work-tile-img img {
+.work-tile-img img,
+.work-tile-img svg {
   width: 100%; height: 100%;
-  object-fit: cover;
+  object-fit: contain;     /* never crop, show full image */
+  display: block;
+  padding: 0;
 }
 .work-tile-num {
   font-size: 12px; font-weight: 500;
   color: var(--gray-5);
   letter-spacing: 0.04em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono, monospace);
 }
 .work-tile-title {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2vw, 26px);
+  font-size: clamp(22px, 2.4vw, 32px);
   font-weight: 600;
-  letter-spacing: -0.025em;
-  color: inherit;
-  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin: 0 0 8px;
+  line-height: 1.05;
 }
 .work-tile-meta {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--gray-4);
   letter-spacing: -0.005em;
-  margin-bottom: 12px;
+  line-height: 1.5;
+  margin: 0;
 }
-.section-dark .work-tile-meta { color: rgba(255,255,255,0.55); }
 .work-tile-foot {
-  margin-top: auto;
-  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 22px;
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+}
+.chip {
+  font-size: 11px;
+  padding: 5px 11px;
+  color: var(--gray-4);
+  background: var(--gray-06);
+  border-radius: 980px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 .work-tile-link {
   font-size: 13px; font-weight: 500;
   color: var(--accent);
   text-decoration: none;
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: gap 0.25s var(--ease-apple);
 }
+.work-tile:hover .work-tile-link { gap: 8px; }
 
-/* === CTA mini === */
+/* CTA mini */
 .cta-mini {
-  padding: 120px 0;
+  padding: 140px 0;
   background: var(--white);
   text-align: center;
+  border-top: 1px solid var(--border);
 }
 .cta-mini h2 {
   font-family: var(--font-display);
-  font-size: var(--display-lg);
+  font-size: clamp(40px, 6vw, 88px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
-  margin-bottom: 28px;
+  margin: 0 0 28px;
+  text-wrap: balance;
+}
+.cta-mini p {
+  max-width: 440px; margin: 0 auto 36px;
+  color: var(--gray-4); font-size: 17px; line-height: 1.5;
 }
 .cta-mini .btn-row {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
 }
 
+/* === Buttons (mirror the chatra set so styles stay consistent) === */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 12px 22px;
+  border-radius: 980px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 200ms var(--ease-out), background 200ms var(--ease-out), color 200ms var(--ease-out), border-color 200ms var(--ease-out);
+  cursor: pointer;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--black); border-color: var(--border-strong); }
+.btn-ghost:hover { background: var(--gray-06); transform: translateY(-1px); }
+
+/* dark mode small adjustments */
+[data-theme="dark"] .work-tile { background: #161618; border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .work-tile:hover { border-color: rgba(255,255,255,0.18); }
+[data-theme="dark"] .work-tile-title { color: var(--white); }
+[data-theme="dark"] .chip { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+[data-theme="dark"] .work-tile-img { background: #0a0a0c; border-color: rgba(255,255,255,0.06); }
+
+/* responsive */
 @media (max-width: 900px) {
-  .case-feature { grid-template-columns: 1fr; gap: 40px; }
+  .case-feature { grid-template-columns: 1fr; gap: 48px; }
   .case-visual { order: -1; }
-  .case-iphone { width: clamp(220px, 60vw, 280px); }
+  .case-iphone { width: clamp(200px, 60vw, 260px); }
   .case-prose { grid-template-columns: 1fr; gap: 20px; }
   .work-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .page-hero { padding: calc(var(--nav-h) + 64px) 20px 64px; }
-  .section-inner { padding: 0 24px; }
   .section { padding: 100px 0; }
   .case-title { font-size: clamp(36px, 9vw, 56px); }
 }
@@ -282,76 +327,48 @@
 
 <!-- ══════════════ FEATURED CASE STUDY — CHATRA ══════════════ -->
 <section class="section section-light" id="chatra">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Featured case study · 01</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Chatra Academy.
-    </h2>
-
-    <div class="case-feature" style="margin-top:48px;">
-      <div class="case-visual">
-        <div class="case-iphone" data-parallax style="--parallax-depth:0.05">
-          <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <picture>
-                <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
-                <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
-                <img src="img/chatra light.jpg" alt="Chatra iOS app" loading="lazy" decoding="async">
-              </picture>
-            </div>
+  <div class="case-feature">
+    <div class="case-visual">
+      <div class="case-iphone" data-parallax style="--parallax-depth:0.05">
+        <div class="iphone-frame">
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+            <picture>
+              <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 340px">
+              <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 340px">
+              <img src="img/chatra light.jpg" alt="Chatra iOS app" loading="lazy" decoding="async">
+            </picture>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="case-meta">
-        <div class="case-tag-row fade-up">
-          <span class="case-num">2025 — 2026</span>
-          <span>·</span>
-          <span>Production</span>
-          <span>·</span>
-          <span>iOS · Web · Backend</span>
+    <div class="case-meta">
+      <span class="case-eyebrow fade-up">Featured case study · 01</span>
+      <h2 class="case-title word-reveal">A complete educational platform, shipped to real classrooms.</h2>
+
+      <div class="case-prose fade-up">
+        <div class="case-block">
+          <div class="case-block-label">Problem</div>
+          <p>Educators ran classes through Telegram chats and spreadsheets. No unified tool. Students had no visibility into their own progress.</p>
         </div>
-
-        <h3 class="case-title word-reveal">A complete educational platform, shipped to real classrooms.</h3>
-
-        <div class="case-prose fade-up">
-          <div class="case-block">
-            <div class="case-block-label">Problem</div>
-            <p>At my university, educators ran classes through Telegram chats and spreadsheets. No unified tool. Students had no visibility into their own progress.</p>
-          </div>
-          <div class="case-block">
-            <div class="case-block-label">Design</div>
-            <p>Mobile-first UI designed for one-handed classroom use. Riverpod state, GoRouter navigation, role-based interfaces (student, teacher, admin).</p>
-          </div>
-          <div class="case-block">
-            <div class="case-block-label">Engineering</div>
-            <p>Three independent layers: Flutter mobile, FastAPI REST backend with JWT auth, Nuxt web dashboard with KZ/RU i18n. Docker-deployed.</p>
-          </div>
-          <div class="case-block">
-            <div class="case-block-label">Result</div>
-            <p>Live in real classrooms. Students join classes, submit assignments, track grades. Every layer — design, code, infra — handled by two developers.</p>
-          </div>
+        <div class="case-block">
+          <div class="case-block-label">Design</div>
+          <p>Mobile-first UI for one-handed classroom use. Role-based interfaces for student, teacher, and admin.</p>
         </div>
-
-        <div class="case-stack fade-up">
-          <span class="chip">Flutter</span>
-          <span class="chip">Dart</span>
-          <span class="chip">Riverpod</span>
-          <span class="chip">FastAPI</span>
-          <span class="chip">PostgreSQL</span>
-          <span class="chip">SQLAlchemy</span>
-          <span class="chip">Nuxt.js</span>
-          <span class="chip">Vue</span>
-          <span class="chip">Docker</span>
-          <span class="chip">JWT</span>
-          <span class="chip">Figma</span>
+        <div class="case-block">
+          <div class="case-block-label">Engineering</div>
+          <p>Three independent layers: Flutter mobile, FastAPI REST backend with JWT auth, Nuxt web dashboard with KZ/RU i18n. Docker-deployed.</p>
         </div>
-
-        <div class="case-actions fade-up">
-          <a href="chatra.html" class="btn btn-primary">Read the case study</a>
-          <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-ghost">Mobile source</a>
+        <div class="case-block">
+          <div class="case-block-label">Result</div>
+          <p>Live in real classrooms. Every layer — design, code, infrastructure — handled by two developers.</p>
         </div>
+      </div>
+
+      <div class="case-actions fade-up">
+        <a href="chatra.html" class="btn btn-primary">Read the case study</a>
+        <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" rel="noopener" class="btn btn-ghost">Mobile source</a>
       </div>
     </div>
   </div>
@@ -366,73 +383,73 @@
     </h2>
 
     <div class="work-grid depth-stagger">
-      <div class="work-tile" id="hackathon">
+      <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" rel="noopener" class="work-tile" id="hackathon">
         <div class="work-tile-img">
           <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP" loading="lazy">
         </div>
         <div class="work-tile-num">02</div>
         <div class="work-tile-title">Hackathon MVP</div>
-        <div class="work-tile-meta">48-hour sprint at a university hackathon. Top 5 placement.</div>
+        <p class="work-tile-meta">48-hour sprint at a university hackathon. Top 5 placement.</p>
         <div class="work-tile-foot">
           <span class="chip">Vue 3</span>
           <span class="chip">FastAPI</span>
           <span class="chip">Python</span>
-          <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="work-tile" id="portfolio">
+      <a href="https://github.com/whynicky19/Portfolio.git" target="_blank" rel="noopener" class="work-tile" id="portfolio">
         <div class="work-tile-img">
           <img src="img/macbook-card.svg" alt="Portfolio website" loading="lazy">
         </div>
         <div class="work-tile-num">03</div>
         <div class="work-tile-title">This Portfolio</div>
-        <div class="work-tile-meta">Vanilla HTML, CSS, JavaScript. Apple-inspired design system, scroll-linked motion, zero frameworks.</div>
+        <p class="work-tile-meta">Vanilla HTML, CSS, JavaScript. Apple-inspired design system, scroll-linked motion, zero frameworks.</p>
         <div class="work-tile-foot">
           <span class="chip">HTML</span>
           <span class="chip">CSS</span>
           <span class="chip">JavaScript</span>
-          <a href="https://github.com/whynicky19/Portfolio.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="work-tile" id="digitalurpaq">
+      <a href="https://github.com/serazenith/du-7mile.git" target="_blank" rel="noopener" class="work-tile" id="digitalurpaq">
         <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w, img/digital-urpaq-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
-            <source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w, img/digital-urpaq-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w, img/digital-urpaq-960w.avif 960w" sizes="(max-width: 700px) 92vw, 520px">
+            <source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w, img/digital-urpaq-960w.webp 960w" sizes="(max-width: 700px) 92vw, 520px">
             <img src="img/digital-urpaq.jpg" alt="Digital Urpaq" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="work-tile-num">04</div>
         <div class="work-tile-title">Digital Urpaq</div>
-        <div class="work-tile-meta">Full-stack web platform for the Palace of Schoolchildren — role-based interfaces, KZ/RU localisation, secure API.</div>
+        <p class="work-tile-meta">Full-stack web platform for the Palace of Schoolchildren — role-based interfaces, KZ/RU localisation, secure API.</p>
         <div class="work-tile-foot">
           <span class="chip">Nuxt</span>
           <span class="chip">FastAPI</span>
           <span class="chip">i18n</span>
-          <a href="https://github.com/serazenith/du-7mile.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="work-tile" id="chatraweb">
+      <a href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener" class="work-tile" id="chatraweb">
         <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
-            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w" sizes="(max-width: 700px) 92vw, 520px">
+            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 700px) 92vw, 520px">
             <img src="img/chatraweb.jpg" alt="Chatra Web Dashboard" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="work-tile-num">05</div>
         <div class="work-tile-title">Chatra Web Dashboard</div>
-        <div class="work-tile-meta">Web frontend for Chatra Academy. Kazakh language support, role-based UI, full API integration.</div>
+        <p class="work-tile-meta">Web frontend for Chatra Academy. Kazakh language support, role-based UI, full API integration.</p>
         <div class="work-tile-foot">
           <span class="chip">Nuxt.js</span>
           <span class="chip">Vue</span>
           <span class="chip">i18n</span>
-          <a href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -444,65 +461,65 @@
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
       Smaller explorations.
     </h2>
-    <p class="t-body-xl fade-up" style="max-width:560px;margin-top:24px;">
+    <p class="work-tile-meta fade-up" style="max-width:560px;margin-top:20px;font-size:17px;">
       Coursework, side projects, and experiments where I sharpened fundamentals.
     </p>
 
     <div class="work-grid depth-stagger">
-      <div class="work-tile" id="cs50p">
+      <a href="https://github.com/whynicky19" target="_blank" rel="noopener" class="work-tile" id="cs50p">
         <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/cs50p-480w.avif 480w, img/cs50p-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
-            <source type="image/webp" srcset="img/cs50p-480w.webp 480w, img/cs50p-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/avif" srcset="img/cs50p-480w.avif 480w, img/cs50p-960w.avif 960w" sizes="(max-width: 700px) 92vw, 520px">
+            <source type="image/webp" srcset="img/cs50p-480w.webp 480w, img/cs50p-960w.webp 960w" sizes="(max-width: 700px) 92vw, 520px">
             <img src="img/cs50p.jpg" alt="CS50P Problem Sets" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="work-tile-num">06</div>
         <div class="work-tile-title">CS50P Problem Sets</div>
-        <div class="work-tile-meta">All Harvard CS50P problem sets, completed by hand. Pure Python fundamentals.</div>
+        <p class="work-tile-meta">All Harvard CS50P problem sets, completed by hand. Pure Python fundamentals.</p>
         <div class="work-tile-foot">
           <span class="chip">Python</span>
           <span class="chip">CS50</span>
-          <a href="https://github.com/whynicky19" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="work-tile" id="fastapi">
+      <a href="https://github.com/whynicky19/App-Backend.git" target="_blank" rel="noopener" class="work-tile" id="fastapi">
         <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/fastqpi-480w.avif 480w, img/fastqpi-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
-            <source type="image/webp" srcset="img/fastqpi-480w.webp 480w, img/fastqpi-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/avif" srcset="img/fastqpi-480w.avif 480w, img/fastqpi-960w.avif 960w" sizes="(max-width: 700px) 92vw, 520px">
+            <source type="image/webp" srcset="img/fastqpi-480w.webp 480w, img/fastqpi-960w.webp 960w" sizes="(max-width: 700px) 92vw, 520px">
             <img src="img/fastqpi.jpg" alt="FastAPI Template" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="work-tile-num">07</div>
         <div class="work-tile-title">FastAPI Template</div>
-        <div class="work-tile-meta">Production-ready boilerplate — JWT auth, PostgreSQL, Docker, Swagger docs.</div>
+        <p class="work-tile-meta">Production-ready boilerplate — JWT auth, PostgreSQL, Docker, Swagger docs.</p>
         <div class="work-tile-foot">
           <span class="chip">Python</span>
           <span class="chip">FastAPI</span>
           <span class="chip">Docker</span>
-          <a href="https://github.com/whynicky19/App-Backend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
 
-      <div class="work-tile" id="freelanceos">
+      <a href="https://github.com/whynicky19" target="_blank" rel="noopener" class="work-tile" id="freelanceos">
         <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/freelanceOS-480w.avif 480w, img/freelanceOS-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
-            <source type="image/webp" srcset="img/freelanceOS-480w.webp 480w, img/freelanceOS-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/avif" srcset="img/freelanceOS-480w.avif 480w, img/freelanceOS-960w.avif 960w" sizes="(max-width: 700px) 92vw, 520px">
+            <source type="image/webp" srcset="img/freelanceOS-480w.webp 480w, img/freelanceOS-960w.webp 960w" sizes="(max-width: 700px) 92vw, 520px">
             <img src="img/freelanceOS.jpg" alt="FreelanceOS" loading="lazy" decoding="async">
           </picture>
         </div>
         <div class="work-tile-num">08</div>
         <div class="work-tile-title">FreelanceOS</div>
-        <div class="work-tile-meta">Mobile app for freelancers — income, taxes, financial records. An early Flutter exploration.</div>
+        <p class="work-tile-meta">Mobile app for freelancers — income, taxes, financial records. An early Flutter exploration.</p>
         <div class="work-tile-foot">
           <span class="chip">Flutter</span>
           <span class="chip">Dart</span>
-          <a href="https://github.com/whynicky19" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+          <span class="work-tile-link">GitHub →</span>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -511,10 +528,10 @@
 <section class="cta-mini">
   <div class="section-inner">
     <h2 class="fade-up">Have a project in mind?</h2>
-    <p class="t-body-xl fade-up" style="max-width:440px;margin:0 auto 36px;">Open to collaborations, freelance work, and interesting problems.</p>
+    <p class="fade-up">Open to collaborations, freelance work, and interesting problems.</p>
     <div class="btn-row fade-up">
       <a href="contact.html" class="btn btn-primary">Get in touch</a>
-      <a href="https://github.com/whynicky19" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://github.com/whynicky19" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>

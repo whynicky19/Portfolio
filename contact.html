@@ -23,18 +23,50 @@
 <script src="theme-init.js"></script>
 <style>
 
+/* ===========================================================
+   CONTACT — Apple-style page
+   - Cinematic hero
+   - Two-column form + channels
+   - Quiet Q&A
+   =========================================================== */
+
 .page-hero {
-  padding: calc(var(--nav-h) + 120px) 32px 80px;
+  padding: calc(var(--nav-h) + 120px) 32px 100px;
   background: var(--white);
+  position: relative;
+  overflow: hidden;
 }
-.page-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+.page-hero::before {
+  content: '';
+  position: absolute; top: -200px; left: 50%;
+  width: 1000px; height: 600px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,113,227,0.10), transparent 70%);
+  filter: blur(40px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+  z-index: 0;
+}
+.page-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+.page-hero-eyebrow {
+  display: inline-block;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 28px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 980px;
+}
 .page-hero-title {
   font-family: var(--font-display);
-  font-size: var(--display-xl);
+  font-size: clamp(64px, 11vw, 160px);
   font-weight: 700;
   letter-spacing: var(--em-tightest);
   line-height: 0.92;
   color: var(--black);
+  margin: 0;
+  text-wrap: balance;
 }
 .page-hero-title em {
   font-style: normal;
@@ -50,15 +82,14 @@
   line-height: 1.55;
   color: var(--gray-4);
   max-width: 560px;
-  margin-top: 32px;
+  margin: 32px 0 0;
 }
 
 /* === Section scaffolding === */
 .section { padding: var(--section-y, 120px) 0; position: relative; }
-.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 .section-light { background: var(--white); }
 .section-tint  { background: var(--gray-06); }
-.section-dark  { background: #000; color: var(--white); }
 
 .sec-eyebrow {
   font-size: 12px; font-weight: 600;
@@ -73,17 +104,17 @@
   letter-spacing: -0.045em;
   line-height: 0.98;
   color: var(--black);
+  text-wrap: balance;
+  margin: 0;
 }
-.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
-.section-dark .sec-heading { color: var(--white); }
 
 /* === Contact split: form + reach === */
 .contact-split {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
+  gap: clamp(40px, 6vw, 96px);
   align-items: start;
-  margin-top: 24px;
+  margin-top: 32px;
 }
 .contact-block-label {
   font-size: 12px; font-weight: 600;
@@ -91,10 +122,10 @@
   color: var(--gray-5);
   margin-bottom: 28px;
 }
-.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-form { display: flex; flex-direction: column; gap: 28px; }
 .contact-form-field { display: flex; flex-direction: column; gap: 6px; }
 .contact-form-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
 }
 
 /* === Channels — minimal rows, not box cards === */
@@ -107,10 +138,10 @@
   grid-template-columns: auto 1fr auto;
   gap: 20px;
   align-items: center;
-  padding: 22px 0;
+  padding: 24px 0;
   border-bottom: 1px solid var(--border);
   text-decoration: none; color: inherit;
-  transition: padding .3s var(--ease-apple);
+  transition: padding .35s var(--ease-apple);
   position: relative;
 }
 .channel::after {
@@ -123,27 +154,30 @@
 .channel:hover { padding-left: 8px; padding-right: 8px; }
 .channel:hover::after { transform: scaleX(1); }
 .channel-icon {
-  width: 36px; height: 36px;
-  border-radius: 10px;
+  width: 44px; height: 44px;
+  border-radius: 12px;
   background: var(--gray-06);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   color: var(--gray-4);
+  transition: background 0.3s var(--ease-apple), color 0.3s;
 }
-.channel-icon svg { width: 16px; height: 16px; }
-.channel-icon img { width: 16px; height: 16px; filter: brightness(0) opacity(0.7); }
+.channel:hover .channel-icon { background: var(--black); color: var(--white); }
+.channel-icon svg { width: 18px; height: 18px; }
+.channel-icon img { width: 18px; height: 18px; filter: brightness(0) opacity(0.7); }
 [data-theme="dark"] .channel-icon img { filter: brightness(0) invert(1) opacity(0.85); }
+.channel:hover .channel-icon img { filter: brightness(0) invert(1) opacity(1); }
 .channel-body { flex: 1; min-width: 0; }
 .channel-name {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--black);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .channel-handle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--gray-4);
   letter-spacing: -0.005em;
 }
@@ -154,7 +188,7 @@
 .channel:hover .channel-arrow { transform: translateX(4px); color: var(--black); }
 
 .contact-meta {
-  margin-top: 32px;
+  margin-top: 40px;
   display: flex; align-items: center; gap: 8px;
   font-size: 13px;
   color: var(--gray-4);
@@ -163,97 +197,118 @@
 
 /* === Q&A === */
 .qa-list {
-  margin-top: 56px;
+  margin-top: 64px;
   border-top: 1px solid var(--border);
-  max-width: 800px;
+  max-width: 880px;
 }
 .qa-item {
   border-bottom: 1px solid var(--border);
-  padding: 32px 0;
+  padding: 40px 0;
 }
 .qa-q {
   font-family: var(--font-display);
-  font-size: clamp(18px, 1.8vw, 22px);
+  font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 600;
   letter-spacing: -0.025em;
   color: var(--black);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  line-height: 1.2;
 }
 .qa-a {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--gray-4);
-  line-height: 1.65;
-  max-width: 600px;
+  line-height: 1.6;
+  max-width: 640px;
   letter-spacing: -0.005em;
 }
 
-/* === Form === */
+/* === Form success === */
 .form-success {
   text-align: center;
-  padding: 64px 32px;
+  padding: 80px 32px;
   background: var(--gray-06);
-  border-radius: 16px;
+  border-radius: 20px;
   animation: heroFadeUp .5s var(--ease-apple) both;
 }
 .form-success-icon {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: var(--white);
-  border: 1px solid var(--border);
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 20px;
+  margin: 0 auto 24px;
 }
 .form-success-title {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.025em;
   color: var(--black);
+  margin: 0;
 }
 .form-success-sub {
   color: var(--gray-4);
-  margin-top: 10px;
-  font-size: 15px;
+  margin-top: 12px;
+  font-size: 16px;
 }
 
-/* === Form inputs (large, refined) === */
+/* === Form inputs === */
 .input, .textarea {
   width: 100%;
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--border-strong);
   border-radius: 0;
-  padding: 12px 0;
+  padding: 14px 0;
   color: var(--black);
   font-family: var(--font-text);
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: -0.01em;
   outline: none;
   transition: border-color .25s var(--ease-apple);
   -webkit-appearance: none;
 }
-.input:focus, .textarea:focus {
-  border-color: var(--black);
-  background: transparent;
-}
+.input:focus, .textarea:focus { border-color: var(--black); }
 .input::placeholder, .textarea::placeholder { color: var(--gray-5); }
-.textarea { min-height: 120px; resize: vertical; padding-top: 16px; }
+.textarea { min-height: 140px; resize: vertical; padding-top: 18px; line-height: 1.5; }
 .form-label {
-  font-size: 12px; font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--gray-5);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
+
+/* buttons (consistent with chatra) */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 14px 26px;
+  border-radius: 980px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 200ms var(--ease-out), background 200ms var(--ease-out);
+  cursor: pointer;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+.btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
 /* === Responsive === */
 @media (max-width: 900px) {
-  .contact-split { grid-template-columns: 1fr; gap: 56px; }
+  .contact-split { grid-template-columns: 1fr; gap: 64px; }
+  .qa-item { padding: 28px 0; }
 }
 @media (max-width: 600px) {
-  .page-hero { padding: calc(var(--nav-h) + 64px) 20px 56px; }
-  .section-inner { padding: 0 24px; }
+  .page-hero { padding: calc(var(--nav-h) + 80px) 20px 64px; }
   .section { padding: 80px 0; }
-  .contact-form-row { grid-template-columns: 1fr; gap: 16px; }
+  .contact-form-row { grid-template-columns: 1fr; gap: 24px; }
+  .page-hero-title { font-size: clamp(48px, 14vw, 96px); }
 }
 </style>
 </head>
@@ -264,7 +319,8 @@
 
 <section class="page-hero">
   <div class="page-hero-inner">
-    <h1 class="page-hero-title fade-up">
+    <span class="page-hero-eyebrow fade-up">Get in touch</span>
+    <h1 class="page-hero-title fade-up" style="animation-delay:.1s;">
       Let's make<br>something <em>good.</em>
     </h1>
     <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
@@ -297,11 +353,9 @@
               <label class="form-label" for="cf-msg">Message</label>
               <textarea name="message" id="cf-msg" class="textarea" placeholder="What are you working on?" rows="5" required></textarea>
             </div>
-            <div style="margin-top:8px;">
-              <button type="submit" class="btn btn-primary" id="cfSubmit" style="padding:13px 28px;font-size:15px;">
-                Send message →
-              </button>
-            </div>
+            <button type="submit" class="btn btn-primary" id="cfSubmit">
+              Send message →
+            </button>
           </div>
         </form>
       </div>

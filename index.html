@@ -118,22 +118,6 @@
   opacity: 0;
   animation: heroFadeUp 1s var(--ease-apple) .95s both;
 }
-.hero-scroll {
-  position: absolute; left: 50%; bottom: 22px;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) 1.4s both;
-}
-.hero-scroll-line {
-  width: 1px; height: 36px;
-  background: linear-gradient(to bottom, transparent, var(--gray-4));
-  animation: scrollLine 2.6s ease-in-out infinite;
-}
-.hero-scroll-label {
-  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--gray-5);
-}
 
 /* === Hero visual: iPhone with Chatra === */
 .hero-visual {
@@ -339,44 +323,46 @@
   color: var(--black); font-weight: 600;
 }
 
-/* === iOS Work pillars (dark section) === */
+/* === iOS Work pillars (dark section) — 2×2 grid, balanced === */
 .pillars {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0;
   margin-top: 80px;
   border-top: 1px solid rgba(255,255,255,0.1);
+  border-left: 1px solid rgba(255,255,255,0.1);
 }
 .pillar {
-  padding: 48px 32px 48px 0;
+  padding: 56px 40px;
   border-right: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-.pillar:last-child { border-right: none; padding-right: 0; }
-.pillar:nth-child(2) { padding-left: 32px; }
-.pillar:nth-child(3) { padding-left: 32px; }
 .pillar-num {
   font-size: 12px; font-weight: 500;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.4);
   letter-spacing: 0.06em;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 .pillar-name {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(32px, 3.4vw, 48px);
   font-weight: 700;
   letter-spacing: -0.04em;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--white);
   margin-bottom: 16px;
 }
 .pillar-body {
   font-size: 15px; line-height: 1.6;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.6);
   letter-spacing: -0.01em;
-  max-width: 320px;
+  max-width: 340px;
 }
 
-/* === HIG principles — design credibility moment === */
+/* === HIG principles — design credibility moment ===
+   6 cells: 1 large dark feature + 5 pastel Apple-style cards.
+   The pastels are soft, low-saturation, and from the same family so
+   the section reads as one composition, not a rainbow. */
 .hig-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -385,12 +371,12 @@
   margin-top: 80px;
 }
 .hig-cell {
-  background: var(--gray-06);
   border-radius: 18px;
   padding: 28px;
   display: flex; flex-direction: column; justify-content: space-between;
   min-height: 220px;
   position: relative; overflow: hidden;
+  background: #f5f5f7;
 }
 .hig-cell-name {
   font-family: var(--font-display);
@@ -407,6 +393,12 @@
   letter-spacing: -0.01em;
   margin-top: 16px;
 }
+/* Pastel cards — same family, low saturation, Apple-style. */
+.hig-cell:nth-child(2) { background: #f0e9ff; }  /* lavender  */
+.hig-cell:nth-child(3) { background: #e8f3ec; }  /* mint      */
+.hig-cell:nth-child(4) { background: #fde8d8; }  /* peach     */
+.hig-cell:nth-child(5) { background: #e6f0fa; }  /* sky       */
+.hig-cell:nth-child(6) { background: #f5e8ea; }  /* rose      */
 /* Feature cell — the first principle gets double width + dark surface so
    the section reads as one strong idea, not a 3-up grid of equal weights. */
 .hig-cell:nth-child(1) {
@@ -623,12 +615,8 @@
     margin-top: 56px;
   }
   .pillar {
-    border-right: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding: 36px 0;
+    padding: 36px 24px;
   }
-  .pillar:last-child { border-bottom: none; }
-  .pillar:nth-child(2), .pillar:nth-child(3) { padding-left: 0; }
 
   .hig-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -681,7 +669,6 @@
   <div class="hero-main">
     <div class="hero-left">
       <p class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
         iOS Developer & Designer · Petropavl, Kazakhstan
       </p>
       <h1 class="hero-title">
@@ -692,18 +679,16 @@
     </div>
     <div class="hero-visual">
       <div class="iphone-stage" data-parallax style="--parallax-depth:0.06">
-        <span class="iphone-meta is-top">SwiftUI · iOS 17</span>
         <div class="iphone-frame">
           <div class="iphone-notch"></div>
           <div class="iphone-screen">
             <picture>
               <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 320px">
               <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 320px">
-              <img src="img/chatra light.jpg" alt="Chatra — built with SwiftUI" fetchpriority="high" decoding="async">
+              <img src="img/chatra light.jpg" alt="Chatra" fetchpriority="high" decoding="async">
             </picture>
           </div>
         </div>
-        <span class="iphone-meta is-bottom">Live · 2025 — 2026</span>
       </div>
     </div>
   </div>
@@ -715,10 +700,6 @@
       <a href="chatra.html" class="btn btn-primary">See Chatra</a>
       <a href="#work" class="btn btn-ghost">Selected work</a>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <span class="hero-scroll-line"></span>
-    <span class="hero-scroll-label">Scroll</span>
   </div>
 </section>
 
@@ -775,7 +756,7 @@
         <h3 class="pillar-name">iOS</h3>
         <p class="pillar-body">Designing for the platform. Dynamic Type, Dark Mode, haptics, system materials — the affordances that make an app feel at home.</p>
       </div>
-      <div class="pillar fade-up" style="border-bottom:none;">
+      <div class="pillar fade-up">
         <div class="pillar-num">04</div>
         <h3 class="pillar-name">Xcode</h3>
         <p class="pillar-body">Where the work becomes a product. Previews, instruments, signing, archive — the full path from idea to App Store.</p>

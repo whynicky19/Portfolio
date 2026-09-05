@@ -2,760 +2,339 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chatra Academy — Case Study · Whynicky</title>
-<meta name="description" content="A complete educational platform — Flutter mobile app, FastAPI backend, Nuxt.js dashboard. Built end-to-end by two developers.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Chatra — A new chapter for the classroom · Whynicky</title>
+<meta name="description" content="An educational platform — iOS, REST backend, web dashboard. Built end-to-end by two developers and shipped to real university classrooms.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/chatra.html">
-<meta property="og:title" content="Chatra Academy — Case Study">
-<meta property="og:description" content="Full-stack educational platform. Flutter · FastAPI · Nuxt.js · PostgreSQL.">
+<meta property="og:title" content="Chatra — A new chapter for the classroom">
+<meta property="og:description" content="Full-stack educational platform — Flutter, FastAPI, Nuxt, PostgreSQL. Built by two developers and shipped to real classrooms.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/avif" href="img/chatra-light-600w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
-<link rel="preload" as="image" type="image/webp" href="img/chatra-light-600w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
+<link rel="preload" as="image" type="image/avif" href="img/chatra-light-1179w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
+<link rel="preload" as="image" type="image/webp" href="img/chatra-light-1179w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
 <link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="animations.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatra.css">
 <script src="theme-init.js"></script>
-<style>
-
-/* ══════════════ Section scaffolding ══════════════ */
-.section { padding: var(--section-y, 160px) 0; position: relative; }
-.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
-.section-inner-narrow { max-width: 880px; margin: 0 auto; padding: 0 40px; }
-.section-light { background: var(--white); }
-.section-tint  { background: var(--gray-06); }
-.section-dark  { background: #000; color: var(--white); }
-
-.sec-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 24px;
-}
-.sec-heading {
-  font-family: var(--font-display);
-  font-size: var(--display-md);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-  color: var(--black);
-}
-.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
-.section-dark .sec-heading { color: var(--white); }
-.sec-body {
-  font-size: clamp(17px, 1.5vw, 19px);
-  line-height: 1.6;
-  color: var(--gray-4);
-  letter-spacing: -0.01em;
-}
-.sec-body + .sec-body { margin-top: 18px; }
-
-/* ══════════════ Case study hero ══════════════ */
-.cs-hero {
-  min-height: 92svh;
-  background: var(--white);
-  padding: calc(var(--nav-h) + 80px) 32px 80px;
-  display: grid; grid-template-rows: 1fr auto;
-  position: relative; overflow: hidden;
-}
-.cs-hero-main {
-  max-width: var(--max-w);
-  margin: 0 auto; width: 100%;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 64px;
-  align-items: end;
-}
-.cs-eyebrow {
-  display: inline-flex; align-items: center; gap: 12px;
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 28px;
-}
-.cs-eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--green);
-  animation: dotBreathe 2.4s ease-in-out infinite;
-}
-.cs-title {
-  font-family: var(--font-display);
-  font-size: var(--display-xxl);
-  font-weight: 700;
-  letter-spacing: var(--em-tightest);
-  line-height: 0.88;
-  color: var(--black);
-  margin: 0;
-}
-.cs-title .line {
-  display: block;
-  opacity: 0; transform: translateY(0.2em);
-  filter: blur(8px);
-  animation: titleLineIn 1s var(--ease-apple) both;
-}
-.cs-title .line:nth-child(1) { animation-delay: .15s; }
-.cs-title .line:nth-child(2) { animation-delay: .32s; color: var(--gray-4); }
-@keyframes titleLineIn {
-  from { opacity: 0; transform: translateY(0.2em); filter: blur(8px); }
-  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-.cs-sub {
-  font-size: clamp(17px, 1.6vw, 21px);
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.55;
-  color: var(--gray-4);
-  max-width: 480px;
-  margin-top: 24px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .55s both;
-}
-.cs-hero-foot {
-  max-width: var(--max-w);
-  margin: 56px auto 0;
-  display: flex; align-items: flex-end; justify-content: space-between;
-  gap: 32px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .75s both;
-}
-.cs-stack {
-  display: flex; flex-wrap: wrap; gap: 6px;
-}
-.cs-stack .chip {
-  font-size: 11px; padding: 4px 10px;
-  color: var(--gray-4);
-  background: var(--gray-06);
-  border: 1px solid var(--border);
-}
-.cs-actions {
-  display: flex; gap: 12px; flex-wrap: wrap;
-}
-
-/* ══════════════ Hero iPhone stage ══════════════ */
-.cs-hero-visual {
-  display: flex; align-items: end; justify-content: center;
-  padding: 0 24px;
-}
-.hero-iphone {
-  width: clamp(240px, 26vw, 340px);
-  position: relative;
-  opacity: 0;
-  animation: phoneStageIn 1.3s var(--ease-apple) .55s both;
-}
-@keyframes phoneStageIn {
-  from { opacity: 0; transform: translateY(40px) scale(0.94); }
-  to   { opacity: 1; transform: none; }
-}
-.hero-iphone::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -8%;
-  width: 70%; height: 40px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.18) 0%, transparent 72%);
-  filter: blur(8px);
-}
-[data-theme="dark"] .hero-iphone::after {
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 72%);
-}
-.iphone-frame {
-  width: 100%;
-  background: #1d1d1f;
-  border-radius: 44px;
-  border: 1px solid #2a2a2c;
-  padding: 6px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.06),
-    0 60px 120px rgba(0,0,0,0.20),
-    0 16px 36px rgba(0,0,0,0.10),
-    0 4px 10px rgba(0,0,0,0.06);
-  position: relative; z-index: 1;
-}
-.iphone-notch {
-  position: absolute; top: 12px; left: 50%;
-  transform: translateX(-50%);
-  width: 72px; height: 20px;
-  background: #000; border-radius: 11px;
-  z-index: 2;
-}
-.iphone-screen {
-  width: 100%; aspect-ratio: 9/19.5;
-  border-radius: 39px; overflow: hidden;
-  background: #1d1d1f;
-  position: relative;
-}
-.iphone-screen img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: opacity .5s cubic-bezier(.4,0,.2,1);
-}
-.iphone-screen img.hidden { opacity: 0; }
-
-/* Theme toggle pill — Apple Liquid Glass style */
-.theme-pill {
-  margin-top: 24px;
-  display: inline-flex;
-  border-radius: 980px;
-  padding: 3px;
-  gap: 2px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  position: relative;
-}
-.theme-pill::before {
-  content: '';
-  position: absolute; inset: 0 0 auto 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
-  opacity: .55;
-  pointer-events: none;
-  border-radius: inherit;
-}
-.theme-pill button {
-  all: unset;
-  cursor: pointer;
-  font-size: 13px; font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--gray-4);
-  padding: 7px 16px;
-  border-radius: 980px;
-  display: flex; align-items: center; gap: 7px;
-  transition: color .2s var(--ease-out), background .2s var(--ease-out);
-}
-.theme-pill button.active {
-  background: var(--white);
-  color: var(--black);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.12), 0 0 0 0.5px rgba(0,0,0,0.06);
-}
-.theme-pill-icon { width: 12px; height: 12px; display: inline-block; }
-.theme-pill-row {
-  display: flex; justify-content: center;
-  margin-top: 24px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .9s both;
-}
-
-/* ══════════════ Overview strip ══════════════ */
-.cs-overview {
-  background: var(--gray-06);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.cs-overview-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.cs-overview-item {
-  padding: 36px 24px;
-  text-align: left;
-  border-right: 1px solid var(--border);
-}
-.cs-overview-item:last-child { border-right: none; }
-.cs-overview-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 12px;
-}
-.cs-overview-value {
-  font-family: var(--font-display);
-  font-size: clamp(18px, 1.6vw, 22px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  color: var(--black);
-  line-height: 1.3;
-}
-
-/* ══════════════ Feature sections (video + text) ══════════════ */
-.cs-feature {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  padding: var(--section-y, 120px) 0;
-}
-.cs-feature.reverse .cs-feature-text { order: 2; }
-.cs-feature.reverse .cs-feature-visual { order: 1; }
-.cs-feature-text {
-  display: flex; flex-direction: column; gap: 16px;
-}
-.cs-feature-title {
-  font-family: var(--font-display);
-  font-size: var(--display-md);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
-  color: var(--black);
-}
-.section-dark .cs-feature-title { color: var(--white); }
-.cs-feature-desc {
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--gray-4);
-  letter-spacing: -0.01em;
-  max-width: 460px;
-}
-.section-dark .cs-feature-desc { color: rgba(255,255,255,0.7); }
-.cs-feature-visual {
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.feature-phone {
-  width: clamp(220px, 24vw, 300px);
-  position: relative;
-  opacity: 0;
-  transform: translateY(40px) scale(0.94);
-  transition: opacity 1.1s var(--ease-apple), transform 1.1s var(--ease-apple);
-}
-.feature-phone.in-view { opacity: 1; transform: none; }
-.feature-phone.reverse-in { transform: translateX(-40px) translateY(20px) scale(0.94); }
-.feature-phone.reverse-in.in-view { transform: none; }
-.feature-phone::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -8%;
-  width: 70%; height: 36px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
-  filter: blur(6px);
-  pointer-events: none;
-}
-[data-theme="dark"] .feature-phone::after {
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 72%);
-}
-.feature-phone .iphone-screen video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-
-/* ══════════════ Stack grid (no chips, refined) ══════════════ */
-.cs-stack-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--border);
-  margin-top: 56px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-}
-.cs-stack-cell {
-  background: var(--white);
-  padding: 24px;
-}
-.section-dark .cs-stack-cell { background: #111; }
-.cs-stack-cell-name {
-  font-family: var(--font-display);
-  font-size: clamp(17px, 1.4vw, 19px);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--black);
-  margin-bottom: 4px;
-}
-.section-dark .cs-stack-cell-name { color: var(--white); }
-.cs-stack-cell-role {
-  font-size: 12px;
-  color: var(--gray-5);
-  letter-spacing: -0.005em;
-}
-
-/* ══════════════ Metric row ══════════════ */
-.cs-metric-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  margin-top: 64px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  overflow: hidden;
-}
-.cs-metric-cell {
-  background: var(--white);
-  padding: 40px 32px;
-  text-align: left;
-}
-.cs-metric-num {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 72px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  color: var(--black);
-  line-height: 1;
-  margin-bottom: 12px;
-}
-.cs-metric-label {
-  font-size: 14px;
-  color: var(--gray-4);
-  line-height: 1.4;
-  max-width: 200px;
-}
-
-/* ══════════════ Long-form copy sections ══════════════ */
-.cs-prose {
-  max-width: 640px;
-  margin: 0 auto;
-}
-.cs-prose p {
-  font-size: clamp(17px, 1.5vw, 20px);
-  line-height: 1.65;
-  color: var(--gray-4);
-  letter-spacing: -0.01em;
-  margin-bottom: 18px;
-}
-.cs-prose p strong { color: var(--black); font-weight: 600; }
-
-/* ══════════════ CTA mini ══════════════ */
-.cta-mini {
-  padding: 120px 0;
-  background: var(--white);
-  text-align: center;
-}
-.cta-mini h2 {
-  font-family: var(--font-display);
-  font-size: var(--display-lg);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 28px;
-}
-.cta-mini .btn-row {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-}
-
-/* ══════════════ Responsive ══════════════ */
-@media (max-width: 900px) {
-  .cs-hero-main {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  .cs-hero-visual { order: -1; padding: 0; }
-  .hero-iphone { width: clamp(200px, 56vw, 260px); }
-  .cs-hero-foot {
-    flex-direction: column; align-items: flex-start;
-    gap: 20px;
-  }
-  .cs-overview-inner { grid-template-columns: 1fr 1fr; }
-  .cs-overview-item:nth-child(odd) { border-right: 1px solid var(--border); }
-  .cs-overview-item:nth-child(even) { border-right: none; }
-  .cs-overview-item:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-  .cs-feature { grid-template-columns: 1fr; gap: 40px; padding: 80px 0; text-align: left; }
-  .cs-feature.reverse .cs-feature-text { order: 0; }
-  .cs-feature.reverse .cs-feature-visual { order: -1; }
-  .cs-stack-grid { grid-template-columns: repeat(2, 1fr); }
-  .cs-metric-row { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .cs-hero { padding: calc(var(--nav-h) + 56px) 20px 56px; }
-  .section-inner, .section-inner-narrow { padding: 0 24px; }
-  .section { padding: 80px 0; }
-  .cs-overview-item { padding: 24px 16px; }
-  .cs-overview-inner { grid-template-columns: 1fr; }
-  .cs-overview-item { border-right: none; border-bottom: 1px solid var(--border); }
-  .cs-overview-item:last-child { border-bottom: none; }
-  .cs-stack-cell { padding: 18px; }
-  .cs-metric-cell { padding: 28px 24px; }
-}
-</style>
 </head>
-<body>
+<body class="chatra">
 
 <div id="site-nav"></div>
 <script src="partials.js"></script>
 
-<!-- ══════════════ HERO ══════════════ -->
-<section class="cs-hero">
-  <div class="cs-hero-main">
-    <div class="cs-hero-text">
-      <p class="cs-eyebrow"><span class="cs-eyebrow-dot"></span>Case Study · 2025—2026</p>
-      <h1 class="cs-title">
-        <span class="line">Every class.</span>
-        <span class="line">Every grade.</span>
-        <span class="line">One app.</span>
-      </h1>
-      <p class="cs-sub">A complete educational platform — iOS app, REST backend, web dashboard. Built end to end by two developers and shipped to real university classrooms.</p>
-    </div>
-    <div class="cs-hero-visual">
-      <div class="hero-iphone" data-parallax style="--parallax-depth:0.05">
-        <div class="iphone-frame">
-          <div class="iphone-notch"></div>
-          <div class="iphone-screen">
-            <picture>
-              <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 340px">
-              <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 340px">
-              <img src="img/chatra light.jpg" alt="Chatra — light theme" id="heroImgLight" fetchpriority="high" decoding="async">
-            </picture>
-            <picture>
-              <source type="image/avif" srcset="img/chatra-dark-600w.avif 600w, img/chatra-dark-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 340px">
-              <source type="image/webp" srcset="img/chatra-dark-600w.webp 600w, img/chatra-dark-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 340px">
-              <img src="img/chatra dark.jpg" alt="Chatra — dark theme" id="heroImgDark" class="hidden" loading="lazy" decoding="async">
-            </picture>
-          </div>
-        </div>
-      </div>
-      <div class="theme-pill-row">
-        <div class="theme-pill" role="group" aria-label="App theme preview">
-          <button id="toggleLight" class="active" onclick="heroSetTheme('light')">
-            <svg class="theme-pill-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <circle cx="6" cy="6" r="2.5" fill="currentColor"/>
-              <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-                <line x1="6" y1="0.5" x2="6" y2="2"/><line x1="6" y1="10" x2="6" y2="11.5"/>
-                <line x1="0.5" y1="6" x2="2" y2="6"/><line x1="10" y1="6" x2="11.5" y2="6"/>
-                <line x1="1.93" y1="1.93" x2="2.98" y2="2.98"/><line x1="9.02" y1="9.02" x2="10.07" y2="10.07"/>
-                <line x1="10.07" y1="1.93" x2="9.02" y2="2.98"/><line x1="2.98" y1="9.02" x2="1.93" y2="10.07"/>
-              </g>
-            </svg>
-            Light
-          </button>
-          <button id="toggleDark" onclick="heroSetTheme('dark')">
-            <svg class="theme-pill-icon" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M10.5 7.5A5 5 0 0 1 4.5 1.5a5 5 0 1 0 6 6z" fill="currentColor"/>
-            </svg>
-            Dark
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 1 · HERO · cinematic product title
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-hero" id="top">
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-aurora" aria-hidden="true"></div>
 
-  <div class="cs-hero-foot">
-    <div class="cs-stack">
-      <span class="chip">Flutter</span>
-      <span class="chip">Dart</span>
-      <span class="chip">FastAPI</span>
-      <span class="chip">PostgreSQL</span>
-      <span class="chip">Nuxt.js</span>
-      <span class="chip">Docker</span>
-      <span class="chip">Riverpod</span>
-    </div>
-    <div class="cs-actions">
-      <a href="#problem" class="btn btn-ghost">Read the case study</a>
-      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-link">View source →</a>
-    </div>
-  </div>
-</section>
+  <div class="hero-stage">
+    <h1 class="hero-mark" aria-label="Chatra">
+      <span class="hero-mark-letter" style="--i:0">C</span>
+      <span class="hero-mark-letter" style="--i:1">h</span>
+      <span class="hero-mark-letter" style="--i:2">a</span>
+      <span class="hero-mark-letter" style="--i:3">t</span>
+      <span class="hero-mark-letter" style="--i:4">r</span>
+      <span class="hero-mark-letter" style="--i:5">a</span>
+    </h1>
 
-<!-- ══════════════ OVERVIEW STRIP ══════════════ -->
-<section class="cs-overview">
-  <div class="cs-overview-inner">
-    <div class="cs-overview-item fade-up">
-      <div class="cs-overview-label">Timeline</div>
-      <div class="cs-overview-value">2025 → 2026</div>
-    </div>
-    <div class="cs-overview-item fade-up">
-      <div class="cs-overview-label">Role</div>
-      <div class="cs-overview-value">Mobile / Frontend</div>
-    </div>
-    <div class="cs-overview-item fade-up">
-      <div class="cs-overview-label">Platforms</div>
-      <div class="cs-overview-value">iOS · Android · Web</div>
-    </div>
-    <div class="cs-overview-item fade-up">
-      <div class="cs-overview-label">Status</div>
-      <div class="cs-overview-value">Live in production</div>
-    </div>
-  </div>
-</section>
+    <p class="hero-tagline">
+      <span class="hero-line" style="--i:0">A new chapter</span>
+      <span class="hero-line hero-line-quiet" style="--i:1">for the classroom.</span>
+    </p>
 
-<!-- ══════════════ THE PROBLEM ══════════════ -->
-<section class="section section-light" id="problem">
-  <div class="section-inner-narrow">
-    <p class="sec-eyebrow fade-up">The problem</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Classrooms run on Telegram chats and spreadsheets.
-    </h2>
-    <div class="sec-body fade-up" style="margin-top:32px;">
-      <p>At my university, educators had no unified tool. Assignments were sent as messages. Attendance was tracked in notebooks. Grades lived in disconnected Excel files. Students had no visibility into their own progress.</p>
-      <p>The goal: build a platform where teachers create classes, post assignments, track attendance, and publish grades — and where students access all of it from a single app.</p>
-    </div>
-  </div>
-</section>
+    <p class="hero-sub">An educational platform — iOS, a REST backend, a web dashboard. Built end to end by two developers and shipped to real university classrooms.</p>
 
-<!-- ══════════════ FEATURE 1 — Classes ══════════════ -->
-<section class="section section-tint" id="feature-classes">
-  <div class="section-inner">
-    <div class="cs-feature">
-      <div class="cs-feature-text">
-        <p class="sec-eyebrow fade-up">Classes</p>
-        <h3 class="cs-feature-title word-reveal">Join a class. See your schedule. Stay on track.</h3>
-        <p class="cs-feature-desc fade-up">Teachers create classes and post assignments with deadlines. Students join with a code and instantly see everything — lectures, tasks, attendance. No Telegram, no spreadsheets.</p>
-      </div>
-      <div class="cs-feature-visual">
-        <div class="feature-phone phone-1">
-          <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <video muted loop playsinline preload="none" data-autoplay>
-                <source src="video/classes.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
+    <div class="hero-product" data-parallax="0.05">
+      <div class="hero-product-glow" aria-hidden="true"></div>
+      <div class="iphone iphone-xl" data-device="xl" data-shadow="deep">
+        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+          <source src="video/mainscreen.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ ARCHITECTURE ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start;">
-      <div class="fade-up">
-        <p class="sec-eyebrow">Architecture</p>
-        <h3 class="sec-heading word-reveal" style="font-size:clamp(28px,3.2vw,40px);">Three independent layers. One coherent product.</h3>
-        <p class="sec-body" style="margin-top:20px;">Every layer designed to be independently deployable, tightly integrated via a shared REST API.</p>
-      </div>
-      <div class="fade-up" style="display:flex;flex-direction:column;gap:20px;">
-        <div style="border-left:1px solid var(--border-md);padding-left:24px;">
-          <div style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-0.02em;">Flutter Mobile</div>
-          <p class="sec-body" style="font-size:14px;margin:0;">Riverpod state · GoRouter navigation · Dio HTTP client · SharedPreferences token persistence · ngrok tunneling for iOS simulator.</p>
-        </div>
-        <div style="border-left:1px solid var(--border-md);padding-left:24px;">
-          <div style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-0.02em;">FastAPI Backend</div>
-          <p class="sec-body" style="font-size:14px;margin:0;">JWT authentication · PostgreSQL with SQLAlchemy ORM · Docker containerisation · auto-generated Swagger docs · role-based access control.</p>
-        </div>
-        <div style="border-left:1px solid var(--border-md);padding-left:24px;">
-          <div style="font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--black);margin-bottom:6px;letter-spacing:-0.02em;">Nuxt.js Dashboard</div>
-          <p class="sec-body" style="font-size:14px;margin:0;">Kazakh &amp; Russian i18n · role-based UI (teacher / student / admin) · real-time grade updates via REST polling.</p>
-        </div>
-      </div>
-    </div>
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 2 · THE GAP · editorial pull-quote, full-bleed type
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-quote">
+  <div class="scene-inner">
+    <p class="quote-body">
+      <span class="quote-word" style="--i:0">Classes</span>
+      <span class="quote-word" style="--i:1">run</span>
+      <span class="quote-word" style="--i:2">on</span>
+      <span class="quote-word" style="--i:3">chats.</span>
+      <span class="quote-word quote-word-mute" style="--i:4">Attendance</span>
+      <span class="quote-word quote-word-mute" style="--i:5">lives</span>
+      <span class="quote-word quote-word-mute" style="--i:6">in</span>
+      <span class="quote-word quote-word-mute" style="--i:7">notebooks.</span>
+      <span class="quote-word quote-word-mute" style="--i:8">Grades</span>
+      <span class="quote-word quote-word-mute" style="--i:9">live</span>
+      <span class="quote-word quote-word-mute" style="--i:10">in</span>
+      <span class="quote-word quote-word-mute" style="--i:11">spreadsheets.</span>
+    </p>
+    <p class="quote-foot">There was no single place where education actually happened.</p>
   </div>
 </section>
 
-<!-- ══════════════ FEATURE 2 — Subjects ══════════════ -->
-<section class="section section-tint" id="feature-subjects">
-  <div class="section-inner">
-    <div class="cs-feature reverse">
-      <div class="cs-feature-text">
-        <p class="sec-eyebrow fade-up">Subjects</p>
-        <h3 class="cs-feature-title word-reveal">Every subject, organized in one place.</h3>
-        <p class="cs-feature-desc fade-up">Materials, assignments, and grades are grouped by subject instead of buried in a chat feed. Students open a subject and see exactly what's due, what's graded, and what's next.</p>
-      </div>
-      <div class="cs-feature-visual">
-        <div class="feature-phone phone-2 reverse-in">
-          <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <video muted loop playsinline preload="none" data-autoplay>
-                <source src="video/subjects.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ STACK GRID ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Tooling</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Every tool chosen deliberately.
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 3 · MEET CHATRA · one centered composition
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-meet" id="meet">
+  <div class="scene-inner">
+    <h2 class="scene-h scene-h-xxl meet-h">
+      <span>One app.</span>
+      <span>Every class.</span>
+      <span>Every student.</span>
     </h2>
 
-    <div class="cs-stack-grid depth-stagger">
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Flutter / Dart</div><div class="cs-stack-cell-role">Cross-platform mobile</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Riverpod</div><div class="cs-stack-cell-role">State management</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">GoRouter</div><div class="cs-stack-cell-role">Navigation</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Dio</div><div class="cs-stack-cell-role">HTTP client</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">FastAPI</div><div class="cs-stack-cell-role">REST backend</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">PostgreSQL</div><div class="cs-stack-cell-role">Primary database</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">SQLAlchemy</div><div class="cs-stack-cell-role">ORM</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Docker</div><div class="cs-stack-cell-role">Containerisation</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Nuxt.js / Vue</div><div class="cs-stack-cell-role">Web dashboard</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">JWT</div><div class="cs-stack-cell-role">Authentication</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">i18n</div><div class="cs-stack-cell-role">KZ · RU localisation</div></div>
-      <div class="cs-stack-cell"><div class="cs-stack-cell-name">Figma</div><div class="cs-stack-cell-role">UI design</div></div>
+    <div class="meet-stage" data-meet-stage>
+      <div class="iphone iphone-xl" data-device="xl" data-screen="chatra-light" data-shadow="hero">
+        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+          <source src="video/aiscreen.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    </div>
+
+    <p class="meet-caption">Teachers create classes. Students join with a code. Assignments, attendance, grades, and AI tutoring — all in one place, across three platforms.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 4 · CLASSES · giant single phone, sticky copy
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-classes" id="classes">
+  <div class="sticky-stage">
+    <div class="sticky-copy">
+      <h2 class="scene-h scene-h-xl">
+        <span>Join a class.</span>
+        <span>See your week.</span>
+        <span>Stay on track.</span>
+      </h2>
+      <p class="scene-body">A shared schedule for every subject. Deadlines, attendance, and announcements live next to each other instead of buried in chat threads.</p>
+      <ul class="sticky-bullets">
+        <li>One-tap join with a class code</li>
+        <li>Live schedule synced to the server</li>
+        <li>Notifications that respect your time</li>
+      </ul>
+    </div>
+
+    <div class="sticky-phone">
+      <div class="iphone iphone-xl iphone-xl-bright" data-device="xl" data-screen="chatra-light" data-shadow="hero">
+        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+          <source src="video/classes.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ FEATURE 3 — AI assistant ══════════════ -->
-<section class="section section-tint" id="feature-ai">
-  <div class="section-inner">
-    <div class="cs-feature">
-      <div class="cs-feature-text">
-        <p class="sec-eyebrow fade-up">AI Assistant</p>
-        <h3 class="cs-feature-title word-reveal">Ask anything about your material. Get an answer instantly.</h3>
-        <p class="cs-feature-desc fade-up">Built-in AI chat helps students understand material without waiting for a teacher response. Ask about a lecture topic, get an explanation, move forward. Learning doesn't stop after class hours.</p>
-      </div>
-      <div class="cs-feature-visual">
-        <div class="feature-phone phone-3">
-          <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <video muted loop playsinline preload="none" data-autoplay>
-                <source src="video/aichat.mp4" type="video/mp4">
-              </video>
-            </div>
-          </div>
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 5 · SUBJECTS · single phone, vertical
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-subjects" id="subjects">
+  <div class="scene-inner">
+    <div class="subjects-stage">
+      <div class="subjects-phone">
+        <div class="iphone iphone-xl" data-device="xl" data-screen="chatra-light" data-shadow="hero">
+          <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+            <source src="video/subjects.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
+
+      <div class="subjects-text">
+        <h2 class="scene-h scene-h-xl">
+          <span>Every subject,</span>
+          <span>in one place.</span>
+        </h2>
+        <p class="scene-body">Materials, assignments, and grades are grouped by subject — not buried in a feed. Open a subject and see exactly what's due, what's graded, and what's next.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ METRICS ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">The result</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Shipped. Used. Real.
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 6 · AI · dark cinematic section, single hero phone
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-ai" id="ai">
+  <div class="ai-aurora" aria-hidden="true"></div>
+  <div class="scene-inner">
+    <h2 class="scene-h scene-h-xl scene-h-light ai-h">
+      <span>Learning doesn't</span>
+      <span>stop after class.</span>
     </h2>
 
-    <div class="cs-metric-row">
-      <div class="cs-metric-cell fade-up">
-        <div class="cs-metric-num">3</div>
-        <div class="cs-metric-label">Platforms shipped simultaneously</div>
-      </div>
-      <div class="cs-metric-cell fade-up">
-        <div class="cs-metric-num">2</div>
-        <div class="cs-metric-label">Developers. Zero outsourcing.</div>
-      </div>
-      <div class="cs-metric-cell fade-up">
-        <div class="cs-metric-num">∞</div>
-        <div class="cs-metric-label">Things learned the hard way</div>
+    <div class="ai-stage">
+      <div class="iphone iphone-xl iphone-xl-dark" data-device="xl" data-screen="chatra-dark" data-shadow="cinematic">
+        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+          <source src="video/aichat.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+
+    <p class="ai-foot scene-body scene-body-light">Ask anything about your material. Get an explanation in seconds. The assistant is built into the same app — no extra download, no separate account.</p>
   </div>
 </section>
 
-<!-- ══════════════ REFLECTION ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner-narrow">
-    <p class="sec-eyebrow fade-up">Reflection</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      The hard parts were the valuable parts.
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 7 · DARK / LIGHT · the same screen, both moods
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-themes">
+  <div class="scene-inner">
+    <h2 class="scene-h scene-h-xl themes-h">
+      <span>Bright by day.</span>
+      <span>Easy on the eyes</span>
+      <span>at night.</span>
     </h2>
-    <div class="cs-prose fade-up" style="margin-top:32px;">
-      <p>iOS simulator networking with a local FastAPI server required a tunneling setup with <strong>ngrok</strong> — something no tutorial covered. I figured it out from first principles.</p>
-      <p>Designing a role-based system (student, teacher, admin) across three platforms meant every API endpoint and every UI screen had to account for permission states. It forced me to think about <strong>product architecture, not just code</strong>.</p>
-      <p>Shipping to real users — even a small group — changes how you build. You stop writing code for yourself and start writing it for people who will break your assumptions in ways you never anticipated.</p>
+
+    <div class="themes-stage">
+      <div class="themes-card themes-card-light" data-themes-card>
+        <div class="iphone iphone-lg" data-device="lg" data-screen="chatra-light" data-shadow="deep"></div>
+      </div>
+      <div class="themes-card themes-card-dark" data-themes-card>
+        <div class="iphone iphone-lg iphone-lg-dark" data-device="lg" data-screen="chatra-dark" data-shadow="deep"></div>
+      </div>
+    </div>
+
+    <p class="themes-foot">Every screen, every component, every interaction — designed for light and dark from the first sketch, not retrofitted later.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 8 · ARCHITECTURE
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-arch" id="architecture">
+  <div class="scene-inner">
+    <header class="arch-head">
+      <h2 class="scene-h scene-h-xl">
+        <span>Three independent layers.</span>
+        <span>One coherent product.</span>
+      </h2>
+      <p class="scene-body arch-intro">Every layer designed to deploy on its own, tightly integrated through a single REST API.</p>
+    </header>
+
+    <ol class="arch-stack" data-arch>
+      <li class="arch-layer" data-arch-layer>
+        <div class="arch-layer-num">01</div>
+        <div class="arch-layer-body">
+          <h3 class="arch-layer-title">Flutter</h3>
+          <p class="arch-layer-desc">Riverpod state, GoRouter navigation, Dio HTTP, secure token persistence.</p>
+        </div>
+      </li>
+      <li class="arch-layer" data-arch-layer>
+        <div class="arch-layer-num">02</div>
+        <div class="arch-layer-body">
+          <h3 class="arch-layer-title">FastAPI</h3>
+          <p class="arch-layer-desc">JWT auth, role-based access, automatic Swagger docs, PostgreSQL via SQLAlchemy.</p>
+        </div>
+      </li>
+      <li class="arch-layer" data-arch-layer>
+        <div class="arch-layer-num">03</div>
+        <div class="arch-layer-body">
+          <h3 class="arch-layer-title">PostgreSQL</h3>
+          <p class="arch-layer-desc">Classes, users, grades, attendance — normalized once, queried forever.</p>
+        </div>
+      </li>
+      <li class="arch-layer" data-arch-layer>
+        <div class="arch-layer-num">04</div>
+        <div class="arch-layer-body">
+          <h3 class="arch-layer-title">Nuxt.js</h3>
+          <p class="arch-layer-desc">Teacher and admin views in Kazakh and Russian. The same API, a different surface.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 9 · BUILT WITH · a single quiet line of tools
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-tools">
+  <div class="scene-inner scene-inner-narrow">
+    <p class="tools-list">
+      <span>Flutter</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>Dart</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>Riverpod</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>FastAPI</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>PostgreSQL</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>Nuxt</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>Docker</span>
+      <span class="tools-dot" aria-hidden="true">·</span>
+      <span>JWT</span>
+    </p>
+    <p class="tools-foot">No frameworks. No boilerplate generators. Just the right tool for each layer.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 10 · SHIPPED · three giant numerals, the result
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-shipped">
+  <div class="scene-inner">
+    <h2 class="scene-h scene-h-xxl scene-h-shipped">
+      <span>Shipped.</span>
+      <span>Used.</span>
+      <span class="shipped-accent">Real.</span>
+    </h2>
+
+    <div class="shipped-row" data-shipped>
+      <div class="shipped-cell">
+        <div class="shipped-num">3</div>
+        <div class="shipped-label">platforms<br>shipped together</div>
+      </div>
+      <div class="shipped-cell">
+        <div class="shipped-num">2</div>
+        <div class="shipped-label">developers.<br>zero outsourcing.</div>
+      </div>
+      <div class="shipped-cell">
+        <div class="shipped-num shipped-num-thin">∞</div>
+        <div class="shipped-label">lessons learned<br>the hard way</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ CTA ══════════════ -->
-<section class="cta-mini">
-  <div class="section-inner">
-    <h2 class="fade-up">Read the source.</h2>
-    <p class="t-body-xl fade-up" style="max-width:480px;margin:0 auto 36px;">Both the mobile app and the web dashboard are on GitHub.</p>
-    <div class="btn-row fade-up">
-      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-primary">Mobile source</a>
-      <a href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" class="btn btn-ghost">Web dashboard</a>
-      <a href="projects.html" class="btn btn-link">← All projects</a>
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 11 · REFLECTION · a quiet closing
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-reflect">
+  <div class="scene-inner scene-inner-narrow">
+    <p class="reflect-body">
+      The hard parts were the valuable parts. Shipping to real users — even a small group — changes how you build. You stop writing code for yourself and start writing it for people who will break your assumptions in ways you never anticipated.
+    </p>
+    <p class="reflect-sign">Built by two. Designed as one.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCENE 12 · CTA · close the case study
+     ════════════════════════════════════════════════════════════ -->
+<section class="scene scene-cta">
+  <div class="scene-inner">
+    <h2 class="scene-h scene-h-xl cta-headline">
+      <span>Read the source.</span>
+      <span>Run it locally.</span>
+      <span>Break things.</span>
+    </h2>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" rel="noopener">Mobile source →</a>
+      <a class="btn btn-ghost" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener">Web dashboard</a>
+      <a class="btn btn-link" href="projects.html">← All projects</a>
     </div>
   </div>
 </section>
@@ -766,51 +345,7 @@
 <script src="utils.js"></script>
 <script src="components.js"></script>
 <script src="app.js"></script>
-<script>
-(function () {
-  /* Autoplay videos on scroll */
-  const videos = document.querySelectorAll('[data-autoplay]');
-  if (videos.length) {
-    const vObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.play().catch(() => {}); }
-        else { e.target.pause(); e.target.currentTime = 0; }
-      });
-    }, { threshold: 0.4 });
-    videos.forEach(v => vObs.observe(v));
-  }
+<script src="chatra.js" defer></script>
 
-  /* Phone reveal on scroll */
-  const phones = document.querySelectorAll('.feature-phone');
-  if (phones.length) {
-    const pObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in-view'); pObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.2 });
-    phones.forEach(p => pObs.observe(p));
-  }
-})();
-
-/* Hero phone theme toggle */
-function heroSetTheme(mode) {
-  const imgLight = document.getElementById('heroImgLight');
-  const imgDark  = document.getElementById('heroImgDark');
-  const btnLight = document.getElementById('toggleLight');
-  const btnDark  = document.getElementById('toggleDark');
-  if (!imgLight || !imgDark) return;
-  if (mode === 'dark') {
-    imgLight.classList.add('hidden');
-    imgDark.classList.remove('hidden');
-    btnDark.classList.add('active');
-    btnLight.classList.remove('active');
-  } else {
-    imgDark.classList.add('hidden');
-    imgLight.classList.remove('hidden');
-    btnLight.classList.add('active');
-    btnDark.classList.remove('active');
-  }
-}
-</script>
 </body>
 </html>
