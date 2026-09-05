@@ -3,24 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whynicky — Flutter & Nuxt Developer</title>
-<meta name="description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
+<title>Whynicky — iOS Developer & Designer</title>
+<meta name="description" content="iOS Developer & Designer. Swift, SwiftUI, and Apple HIG — designing and building for iOS.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/">
-<meta property="og:title" content="Whynicky — Flutter & Nuxt Developer">
-<meta property="og:description" content="Flutter & Nuxt developer building full-stack products from Kazakhstan. Mobile · Web · Backend.">
+<meta property="og:title" content="Whynicky — iOS Developer & Designer">
+<meta property="og:description" content="Designing interfaces. Building for iOS.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Whynicky — Flutter & Nuxt Developer">
-<meta name="twitter:description" content="Flutter & Nuxt developer building full-stack products from Petropavl, Kazakhstan.">
+<meta name="twitter:title" content="Whynicky — iOS Developer & Designer">
+<meta name="twitter:description" content="Designing interfaces. Building for iOS.">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<!-- Idle-time prefetch for the two pages most visitors go to next from
-     the homepage — low priority, never competes with this page's own
-     critical resources; the browser only fetches it once the network
-     is otherwise quiet. -->
+<link rel="preload" as="image" type="image/avif" href="img/chatra-light-600w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
+<link rel="preload" as="image" type="image/webp" href="img/chatra-light-600w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
 <link rel="prefetch" href="chatra.html">
 <link rel="prefetch" href="projects.html">
 <link rel="stylesheet" href="tokens.css">
@@ -29,265 +27,646 @@
 <script src="theme-init.js"></script>
 <style>
 
+/* ───────────────────────────────────────────────────────
+   HOMEPAGE — iOS Developer & Designer
+   Composition rules:
+   - One idea per section.
+   - Massive type. Lots of air.
+   - Light sections by default. Dark only for moments of focus.
+   - Product visuals are real Chatra screens, not abstract art.
+   - No chips, no progress bars, no skill grids on this page.
+─────────────────────────────────────────────────────── */
+
+/* === Hero === */
 .hero {
   min-height: 100svh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: calc(var(--nav-h) + 60px) 32px 100px;
-  position: relative; overflow: hidden;
+  display: grid; grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
+  padding: calc(var(--nav-h) + 60px) 32px 40px;
+  position: relative;
   background: var(--white);
+  overflow: hidden;
 }
-
-.hero-content {
-  position: relative; z-index: 1;
-  display: flex; flex-direction: column;
-  align-items: center; gap: 24px;
+.hero > * { min-width: 0; }
+.hero-main {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 64px; align-items: end;
+  max-width: var(--max-w);
+  margin: 0 auto; width: 100%;
 }
-
 .hero-eyebrow {
-  font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--gray-4);
-  display: flex; align-items: center; gap: 10px;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.02em; color: var(--gray-4);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-apple) .15s both;
 }
-.hero-name {
+.hero-eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: dotBreathe 2.4s ease-in-out infinite;
+}
+.hero-title {
   font-family: var(--font-display);
-  font-size: clamp(58px, 13vw, 160px);
-  font-weight: 700; letter-spacing: -0.055em;
-  line-height: 0.9; color: var(--black);
-  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .2s both;
+  font-size: var(--display-xxl);
+  font-weight: 700;
+  letter-spacing: var(--em-tightest);
+  line-height: 0.88;
+  color: var(--black);
+  margin: 0;
 }
-.hero-role {
-  font-size: clamp(18px, 2.8vw, 26px);
-  font-weight: 300; letter-spacing: -0.02em;
-  color: var(--gray-4); line-height: 1.4;
-  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .4s both;
+.hero-title .line {
+  display: block;
+  opacity: 0; transform: translateY(0.2em);
+  filter: blur(8px);
+  animation: titleLineIn 1s var(--ease-apple) both;
 }
-.hero-role b { color: var(--black); font-weight: 500; }
-
+.hero-title .line:nth-child(1) { animation-delay: .25s; }
+.hero-title .line:nth-child(2) { animation-delay: .42s; color: var(--gray-4); }
+.hero-title .line:nth-child(3) { animation-delay: .58s; }
+.hero-title em {
+  font-style: normal;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+@keyframes titleLineIn {
+  from { opacity: 0; transform: translateY(0.2em); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.hero-foot {
+  display: flex; align-items: end; justify-content: space-between;
+  gap: 32px;
+  max-width: var(--max-w);
+  margin: 0 auto; width: 100%;
+}
+.hero-copy {
+  max-width: 380px;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-apple) .8s both;
+}
+.hero-copy p {
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.5; color: var(--gray-4);
+  letter-spacing: -0.01em;
+}
 .hero-actions {
-  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  animation: heroFadeUp .9s cubic-bezier(.23,1,.32,1) .6s both;
+  display: flex; gap: 14px; flex-wrap: wrap;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-apple) .95s both;
 }
-
-.hero-scroll-cue {
-  position: absolute; z-index: 1; bottom: 36px; left: 50%; transform: translateX(-50%);
+.hero-scroll {
+  position: absolute; left: 50%; bottom: 22px;
+  transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: heroFadeUp .9s 1.4s both;
+  opacity: 0;
+  animation: heroFadeUp 1s var(--ease-apple) 1.4s both;
 }
 .hero-scroll-line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
-  animation: scrollLine 2.5s ease-in-out infinite;
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, transparent, var(--gray-4));
+  animation: scrollLine 2.6s ease-in-out infinite;
 }
-.hero-scroll-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-5); }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.proj-featured {
-  background: var(--white);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 680px;
+.hero-scroll-label {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gray-5);
 }
-.proj-featured-visual {
-  display: flex; align-items: center; justify-content: center;
-  padding: 96px 56px; background: var(--white);
-  position: relative; overflow: hidden;
+
+/* === Hero visual: iPhone with Chatra === */
+.hero-visual {
+  position: relative;
+  display: flex; align-items: end; justify-content: center;
+  padding: 0 24px 24px;
 }
-/* Soft contact shadow under the device mockup — a flat screenshot reads
-   as a real object sitting on a lit surface once it has one, the same
-   cue every actual Apple product photo relies on. In dark mode the panel
-   itself goes black, so a black shadow would vanish — a faint light
-   halo reads as ambient bounce light instead. */
-.proj-featured-visual::after {
+.iphone-stage {
+  width: clamp(220px, 24vw, 320px);
+  position: relative; z-index: 1;
+  opacity: 0;
+  animation: phoneStageIn 1.3s var(--ease-apple) .7s both;
+}
+@keyframes phoneStageIn {
+  from { opacity: 0; transform: translateY(40px) scale(0.94); }
+  to   { opacity: 1; transform: none; }
+}
+.iphone-stage::after {
   content: '';
-  position: absolute; left: 50%; bottom: 9%;
-  width: 62%; height: 40px;
+  position: absolute; left: 50%; bottom: -8%;
+  width: 70%; height: 40px;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
-  filter: blur(6px);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.18) 0%, transparent 72%);
+  filter: blur(8px);
   pointer-events: none;
 }
-[data-theme="dark"] .proj-featured-visual::after { background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 72%); }
-.proj-featured-visual img {
-  max-height: 480px; width: auto; max-width: 100%;
-  filter: none;
-  position: relative; z-index: 1;
+[data-theme="dark"] .iphone-stage::after {
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 72%);
 }
-
-/* Chatra spotlight — real app screenshot inside an iPhone frame, the
-   same mockup treatment chatra.html's own hero uses, sized down for
-   this grid cell. */
-.proj-phone-mockup {
-  width: clamp(220px, 22vw, 280px);
+.iphone-frame {
+  width: 100%;
   background: #1d1d1f;
   border-radius: 44px;
   border: 1px solid #2a2a2c;
   padding: 6px;
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,0.06),
-    0 60px 120px rgba(0,0,0,0.22),
-    0 16px 36px rgba(0,0,0,0.12),
-    0 4px 10px rgba(0,0,0,0.08);
-  position: relative; z-index: 1; flex-shrink: 0;
-}
-.proj-phone-notch {
-  position: absolute; top: 13px; left: 50%;
-  transform: translateX(-50%);
-  width: 70px; height: 19px;
-  background: #000; border-radius: 10px;
-  z-index: 2;
-}
-.proj-phone-screen {
-  width: 100%; aspect-ratio: 9/19.5;
-  border-radius: 39px; overflow: hidden; background: #1d1d1f;
+    0 60px 120px rgba(0,0,0,0.20),
+    0 16px 36px rgba(0,0,0,0.10),
+    0 4px 10px rgba(0,0,0,0.06);
   position: relative;
 }
-.proj-featured-visual .proj-phone-screen img {
+.iphone-notch {
+  position: absolute; top: 12px; left: 50%;
+  transform: translateX(-50%);
+  width: 72px; height: 20px;
+  background: #000; border-radius: 11px;
+  z-index: 2;
+}
+.iphone-screen {
+  width: 100%; aspect-ratio: 9/19.5;
+  border-radius: 39px; overflow: hidden;
+  background: #1d1d1f;
+  position: relative;
+}
+.iphone-screen img {
   position: absolute; inset: 0;
-  width: 100%; height: 100%; max-height: none; max-width: none;
+  width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
-.proj-featured-body {
-  padding: 96px 72px;
-  display: flex; flex-direction: column; justify-content: center; gap: 20px;
+/* Side caption — a thin annotation off the device, like an Apple product
+   diagram. Subtle, but it signals design documentation rather than a
+   generic mockup. */
+.iphone-meta {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--gray-5);
+  white-space: nowrap;
 }
-.proj-featured-title {
+.iphone-meta::before {
+  content: ''; width: 24px; height: 1px;
+  background: var(--gray-3);
+}
+.iphone-meta.is-top { top: 12%; right: -100px; }
+.iphone-meta.is-bottom { bottom: 8%; left: -110px; }
+
+/* === Foundation bar — iOS quartet only === */
+.foundation {
+  background: var(--gray-06);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.foundation-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 32px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 32px;
+}
+.foundation-label {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.02em; color: var(--gray-4);
+  white-space: nowrap;
+}
+.foundation-list {
+  display: flex; gap: 48px; flex-wrap: wrap; justify-content: flex-end;
+  list-style: none;
+}
+.foundation-list li {
   font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 72px);
-  font-weight: 700; letter-spacing: -0.045em;
-  color: var(--black); margin: 8px 0;
+  font-size: clamp(20px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--black);
 }
-.proj-featured-desc {
-  font-size: 17px; color: var(--gray-4);
-  line-height: 1.65; max-width: 400px;
-}
-.proj-featured-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip-dark { background: var(--gray-7) !important; color: var(--gray-3) !important; border-color: rgba(0,0,0,0.1) !important; }
-.proj-featured-actions { display: flex; gap: 16px; align-items: center; }
-@media(max-width:700px){
-  .proj-featured { grid-template-columns: 1fr; }
-  .proj-featured-visual { padding: 60px 32px; min-height: 280px; }
-  .proj-featured-visual::after { bottom: 6%; width: 70%; }
-  .proj-phone-mockup { width: clamp(180px, 44vw, 220px); }
-  .proj-featured-body { padding: 48px 20px; }
-}
-
-
-
-
-@media(max-width:900px){
-  
-}
-@media(max-width:600px){
-  .hero { padding: calc(var(--nav-h) + 44px) 20px 72px; }
-  .hero-eyebrow { font-size: 11px; flex-wrap: wrap; justify-content: center; }
-}
-
-
-
-
-
-.cta-banner {
-  text-align: center; padding: 120px 32px;
-  position: relative; overflow: hidden;
-  background: var(--white);
-}
-.cta-banner::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0,113,227,0.06) 0%, transparent 70%);
-}
-.cta-banner-inner { position: relative; z-index: 1; }
-
-.shipped-word {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── Apple-style stack bar ── */
-.stack-bar {
-  padding: 52px 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  background: var(--white);
-}
-.stack-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--gray-5);
-  text-align: center; margin-bottom: 20px;
-}
-.stack-items {
-  display: flex; flex-wrap: wrap;
-  justify-content: center; gap: 6px 36px;
-}
-.stack-item {
-  font-size: 15px; font-weight: 400;
-  letter-spacing: -0.01em; color: var(--gray-3);
-}
-[data-theme="dark"] .stack-bar { border-color: rgba(255,255,255,0.08); background: #111; }
-[data-theme="dark"] .apple-stats { background: #111; }
-[data-theme="dark"] .apple-stats-inner { border-color: rgba(255,255,255,0.08); }
-[data-theme="dark"] .apple-stat { border-right-color: rgba(255,255,255,0.08); }
-
-/* ── Apple-style stats ── */
-.apple-stats { background: var(--white); }
-.apple-stats-inner {
-  max-width: var(--w-medium); margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-.apple-stat {
-  text-align: center; padding: 76px 24px;
-  border-right: 1px solid rgba(0,0,0,0.08);
-}
-.apple-stat:last-child { border-right: none; }
-.apple-stat-num {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 72px);
-  font-weight: 700; letter-spacing: -0.05em;
-  line-height: 1; color: var(--black);
-  margin-bottom: 12px;
-}
-.apple-stat-label {
-  font-size: 15px; font-weight: 500;
-  letter-spacing: -0.01em; color: var(--black);
+.foundation-list li span {
+  display: block; font-family: var(--font-text);
+  font-size: 11px; font-weight: 500;
+  color: var(--gray-5);
+  letter-spacing: 0.06em; text-transform: uppercase;
   margin-bottom: 4px;
 }
-.apple-stat-sub {
-  font-size: 13px; color: var(--gray-5);
+
+/* === Section scaffolding === */
+.section {
+  padding: var(--section-y, 160px) 0;
+  position: relative;
 }
-@media(max-width:600px){
-  .apple-stats-inner { grid-template-columns: 1fr 1fr; }
-  .apple-stat { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.08); }
-  .apple-stat:nth-child(odd) { border-right: 1px solid rgba(0,0,0,0.08); }
-  .apple-stat:last-child { border-bottom: none; }
-  .apple-stat { padding: 44px 16px; }
-  .cta-banner { padding: 72px 20px; }
+.section-light { background: var(--white); }
+.section-tint { background: var(--gray-06); }
+.section-dark { background: #000; color: var(--white); }
+.section-dark .t-eyebrow,
+.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
+.section-dark .sec-heading { color: var(--white); }
+.section-dark .sec-body { color: rgba(255,255,255,0.7); }
+.section-dark .sec-meta { color: rgba(255,255,255,0.45); }
+.section-dark .section-rule { background: rgba(255,255,255,0.1); }
+.section-dark .anchor-link { color: var(--white); }
+.section-dark .anchor-link:hover { color: var(--accent-hover); }
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.sec-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 24px;
+}
+.sec-heading {
+  font-family: var(--font-display);
+  font-size: var(--display-md);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  color: var(--black);
+}
+.sec-body {
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: var(--gray-4);
+}
+.sec-body-lg {
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+  color: var(--black);
+}
+.section-rule {
+  height: 1px; background: var(--border);
+  border: none; margin: 0;
+}
+.anchor-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 15px; font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap .2s var(--ease-apple);
+}
+.anchor-link:hover { gap: 10px; }
+.anchor-link svg { width: 12px; height: 12px; }
+
+/* === Manifesto / Hero follow-up === */
+.manifesto {
+  text-align: left;
+}
+.manifesto .sec-heading {
+  font-size: var(--display-xl);
+  letter-spacing: var(--em-tightest);
+  line-height: 0.92;
+  max-width: 18ch;
+}
+.manifesto-foot {
+  margin-top: 56px;
+  display: flex; align-items: flex-start;
+  gap: 48px; flex-wrap: wrap;
+}
+.manifesto-foot p {
+  font-size: 17px; line-height: 1.55;
+  color: var(--gray-4);
+  letter-spacing: -0.01em;
+  max-width: 320px;
+}
+.manifesto-foot p strong {
+  color: var(--black); font-weight: 600;
+}
+
+/* === iOS Work pillars (dark section) === */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.pillar {
+  padding: 48px 32px 48px 0;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.pillar:last-child { border-right: none; padding-right: 0; }
+.pillar:nth-child(2) { padding-left: 32px; }
+.pillar:nth-child(3) { padding-left: 32px; }
+.pillar-num {
+  font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+.pillar-name {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.pillar-body {
+  font-size: 15px; line-height: 1.6;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: -0.01em;
+  max-width: 320px;
+}
+
+/* === HIG principles — design credibility moment === */
+.hig-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 12px;
+  margin-top: 80px;
+}
+.hig-cell {
+  background: var(--gray-06);
+  border-radius: 18px;
+  padding: 28px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 220px;
+  position: relative; overflow: hidden;
+}
+.hig-cell-name {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--black);
+  line-height: 1.1;
+}
+.hig-cell-desc {
+  font-size: 13px;
+  color: var(--gray-4);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin-top: 16px;
+}
+/* Feature cell — the first principle gets double width + dark surface so
+   the section reads as one strong idea, not a 3-up grid of equal weights. */
+.hig-cell:nth-child(1) {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: var(--black);
+  color: var(--white);
+  min-height: 480px;
+  padding: 36px;
+}
+.hig-cell:nth-child(1) .hig-cell-name {
+  color: var(--white);
+  font-size: clamp(32px, 3.4vw, 48px);
+  letter-spacing: -0.04em;
+}
+.hig-cell:nth-child(1) .hig-cell-desc {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  max-width: 380px;
+}
+
+/* === Featured work — Chatra moment === */
+.work-feature {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.work-visual {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 0;
+}
+.work-iphone {
+  width: clamp(260px, 28vw, 360px);
+  position: relative;
+}
+.work-iphone::after {
+  content: '';
+  position: absolute; left: 50%; bottom: -8%;
+  width: 70%; height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 72%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+.work-body-inner { max-width: 480px; }
+.work-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 16px;
+}
+.work-title {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+  margin: 8px 0 20px;
+}
+.work-desc {
+  font-size: 17px; line-height: 1.55;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+
+/* === Selected work — minimal row === */
+.work-list {
+  margin-top: 64px;
+  border-top: 1px solid var(--border);
+}
+.work-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 2fr auto;
+  gap: 32px; align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none; color: inherit;
+  transition: padding .35s var(--ease-apple);
+  position: relative;
+}
+.work-row::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 1px; background: var(--black);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .55s var(--ease-apple);
+}
+.work-row:hover { padding-left: 8px; padding-right: 8px; }
+.work-row:hover::after { transform: scaleX(1); }
+.work-row-num {
+  font-size: 13px; font-weight: 500;
+  color: var(--gray-5);
+  letter-spacing: 0.02em;
+}
+.work-row-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+.work-row-meta {
+  font-size: 14px;
+  color: var(--gray-4);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+.work-row-arrow {
+  color: var(--gray-4);
+  transition: transform .35s var(--ease-apple), color .2s;
+}
+.work-row:hover .work-row-arrow { transform: translateX(4px); color: var(--black); }
+
+/* === Beyond iOS — single elegant list === */
+.beyond {
+  text-align: left;
+}
+.beyond-list {
+  margin-top: 64px;
+  display: flex; flex-wrap: wrap;
+  gap: 12px 48px;
+  align-items: baseline;
+}
+.beyond-item {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: var(--black);
+  line-height: 1.1;
+}
+.beyond-sep {
+  font-size: clamp(28px, 3.2vw, 44px);
+  color: var(--gray-2);
+  font-weight: 300;
+  user-select: none;
+}
+
+/* === Contact CTA === */
+.contact-cta {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.contact-cta .sec-heading {
+  font-size: var(--display-xl);
+  letter-spacing: var(--em-tightest);
+  line-height: 0.92;
+}
+.contact-mail {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 48px;
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-decoration: none;
+  padding: 16px 28px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 980px;
+  transition: background .25s var(--ease-apple), border-color .25s var(--ease-apple);
+}
+.contact-mail:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.32);
+}
+.contact-mail svg { width: 14px; height: 14px; opacity: 0.7; }
+.contact-foot {
+  margin-top: 56px;
+  display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+.contact-foot a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color .2s;
+}
+.contact-foot a:hover { color: var(--white); }
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .hero-main {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .hero-visual {
+    order: -1;
+    padding: 0;
+  }
+  .iphone-stage { width: clamp(180px, 50vw, 240px); }
+  .iphone-meta { display: none; }
+
+  .foundation-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 28px 24px;
+  }
+  .foundation-list {
+    gap: 24px 32px;
+    justify-content: flex-start;
+  }
+  .foundation-list li { font-size: 22px; }
+
+  .pillars {
+    grid-template-columns: 1fr;
+    margin-top: 56px;
+  }
+  .pillar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding: 36px 0;
+  }
+  .pillar:last-child { border-bottom: none; }
+  .pillar:nth-child(2), .pillar:nth-child(3) { padding-left: 0; }
+
+  .hig-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    margin-top: 56px;
+  }
+  .hig-cell { min-height: 180px; padding: 24px; }
+  .hig-cell:nth-child(1) { grid-column: span 2; grid-row: auto; min-height: 240px; padding: 28px; }
+  .hig-cell:nth-child(n+2) { grid-column: span 1; }
+
+  .work-feature {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .work-visual { order: -1; padding: 24px 0; }
+  .work-iphone { width: clamp(220px, 60vw, 280px); }
+
+  .work-row {
+    grid-template-columns: 36px 1fr auto;
+    gap: 16px;
+  }
+  .work-row-meta { display: none; }
+
+  .beyond-list { gap: 8px 20px; }
+  .beyond-item { font-size: 22px; }
+  .beyond-sep { font-size: 22px; }
+}
+@media (max-width: 600px) {
+  .hero { padding: calc(var(--nav-h) + 40px) 20px 28px; }
+  .hero-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .section-inner { padding: 0 24px; }
+  .section { padding: 100px 0; }
+  .manifesto-foot { flex-direction: column; gap: 16px; }
+  .work-title { font-size: clamp(36px, 9vw, 56px); }
 }
 
 </style>
@@ -297,184 +676,268 @@
 <div id="site-nav"></div>
 <script src="partials.js"></script>
 
+<!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
-  <div class="hero-content hero-parallax">
-    <p class="hero-eyebrow">
-      Available for opportunities · Petropavl, Kazakhstan
-    </p>
-    <h1 class="hero-name">Whynicky</h1>
-    <p class="hero-role"><b>Flutter & Nuxt</b> Developer · Builder</p>
-    <div class="hero-actions">
-      <a href="projects.html" class="btn btn-primary">View Projects</a>
-      <a href="about.html" class="btn btn-ghost">About Me</a>
+  <div class="hero-main">
+    <div class="hero-left">
+      <p class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        iOS Developer & Designer · Petropavl, Kazakhstan
+      </p>
+      <h1 class="hero-title">
+        <span class="line">Designing</span>
+        <span class="line">interfaces.</span>
+        <span class="line">Building for <em>iOS.</em></span>
+      </h1>
+    </div>
+    <div class="hero-visual">
+      <div class="iphone-stage" data-parallax style="--parallax-depth:0.06">
+        <span class="iphone-meta is-top">SwiftUI · iOS 17</span>
+        <div class="iphone-frame">
+          <div class="iphone-notch"></div>
+          <div class="iphone-screen">
+            <picture>
+              <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 320px">
+              <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 320px">
+              <img src="img/chatra light.jpg" alt="Chatra — built with SwiftUI" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+        </div>
+        <span class="iphone-meta is-bottom">Live · 2025 — 2026</span>
+      </div>
     </div>
   </div>
-  <div class="hero-scroll-cue">
+  <div class="hero-foot">
+    <div class="hero-copy">
+      <p>I design and build digital products with a focus on Apple platforms — Swift, SwiftUI, and the principles behind the apps people keep on their home screen.</p>
+    </div>
+    <div class="hero-actions">
+      <a href="chatra.html" class="btn btn-primary">See Chatra</a>
+      <a href="#work" class="btn btn-ghost">Selected work</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
     <span class="hero-scroll-line"></span>
     <span class="hero-scroll-label">Scroll</span>
   </div>
 </section>
 
-<!-- ── Stack bar ── -->
-<section class="stack-bar">
-  <div class="container">
-    <p class="stack-label">Built with</p>
-    <div class="stack-items">
-      <span class="stack-item">Flutter</span>
-      <span class="stack-item">Dart</span>
-      <span class="stack-item">FastAPI</span>
-      <span class="stack-item">Python</span>
-      <span class="stack-item">PostgreSQL</span>
-      <span class="stack-item">Nuxt.js</span>
-      <span class="stack-item">Vue</span>
-      <span class="stack-item">TypeScript</span>
-      <span class="stack-item">Docker</span>
+<!-- ══════════════ FOUNDATION BAR ══════════════ -->
+<section class="foundation" aria-label="Primary focus">
+  <div class="foundation-inner">
+    <div class="foundation-label">Primary focus</div>
+    <ul class="foundation-list">
+      <li><span>Language</span>Swift</li>
+      <li><span>Framework</span>SwiftUI</li>
+      <li><span>Platform</span>iOS</li>
+      <li><span>Tool</span>Xcode</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ MANIFESTO ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner manifesto">
+    <p class="sec-eyebrow fade-up">What I do</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      I treat interface design as the work, not the wrapping.
+    </h2>
+    <div class="manifesto-foot">
+      <p class="fade-up"><strong>Design</strong> comes first. Every screen has a reason to exist, a hierarchy that holds up at a glance, and motion that means something.</p>
+      <p class="fade-up"><strong>Engineering</strong> follows — Swift and SwiftUI turned into the same interface, pixel-honest, with the performance and accessibility users expect from native iOS.</p>
     </div>
   </div>
 </section>
 
-<section class="sticky-section">
-  <div class="container" style="padding-top:120px;padding-bottom:64px;">
-    <h2 class="t-headline-lg word-reveal" style="margin-bottom:0;">Full stack.<br>Every time.</h2>
-  </div>
-  <div class="sticky-features">
-    <div class="sticky-text-col">
-      <div class="sf-item" data-sf="0">
-        <h3 class="sf-title">Mobile that feels native on iOS & Android.</h3>
-        <p class="sf-desc">Flutter with Riverpod state management, GoRouter navigation, and Dio for type-safe API calls. Cross-platform iOS and Android from a single codebase — pixel-perfect UI, smooth 60fps animations, and everything needed to ship to the App Store.</p>
+<!-- ══════════════ iOS PILLARS — dark section ══════════════ -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Working in iOS</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Four tools. One ecosystem.
+    </h2>
+    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
+      Native iOS development is its own craft. These are the four instruments I reach for.
+    </p>
+    <div class="pillars">
+      <div class="pillar fade-up">
+        <div class="pillar-num">01</div>
+        <h3 class="pillar-name">Swift</h3>
+        <p class="pillar-body">The language I think in. Type-safe, expressive, fast — code that reads like the design it implements.</p>
       </div>
-      <div class="sf-item" data-sf="1">
-        <h3 class="sf-title">Backends built for production from day one.</h3>
-        <p class="sf-desc">FastAPI with PostgreSQL, containerised in Docker. JWT authentication, clean REST architecture, and automatic OpenAPI documentation. Designed for real traffic from the first commit — not just something that runs on localhost and breaks under load.</p>
+      <div class="pillar fade-up">
+        <div class="pillar-num">02</div>
+        <h3 class="pillar-name">SwiftUI</h3>
+        <p class="pillar-body">Declarative UI built around state. Views that update on their own, animations that follow gesture, layouts that adapt without effort.</p>
       </div>
-      <div class="sf-item" data-sf="2">
-        <h3 class="sf-title">Complete products shipped end to end.</h3>
-        <p class="sf-desc">Mobile app, REST backend, and Nuxt.js web dashboard — designed, built, and deployed together. Chatra Academy runs in real university classrooms with students, instructors, and administrators. Every layer — design, engineering, infrastructure — handled by one developer.</p>
+      <div class="pillar fade-up">
+        <div class="pillar-num">03</div>
+        <h3 class="pillar-name">iOS</h3>
+        <p class="pillar-body">Designing for the platform. Dynamic Type, Dark Mode, haptics, system materials — the affordances that make an app feel at home.</p>
+      </div>
+      <div class="pillar fade-up" style="border-bottom:none;">
+        <div class="pillar-num">04</div>
+        <h3 class="pillar-name">Xcode</h3>
+        <p class="pillar-body">Where the work becomes a product. Previews, instruments, signing, archive — the full path from idea to App Store.</p>
       </div>
     </div>
-    <div class="sticky-visual-col">
-      <div class="sf-visual-wrap">
-        <div class="sf-visual-item active" data-sf="0">
-          <img src="img/appstore-card.svg" alt="Chatra mobile app" class="sf-app-img">
+  </div>
+</section>
+
+<!-- ══════════════ HIG — design credibility moment ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Apple Human Interface Guidelines</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Good iOS work speaks the platform's language.
+    </h2>
+    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
+      I design against HIG because that's what makes an interface feel native — not because it's a checklist, but because each principle solves a real problem.
+    </p>
+    <div class="hig-grid depth-stagger">
+      <div class="hig-cell">
+        <div>
+          <div class="hig-cell-name">Hierarchy &amp; clarity</div>
+          <p class="hig-cell-desc">Every element earns its visual weight. Type, color, and spacing carry the meaning so users don't have to think.</p>
         </div>
-        <div class="sf-visual-item" data-sf="1">
-          <div class="sf-terminal-mock">
-            <div class="sf-terminal-bar">
-              <span class="sf-dot" style="background:#ff5f56"></span>
-              <span class="sf-dot" style="background:#ffbd2e"></span>
-              <span class="sf-dot" style="background:#27c93f"></span>
-            </div>
-            <div class="sf-terminal-body">
-              <div class="sf-code-line"><span class="sf-kw">from</span> fastapi <span class="sf-kw">import</span> FastAPI, Depends</div>
-              <div class="sf-code-line"><span class="sf-kw">from</span> sqlalchemy.orm <span class="sf-kw">import</span> Session</div>
-              <div class="sf-code-line" style="margin-top:10px;"><span class="sf-fn">app</span> = <span class="sf-fn">FastAPI</span>(title=<span class="sf-str">"Chatra API"</span>)</div>
-              <div class="sf-code-line" style="margin-top:10px;"><span style="color:#7ee787">@app.get</span>(<span class="sf-str">"/courses"</span>)</div>
-              <div class="sf-code-line"><span class="sf-kw">async def</span> <span class="sf-fn">get_courses</span>(db: Session):</div>
-              <div class="sf-code-line" style="padding-left:16px;"><span class="sf-kw">return</span> db.<span class="sf-fn">query</span>(Course).<span class="sf-fn">all</span>()</div>
-              <div class="sf-code-line" style="margin-top:14px;color:rgba(255,255,255,0.2);">──────────────────────────</div>
-              <div class="sf-code-line" style="color:#27c93f;">✓  Uvicorn running on port 8000</div>
-            </div>
-          </div>
-        </div>
-        <div class="sf-visual-item" data-sf="2">
-          <div class="sf-browser-mock">
-            <div class="sf-browser-bar">
-              <span class="sf-dot" style="background:#d2d2d7"></span>
-              <span class="sf-dot" style="background:#d2d2d7"></span>
-              <span class="sf-dot" style="background:#d2d2d7"></span>
-              <div class="sf-url-bar">chatra.academy/dashboard</div>
-            </div>
-            <div class="sf-browser-content">
+      </div>
+      <div class="hig-cell">
+        <div class="hig-cell-name">Deference</div>
+        <p class="hig-cell-desc">Content first. Chrome quiet. The interface steps back so the work speaks.</p>
+      </div>
+      <div class="hig-cell">
+        <div class="hig-cell-name">Consistency</div>
+        <p class="hig-cell-desc">Same gesture, same outcome — across screens, across the system, every time.</p>
+      </div>
+      <div class="hig-cell">
+        <div class="hig-cell-name">Depth</div>
+        <p class="hig-cell-desc">Translucency, motion, layering — a sense of place and order the eye reads in milliseconds.</p>
+      </div>
+      <div class="hig-cell">
+        <div class="hig-cell-name">Feedback</div>
+        <p class="hig-cell-desc">Every touch acknowledged on press. Every state change visible. The interface never lies about what's happening.</p>
+      </div>
+      <div class="hig-cell">
+        <div class="hig-cell-name">Accessibility</div>
+        <p class="hig-cell-desc">Dynamic Type, VoiceOver, color contrast, Reduce Motion — built in from the first sketch, not bolted on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FEATURED WORK — Chatra ══════════════ -->
+<section class="section section-dark" id="work">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Featured work</p>
+    <div class="work-feature" style="margin-top:32px;">
+      <div class="work-visual">
+        <div class="work-iphone" data-parallax style="--parallax-depth:0.05">
+          <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
               <picture>
-                <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w, img/chatraweb-1600w.avif 1600w" sizes="(max-width: 700px) 90vw, 460px">
-                <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w, img/chatraweb-1600w.webp 1600w" sizes="(max-width: 700px) 90vw, 460px">
-                <img src="img/chatraweb.jpg" alt="Chatra web dashboard" loading="lazy" decoding="async" width="920" height="646">
+                <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
+                <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
+                <img src="img/chatra light.jpg" alt="Chatra iOS app" loading="lazy" decoding="async">
               </picture>
             </div>
           </div>
         </div>
       </div>
+      <div class="work-body-inner">
+        <p class="work-eyebrow fade-up">Case study · 2025—2026</p>
+        <h3 class="work-title word-reveal">Chatra Academy</h3>
+        <p class="work-desc fade-up">
+          A complete educational platform — iOS app, REST backend, and web dashboard — used in real university classrooms. Two developers, three platforms, in production.
+        </p>
+        <a href="chatra.html" class="anchor-link fade-up">
+          Read the case study
+          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="proj-featured">
-  <div class="proj-featured-visual clip-reveal">
-    <div class="proj-phone-mockup">
-      <div class="proj-phone-notch"></div>
-      <div class="proj-phone-screen">
-        <picture>
-          <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 700px) 44vw, 280px">
-          <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 700px) 44vw, 280px">
-          <img src="img/chatra light.jpg" alt="Chatra app" fetchpriority="high" decoding="async">
-        </picture>
-      </div>
-    </div>
-  </div>
-  <div class="proj-featured-body slide-right">
-    <p class="t-eyebrow">Featured project</p>
-    <h2 class="proj-featured-title">Chatra</h2>
-    <p class="proj-featured-desc">A full educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress across platforms.</p>
-    <div class="proj-featured-chips">
-      <span class="chip chip-dark">Flutter</span>
-      <span class="chip chip-dark">FastAPI</span>
-      <span class="chip chip-dark">PostgreSQL</span>
-      <span class="chip chip-dark">Nuxt.js</span>
-      <span class="chip chip-dark">Docker</span>
-    </div>
-    <div class="proj-featured-actions">
-      <a href="chatra.html" class="btn btn-primary">Chatra</a>
-      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-link" style="font-size:14px;display:inline-flex;align-items:center;gap:5px;">
-        GitHub
-        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+<!-- ══════════════ SELECTED WORK — minimal row ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Also built</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      More products, same discipline.
+    </h2>
+    <div class="work-list">
+      <a href="projects.html#chatra" class="work-row fade-up">
+        <span class="work-row-num">01</span>
+        <span class="work-row-title">Chatra</span>
+        <span class="work-row-meta">Flutter · FastAPI · Nuxt · PostgreSQL · production</span>
+        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
+      </a>
+      <a href="projects.html#portfolio" class="work-row fade-up">
+        <span class="work-row-num">02</span>
+        <span class="work-row-title">This Portfolio</span>
+        <span class="work-row-meta">HTML · CSS · JavaScript · Apple-inspired system · zero frameworks</span>
+        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
+      </a>
+      <a href="projects.html#hackathon" class="work-row fade-up">
+        <span class="work-row-num">03</span>
+        <span class="work-row-title">Hackathon MVP</span>
+        <span class="work-row-meta">Flutter · Python · FastAPI · 48 hours · Top 5</span>
+        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ── Stats ── -->
-<section class="apple-stats section">
-  <div class="apple-stats-inner">
-    <div class="apple-stat" data-reveal-progress>
-      <div class="apple-stat-num">3+</div>
-      <div class="apple-stat-label">Hackathons</div>
-      <div class="apple-stat-sub">competed & shipped</div>
-    </div>
-    <div class="apple-stat" data-reveal-progress>
-      <div class="apple-stat-num">7+</div>
-      <div class="apple-stat-label">Projects</div>
-      <div class="apple-stat-sub">shipped to production</div>
-    </div>
-    <div class="apple-stat" data-reveal-progress>
-      <div class="apple-stat-num">5+</div>
-      <div class="apple-stat-label">Technologies</div>
-      <div class="apple-stat-sub">mastered end to end</div>
-    </div>
-    <div class="apple-stat" data-reveal-progress>
-      <div class="apple-stat-num">11+</div>
-      <div class="apple-stat-label">Certificates</div>
-      <div class="apple-stat-sub">earned &amp; counting</div>
+<!-- ══════════════ BEYOND iOS ══════════════ -->
+<section class="section section-tint">
+  <div class="section-inner beyond">
+    <p class="sec-eyebrow fade-up">Beyond iOS</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      The wider technical foundation.
+    </h2>
+    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
+      iOS is the focus. The depth underneath it — cross-platform, backend, and web — comes from shipping real products across the stack.
+    </p>
+    <div class="beyond-list fade-up">
+      <span class="beyond-item">Flutter</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Dart</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Python</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">FastAPI</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Nuxt</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Vue</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">TypeScript</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Node.js</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">PostgreSQL</span>
+      <span class="beyond-sep">·</span>
+      <span class="beyond-item">Docker</span>
     </div>
   </div>
 </section>
 
-<section class="statement-section">
-  <div class="statement-inner" data-scroll-scale>
-    <h2 class="statement-text word-reveal">From idea<br>to <span class="wr-word shipped-word">shipped</span><br>product.</h2>
-    <a href="about.html" class="btn btn-link" style="margin-top:36px;font-size:17px;display:inline-flex;align-items:center;gap:6px;">
-      My story
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
+<!-- ══════════════ CONTACT CTA ══════════════ -->
+<section class="section section-dark" style="padding-bottom: 200px;">
+  <div class="section-inner contact-cta">
+    <p class="sec-eyebrow fade-up">Get in touch</p>
+    <h2 class="sec-heading word-reveal">
+      Let's make<br>something good.
+    </h2>
+    <a href="mailto:alimzhanart@icloud.com" class="contact-mail fade-up">
+      alimzhanart@icloud.com
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
     </a>
-  </div>
-</section>
-
-
-<section class="cta-banner section-card">
-  <div class="cta-banner-inner">
-    <h2 class="t-headline-xl text-gradient" style="margin-bottom:32px;">Let's work<br>together.</h2>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a href="contact.html" class="btn btn-primary">Get in touch</a>
-      <a href="projects.html" class="btn btn-ghost">See my work</a>
+    <div class="contact-foot fade-up">
+      <a href="https://github.com/whynicky19" target="_blank">GitHub</a>
+      <a href="https://t.me/whynickyy" target="_blank">Telegram</a>
+      <a href="contact.html">All contact options</a>
     </div>
   </div>
 </section>

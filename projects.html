@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Whynicky</title>
-<meta name="description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<title>Projects — Whynicky · iOS Developer & Designer</title>
+<meta name="description" content="Selected work — iOS apps, full-stack platforms, and design systems.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/projects.html">
 <meta property="og:title" content="Projects — Whynicky">
-<meta property="og:description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<meta property="og:description" content="Selected work — full-stack platforms, iOS apps, and design.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/digital-urpaq.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects — Whynicky">
-<meta name="twitter:description" content="Selected work — Flutter apps, FastAPI backends, and full-stack platforms.">
+<meta name="twitter:description" content="Selected work.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="tokens.css">
@@ -23,168 +23,245 @@
 <script src="theme-init.js"></script>
 <style>
 
-.page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
-
-.hl-word {
+.page-hero {
+  padding: calc(var(--nav-h) + 120px) 32px 100px;
+  background: var(--white);
+}
+.page-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 700;
+  letter-spacing: var(--em-tightest);
+  line-height: 0.92;
+  color: var(--black);
+}
+.page-hero-title em {
+  font-style: normal;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-.proj-feature {
-  display: grid; grid-template-columns: 1fr 1fr;
-}
-.proj-feature:nth-child(even) .proj-f-visual { order: 2; }
-.proj-feature:nth-child(even) .proj-f-body   { order: 1; }
-.proj-f-visual {
-  background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  min-height: 480px; position: relative; overflow: hidden;
-  padding: 0;
-}
-.proj-f-visual img {
-  width: 100%; height: 100%;
-  max-width: 100%; max-height: 100%;
-  border-radius: 0;
-  box-shadow: none;
-  object-fit: cover;
-  transition: transform .6s var(--ease-apple);
-}
-.proj-feature:hover .proj-f-visual img { transform: scale(1.015); }
-/* Soft light falloff at the top/bottom edges — the same cue a real
-   product photograph uses so the image reads as lit, not pasted flat. */
-.proj-f-visual::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.03) 0%, transparent 28%, transparent 72%, rgba(0,0,0,0.05) 100%);
-  pointer-events: none;
-}
-/* Dark mode pairs a light device screenshot against a near-black text
-   panel — without a horizontal fade too, that's a hard seam down the
-   middle. The side vignette eases both edges since which side is
-   "inner" flips with .proj-feature:nth-child(even). */
-[data-theme="dark"] .proj-f-visual::after {
-  background:
-    linear-gradient(180deg, rgba(0,0,0,0.12) 0%, transparent 28%, transparent 72%, rgba(0,0,0,0.18) 100%),
-    linear-gradient(90deg, rgba(0,0,0,0.22) 0%, transparent 12%, transparent 88%, rgba(0,0,0,0.22) 100%);
-}
-.proj-f-body {
-  padding: 100px 72px;
-  display: flex; flex-direction: column; justify-content: center;
-  background: var(--white); gap: 16px;
-}
-@media(max-width:768px){
-  .proj-feature { grid-template-columns: 1fr; }
-  .proj-feature:nth-child(even) .proj-f-visual { order: 0; }
-  .proj-feature:nth-child(even) .proj-f-body   { order: 0; }
-  .proj-f-visual { min-height: 280px; }
-  .proj-f-body { padding: 48px 20px; }
-}
-@media(max-width:600px){
-  .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
-  .proj-f-visual { min-height: 240px; }
-  .proj-f-body { padding: 36px 20px; }
+.page-hero-sub {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.55;
+  color: var(--gray-4);
+  max-width: 560px;
+  margin-top: 32px;
 }
 
-.proj-number {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--gray-5);
+/* === Section scaffolding === */
+.section { padding: var(--section-y, 160px) 0; position: relative; }
+.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section-light { background: var(--white); }
+.section-tint  { background: var(--gray-06); }
+.section-dark  { background: #000; color: var(--white); }
+
+.sec-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 24px;
 }
-.proj-f-title {
+.sec-heading {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700; letter-spacing: -0.04em; line-height: 1.05;
+  font-size: var(--display-md);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
   color: var(--black);
 }
-.proj-f-desc { font-size: 15px; color: var(--gray-4); line-height: 1.7; max-width: 420px; }
-.proj-f-chips { display: flex; gap: 7px; flex-wrap: wrap; }
-.proj-f-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
+.section-dark .sec-heading { color: var(--white); }
 
-.proj-mini {
-  border: 1px solid rgba(0,0,0,0.08);
-  border-radius: var(--r-lg);
-  background: var(--gray-8);
-  overflow: hidden;
-  cursor: pointer;
-  display: flex; flex-direction: column;
-  height: 100%;
+/* === Featured case study — Chatra === */
+.case-feature {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding-top: 24px;
 }
-/* hover physics unified in style.css: .proj-mini is in the shared card-hover set */
-.proj-mini-visual {
-  height: 180px; background: var(--white);
+.case-visual {
   display: flex; align-items: center; justify-content: center;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  overflow: hidden; position: relative;
-  flex-shrink: 0;
+  position: relative;
 }
-.proj-mini-visual img {
+.case-visual::after {
+  content: '';
+  position: absolute; left: 50%; bottom: -10%;
+  width: 70%; height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.16) 0%, transparent 72%);
+  filter: blur(8px);
+}
+[data-theme="dark"] .case-visual::after {
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.06) 0%, transparent 72%);
+}
+.case-iphone {
+  width: clamp(260px, 28vw, 360px);
+  position: relative; z-index: 1;
+}
+.case-iphone::after { display: none; }
+.case-meta {
+  display: flex; flex-direction: column; gap: 24px;
+}
+.case-tag-row {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+}
+.case-tag-row .case-num {
+  color: var(--gray-4); font-weight: 500;
+}
+.case-title {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--black);
+  margin: 0;
+}
+.case-title em {
+  font-style: normal;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.case-prose {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 48px;
+  margin-top: 8px;
+}
+.case-block-label {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 12px;
+}
+.case-block p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+}
+.case-stack {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 8px;
+}
+.case-stack .chip {
+  font-size: 11px;
+  padding: 4px 10px;
+  color: var(--gray-4);
+  background: var(--gray-06);
+  border: 1px solid var(--border);
+}
+.case-actions {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* === Other work — minimal grid === */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 64px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.work-tile {
+  background: var(--white);
+  padding: 40px;
+  display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
+  position: relative;
+  min-height: 320px;
+}
+.section-dark .work-tile { background: #111; color: var(--white); }
+.work-tile-img {
+  width: 100%;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: var(--gray-06);
+  display: flex; align-items: center; justify-content: center;
+}
+.work-tile-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  display: block;
 }
-.proj-mini-visual svg { opacity: 0.15; }
-.proj-mini-body {
-  padding: 24px;
-  display: flex; flex-direction: column;
-  flex: 1;
+.work-tile-num {
+  font-size: 12px; font-weight: 500;
+  color: var(--gray-5);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
 }
-.proj-mini-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 8px; }
-.proj-mini-title { font-size: 17px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; color: var(--black); }
-.proj-mini-desc { font-size: 13px; color: var(--gray-4); line-height: 1.6; margin-bottom: 16px; }
-.proj-mini-links { display: flex; gap: 14px; margin-top: auto; }
-.proj-mini-link { font-size: 13px; color: var(--gray-4); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color .2s; }
-.proj-mini-link:hover { color: var(--black); }
-
-.grid-3 { align-items: stretch; }
-
-/* One glass housing for the whole segmented control — cheaper than a
-   backdrop-filter per pill, and it's how Apple actually builds these
-   (Settings.app, Control Center): one material, several hit targets. */
-.filter-tabs {
-  display: inline-flex; gap: 2px; flex-wrap: wrap;
-  margin-bottom: 40px; padding: 4px; border-radius: var(--r-pill);
+.work-tile-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: inherit;
+  margin-bottom: 8px;
 }
-.filter-tab {
-  padding: 7px 16px; border-radius: var(--r-pill);
+.work-tile-meta {
+  font-size: 13px;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+  margin-bottom: 12px;
+}
+.section-dark .work-tile-meta { color: rgba(255,255,255,0.55); }
+.work-tile-foot {
+  margin-top: auto;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.work-tile-link {
   font-size: 13px; font-weight: 500;
-  border: none;
-  background: transparent; color: var(--gray-4);
-  cursor: pointer; transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
-  font-family: var(--font-text);
+  color: var(--accent);
+  text-decoration: none;
 }
-.filter-tab:hover { background: var(--overlay-sm); }
-.filter-tab.active { background: var(--black); color: var(--white); }
-.filter-tab:focus-visible { box-shadow: var(--focus-ring); }
 
-/* On desktop this is one pill housing with room for all five tabs on one
-   line. At phone widths five tabs don't fit — letting them wrap turns a
-   stadium-radius pill into a lopsided two-row blob once the last tab
-   spills onto its own row. Fix: keep it a single row and let it scroll
-   horizontally instead, the same pattern the certificate rail already
-   uses elsewhere on the site. A moderate corner radius (not a full pill)
-   means the scroll clipping doesn't cut into the edge buttons the way a
-   true stadium shape would.
-   NOTE: this block must stay after the base .filter-tabs/.filter-tab
-   rules above — at equal specificity the later declaration wins, so a
-   mobile override placed *before* the base rule (as this one used to be,
-   nested in the unrelated @media block near the top of this stylesheet)
-   is silently cancelled by it regardless of viewport width. */
+/* === CTA mini === */
+.cta-mini {
+  padding: 120px 0;
+  background: var(--white);
+  text-align: center;
+}
+.cta-mini h2 {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.cta-mini .btn-row {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .case-feature { grid-template-columns: 1fr; gap: 40px; }
+  .case-visual { order: -1; }
+  .case-iphone { width: clamp(220px, 60vw, 280px); }
+  .case-prose { grid-template-columns: 1fr; gap: 20px; }
+  .work-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 600px) {
-  .proj-f-desc { font-size: 14px; }
-  .filter-tabs {
-    display: flex; flex-wrap: nowrap;
-    gap: 6px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    border-radius: var(--r-lg);
-  }
-  .filter-tabs::-webkit-scrollbar { display: none; }
-  .filter-tab { padding: 7px 14px; font-size: 12px; flex-shrink: 0; white-space: nowrap; }
+  .page-hero { padding: calc(var(--nav-h) + 64px) 20px 64px; }
+  .section-inner { padding: 0 24px; }
+  .section { padding: 100px 0; }
+  .case-title { font-size: clamp(36px, 9vw, 56px); }
 }
-
-.proj-hidden { display: none !important; }
 </style>
 </head>
 <body>
@@ -192,227 +269,252 @@
 <div id="site-nav"></div>
 <script src="partials.js"></script>
 
-<section class="page-hero section">
-  <div class="container">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Selected<br><span class="hl-word">work.</span></h1>
-    <p class="t-body-xl fade-up" style="max-width:var(--w-narrow);margin-top:24px;animation-delay:.2s;">Real products built from scratch. Mobile apps, full-stack platforms, and tools that ship to real users.</p>
-    <div class="filter-tabs glass fade-up" style="animation-delay:.28s;" role="group" aria-label="Filter projects by category">
-      <button class="filter-tab active" data-filter="all">All</button>
-      <button class="filter-tab" data-filter="fullstack">Full-Stack</button>
-      <button class="filter-tab" data-filter="mobile">Mobile</button>
-      <button class="filter-tab" data-filter="web">Web</button>
-      <button class="filter-tab" data-filter="practice">Practice</button>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <h1 class="page-hero-title fade-up">
+      Selected<br><em>work.</em>
+    </h1>
+    <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
+      Real products built end to end. One flagship case study, plus the supporting work that built the foundation underneath it.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════ FEATURED CASE STUDY — CHATRA ══════════════ -->
+<section class="section section-light" id="chatra">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Featured case study · 01</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Chatra Academy.
+    </h2>
+
+    <div class="case-feature" style="margin-top:48px;">
+      <div class="case-visual">
+        <div class="case-iphone" data-parallax style="--parallax-depth:0.05">
+          <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+              <picture>
+                <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
+                <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
+                <img src="img/chatra light.jpg" alt="Chatra iOS app" loading="lazy" decoding="async">
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-meta">
+        <div class="case-tag-row fade-up">
+          <span class="case-num">2025 — 2026</span>
+          <span>·</span>
+          <span>Production</span>
+          <span>·</span>
+          <span>iOS · Web · Backend</span>
+        </div>
+
+        <h3 class="case-title word-reveal">A complete educational platform, shipped to real classrooms.</h3>
+
+        <div class="case-prose fade-up">
+          <div class="case-block">
+            <div class="case-block-label">Problem</div>
+            <p>At my university, educators ran classes through Telegram chats and spreadsheets. No unified tool. Students had no visibility into their own progress.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Design</div>
+            <p>Mobile-first UI designed for one-handed classroom use. Riverpod state, GoRouter navigation, role-based interfaces (student, teacher, admin).</p>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Engineering</div>
+            <p>Three independent layers: Flutter mobile, FastAPI REST backend with JWT auth, Nuxt web dashboard with KZ/RU i18n. Docker-deployed.</p>
+          </div>
+          <div class="case-block">
+            <div class="case-block-label">Result</div>
+            <p>Live in real classrooms. Students join classes, submit assignments, track grades. Every layer — design, code, infra — handled by two developers.</p>
+          </div>
+        </div>
+
+        <div class="case-stack fade-up">
+          <span class="chip">Flutter</span>
+          <span class="chip">Dart</span>
+          <span class="chip">Riverpod</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">SQLAlchemy</span>
+          <span class="chip">Nuxt.js</span>
+          <span class="chip">Vue</span>
+          <span class="chip">Docker</span>
+          <span class="chip">JWT</span>
+          <span class="chip">Figma</span>
+        </div>
+
+        <div class="case-actions fade-up">
+          <a href="chatra.html" class="btn btn-primary">Read the case study</a>
+          <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-ghost">Mobile source</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="chatra" class="proj-feature" data-cat="fullstack mobile">
-  <div class="proj-f-visual slide-left">
-    
-    <img src="img/appstore-card.svg" alt="Chatra Academy app screenshot">
-  </div>
-  <div class="proj-f-body slide-right">
-    <p class="proj-number">01 — Full-Stack Platform</p>
-    <h2 class="proj-f-title">Chatra<br>Academy</h2>
-    <p class="proj-f-desc">A complete educational platform — Flutter mobile app, FastAPI REST backend, and Nuxt.js web dashboard. Students join classes, submit assignments, and track progress. Built end-to-end, deployed in production.</p>
-    <div class="proj-f-chips">
-      <span class="chip">Flutter</span>
-      <span class="chip">Dart</span>
-      <span class="chip">FastAPI</span>
-      <span class="chip">PostgreSQL</span>
-      <span class="chip">Nuxt.js</span>
-      <span class="chip">Docker</span>
-      <span class="chip">Riverpod</span>
-    </div>
-    <div class="proj-f-links">
-      <a href="chatra.html" class="btn btn-primary">Chatra</a>
-      <a href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" class="btn btn-ghost">GitHub</a>
-    </div>
-  </div>
-</section>
+<!-- ══════════════ OTHER WORK ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Also built</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Supporting work.
+    </h2>
 
-<section id="portfolio" class="proj-feature" data-cat="web">
-  <div class="proj-f-visual slide-right">
-    
-    <img src="img/macbook-card.svg" alt="Portfolio Website screenshot">
-  </div>
-  <div class="proj-f-body slide-left">
-    <p class="proj-number">02 — Web</p>
-    <h2 class="proj-f-title">Portfolio<br>Website</h2>
-    <p class="proj-f-desc">This portfolio — built with vanilla HTML, CSS, and JavaScript. No React, no Vue. Apple-inspired design system with SF Pro typography, scroll animations via Intersection Observer, and a live canvas background.</p>
-    <div class="proj-f-chips">
-      <span class="chip">HTML</span>
-      <span class="chip">CSS</span>
-      <span class="chip">JavaScript</span>
-      <span class="chip">Canvas API</span>
-      <span class="chip">Intersection Observer</span>
-    </div>
-    <div class="proj-f-links">
-      <a href="https://github.com/whynicky19/Portfolio.git" target="_blank" class="btn btn-primary">GitHub</a>
-    </div>
-  </div>
-</section>
+    <div class="work-grid depth-stagger">
+      <div class="work-tile" id="hackathon">
+        <div class="work-tile-img">
+          <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP" loading="lazy">
+        </div>
+        <div class="work-tile-num">02</div>
+        <div class="work-tile-title">Hackathon MVP</div>
+        <div class="work-tile-meta">48-hour sprint at a university hackathon. Top 5 placement.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Vue 3</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Python</span>
+          <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+        </div>
+      </div>
 
-<section id="hackathon" class="proj-feature" data-cat="web">
-  <div class="proj-f-visual slide-left">
-    
-    <img src="img/crypto-macbook-card.svg" alt="Hackathon MVP screenshot">
-  </div>
-  <div class="proj-f-body slide-right">
-    <p class="proj-number">03 — Hackathon</p>
-    <h2 class="proj-f-title">Hackathon<br>MVP</h2>
-    <p class="proj-f-desc">Built in 48 hours at a university hackathon. A web application solving a real community problem. Pitched to industry judges. Achieved Top 5 placement.</p>
-    <div class="proj-f-chips">
-      <span class="chip">Flutter</span>
-      <span class="chip">Python</span>
-      <span class="chip">Firebase</span>
-      <span class="chip">FastAPI</span>
-    </div>
-    <div class="proj-f-links">
-      <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="btn btn-primary">GitHub</a>
-    </div>
-  </div>
-</section>
+      <div class="work-tile" id="portfolio">
+        <div class="work-tile-img">
+          <img src="img/macbook-card.svg" alt="Portfolio website" loading="lazy">
+        </div>
+        <div class="work-tile-num">03</div>
+        <div class="work-tile-title">This Portfolio</div>
+        <div class="work-tile-meta">Vanilla HTML, CSS, JavaScript. Apple-inspired design system, scroll-linked motion, zero frameworks.</div>
+        <div class="work-tile-foot">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">JavaScript</span>
+          <a href="https://github.com/whynicky19/Portfolio.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+        </div>
+      </div>
 
-
-
-<section class="section bg-darker filter-group">
-  <div class="container">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Other projects.</h2>
-    <div class="grid-3 depth-stagger">
-
-      <div class="proj-mini cv-auto" id="api" data-cat="fullstack">
-        <div class="proj-mini-visual">
+      <div class="work-tile" id="digitalurpaq">
+        <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/fastqpi-480w.avif 480w, img/fastqpi-960w.avif 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <source type="image/webp" srcset="img/fastqpi-480w.webp 480w, img/fastqpi-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <img src="img/fastqpi.jpg" alt="FastAPI Template screenshot" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w, img/digital-urpaq-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w, img/digital-urpaq-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <img src="img/digital-urpaq.jpg" alt="Digital Urpaq" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Python · Docker</div>
-          <div class="proj-mini-title">FastAPI Template</div>
-          <div class="proj-mini-desc">Production-ready boilerplate with JWT auth, PostgreSQL, Docker, and Swagger docs. Start a new API in minutes.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/whynicky19/App-Backend.git" target="_blank" class="proj-mini-link">
-              GitHub
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
-            </a>
-          </div>
+        <div class="work-tile-num">04</div>
+        <div class="work-tile-title">Digital Urpaq</div>
+        <div class="work-tile-meta">Full-stack web platform for the Palace of Schoolchildren — role-based interfaces, KZ/RU localisation, secure API.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Nuxt</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">i18n</span>
+          <a href="https://github.com/serazenith/du-7mile.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
         </div>
       </div>
 
-      <div class="proj-mini cv-auto" data-cat="fullstack web">
-        <div class="proj-mini-visual">
+      <div class="work-tile" id="chatraweb">
+        <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w, img/digital-urpaq-960w.avif 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w, img/digital-urpaq-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <img src="img/digital-urpaq.jpg" alt="Digital Urpaq screenshot" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <img src="img/chatraweb.jpg" alt="Chatra Web Dashboard" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Nuxt · FastAPI · i18n</div>
-          <div class="proj-mini-title">Digital Urpaq</div>
-          <div class="proj-mini-desc">Full-stack web platform for the Palace of Schoolchildren with role-based interfaces, multilingual support (Kazakh/Russian), and secure API-driven data management.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/serazenith/du-7mile.git" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
-          </div>
+        <div class="work-tile-num">05</div>
+        <div class="work-tile-title">Chatra Web Dashboard</div>
+        <div class="work-tile-meta">Web frontend for Chatra Academy. Kazakh language support, role-based UI, full API integration.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Nuxt.js</span>
+          <span class="chip">Vue</span>
+          <span class="chip">i18n</span>
+          <a href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
         </div>
       </div>
-
-      <div class="proj-mini cv-auto" data-cat="web">
-        <div class="proj-mini-visual">
-          <picture>
-            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <img src="img/chatraweb.jpg" alt="Chatra Web Dashboard screenshot" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Nuxt.js · i18n</div>
-          <div class="proj-mini-title">Chatra Web Dashboard</div>
-          <div class="proj-mini-desc">Web frontend for Chatra Academy with Kazakh language support, role-based UI, and full API integration.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
+<!-- ══════════════ PRACTICE / EXPLORATIONS ══════════════ -->
+<section class="section section-tint">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Practice</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Smaller explorations.
+    </h2>
+    <p class="t-body-xl fade-up" style="max-width:560px;margin-top:24px;">
+      Coursework, side projects, and experiments where I sharpened fundamentals.
+    </p>
 
-
-<section class="section bg-black filter-group">
-  <div class="container">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:12px;">Practice work.</h2>
-    <p class="t-body-lg fade-up" style="max-width:var(--w-narrow);margin-bottom:40px;">Smaller explorations, coursework, and side projects where I tested ideas and sharpened skills.</p>
-    <div class="grid-3 depth-stagger">
-
-      <div class="proj-mini cv-auto" data-cat="practice">
-        <div class="proj-mini-visual">
+    <div class="work-grid depth-stagger">
+      <div class="work-tile" id="cs50p">
+        <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/cs50p-480w.avif 480w, img/cs50p-960w.avif 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <source type="image/webp" srcset="img/cs50p-480w.webp 480w, img/cs50p-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <img src="img/cs50p.jpg" alt="CS50P Problem Sets screenshot" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/cs50p-480w.avif 480w, img/cs50p-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/webp" srcset="img/cs50p-480w.webp 480w, img/cs50p-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <img src="img/cs50p.jpg" alt="CS50P Problem Sets" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Python · CS50P</div>
-          <div class="proj-mini-title">CS50P Problem Sets</div>
-          <div class="proj-mini-desc">All Harvard CS50P problem sets completed — written by hand, no AI generation. Pure Python fundamentals practice.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/whynicky19" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
-          </div>
+        <div class="work-tile-num">06</div>
+        <div class="work-tile-title">CS50P Problem Sets</div>
+        <div class="work-tile-meta">All Harvard CS50P problem sets, completed by hand. Pure Python fundamentals.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Python</span>
+          <span class="chip">CS50</span>
+          <a href="https://github.com/whynicky19" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
         </div>
       </div>
 
-      <div class="proj-mini cv-auto" data-cat="web practice">
-        <div class="proj-mini-visual">
-          <img src="img/crypto-macbook-card.svg" alt="Rugpull Frontend screenshot" loading="lazy">
-        </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Vue 3 · FastAPI</div>
-          <div class="proj-mini-title">Rugpull Frontend</div>
-          <div class="proj-mini-desc">Crypto token scanner — monitors blockchain data, tracks market trends, and surfaces automated insights via integrated APIs. An experiment in data-heavy frontend design.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="proj-mini cv-auto" data-cat="mobile practice">
-        <div class="proj-mini-visual">
+      <div class="work-tile" id="fastapi">
+        <div class="work-tile-img">
           <picture>
-            <source type="image/avif" srcset="img/freelanceOS-480w.avif 480w, img/freelanceOS-960w.avif 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <source type="image/webp" srcset="img/freelanceOS-480w.webp 480w, img/freelanceOS-960w.webp 960w" sizes="(max-width: 900px) 45vw, 380px">
-            <img src="img/freelanceOS.jpg" alt="FreelanceOS screenshot" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/fastqpi-480w.avif 480w, img/fastqpi-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/webp" srcset="img/fastqpi-480w.webp 480w, img/fastqpi-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <img src="img/fastqpi.jpg" alt="FastAPI Template" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="proj-mini-body">
-          <div class="proj-mini-tag">Flutter · Dart</div>
-          <div class="proj-mini-title">FreelanceOS</div>
-          <div class="proj-mini-desc">Mobile app for freelancers to track income, estimate taxes, and manage financial records. An early Flutter project exploring state management and local storage.</div>
-          <div class="proj-mini-links">
-            <a href="https://github.com/whynicky19" target="_blank" class="proj-mini-link">GitHub<svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></a>
-          </div>
+        <div class="work-tile-num">07</div>
+        <div class="work-tile-title">FastAPI Template</div>
+        <div class="work-tile-meta">Production-ready boilerplate — JWT auth, PostgreSQL, Docker, Swagger docs.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Docker</span>
+          <a href="https://github.com/whynicky19/App-Backend.git" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
         </div>
       </div>
 
+      <div class="work-tile" id="freelanceos">
+        <div class="work-tile-img">
+          <picture>
+            <source type="image/avif" srcset="img/freelanceOS-480w.avif 480w, img/freelanceOS-960w.avif 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <source type="image/webp" srcset="img/freelanceOS-480w.webp 480w, img/freelanceOS-960w.webp 960w" sizes="(max-width: 700px) 92vw, 480px">
+            <img src="img/freelanceOS.jpg" alt="FreelanceOS" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="work-tile-num">08</div>
+        <div class="work-tile-title">FreelanceOS</div>
+        <div class="work-tile-meta">Mobile app for freelancers — income, taxes, financial records. An early Flutter exploration.</div>
+        <div class="work-tile-foot">
+          <span class="chip">Flutter</span>
+          <span class="chip">Dart</span>
+          <a href="https://github.com/whynicky19" target="_blank" class="work-tile-link" style="margin-left:auto;">GitHub →</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-
-<section class="section bg-black" style="text-align:center;">
-  <div class="container">
-    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Have a project in mind?</h2>
-    <p class="t-body-xl fade-up" style="max-width:440px;margin:0 auto 36px;">I'm open to collaborations, freelance work, and interesting problems.</p>
-    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta-mini">
+  <div class="section-inner">
+    <h2 class="fade-up">Have a project in mind?</h2>
+    <p class="t-body-xl fade-up" style="max-width:440px;margin:0 auto 36px;">Open to collaborations, freelance work, and interesting problems.</p>
+    <div class="btn-row fade-up">
       <a href="contact.html" class="btn btn-primary">Get in touch</a>
-      <a href="https://github.com/whynicky19" target="_blank" class="btn btn-ghost">View GitHub</a>
+      <a href="https://github.com/whynicky19" target="_blank" class="btn btn-ghost">GitHub</a>
     </div>
   </div>
 </section>
@@ -423,35 +525,5 @@
 <script src="utils.js"></script>
 <script src="components.js"></script>
 <script src="app.js"></script>
-<script>
-(function () {
-  var tabs   = document.querySelectorAll('.filter-tab');
-  var items  = document.querySelectorAll('[data-cat]');
-  // "Other projects." / "Practice work." are section headings that sit
-  // above a grid of filterable cards but aren't themselves filterable —
-  // hiding every card inside a filter used to leave the heading (and its
-  // now-empty grid) stranded on screen. Track each such section so it can
-  // be hidden as a whole once none of its cards match the active filter.
-  var groups = document.querySelectorAll('.filter-group');
-  if (!tabs.length || !items.length) return;
-
-  tabs.forEach(function (tab) {
-    tab.addEventListener('click', function () {
-      tabs.forEach(function (t) { t.classList.remove('active'); });
-      tab.classList.add('active');
-      var filter = tab.dataset.filter;
-      items.forEach(function (item) {
-        var cats = (item.dataset.cat || '').split(' ');
-        var show = filter === 'all' || cats.indexOf(filter) !== -1;
-        item.classList.toggle('proj-hidden', !show);
-      });
-      groups.forEach(function (group) {
-        var anyVisible = group.querySelector('[data-cat]:not(.proj-hidden)');
-        group.classList.toggle('proj-hidden', !anyVisible);
-      });
-    });
-  });
-})();
-</script>
 </body>
 </html>

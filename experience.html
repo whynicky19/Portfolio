@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Experience — Whynicky</title>
-<meta name="description" content="Hackathons, competitions, and projects — the full picture beyond the code.">
+<title>Experience — Whynicky · iOS Developer & Designer</title>
+<meta name="description" content="Hackathons, education, presenting — the path from cross-platform to native iOS.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/experience.html">
 <meta property="og:title" content="Experience — Whynicky">
-<meta property="og:description" content="Hackathons, competitions, and projects — the full picture beyond the code.">
+<meta property="og:description" content="Hackathons, education, speaking — the work beyond the code.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/hackathon.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Experience — Whynicky">
-<meta name="twitter:description" content="Hackathons, competitions, and projects — the full picture beyond the code.">
+<meta name="twitter:description" content="Beyond the code.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="tokens.css">
@@ -22,79 +22,200 @@
 <link rel="stylesheet" href="style.css">
 <script src="theme-init.js"></script>
 <style>
-.page-hero { padding: calc(var(--nav-h) + 100px) 32px 80px; background: var(--white); }
 
-.hl-word {
+.page-hero {
+  padding: calc(var(--nav-h) + 120px) 32px 100px;
+  background: var(--white);
+}
+.page-hero-inner { max-width: var(--max-w); margin: 0 auto; }
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 700;
+  letter-spacing: var(--em-tightest);
+  line-height: 0.92;
+  color: var(--black);
+}
+.page-hero-title em {
+  font-style: normal;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-@media(max-width:600px){
-  .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
+.page-hero-sub {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.55;
+  color: var(--gray-4);
+  max-width: 560px;
+  margin-top: 32px;
 }
 
-.exp-card {
-  padding: 40px 0; display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 0 64px; align-items: start;
-}
-@media(max-width:700px){
-  .exp-card { grid-template-columns: 1fr; gap: 12px; }
-}
-.exp-meta { padding-top: 3px; }
-.exp-year { font-size: 13px; font-weight: 600; color: var(--gray-4); letter-spacing: -0.01em; margin-bottom: 4px; }
-.exp-type { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-5); }
-.exp-icon-wrap {
-  width: 40px; height: 40px; border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.1);
-  background: rgba(0,0,0,0.03);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.exp-icon-wrap svg { opacity: 0.75; }
-.exp-title { font-size: 19px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 10px; color: var(--black); }
-.exp-desc { font-size: 15px; color: var(--gray-4); line-height: 1.7; max-width: 560px; }
-.exp-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
+/* === Section scaffolding === */
+.section { padding: var(--section-y, 160px) 0; position: relative; }
+.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section-light { background: var(--white); }
+.section-tint  { background: var(--gray-06); }
+.section-dark  { background: #000; color: var(--white); }
 
-.ach-card {
-  border-radius: var(--r-xl);
-  overflow: hidden; position: relative;
+.sec-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 24px;
+}
+.sec-heading {
+  font-family: var(--font-display);
+  font-size: var(--display-md);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  color: var(--black);
+}
+.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
+.section-dark .sec-heading { color: var(--white); }
+.sec-body {
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.6;
+  color: var(--gray-4);
+  letter-spacing: -0.01em;
+}
+
+/* === Timeline === */
+.timeline {
+  margin-top: 80px;
+  position: relative;
+  padding-left: 28px;
+  border-left: 1px solid var(--border);
+  max-width: 820px;
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 56px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot {
+  position: absolute;
+  left: -32px; top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
   background: var(--white);
-  border: 1px solid rgba(0,0,0,0.08);
-  cursor: default;
+  border: 1px solid var(--gray-3);
+}
+.tl-year {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gray-5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.tl-meta {
+  font-size: 12px; font-weight: 500;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+  margin-bottom: 4px;
+}
+.tl-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+.tl-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+  max-width: 580px;
+}
+.tl-tags {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-top: 16px;
+}
+.tl-tags .chip {
+  font-size: 11px; padding: 3px 9px;
+  color: var(--gray-4);
+  background: var(--gray-06);
+  border: 1px solid var(--border);
+}
+
+/* === Recognition gallery (no card grid) === */
+.recognition {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.rec-card {
+  background: var(--gray-06);
+  border-radius: 18px;
+  overflow: hidden;
   display: flex; flex-direction: column;
 }
-/* hover physics unified in style.css: .ach-card is in the shared card-hover set */
-.ach-visual {
-  width: 100%; aspect-ratio: 4/3;
+.rec-card-img {
+  aspect-ratio: 4/3;
+  background: var(--white);
   display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  flex-shrink: 0;
-  background: #fff;
+  overflow: hidden;
 }
-.ach-visual img {
+.rec-card-img img {
   width: 100%; height: 100%;
   object-fit: contain;
-  background: #fff;
-  display: block;
-}
-.ach-visual svg { opacity: 0.1; }
-.ach-overlay { display: none; }
-.ach-content {
-  padding: 20px 20px 22px;
   background: var(--white);
 }
-.ach-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 6px; }
-.ach-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 3px; color: var(--black); }
-.ach-sub { font-size: 13px; color: var(--gray-4); }
-@media (max-width: 600px) {
-  .exp-card { padding: 28px 0; }
-  .exp-title { font-size: 16px; }
-  .exp-desc  { font-size: 14px; }
-  .ach-content { padding: 16px 18px 18px; }
-  .ach-title { font-size: 16px; }
+.rec-card-body {
+  padding: 24px;
 }
+.rec-card-label {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 8px;
+}
+.rec-card-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+.rec-card-sub {
+  font-size: 13px;
+  color: var(--gray-4);
+}
+
+/* === CTA mini === */
+.cta-mini {
+  padding: 120px 0;
+  background: var(--white);
+  text-align: center;
+}
+.cta-mini h2 {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 28px;
+}
+.cta-mini .btn-row {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .recognition { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .page-hero { padding: calc(var(--nav-h) + 64px) 20px 64px; }
+  .section-inner { padding: 0 24px; }
+  .section { padding: 100px 0; }
+}
+
 </style>
 </head>
 <body>
@@ -103,174 +224,216 @@
 <script src="partials.js"></script>
 
 <section class="page-hero">
-  <div class="container">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;"><span class="hl-word">Experience</span><br>& Activities.</h1>
-    <p class="t-body-xl fade-up" style="max-width:var(--w-narrow);margin-top:24px;animation-delay:.2s;">Hackathons, competitions, university events, and leadership — the full picture beyond the code.</p>
+  <div class="page-hero-inner">
+    <h1 class="page-hero-title fade-up">
+      The path<br>to <em>iOS.</em>
+    </h1>
+    <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
+      Hackathons, education, and the projects that built the foundation underneath the iOS work.
+    </p>
   </div>
 </section>
 
+<!-- ══════════════ TIMELINE ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Recent chapters</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      The work beyond the code.
+    </h2>
 
+    <div class="timeline">
 
-<section class="section bg-black">
-  <div class="container">
-
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-5 3.5 2 6.5-5-4-5 4 2-6.5L2 8h6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026 →</div>
+        <div class="tl-meta">Going native</div>
+        <div class="tl-title">Swift &amp; SwiftUI as the primary craft</div>
+        <p class="tl-desc">The current chapter. Deep study of Apple's Human Interface Guidelines, native iOS interface patterns, and the work that turns design intent into native code.</p>
+        <div class="tl-tags">
+          <span class="chip">Swift</span>
+          <span class="chip">SwiftUI</span>
+          <span class="chip">iOS</span>
         </div>
-        <div class="exp-year">2023 – 2026</div>
-        <div class="exp-type">Hackathons</div>
       </div>
-      <div>
-        <div class="exp-title">Hackathon Competitor</div>
-        <div class="exp-desc">Participated in 3+ hackathons across Kazakhstan. Built working MVPs in 24–48 hour sprints, pitched to panels of industry judges, and learned to make real product decisions under extreme time pressure.</div>
-        <div class="exp-tags"><span class="chip">Nuxt</span><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Firebase</span></div>
-      </div>
-    </div>
 
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L2 6v8l8 4 8-4V6L10 2zM2 6l8 4M10 10v8M18 6l-8 4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">International University Competition</div>
+        <div class="tl-title">National competition submission with international travel prize</div>
+        <p class="tl-desc">The portfolio you're reading is part of the submission — built to demonstrate product, design, and engineering skills at an international level.</p>
+        <div class="tl-tags">
+          <span class="chip">Portfolio</span>
+          <span class="chip">Design</span>
+          <span class="chip">Engineering</span>
         </div>
-        <div class="exp-year">2025 – Present</div>
-        <div class="exp-type">Education</div>
       </div>
-      <div>
-        <div class="exp-title">Information System and Management Student</div>
-        <div class="exp-desc">Full-time student at university in Petropavl, Kazakhstan. Attending technical workshops, participating in academic competitions.</div>
-        <div class="exp-tags"><span class="chip">Python</span><span class="chip">Algorithms</span><span class="chip">Data Structures</span></div>
-      </div>
-    </div>
 
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2"/><path d="M2 10h16M10 2a13 13 0 010 16M10 2a13 13 0 000 16" stroke="currentColor" stroke-width="1.2"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">Speaker · Presenter</div>
+        <div class="tl-title">Presenting Chatra to faculty, judges, and panels</div>
+        <p class="tl-desc">Developed skills in technical storytelling, live demos, and pitch structure. Distilling complex engineering into clear narrative for non-technical audiences.</p>
+        <div class="tl-tags">
+          <span class="chip">Public Speaking</span>
+          <span class="chip">Pitch</span>
+          <span class="chip">Demo</span>
         </div>
-        <div class="exp-year">2026</div>
-        <div class="exp-type">Competition</div>
       </div>
-      <div>
-        <div class="exp-title">International University Competition</div>
-        <div class="exp-desc">Competing in a national university-level competition with a travel prize to the United States. The portfolio site you're reading right now is part of the submission — built to demonstrate product, design, and engineering skills at an international level.</div>
-        <div class="exp-tags"><span class="chip">Portfolio</span><span class="chip">Design</span><span class="chip">Engineering</span></div>
-      </div>
-    </div>
 
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M7 7V5a3 3 0 016 0v2" stroke="currentColor" stroke-width="1.2"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">Mobile Lead · Chatra</div>
+        <div class="tl-title">Led iOS and Android development for Chatra Academy</div>
+        <p class="tl-desc">Riverpod state management, GoRouter navigation, Dio-based API integration, ngrok tunneling for iOS simulator, SharedPreferences persistence. Production in real classrooms.</p>
+        <div class="tl-tags">
+          <span class="chip">Flutter</span>
+          <span class="chip">Dart</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Figma</span>
         </div>
-        <div class="exp-year">2026</div>
-        <div class="exp-type">Mobile Dev</div>
       </div>
-      <div>
-        <div class="exp-title">Flutter Developer — Chatra</div>
-        <div class="exp-desc">Led mobile development for Chatra — a full-stack educational platform. Handled iOS/Android compatibility, Riverpod state management, GoRouter navigation, Dio-based API integration, ngrok tunneling for iOS simulator, and SharedPreferences persistence.</div>
-        <div class="exp-tags"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">FastAPI</span><span class="chip">Figma</span></div>
-      </div>
-    </div>
 
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M6 5V4a2 2 0 014 0v1" stroke="currentColor" stroke-width="1.2"/><path d="M10 10v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">Harvard Online</div>
+        <div class="tl-title">CS50P — Introduction to Programming with Python</div>
+        <p class="tl-desc">Completed Harvard's Python course by hand — no AI generation, no copy-paste. Building real foundations, not surface familiarity.</p>
+        <div class="tl-tags">
+          <span class="chip">Python</span>
+          <span class="chip">CS50</span>
+          <span class="chip">Harvard</span>
         </div>
-        <div class="exp-year">2026</div>
-        <div class="exp-type">Presenting</div>
       </div>
-      <div>
-        <div class="exp-title">Speaker & Presenter</div>
-        <div class="exp-desc">Presented Chatra Academy to faculty panels, potential investors, and competition judges. Developed skills in technical storytelling, live demos, and pitch structure — distilling complex engineering into clear narrative.</div>
-        <div class="exp-tags"><span class="chip">Public Speaking</span><span class="chip">Pitch</span><span class="chip">Demo</span></div>
-      </div>
-    </div>
 
-    <div class="exp-card fade-up">
-      <div class="exp-meta">
-        <div class="exp-icon-wrap">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2 6h6l-4.5 3.5 1.5 6L10 14l-5 3.5 1.5-6L2 8h6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025 — Present</div>
+        <div class="tl-meta">Education</div>
+        <div class="tl-title">Information Systems &amp; Management student</div>
+        <p class="tl-desc">Full-time university student in Petropavl, Kazakhstan. Attending technical workshops, participating in academic competitions, building software on the side.</p>
+        <div class="tl-tags">
+          <span class="chip">Algorithms</span>
+          <span class="chip">Data Structures</span>
+          <span class="chip">Python</span>
         </div>
-        <div class="exp-year">2026</div>
-        <div class="exp-type">Harvard Online</div>
       </div>
-      <div>
-        <div class="exp-title">Harvard CS50P — Certificate</div>
-        <div class="exp-desc">Completed Harvard University's CS50P (Introduction to Programming with Python) course. Strict discipline: every problem set written manually, no AI generation or copy-paste. Built real foundations, not just surface familiarity.</div>
-        <div class="exp-tags"><span class="chip">Python</span><span class="chip">CS50</span><span class="chip">Harvard</span></div>
-      </div>
-    </div>
 
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2023 — 2026</div>
+        <div class="tl-meta">Hackathons</div>
+        <div class="tl-title">Hackathon competitor across Kazakhstan</div>
+        <p class="tl-desc">Participated in 3+ hackathons. Built working MVPs in 24–48 hour sprints, pitched to panels of industry judges, made real product decisions under extreme time pressure.</p>
+        <div class="tl-tags">
+          <span class="chip">Nuxt</span>
+          <span class="chip">Python</span>
+          <span class="chip">FastAPI</span>
+          <span class="chip">Firebase</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
+<!-- ══════════════ RECOGNITION ══════════════ -->
+<section class="section section-tint">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Recognition</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Evidence of the work.
+    </h2>
 
-
-<section class="section bg-darker">
-  <div class="container">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Key achievements.</h2>
-    <div class="grid-3 depth-stagger">
-
-      <div class="ach-card cv-auto">
-        <div class="ach-visual">
-          
+    <div class="recognition">
+      <div class="rec-card fade-up">
+        <div class="rec-card-img">
           <picture>
-            <source type="image/avif" srcset="img/hackathon-640w.avif 640w, img/hackathon-1200w.avif 1200w" sizes="(max-width: 900px) 90vw, 380px">
-            <source type="image/webp" srcset="img/hackathon-640w.webp 640w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 900px) 90vw, 380px">
-            <img src="img/hackathon.jpg" alt="Hackathon Top 5 Finalist" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/hackathon-640w.avif 640w, img/hackathon-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <source type="image/webp" srcset="img/hackathon-640w.webp 640w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <img src="img/hackathon.jpg" alt="Hackathon Top 5" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="ach-overlay"></div>
-        <div class="ach-content">
-          <div class="ach-label">Hackathon</div>
-          <div class="ach-title">Top 5 Finalist</div>
-          <div class="ach-sub">University Hackathon · 2026</div>
+        <div class="rec-card-body">
+          <div class="rec-card-label">Hackathon</div>
+          <div class="rec-card-title">Top 5 Finalist</div>
+          <div class="rec-card-sub">University Hackathon · 2026</div>
         </div>
       </div>
 
-      <div class="ach-card cv-auto">
-        <div class="ach-visual">
-          
-          <img src="img/appstore-card.svg" alt="Chatra Mobile" loading="lazy">
-        </div>
-        <div class="ach-overlay"></div>
-        <div class="ach-content">
-          <div class="ach-label">Product</div>
-          <div class="ach-title">Chatra Mobile</div>
-          <div class="ach-sub">Flutter app · 2026</div>
-        </div>
-      </div>
-
-      <div class="ach-card cv-auto">
-        <div class="ach-visual">
-          
+      <div class="rec-card fade-up">
+        <div class="rec-card-img">
           <picture>
-            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w" sizes="(max-width: 900px) 90vw, 380px">
-            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w" sizes="(max-width: 900px) 90vw, 380px">
-            <img src="img/chatraweb.jpg" alt="Chatra Academy product shipped" loading="lazy" decoding="async">
+            <source type="image/avif" srcset="img/hackathon-urpaq-640w.avif 640w, img/hackathon-urpaq-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <source type="image/webp" srcset="img/hackathon-urpaq-640w.webp 640w, img/hackathon-urpaq-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <img src="img/hackathon-urpaq.jpg" alt="Digital Urpaq Top 2" loading="lazy" decoding="async">
           </picture>
         </div>
-        <div class="ach-overlay"></div>
-        <div class="ach-content">
-          <div class="ach-label">Product</div>
-          <div class="ach-title">Chatra Web </div>
-          <div class="ach-sub">Full Web platform shipped · 2026</div>
+        <div class="rec-card-body">
+          <div class="rec-card-label">Hackathon</div>
+          <div class="rec-card-title">Top 2 Finalist</div>
+          <div class="rec-card-sub">Digital Urpaq Hackathon · 2026</div>
         </div>
       </div>
 
+      <div class="rec-card fade-up">
+        <div class="rec-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/aisana-640w.avif 640w, img/aisana-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <source type="image/webp" srcset="img/aisana-640w.webp 640w, img/aisana-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <img src="img/aisana.jpg" alt="AI-SANA certificate" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-label">AI-SANA</div>
+          <div class="rec-card-title">Intellectual Technologies</div>
+          <div class="rec-card-sub">AI-SANA · 2026</div>
+        </div>
+      </div>
+
+      <div class="rec-card fade-up">
+        <div class="rec-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/ai-center-640w.avif 640w, img/ai-center-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <source type="image/webp" srcset="img/ai-center-640w.webp 640w, img/ai-center-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <img src="img/ai-center.jpg" alt="AI Center certificate" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-label">AI Center</div>
+          <div class="rec-card-title">Neural Network Development</div>
+          <div class="rec-card-sub">University · 2026</div>
+        </div>
+      </div>
+
+      <div class="rec-card fade-up">
+        <div class="rec-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/practice-640w.avif 640w, img/practice-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <source type="image/webp" srcset="img/practice-640w.webp 640w, img/practice-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 360px">
+            <img src="img/practice.jpg" alt="Conference certificate" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-label">Conference</div>
+          <div class="rec-card-title">International Scientific Conference</div>
+          <div class="rec-card-sub">University · 2026</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-
-
-<section class="section bg-black" style="text-align:center;">
-  <div class="container">
-    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Ready to build something?</h2>
-    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta-mini">
+  <div class="section-inner">
+    <h2 class="fade-up">Ready to build something?</h2>
+    <p class="t-body-xl fade-up" style="max-width:480px;margin:0 auto 36px;">Open to internships, freelance, hackathon teams, and full-time iOS work.</p>
+    <div class="btn-row fade-up">
       <a href="contact.html" class="btn btn-primary">Get in touch</a>
       <a href="projects.html" class="btn btn-ghost">See projects</a>
     </div>

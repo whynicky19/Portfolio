@@ -330,8 +330,8 @@ body {
   list-style: none;
 }
 .nav-menu li a {
-  display: block; padding: 0 10px;
-  font-size: 12px; font-weight: 400;
+  display: block; padding: 0 14px;
+  font-size: 13px; font-weight: 400;
   color: rgba(0,0,0,0.85);
   text-decoration: none; letter-spacing: -0.01em;
   transition: color .15s;
@@ -493,16 +493,30 @@ body {
 .btn-link:hover svg { transform: translateX(3px); }
 .btn-link:hover { opacity: 1; color: var(--accent-hover); }
 
-.section { padding: 160px 0; position: relative; }
+.section { padding: var(--section-y, 160px) 0; position: relative; }
 .section-sm { padding: 110px 0; }
 .section-lg { padding: 200px 0; }
 .container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 @media(max-width:600px){ .container{ padding: 0 24px; } .section{ padding: 100px 0; } }
 
-.bg-black { background: var(--white); }
-.bg-dark  { background: var(--gray-8); }
-.bg-darker{ background: var(--gray-7); }
-.bg-surface { background: var(--gray-06); }
+/* Background tokens — use .section-light / .section-tint / .section-dark.
+   Legacy aliases kept for any lingering markup that still references them. */
+.bg-black  { background: var(--white); }
+.bg-dark   { background: var(--gray-8); }
+.bg-darker { background: var(--gray-7); }
+.bg-surface{ background: var(--gray-06); }
+
+.section-light { background: var(--white); }
+.section-tint  { background: var(--gray-06); }
+.section-dark  { background: #000; color: var(--white); }
+.section-dark .t-eyebrow { color: rgba(255,255,255,0.55); }
+.section-dark .t-headline-xl,
+.section-dark .t-headline-lg,
+.section-dark .t-headline-md,
+.section-dark .t-body-xl,
+.section-dark .t-body-lg,
+.section-dark .t-body-sm,
+.section-dark .t-label { color: var(--white); }
 
 .card {
   border-radius: var(--r-lg);

@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Whynicky</title>
-<meta name="description" content="Student, builder, hackathon competitor from Petropavl, Kazakhstan.">
+<title>About — Whynicky · iOS Developer & Designer</title>
+<meta name="description" content="Designer and builder focused on iOS. From cross-platform to native SwiftUI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/about.html">
 <meta property="og:title" content="About — Whynicky">
-<meta property="og:description" content="Flutter & Nuxt developer. Hackathon competitor. Builder from Kazakhstan.">
-<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/hackathon-urpaq.jpg">
+<meta property="og:description" content="Designer and builder focused on iOS. Swift, SwiftUI, and the work behind the work.">
+<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About — Whynicky">
-<meta name="twitter:description" content="Flutter & Nuxt developer. Hackathon competitor. Builder from Petropavl, Kazakhstan.">
+<meta name="twitter:description" content="iOS Developer & Designer. Swift, SwiftUI, and HIG.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1d1f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="tokens.css">
@@ -24,150 +24,285 @@
 <style>
 
 .page-hero {
-  padding: calc(var(--nav-h) + 100px) 32px 100px;
+  padding: calc(var(--nav-h) + 120px) 32px 120px;
   background: var(--white);
-  text-align: center;
 }
-
-.hl-word {
+.page-hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.page-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--display-xl);
+  font-weight: 700;
+  letter-spacing: var(--em-tightest);
+  line-height: 0.92;
+  color: var(--black);
+}
+.page-hero-title em {
+  font-style: normal;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+.page-hero-sub {
+  font-size: clamp(18px, 1.8vw, 22px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.55;
+  color: var(--gray-4);
+  max-width: 560px;
+  margin-top: 32px;
+}
 
-.timeline { position: relative; }
-.timeline::before {
-  content: '';
-  position: absolute; left: 0; top: 8px; bottom: 8px;
-  width: 1px; background: rgba(0,0,0,0.12);
+/* === Section scaffolding (matches index.html) === */
+.section { padding: var(--section-y, 160px) 0; position: relative; }
+.section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section-light { background: var(--white); }
+.section-tint  { background: var(--gray-06); }
+.section-dark  { background: #000; color: var(--white); }
+
+.sec-eyebrow {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+  margin-bottom: 24px;
+}
+.sec-heading {
+  font-family: var(--font-display);
+  font-size: var(--display-md);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  color: var(--black);
+}
+.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
+.section-dark .sec-heading { color: var(--white); }
+
+/* === About — long-form copy === */
+.about-copy {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 48px 80px;
+  max-width: 880px;
+  margin: 64px auto 0;
+}
+.about-meta {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gray-5);
+}
+.about-meta-block { margin-bottom: 32px; }
+.about-meta-label { margin-bottom: 8px; }
+.about-meta-value { color: var(--black); font-weight: 500; }
+.about-body p {
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.6;
+  color: var(--gray-4);
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  max-width: 580px;
+}
+.about-body p strong { color: var(--black); font-weight: 600; }
+
+/* === Story pillars === */
+.story-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 80px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.story-pillar {
+  background: var(--white);
+  padding: 40px 32px;
+  display: flex; flex-direction: column;
+}
+.story-pillar-num {
+  font-size: 12px; font-weight: 500;
+  color: var(--gray-5);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+.story-pillar-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+.story-pillar-body {
+  font-size: 14px;
+  color: var(--gray-4);
+  line-height: 1.55;
+}
+
+/* === Timeline === */
+.timeline {
+  margin-top: 80px;
+  position: relative;
+  padding-left: 28px;
+  border-left: 1px solid var(--border);
+  max-width: 700px;
 }
 .tl-item {
-  display: grid; grid-template-columns: 24px 1fr;
-  gap: 0 28px; padding-bottom: 48px;
   position: relative;
+  padding-bottom: 48px;
 }
+.tl-item:last-child { padding-bottom: 0; }
 .tl-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: var(--white); border: 1px solid rgba(0,0,0,0.4);
-  margin-top: 5px; flex-shrink: 0;
-  position: relative; z-index: 1;
-  margin-left: -4px;
+  position: absolute;
+  left: -32px; top: 4px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--gray-3);
 }
-.tl-year { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-4); margin-bottom: 6px; }
-.tl-title { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; color: var(--black); }
-.tl-desc { font-size: 14px; color: var(--gray-4); line-height: 1.6; }
+.tl-year {
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gray-5);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.tl-title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+.tl-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--gray-4);
+  letter-spacing: -0.005em;
+  max-width: 520px;
+}
 
-.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 10px; }
-.skill-pill {
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: var(--r-lg);
-  background: rgba(0,0,0,0.025);
-  padding: 20px 16px; text-align: center;
-  /* transform/shadow/border/background transitions: unified in style.css's shared card-hover rule */
+/* === Stack — single elegant list, not skill pills === */
+.stack-block {
+  margin-top: 64px;
+  border-top: 1px solid var(--border);
+  padding-top: 56px;
 }
-.skill-pill:hover { background: rgba(0,0,0,0.05); }
-/* transform/shadow: unified card-hover physics in style.css */
-.skill-pill-icon { display: flex; justify-content: center; margin-bottom: 10px; }
-.skill-pill-icon .tech-icon { width: 28px; height: 28px; filter: brightness(0) opacity(0.65); }
-[data-theme="dark"] .skill-pill-icon .tech-icon { filter: brightness(0) invert(1) opacity(0.8); }
-.skill-pill-name { font-size: 12px; font-weight: 500; color: var(--gray-4); }
-
-.cert-hl-section {
-  background: var(--gray-7);
-  padding: 120px 0 80px;
-  overflow: hidden;
+.stack-list {
+  display: flex; flex-wrap: wrap;
+  gap: 12px 36px;
+  margin-top: 32px;
+  align-items: baseline;
 }
-.cert-hl-header {
-  text-align: center;
-  padding: 0 32px;
-  margin-bottom: 40px;
+.stack-item {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--black);
 }
-.cert-hl-track {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  cursor: grab;
+.stack-sep {
+  font-size: clamp(22px, 2.4vw, 32px);
+  color: var(--gray-2);
   user-select: none;
 }
-.cert-hl-track::-webkit-scrollbar { display: none; }
-.cert-hl-track.grabbing { cursor: grabbing; }
-.cert-hl-slide {
-  flex-shrink: 0;
-  width: 100vw;
-  scroll-snap-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 max(16px, calc(50vw - 520px)) 8px;
-  box-sizing: border-box;
+.stack-meta {
+  margin-top: 24px;
+  font-size: 13px;
+  color: var(--gray-4);
+  line-height: 1.55;
 }
-.cert-hl-img {
-  width: 100%;
-  max-height: 56vh;
-  border-radius: 20px;
+
+/* === Certificate gallery === */
+.cert-stage {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.cert-card {
+  border-radius: 18px;
+  background: var(--gray-06);
   overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.05);
-  background: #fff;
-  display: flex; align-items: center; justify-content: center;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  padding: 32px;
+  align-items: center;
 }
-.cert-hl-img img {
-  width: 100%;
-  max-height: 56vh;
+.cert-card-img {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  display: flex; align-items: center; justify-content: center;
+  max-height: 320px;
+}
+.cert-card-img img {
+  width: 100%; max-height: 320px;
   object-fit: contain;
-  background: #fff;
   display: block;
 }
-.cert-hl-body {
-  text-align: center;
-  margin-top: 20px;
-  padding: 0 16px;
-}
-.cert-hl-cat {
+.cert-card-cat {
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--gray-5); margin-bottom: 8px;
+  color: var(--gray-5);
+  margin-bottom: 12px;
 }
-.cert-hl-title {
+.cert-card-title {
   font-family: var(--font-display);
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 700; letter-spacing: -0.03em;
-  color: var(--black); margin-bottom: 6px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--white);
   line-height: 1.15;
+  margin-bottom: 12px;
 }
-.cert-hl-org { font-size: 14px; color: var(--gray-4); }
-.cert-hl-dots {
-  display: flex; gap: 6px;
-  justify-content: center;
-  margin-top: 28px;
+.cert-card-org {
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: -0.01em;
 }
-.cert-hl-dot {
-  height: 6px; border-radius: 3px;
-  background: rgba(0,0,0,0.18);
-  transition: width .3s cubic-bezier(.23,1,.32,1), background .3s;
-  cursor: pointer;
-  width: 6px;
-  border: none; padding: 0;
+
+/* === Contact CTA (compact) === */
+.cta-mini {
+  padding: 120px 0;
+  background: var(--white);
+  text-align: center;
 }
-.cert-hl-dot.active { width: 24px; background: var(--black); }
-[data-theme="dark"] .cert-hl-dot { background: rgba(255,255,255,0.25); }
-[data-theme="dark"] .cert-hl-dot.active { background: rgba(255,255,255,0.9); }
-@media(max-width:600px){
-  .cert-hl-section { padding: 56px 0 36px; }
-  .cert-hl-header { margin-bottom: 28px; }
-  .cert-hl-img { max-height: 38vh; }
-  .cert-hl-img img { max-height: 38vh; }
-  .cert-hl-body { margin-top: 14px; }
-  .cert-hl-dots { margin-top: 20px; }
+.cta-mini h2 {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 28px;
 }
-@media(max-width:600px){
-  .page-hero { padding: calc(var(--nav-h) + 56px) 20px 52px; }
-  .tl-item { gap: 0 18px; padding-bottom: 36px; }
-  .skill-grid { grid-template-columns: repeat(auto-fill, minmax(96px,1fr)); gap: 8px; }
-  .skill-pill { padding: 16px 12px; }
+.cta-mini .btn-row {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
 }
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .about-copy {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .story-pillars { grid-template-columns: 1fr; }
+  .cert-card { grid-template-columns: 1fr; padding: 24px; }
+}
+@media (max-width: 600px) {
+  .page-hero { padding: calc(var(--nav-h) + 64px) 20px 64px; }
+  .section-inner { padding: 0 24px; }
+  .section { padding: 100px 0; }
+  .stack-list { gap: 8px 20px; }
+  .stack-item, .stack-sep { font-size: 20px; }
+}
+
 </style>
 </head>
 <body>
@@ -177,245 +312,265 @@
 
 <section class="page-hero">
   <div class="page-hero-inner">
-    <h1 class="t-headline-xl fade-up" style="animation-delay:.1s;">Student.<br><span class="hl-word">Builder.</span><br>Competitor.</h1>
-    <p class="t-body-xl fade-up" style="max-width:540px;margin:28px auto 0;animation-delay:.25s;">
-      I'm an Information System and Management student in Petropavl, Kazakhstan — building real products with Flutter, Nuxt, and Python while competing in hackathons and chasing international opportunities.
+    <h1 class="page-hero-title fade-up">
+      From <em>cross-platform</em><br>
+      to native iOS.
+    </h1>
+    <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
+      I'm an iOS Developer & Designer in Petropavl, Kazakhstan. The work began with Flutter and full-stack products. Today it goes deeper — Swift, SwiftUI, and the principles that make an interface feel native.
     </p>
   </div>
 </section>
 
+<!-- ══════════════ THE PATH ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">The path</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Three things I believe about good iOS work.
+    </h2>
 
-
-<section class="section bg-darker">
-  <div class="container">
-    <div class="fade-up" style="max-width:680px; margin:0 auto;">
-      <h2 class="t-headline-md" style="margin-bottom:24px;">From curiosity<br>to craft.</h2>
-      <p class="t-body-lg" style="margin-bottom:18px;">My journey started in 2025 when I enrolled in Information System and Management and wrote my first line of code. What began as a requirement became an obsession.</p>
-      <p class="t-body-lg" style="margin-bottom:18px;">I built <strong style="color:var(--black)">Chatra</strong> — a complete educational platform — from scratch, handling everything from the Flutter mobile app to the FastAPI backend and Nuxt.js web dashboard.</p>
-      <p class="t-body-lg" style="margin-bottom:32px;">Today I'm competing in hackathons across Kazakhstan, studying Harvard's CS50P, and building toward international opportunities in tech.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a href="projects.html" class="btn btn-primary">See my work</a>
-        <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+    <div class="story-pillars depth-stagger">
+      <div class="story-pillar">
+        <div class="story-pillar-num">01</div>
+        <div class="story-pillar-title">Design leads</div>
+        <p class="story-pillar-body">Every screen starts with intent. Hierarchy, type, motion — designed before a single line of Swift is written.</p>
+      </div>
+      <div class="story-pillar">
+        <div class="story-pillar-num">02</div>
+        <div class="story-pillar-title">Native is a craft</div>
+        <p class="story-pillar-body">SwiftUI, UIKit, system materials, haptics — these aren't buzzwords. They're how an app feels at home on iOS.</p>
+      </div>
+      <div class="story-pillar">
+        <div class="story-pillar-num">03</div>
+        <div class="story-pillar-title">Ship real things</div>
+        <p class="story-pillar-body">Theory is cheap. Chatra Academy runs in production classrooms — proof that the design and code actually work.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════ STORY ══════════════ -->
+<section class="section section-tint">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">The story</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Curious by nature. Obsessive by habit.
+    </h2>
 
-
-<section class="section bg-black">
-  <div class="container">
-    <div class="grid-4">
-      <div data-reveal-progress>
-        <div class="stat-num" data-target="3" data-suffix="+">0+</div>
-        <div class="stat-label">Hackathons entered</div>
+    <div class="about-copy">
+      <div class="about-meta">
+        <div class="about-meta-block">
+          <div class="about-meta-label">Currently</div>
+          <div class="about-meta-value">Petropavl, KZ</div>
+        </div>
+        <div class="about-meta-block">
+          <div class="about-meta-label">Studying</div>
+          <div class="about-meta-value">Information Systems</div>
+        </div>
+        <div class="about-meta-block">
+          <div class="about-meta-label">Focus</div>
+          <div class="about-meta-value">Swift · SwiftUI · iOS</div>
+        </div>
       </div>
-      <div data-reveal-progress>
-        <div class="stat-num" data-target="7" data-suffix="+">0+</div>
-        <div class="stat-label">Projects completed</div>
-      </div>
-      <div data-reveal-progress>
-        <div class="stat-num" data-target="5" data-suffix="+">0+</div>
-        <div class="stat-label">Certificates earned</div>
-      </div>
-      <div data-reveal-progress>
-        <div class="stat-num" data-target="11" data-suffix="+">0+</div>
-        <div class="stat-label">Technologies learned</div>
+      <div class="about-body">
+        <p>The first line of code I ever wrote was in 2025 — Python for a university assignment. What started as coursework turned into a habit of building things at night and shipping them on weekends.</p>
+        <p>The first real product was <strong>Chatra Academy</strong> — a complete stack across Flutter, FastAPI, and Nuxt, deployed in production at my university. Two developers, three platforms, real students using it. That project taught me that <strong>design and engineering are the same conversation</strong>.</p>
+        <p>Today the focus has narrowed. I'm going deeper on <strong>Swift and SwiftUI</strong>, studying Apple's Human Interface Guidelines the way I used to study documentation, and writing native iOS interfaces that feel like the apps people keep on their home screen.</p>
+        <p>Outside the code: hackathons across Kazakhstan, a Harvard CS50P certificate earned by hand, and a first international conference presentation. The trajectory points outward.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════ TIMELINE ══════════════ -->
+<section class="section section-light">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">The road so far</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Recent chapters.
+    </h2>
 
-
-<section class="section bg-darker">
-  <div class="container" style="max-width:700px;">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:52px;">The road so far.</h2>
     <div class="timeline">
-      <div class="timeline-line-fill"></div>
-      <div class="tl-item" data-reveal-progress>
+      <div class="tl-item fade-up">
         <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-year">2023</div>
-          <div class="tl-title">First Hackathon</div>
-          <div class="tl-desc">Competed in my first hackathon. Built a working MVP in 48 hours, pitched it to a panel of judges, and finished in the top 5. Completely changed how I think about building software.</div>
+        <div class="tl-year">2023</div>
+        <div class="tl-title">First Hackathon</div>
+        <p class="tl-desc">Built a working MVP in 48 hours, pitched to a panel of judges, finished in the Top 5. The moment software stopped being a subject and became a craft.</p>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">Information Systems, Petropavl</div>
+        <p class="tl-desc">Began university. Wrote first programs in Python. Discovered that building things with code was the most satisfying thing I'd ever done.</p>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-year">2025 — 2026</div>
+        <div class="tl-title">Chatra Academy shipped</div>
+        <p class="tl-desc">Flutter mobile, FastAPI backend, Nuxt dashboard — production. Used in real university classrooms with students, instructors, and administrators.</p>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">Harvard CS50P</div>
+        <p class="tl-desc">Completed Harvard's Python course by hand — no AI, no copy-paste. Building real foundations, not surface familiarity.</p>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">First international stage</div>
+        <p class="tl-desc">Presented at an international scientific and practical conference. First time beyond Kazakhstan. Applying to programs with global reach.</p>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-year">2026 →</div>
+        <div class="tl-title">Going native on iOS</div>
+        <p class="tl-desc">The next chapter — Swift and SwiftUI as the primary craft. Apple ecosystem as the design language. The work that follows this page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STACK ══════════════ -->
+<section class="section section-tint">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Tools &amp; technologies</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      What I build with.
+    </h2>
+
+    <div class="stack-block">
+      <p class="stack-meta fade-up">iOS &amp; mobile — primary</p>
+      <div class="stack-list fade-up">
+        <span class="stack-item">Swift</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">SwiftUI</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">UIKit</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Flutter</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Dart</span>
+      </div>
+
+      <p class="stack-meta fade-up" style="margin-top:48px;">Backend — production</p>
+      <div class="stack-list fade-up">
+        <span class="stack-item">Python</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">FastAPI</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">PostgreSQL</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Docker</span>
+      </div>
+
+      <p class="stack-meta fade-up" style="margin-top:48px;">Web &amp; frontend</p>
+      <div class="stack-list fade-up">
+        <span class="stack-item">Nuxt</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Vue</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">TypeScript</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">Node.js</span>
+        <span class="stack-sep">·</span>
+        <span class="stack-item">HTML / CSS / JS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CERTIFICATES ══════════════ -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <p class="sec-eyebrow fade-up">Certificates &amp; recognition</p>
+    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+      Deliberate practice, captured.
+    </h2>
+
+    <div class="cert-stage">
+      <div class="cert-card fade-up">
+        <div class="cert-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/hackathon-640w.avif 640w, img/hackathon-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <source type="image/webp" srcset="img/hackathon-640w.webp 400w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <img src="img/hackathon.jpg" alt="Hackathon Top 5" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div>
+          <div class="cert-card-cat">Hackathon</div>
+          <div class="cert-card-title">Top 5 Finalist</div>
+          <div class="cert-card-org">University Hackathon · 2026</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-year">2025</div>
-          <div class="tl-title">Enrolled in Information System and Management</div>
-          <div class="tl-desc">Began university studies in Petropavl. Wrote my first programs in Python. Discovered that building things with code was the most satisfying thing I'd ever done.</div>
+
+      <div class="cert-card fade-up">
+        <div class="cert-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/hackathon-urpaq-640w.avif 640w, img/hackathon-urpaq-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <source type="image/webp" srcset="img/hackathon-urpaq-640w.webp 640w, img/hackathon-urpaq-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <img src="img/hackathon-urpaq.jpg" alt="Digital Urpaq Top 2" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div>
+          <div class="cert-card-cat">Hackathon</div>
+          <div class="cert-card-title">Top 2 Finalist</div>
+          <div class="cert-card-org">Digital Urpaq Hackathon · 2026</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-year">2025–2026</div>
-          <div class="tl-title">Mastered Flutter & Full-Stack</div>
-          <div class="tl-desc">Went deep on Flutter/Dart for mobile, FastAPI for backend, and Vue/Nuxt for web. Built Chatra Academy — a complete educational platform used in real classrooms.</div>
+
+      <div class="cert-card fade-up">
+        <div class="cert-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/aisana-640w.avif 640w, img/aisana-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <source type="image/webp" srcset="img/aisana-640w.webp 640w, img/aisana-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <img src="img/aisana.jpg" alt="AI-SANA certificate" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div>
+          <div class="cert-card-cat">AI-SANA</div>
+          <div class="cert-card-title">Intellectual Technologies &amp; Entrepreneurial Thinking</div>
+          <div class="cert-card-org">AI-SANA · 2026</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-year">2026</div>
-          <div class="tl-title">Harvard CS50P</div>
-          <div class="tl-desc">Completed Harvard's Python course (CS50P) to deepen my foundations. Strict about writing code manually — not copy-pasting or AI-generating — to actually learn.</div>
+
+      <div class="cert-card fade-up">
+        <div class="cert-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/ai-center-640w.avif 640w, img/ai-center-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <source type="image/webp" srcset="img/ai-center-640w.webp 640w, img/ai-center-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <img src="img/ai-center.jpg" alt="AI Center certificate" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div>
+          <div class="cert-card-cat">AI Center</div>
+          <div class="cert-card-title">Introduction to Neural Network Development</div>
+          <div class="cert-card-org">University · 2026</div>
         </div>
       </div>
-      <div class="tl-item" data-reveal-progress>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-year">2026</div>
-          <div class="tl-title">First International Conference</div>
-          <div class="tl-desc">Presented at an international scientific and practical conference — first time on a stage beyond Kazakhstan. Now applying to international programs and targeting a global tech career.</div>
+
+      <div class="cert-card fade-up">
+        <div class="cert-card-img">
+          <picture>
+            <source type="image/avif" srcset="img/practice-640w.avif 640w, img/practice-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <source type="image/webp" srcset="img/practice-640w.webp 640w, img/practice-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
+            <img src="img/practice.jpg" alt="International Conference" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div>
+          <div class="cert-card-cat">Conference</div>
+          <div class="cert-card-title">International Scientific &amp; Practical Conference</div>
+          <div class="cert-card-org">University · 2026</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
-
-<section class="section bg-black">
-  <div class="container">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:40px;">Tools I build with.</h2>
-    <div class="skill-grid depth-stagger">
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/python.svg" class="tech-icon" width="28" height="28" alt="Python" loading="lazy"></div>
-        <div class="skill-pill-name">Python</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/fastapi.svg" class="tech-icon" width="28" height="28" alt="FastAPI" loading="lazy"></div>
-        <div class="skill-pill-name">FastAPI</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/flutter.svg" class="tech-icon" width="28" height="28" alt="Flutter" loading="lazy"></div>
-        <div class="skill-pill-name">Flutter</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/javascript.svg" class="tech-icon" width="28" height="28" alt="JavaScript" loading="lazy"></div>
-        <div class="skill-pill-name">JavaScript</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/vuedotjs.svg" class="tech-icon" width="28" height="28" alt="Vue.js" loading="lazy"></div>
-        <div class="skill-pill-name">Vue / Nuxt</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/react.svg" class="tech-icon" width="28" height="28" alt="React" loading="lazy"></div>
-        <div class="skill-pill-name">React</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/postgresql.svg" class="tech-icon" width="28" height="28" alt="PostgreSQL" loading="lazy"></div>
-        <div class="skill-pill-name">PostgreSQL</div>
-      </div>
-      <div class="skill-pill">
-        <div class="skill-pill-icon"><img src="img/icons/git.svg" class="tech-icon" width="28" height="28" alt="Git" loading="lazy"></div>
-        <div class="skill-pill-name">Git</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="cert-hl-section">
-  <div class="cert-hl-header">
-    <h2 class="t-headline-md fade-up" style="margin-bottom:0;">Certificates & Awards.</h2>
-    <p class="t-body-lg fade-up" style="max-width:400px;margin:16px auto 0;">Learning never stops. Every certificate is evidence of deliberate practice.</p>
-  </div>
-  <div class="cert-hl-track" id="certTrack">
-    <div class="cert-hl-slide cv-auto">
-      <div class="cert-hl-img">
-        <picture>
-          <source type="image/avif" srcset="img/hackathon-640w.avif 640w, img/hackathon-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <source type="image/webp" srcset="img/hackathon-640w.webp 640w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <img src="img/hackathon.jpg" alt="Hackathon certificate" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="cert-hl-body">
-        <p class="cert-hl-cat">University Hackathon</p>
-        <p class="cert-hl-title">Hackathon</p>
-        <p class="cert-hl-org">University · 2026</p>
-      </div>
-    </div>
-    <div class="cert-hl-slide cv-auto">
-      <div class="cert-hl-img">
-        <picture>
-          <source type="image/avif" srcset="img/aisana-640w.avif 640w, img/aisana-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <source type="image/webp" srcset="img/aisana-640w.webp 640w, img/aisana-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <img src="img/aisana.jpg" alt="AI-SANA certificate" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="cert-hl-body">
-        <p class="cert-hl-cat">AI-SANA</p>
-        <p class="cert-hl-title">Intellectual Technologies and Entrepreneurial Thinking</p>
-        <p class="cert-hl-org">AI-SANA · 2026</p>
-      </div>
-    </div>
-    <div class="cert-hl-slide cv-auto">
-      <div class="cert-hl-img">
-        <picture>
-          <source type="image/avif" srcset="img/hackathon-urpaq-640w.avif 640w, img/hackathon-urpaq-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <source type="image/webp" srcset="img/hackathon-urpaq-640w.webp 640w, img/hackathon-urpaq-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <img src="img/hackathon-urpaq.jpg" alt="Hackathon Top 2" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="cert-hl-body">
-        <p class="cert-hl-cat">Hackathon</p>
-        <p class="cert-hl-title">Top 2 Finalist</p>
-        <p class="cert-hl-org">Digital Urpaq Hackathon · 2026</p>
-      </div>
-    </div>
-    <div class="cert-hl-slide cv-auto">
-      <div class="cert-hl-img">
-        <picture>
-          <source type="image/avif" srcset="img/ai-center-640w.avif 640w, img/ai-center-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <source type="image/webp" srcset="img/ai-center-640w.webp 640w, img/ai-center-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <img src="img/ai-center.jpg" alt="AI Center certificate" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="cert-hl-body">
-        <p class="cert-hl-cat">AI Center</p>
-        <p class="cert-hl-title">Introduction to Neural Network Development</p>
-        <p class="cert-hl-org">University · 2026</p>
-      </div>
-    </div>
-    <div class="cert-hl-slide cv-auto">
-      <div class="cert-hl-img">
-        <picture>
-          <source type="image/avif" srcset="img/practice-640w.avif 640w, img/practice-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <source type="image/webp" srcset="img/practice-640w.webp 640w, img/practice-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 1040px">
-          <img src="img/practice.jpg" alt="Conference certificate" loading="lazy" decoding="async">
-        </picture>
-      </div>
-      <div class="cert-hl-body">
-        <p class="cert-hl-cat">Conference</p>
-        <p class="cert-hl-title">International Scientific & Practical Conference</p>
-        <p class="cert-hl-org">University · 2026</p>
-      </div>
-    </div>
-  </div>
-  <div class="cert-hl-dots" id="certDots">
-    <button class="cert-hl-dot active" aria-label="Certificate 1"></button>
-    <button class="cert-hl-dot" aria-label="Certificate 2"></button>
-    <button class="cert-hl-dot" aria-label="Certificate 3"></button>
-    <button class="cert-hl-dot" aria-label="Certificate 4"></button>
-    <button class="cert-hl-dot" aria-label="Certificate 5"></button>
-  </div>
-</section>
-
-
-
-<section class="section bg-black" style="text-align:center;">
-  <div class="container">
-    <h2 class="t-headline-lg fade-up" style="margin-bottom:24px;">Want to work together?</h2>
-    <p class="t-body-xl fade-up" style="max-width:480px;margin:0 auto 36px;">I'm open to internships, freelance projects, hackathon teams, and full-time roles.</p>
-    <div class="fade-up" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+<!-- ══════════════ CTA ══════════════ -->
+<section class="cta-mini">
+  <div class="section-inner">
+    <h2 class="fade-up">Want to work together?</h2>
+    <p class="t-body-xl fade-up" style="max-width:480px;margin:0 auto 36px;">Open to internships, freelance, hackathon teams, and full-time iOS work.</p>
+    <div class="btn-row fade-up">
       <a href="contact.html" class="btn btn-primary">Get in touch</a>
-      <a href="projects.html" class="btn btn-ghost">See my projects</a>
+      <a href="chatra.html" class="btn btn-ghost">Read Chatra case study</a>
     </div>
   </div>
 </section>
@@ -426,43 +581,5 @@
 <script src="utils.js"></script>
 <script src="components.js"></script>
 <script src="app.js"></script>
-<script>
-(function () {
-  const track = document.getElementById('certTrack');
-  const dots  = Array.from(document.querySelectorAll('.cert-hl-dot'));
-  if (!track || !dots.length) return;
-
-  function setActive(idx) {
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
-
-  // Sync dots on scroll
-  track.addEventListener('scroll', () => {
-    const idx = Math.round(track.scrollLeft / window.innerWidth);
-    setActive(idx);
-  }, { passive: true });
-
-  // Click dot → scroll to slide
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      track.scrollTo({ left: i * window.innerWidth, behavior: 'smooth' });
-    });
-  });
-
-  // Mouse drag
-  let isDown = false, startX, scrollLeft;
-  track.addEventListener('mousedown', e => {
-    isDown = true; track.classList.add('grabbing');
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-  });
-  document.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
-  track.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    e.preventDefault();
-    track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.2;
-  });
-})();
-</script>
 </body>
 </html>

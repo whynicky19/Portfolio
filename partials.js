@@ -11,11 +11,9 @@
   if (page === '') page = 'index.html';
 
   var LINKS = [
-    ['index.html', 'Home'],
-    ['about.html', 'About'],
+    ['index.html',   'Work'],
     ['projects.html', 'Projects'],
-    ['chatra.html', 'Chatra'],
-    ['experience.html', 'Experience'],
+    ['about.html',   'About'],
     ['contact.html', 'Contact']
   ];
 
