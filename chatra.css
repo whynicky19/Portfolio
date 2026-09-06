@@ -325,7 +325,6 @@
 .scene-quote {
   padding: var(--scene-y) 0;
 }
-.scene-quote.scene-tint-cream { background: var(--tint-cream); }
 .scene-quote .scene-inner {
   max-width: 1400px;
 }
@@ -415,7 +414,6 @@
   padding: clamp(60px, 10vw, 160px) 0 0;
   overflow: hidden;
 }
-.scene-classes[data-tint="tint-sage"] { background: var(--tint-sage); }
 
 .sticky-stage {
   display: grid;
@@ -469,7 +467,6 @@
 .scene-subjects {
   padding: var(--scene-y) 0;
 }
-.scene-subjects[data-tint="tint-cream"] { background: var(--tint-cream); }
 
 .subjects-stage {
   display: grid;

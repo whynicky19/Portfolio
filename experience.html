@@ -156,12 +156,9 @@
   overflow: hidden;
   display: flex; flex-direction: column;
   border: 1px solid var(--border);
-  transition: transform 0.4s var(--ease-apple), background 0.4s;
+  transition: transform 0.4s var(--ease-apple);
 }
 .rec-card:hover { transform: translateY(-2px); }
-.rec-card:nth-child(3n+1):hover { background: var(--tint-mint); }
-.rec-card:nth-child(3n+2):hover { background: var(--tint-cream); }
-.rec-card:nth-child(3n+3):hover { background: var(--tint-sky); }
 .rec-card-img {
   aspect-ratio: 4/3;
   background: var(--white);
@@ -351,7 +348,7 @@
 </section>
 
 <!-- ══════════════ RECOGNITION ══════════════ -->
-<section class="section section-tint" style="background: var(--tint-rose);">
+<section class="section section-tint">
   <div class="section-inner">
     <p class="sec-eyebrow fade-up">Recognition</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">

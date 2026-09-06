@@ -96,6 +96,40 @@
   position: relative; z-index: 1;
 }
 
+/* === iPhone mockup (shared look with chatra) === */
+.iphone-frame {
+  position: relative;
+  background: #1d1d1f;
+  border-radius: 50px;
+  padding: 7px;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.20), 0 14px 32px rgba(0,0,0,0.12), 0 3px 8px rgba(0,0,0,0.06);
+}
+.iphone-notch {
+  position: absolute; top: 18px; left: 50%;
+  transform: translateX(-50%);
+  width: 96px; height: 28px;
+  background: #000;
+  border-radius: 16px;
+  z-index: 2;
+}
+.iphone-screen {
+  position: relative;
+  border-radius: 44px;
+  overflow: hidden;
+  background: var(--white);
+  aspect-ratio: 9 / 19.5;
+}
+.iphone-screen img {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+[data-theme="dark"] .iphone-frame {
+  background: #2a2a2c;
+  box-shadow: 0 50px 100px rgba(0,0,0,0.45), 0 14px 32px rgba(0,0,0,0.3), 0 3px 8px rgba(0,0,0,0.15);
+}
+
 .case-meta { display: flex; flex-direction: column; gap: 28px; }
 .case-eyebrow {
   font-size: 12px; font-weight: 600;
@@ -171,18 +205,12 @@
   text-decoration: none; color: inherit;
   position: relative;
   border: 1px solid var(--border);
-  transition: transform 0.4s var(--ease-apple), border-color 0.3s, background 0.4s var(--ease-apple);
+  transition: transform 0.4s var(--ease-apple), border-color 0.3s;
 }
 .work-tile:hover {
   transform: translateY(-2px);
   border-color: var(--gray-3);
 }
-/* Subtle Apple-style pastel washes on hover, one per tile.
-   All from the same low-saturation family so the page reads as
-   one composition, not a rainbow. */
-.work-tile:nth-child(3n+1):hover { background: var(--tint-mint); }
-.work-tile:nth-child(3n+2):hover { background: var(--tint-cream); }
-.work-tile:nth-child(3n+3):hover { background: var(--tint-sky); }
 .section-tint .work-tile { background: var(--white); }
 
 .work-tile-img {
@@ -331,7 +359,7 @@
 </section>
 
 <!-- ══════════════ FEATURED CASE STUDY — CHATRA ══════════════ -->
-<section class="section section-light" id="chatra" style="background: var(--tint-sage);">
+<section class="section section-light" id="chatra">
   <div class="case-feature">
     <div class="case-visual">
       <div class="case-iphone" data-parallax style="--parallax-depth:0.05">
@@ -460,7 +488,7 @@
 </section>
 
 <!-- ══════════════ PRACTICE / EXPLORATIONS ══════════════ -->
-<section class="section section-tint" style="background: var(--tint-cream);">
+<section class="section section-tint">
   <div class="section-inner">
     <p class="sec-eyebrow fade-up">Practice</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
