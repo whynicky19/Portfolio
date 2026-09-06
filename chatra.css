@@ -10,8 +10,8 @@
 .iphone {
   --iphone-w: 280px;
   --iphone-radius: 44px;
-  --iphone-bezel: 6px;
-  --iphone-screen-radius: 38px;
+  --iphone-bezel: 3px;
+  --iphone-screen-radius: calc(var(--iphone-radius) - var(--iphone-bezel));
 
   width: var(--iphone-w);
   aspect-ratio: 9 / 19.5;
@@ -34,11 +34,11 @@
 
 .iphone-island {
   position: absolute;
-  top: 14px; left: 50%;
+  top: 11px; left: 50%;
   transform: translateX(-50%);
-  width: 80px; height: 24px;
+  width: 56px; height: 18px;
   background: #000;
-  border-radius: 14px;
+  border-radius: 11px;
   z-index: 3;
 }
 
@@ -89,15 +89,15 @@
 [data-theme="dark"] .iphone[data-shadow="cinematic"] { --iphone-shadow: 0 80px 140px rgba(0,0,0,0.8), 0 30px 60px rgba(40,80,255,0.18), 0 0 0 1px rgba(255,255,255,0.08); }
 
 /* sizes — relative units so phones scale with their scene */
-.iphone[data-device="xl"] { --iphone-w: clamp(240px, 26vw, 320px); --iphone-radius: 50px; --iphone-screen-radius: 44px; --iphone-bezel: 7px; }
-.iphone[data-device="lg"] { --iphone-w: clamp(220px, 24vw, 300px); --iphone-radius: 44px; --iphone-screen-radius: 38px; --iphone-bezel: 6px; }
-.iphone[data-device="md"] { --iphone-w: clamp(180px, 18vw, 240px); --iphone-radius: 38px; --iphone-screen-radius: 32px; --iphone-bezel: 5px; }
-.iphone[data-device="sm"] { --iphone-w: clamp(140px, 13vw, 180px); --iphone-radius: 32px; --iphone-screen-radius: 27px; --iphone-bezel: 4px; }
+.iphone[data-device="xl"] { --iphone-w: clamp(240px, 26vw, 320px); --iphone-radius: 46px; --iphone-bezel: 5px; }
+.iphone[data-device="lg"] { --iphone-w: clamp(220px, 24vw, 300px); --iphone-radius: 42px; --iphone-bezel: 5px; }
+.iphone[data-device="md"] { --iphone-w: clamp(180px, 18vw, 240px); --iphone-radius: 36px; --iphone-bezel: 3px; }
+.iphone[data-device="sm"] { --iphone-w: clamp(140px, 13vw, 180px); --iphone-radius: 30px; --iphone-bezel: 3px; }
 
-.iphone[data-device="xl"] .iphone-island { top: 16px; width: 96px; height: 28px; border-radius: 16px; }
-.iphone[data-device="lg"] .iphone-island { top: 13px; width: 76px; height: 22px; border-radius: 13px; }
-.iphone[data-device="md"] .iphone-island { top: 11px; width: 64px; height: 20px; border-radius: 12px; }
-.iphone[data-device="sm"] .iphone-island { top: 9px; width: 52px; height: 16px; border-radius: 10px; }
+.iphone[data-device="xl"] .iphone-island { top: 12px; width: 76px; height: 22px; border-radius: 13px; }
+.iphone[data-device="lg"] .iphone-island { top: 10px; width: 60px; height: 18px; border-radius: 11px; }
+.iphone[data-device="md"] .iphone-island { top: 9px; width: 50px; height: 16px; border-radius: 10px; }
+.iphone[data-device="sm"] .iphone-island { top: 7px; width: 42px; height: 13px; border-radius: 8px; }
 
 .iphone-video { z-index: 1; }
 
@@ -895,16 +895,22 @@
   .shipped-row { grid-template-columns: 1fr; }
   .arch-layer { grid-template-columns: 40px 1fr; gap: 16px; }
 
-  .iphone[data-device="xl"] { --iphone-w: 220px; --iphone-radius: 40px; --iphone-screen-radius: 34px; }
-  .iphone[data-device="lg"] { --iphone-w: 200px; }
-  .iphone[data-device="md"] { --iphone-w: 170px; }
-  .iphone[data-device="sm"] { --iphone-w: 140px; }
+  .iphone[data-device="xl"] { --iphone-w: 220px; --iphone-radius: 38px; --iphone-bezel: 3px; }
+  .iphone[data-device="lg"] { --iphone-w: 200px; --iphone-radius: 36px; --iphone-bezel: 3px; }
+  .iphone[data-device="md"] { --iphone-w: 170px; --iphone-radius: 32px; --iphone-bezel: 3px; }
+  .iphone[data-device="sm"] { --iphone-w: 140px; --iphone-radius: 28px; --iphone-bezel: 3px; }
 }
 
 @media (max-width: 480px) {
   .scene-inner, .scene-inner-wide, .scene-inner-narrow { padding: 0 20px; }
-  .iphone[data-device="xl"] { --iphone-w: 180px; }
-  .iphone[data-device="md"] { --iphone-w: 150px; }
+  .iphone[data-device="xl"] { --iphone-w: 180px; --iphone-radius: 32px; --iphone-bezel: 3px; }
+  .iphone[data-device="lg"] { --iphone-w: 160px; --iphone-radius: 30px; --iphone-bezel: 3px; }
+  .iphone[data-device="md"] { --iphone-w: 150px; --iphone-radius: 28px; --iphone-bezel: 3px; }
+  .iphone[data-device="sm"] { --iphone-w: 130px; --iphone-radius: 26px; --iphone-bezel: 3px; }
+  .iphone[data-device="xl"] .iphone-island { top: 9px; width: 56px; height: 17px; }
+  .iphone[data-device="lg"] .iphone-island { top: 8px; width: 48px; height: 15px; }
+  .iphone[data-device="md"] .iphone-island { top: 7px; width: 42px; height: 13px; }
+  .iphone[data-device="sm"] .iphone-island { top: 6px; width: 36px; height: 11px; }
 }
 
 /* ─────────────────────────────────────────────────────────────
