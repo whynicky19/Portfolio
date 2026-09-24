@@ -1,932 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Whynicky — iOS Developer & Designer</title>
-<meta name="description" content="iOS Developer & Designer. Swift, SwiftUI, and Apple HIG — designing and building for iOS.">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://whynicky19.github.io/Portfolio/">
-<meta property="og:title" content="Whynicky — iOS Developer & Designer">
-<meta property="og:description" content="Designing interfaces. Building for iOS.">
-<meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Whynicky — iOS Developer & Designer">
-<meta name="twitter:description" content="Designing interfaces. Building for iOS.">
-<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/avif" href="img/chatra-light-600w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
-<link rel="preload" as="image" type="image/webp" href="img/chatra-light-600w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
-<link rel="prefetch" href="chatra.html">
-<link rel="prefetch" href="projects.html">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="animations.css">
-<link rel="stylesheet" href="style.css">
-<script src="theme-init.js"></script>
-<style>
-
-/* ───────────────────────────────────────────────────────
-   HOMEPAGE — iOS Developer & Designer
-   Composition rules:
-   - One idea per section.
-   - Massive type. Lots of air.
-   - Light sections by default. Dark only for moments of focus.
-   - Product visuals are real Chatra screens, not abstract art.
-   - No chips, no progress bars, no skill grids on this page.
-─────────────────────────────────────────────────────── */
-
-/* === Hero === */
-.hero {
-  min-height: 100svh;
-  display: grid; grid-template-rows: 1fr auto;
-  grid-template-columns: 100%;
-  padding: calc(var(--nav-h) + 60px) 32px 40px;
-  position: relative;
-  background: var(--white);
-  overflow: hidden;
-}
-.hero > * { min-width: 0; }
-.hero-main {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 64px; align-items: end;
-  max-width: var(--max-w);
-  margin: 0 auto; width: 100%;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 13px; font-weight: 500;
-  letter-spacing: 0.02em; color: var(--gray-4);
-  margin-bottom: 28px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .15s both;
-}
-.hero-eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--green);
-  animation: dotBreathe 2.4s ease-in-out infinite;
-}
-.hero-title {
-  font-family: var(--font-display);
-  font-size: var(--display-xxl);
-  font-weight: 700;
-  letter-spacing: var(--em-tightest);
-  line-height: 0.88;
-  color: var(--black);
-  margin: 0;
-}
-.hero-title .line {
-  display: block;
-  opacity: 0; transform: translateY(0.2em);
-  filter: blur(8px);
-  animation: titleLineIn 1s var(--ease-apple) both;
-}
-.hero-title .line:nth-child(1) { animation-delay: .25s; }
-.hero-title .line:nth-child(2) { animation-delay: .42s; color: var(--gray-4); }
-.hero-title .line:nth-child(3) { animation-delay: .58s; }
-.hero-title em {
-  font-style: normal;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-@keyframes titleLineIn {
-  from { opacity: 0; transform: translateY(0.2em); filter: blur(8px); }
-  to   { opacity: 1; transform: translateY(0); filter: blur(0); }
-}
-.hero-foot {
-  display: flex; align-items: end; justify-content: space-between;
-  gap: 32px;
-  max-width: var(--max-w);
-  margin: 0 auto; width: 100%;
-}
-.hero-copy {
-  max-width: 380px;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .8s both;
-}
-.hero-copy p {
-  font-size: clamp(16px, 1.4vw, 18px);
-  line-height: 1.5; color: var(--gray-4);
-  letter-spacing: -0.01em;
-}
-.hero-actions {
-  display: flex; gap: 14px; flex-wrap: wrap;
-  opacity: 0;
-  animation: heroFadeUp 1s var(--ease-apple) .95s both;
-}
-
-/* === Hero visual: iPhone with Chatra === */
-.hero-visual {
-  position: relative;
-  display: flex; align-items: end; justify-content: center;
-  padding: 0 24px 24px;
-}
-.iphone-stage {
-  width: clamp(220px, 24vw, 320px);
-  position: relative; z-index: 1;
-  opacity: 0;
-  animation: phoneStageIn 1.3s var(--ease-apple) .7s both;
-}
-@keyframes phoneStageIn {
-  from { opacity: 0; transform: translateY(40px) scale(0.94); }
-  to   { opacity: 1; transform: none; }
-}
-.iphone-stage::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -8%;
-  width: 70%; height: 40px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,0.18) 0%, transparent 72%);
-  filter: blur(8px);
-  pointer-events: none;
-}
-[data-theme="dark"] .iphone-stage::after {
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 72%);
-}
-.iphone-frame {
-  width: 100%;
-  background: #1d1d1f;
-  border-radius: 42px;
-  border: 1px solid #2a2a2c;
-  padding: 5px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.06),
-    0 60px 120px rgba(0,0,0,0.20),
-    0 16px 36px rgba(0,0,0,0.10),
-    0 4px 10px rgba(0,0,0,0.06);
-  position: relative;
-}
-.iphone-notch {
-  position: absolute; top: 12px; left: 50%;
-  transform: translateX(-50%);
-  width: 58px; height: 18px;
-  background: #000; border-radius: 11px;
-  z-index: 2;
-}
-.iphone-screen {
-  width: 100%; aspect-ratio: 9/19.5;
-  border-radius: 36px; overflow: hidden;
-  background: #1d1d1f;
-  position: relative;
-}
-.iphone-screen img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-/* Side caption — a thin annotation off the device, like an Apple product
-   diagram. Subtle, but it signals design documentation rather than a
-   generic mockup. */
-.iphone-meta {
-  position: absolute;
-  display: flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.04em; text-transform: uppercase;
-  color: var(--gray-5);
-  white-space: nowrap;
-}
-.iphone-meta::before {
-  content: ''; width: 24px; height: 1px;
-  background: var(--gray-3);
-}
-.iphone-meta.is-top { top: 12%; right: -100px; }
-.iphone-meta.is-bottom { bottom: 8%; left: -110px; }
-
-/* === Foundation bar — iOS quartet only === */
-.foundation {
-  background: var(--gray-06);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.foundation-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 32px 40px;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 32px;
-}
-.foundation-label {
-  font-size: 12px; font-weight: 500;
-  letter-spacing: 0.02em; color: var(--gray-4);
-  white-space: nowrap;
-}
-.foundation-list {
-  display: flex; gap: 48px; flex-wrap: wrap; justify-content: flex-end;
-  list-style: none;
-}
-.foundation-list li {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2.4vw, 32px);
-  font-weight: 600;
-  letter-spacing: -0.04em;
-  color: var(--black);
-}
-.foundation-list li span {
-  display: block; font-family: var(--font-text);
-  font-size: 11px; font-weight: 500;
-  color: var(--gray-5);
-  letter-spacing: 0.06em; text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-/* === Section scaffolding === */
-.section {
-  padding: var(--section-y, 160px) 0;
-  position: relative;
-}
-.section-light { background: var(--white); }
-.section-tint { background: var(--gray-06); }
-.section-dark { background: #000; color: var(--white); }
-.section-dark .t-eyebrow,
-.section-dark .sec-eyebrow { color: rgba(255,255,255,0.55); }
-.section-dark .sec-heading { color: var(--white); }
-.section-dark .sec-body { color: rgba(255,255,255,0.7); }
-.section-dark .sec-meta { color: rgba(255,255,255,0.45); }
-.section-dark .section-rule { background: rgba(255,255,255,0.1); }
-.section-dark .anchor-link { color: var(--white); }
-.section-dark .anchor-link:hover { color: var(--accent-hover); }
-
-.section-inner {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.sec-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 24px;
-}
-.sec-heading {
-  font-family: var(--font-display);
-  font-size: var(--display-md);
-  font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
-  color: var(--black);
-}
-.sec-body {
-  font-size: clamp(17px, 1.6vw, 21px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-  color: var(--gray-4);
-}
-.sec-body-lg {
-  font-size: clamp(22px, 2.6vw, 32px);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1.3;
-  color: var(--black);
-}
-.section-rule {
-  height: 1px; background: var(--border);
-  border: none; margin: 0;
-}
-.anchor-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 15px; font-weight: 500;
-  color: var(--accent);
-  text-decoration: none;
-  transition: gap .2s var(--ease-apple);
-}
-.anchor-link:hover { gap: 10px; }
-.anchor-link svg { width: 12px; height: 12px; }
-
-/* === Manifesto / Hero follow-up === */
-.manifesto {
-  text-align: left;
-}
-.manifesto .sec-heading {
-  font-size: var(--display-xl);
-  letter-spacing: var(--em-tightest);
-  line-height: 0.92;
-  max-width: 18ch;
-}
-.manifesto-foot {
-  margin-top: 56px;
-  display: flex; align-items: flex-start;
-  gap: 48px; flex-wrap: wrap;
-}
-.manifesto-foot p {
-  font-size: 17px; line-height: 1.55;
-  color: var(--gray-4);
-  letter-spacing: -0.01em;
-  max-width: 320px;
-}
-.manifesto-foot p strong {
-  color: var(--black); font-weight: 600;
-}
-
-/* === iOS Work pillars (dark section) — 2×2 grid, balanced === */
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0;
-  margin-top: 80px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  border-left: 1px solid rgba(255,255,255,0.1);
-}
-.pillar {
-  padding: 56px 40px;
-  border-right: 1px solid rgba(255,255,255,0.1);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-.pillar-num {
-  font-size: 12px; font-weight: 500;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 0.06em;
-  margin-bottom: 32px;
-}
-.pillar-name {
-  font-family: var(--font-display);
-  font-size: clamp(32px, 3.4vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--white);
-  margin-bottom: 16px;
-}
-.pillar-body {
-  font-size: 15px; line-height: 1.6;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: -0.01em;
-  max-width: 340px;
-}
-
-/* === HIG principles — design credibility moment ===
-   6 cells: 1 large dark feature + 5 pastel Apple-style cards.
-   The pastels are soft, low-saturation, and from the same family so
-   the section reads as one composition, not a rainbow. */
-.hig-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-  gap: 12px;
-  margin-top: 80px;
-}
-.hig-cell {
-  border-radius: 18px;
-  padding: 28px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 220px;
-  position: relative; overflow: hidden;
-  background: #f5f5f7;
-}
-.hig-cell-name {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2vw, 28px);
-  font-weight: 700;
-  letter-spacing: -0.035em;
-  color: var(--black);
-  line-height: 1.1;
-}
-.hig-cell-desc {
-  font-size: 13px;
-  color: var(--gray-4);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  margin-top: 16px;
-}
-/* Pastel cards — same family, low saturation, Apple-style. */
-.hig-cell:nth-child(2) { background: #f0e9ff; }  /* lavender  */
-.hig-cell:nth-child(3) { background: #e8f3ec; }  /* mint      */
-.hig-cell:nth-child(4) { background: #fde8d8; }  /* peach     */
-.hig-cell:nth-child(5) { background: #e6f0fa; }  /* sky       */
-.hig-cell:nth-child(6) { background: #f5e8ea; }  /* rose      */
-/* Feature cell — the first principle gets double width + dark surface so
-   the section reads as one strong idea, not a 3-up grid of equal weights. */
-.hig-cell:nth-child(1) {
-  grid-column: span 2;
-  grid-row: span 2;
-  background: var(--black);
-  color: var(--white);
-  min-height: 480px;
-  padding: 36px;
-}
-.hig-cell:nth-child(1) .hig-cell-name {
-  color: var(--white);
-  font-size: clamp(32px, 3.4vw, 48px);
-  letter-spacing: -0.04em;
-}
-.hig-cell:nth-child(1) .hig-cell-desc {
-  color: rgba(255,255,255,0.7);
-  font-size: 16px;
-  max-width: 380px;
-}
-
-/* === Featured work — Chatra moment === */
-.work-feature {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.work-visual {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  padding: 40px 0;
-}
-.work-iphone {
-  width: clamp(260px, 28vw, 360px);
-  position: relative;
-}
-.work-iphone::after {
-  content: '';
-  position: absolute; left: 50%; bottom: -8%;
-  width: 70%; height: 40px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,0.08) 0%, transparent 72%);
-  filter: blur(8px);
-  pointer-events: none;
-}
-.work-body-inner { max-width: 480px; }
-.work-eyebrow {
-  font-size: 12px; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--gray-5);
-  margin-bottom: 16px;
-}
-.work-title {
-  font-family: var(--font-display);
-  font-size: var(--display-lg);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--white);
-  margin: 8px 0 20px;
-}
-.work-desc {
-  font-size: 17px; line-height: 1.55;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: -0.01em;
-  margin-bottom: 32px;
-}
-
-/* === Selected work — minimal row === */
-.work-list {
-  margin-top: 64px;
-  border-top: 1px solid var(--border);
-}
-.work-row {
-  display: grid;
-  grid-template-columns: 60px 1fr 2fr auto;
-  gap: 32px; align-items: center;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none; color: inherit;
-  transition: padding .35s var(--ease-apple);
-  position: relative;
-}
-.work-row::after {
-  content: '';
-  position: absolute; left: 0; right: 0; bottom: -1px;
-  height: 1px; background: var(--black);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .55s var(--ease-apple);
-}
-.work-row:hover { padding-left: 8px; padding-right: 8px; }
-.work-row:hover::after { transform: scaleX(1); }
-.work-row-num {
-  font-size: 13px; font-weight: 500;
-  color: var(--gray-5);
-  letter-spacing: 0.02em;
-}
-.work-row-title {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2.2vw, 28px);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--black);
-}
-.work-row-meta {
-  font-size: 14px;
-  color: var(--gray-4);
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-}
-.work-row-arrow {
-  color: var(--gray-4);
-  transition: transform .35s var(--ease-apple), color .2s;
-}
-.work-row:hover .work-row-arrow { transform: translateX(4px); color: var(--black); }
-
-/* === Beyond iOS — single elegant list === */
-.beyond {
-  text-align: left;
-}
-.beyond-list {
-  margin-top: 64px;
-  display: flex; flex-wrap: wrap;
-  gap: 12px 48px;
-  align-items: baseline;
-}
-.beyond-item {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.2vw, 44px);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  color: var(--black);
-  line-height: 1.1;
-}
-.beyond-sep {
-  font-size: clamp(28px, 3.2vw, 44px);
-  color: var(--gray-2);
-  font-weight: 300;
-  user-select: none;
-}
-
-/* === Contact CTA === */
-.contact-cta {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.contact-cta .sec-heading {
-  font-size: var(--display-xl);
-  letter-spacing: var(--em-tightest);
-  line-height: 0.92;
-}
-.contact-mail {
-  display: inline-flex; align-items: center; gap: 12px;
-  margin-top: 48px;
-  font-family: var(--font-display);
-  font-size: clamp(20px, 2vw, 24px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  text-decoration: none;
-  padding: 16px 28px;
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 980px;
-  transition: background .25s var(--ease-apple), border-color .25s var(--ease-apple);
-}
-.contact-mail:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.32);
-}
-.contact-mail svg { width: 14px; height: 14px; opacity: 0.7; }
-.contact-foot {
-  margin-top: 56px;
-  display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
-}
-.contact-foot a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  transition: color .2s;
-}
-.contact-foot a:hover { color: var(--white); }
-
-/* === Responsive === */
-@media (max-width: 900px) {
-  .hero-main {
-    grid-template-columns: 1fr;
-    gap: 48px;
-    align-items: start;
-  }
-  .hero-visual {
-    padding: 0;
-  }
-  .iphone-stage { width: clamp(180px, 50vw, 240px); }
-  .iphone-meta { display: none; }
-
-  .foundation-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 28px 24px;
-  }
-  .foundation-list {
-    gap: 24px 32px;
-    justify-content: flex-start;
-  }
-  .foundation-list li { font-size: 22px; }
-
-  .pillars {
-    grid-template-columns: 1fr;
-    margin-top: 56px;
-  }
-  .pillar {
-    padding: 36px 24px;
-  }
-
-  .hig-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    margin-top: 56px;
-  }
-  .hig-cell { min-height: 180px; padding: 24px; }
-  .hig-cell:nth-child(1) { grid-column: span 2; grid-row: auto; min-height: 240px; padding: 28px; }
-  .hig-cell:nth-child(n+2) { grid-column: span 1; }
-
-  .work-feature {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .work-visual { order: -1; padding: 24px 0; }
-  .work-iphone { width: clamp(220px, 60vw, 280px); }
-
-  .work-row {
-    grid-template-columns: 36px 1fr auto;
-    gap: 16px;
-  }
-  .work-row-meta { display: none; }
-
-  .beyond-list { gap: 8px 20px; }
-  .beyond-item { font-size: 22px; }
-  .beyond-sep { font-size: 22px; }
-}
-@media (max-width: 600px) {
-  .hero { padding: calc(var(--nav-h) + 40px) 20px 28px; }
-  .hero-foot {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-  }
-  .section-inner { padding: 0 24px; }
-  .section { padding: 100px 0; }
-  .manifesto-foot { flex-direction: column; gap: 16px; }
-  .work-title { font-size: clamp(36px, 9vw, 56px); }
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Alimzhan — iOS Developer &amp; Founder</title>
+  <meta name="description" content="Alimzhan is an iOS developer and founder building thoughtful products with Swift, AI and simple user experiences.">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://whynicky19.github.io/Portfolio/">
+  <meta property="og:title" content="Alimzhan — iOS Developer &amp; Founder">
+  <meta property="og:description" content="Thoughtful digital products, built from idea to launch.">
+  <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
+  <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+  <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" type="image/avif" href="img/chatra-light-600w.avif">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css?v=12">
+  <script src="theme-init.js"></script>
 </head>
-<body>
+<body class="home-page">
+  <div id="site-nav"></div>
 
-<div id="site-nav"></div>
-<script src="partials.js"></script>
+  <main>
+    <header class="home-hero home-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title" aria-label="Hi, I'm Alimzhan.">
+          <span class="hero-line hero-enter" style="--delay:.28s">Hi, I’m</span>
+          <span class="hero-line hero-enter hero-name" style="--delay:.4s">Alimzhan.</span>
+        </h1>
+        <p class="hero-intro hero-enter" style="--delay:.56s">I build thoughtful digital products with a focus on iOS, AI and simple user experiences.</p>
+        <div class="hero-actions hero-enter" style="--delay:.68s">
+          <a class="btn btn-primary" href="about.html">Meet me</a>
+          <a class="text-link" href="projects.html">View my work <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </header>
 
-<!-- ══════════════ HERO ══════════════ -->
-<section class="hero">
-  <div class="hero-main">
-    <div class="hero-left">
-      <p class="hero-eyebrow">
-        iOS Developer & Designer · Petropavl, Kazakhstan
-      </p>
-      <h1 class="hero-title">
-        <span class="line">Designing</span>
-        <span class="line">interfaces.</span>
-        <span class="line">Building for <em>iOS.</em></span>
-      </h1>
-    </div>
-    <div class="hero-visual">
-      <div class="iphone-stage" data-parallax style="--parallax-depth:0.06">
-        <div class="iphone-frame">
-          <div class="iphone-notch"></div>
-          <div class="iphone-screen">
-            <picture>
-              <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 320px">
-              <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 320px">
-              <img src="img/chatra light.jpg" alt="Chatra" fetchpriority="high" decoding="async">
-            </picture>
+    <section class="story-section home-shell" aria-labelledby="story-title">
+      <div class="story-grid">
+        <h2 id="story-title" class="story-display word-reveal">I started building because ideas felt too important to leave as ideas.</h2>
+        <div class="story-copy fade-up">
+          <p>I wrote my first programs in 2025 at university. Soon after, a coursework habit became late nights, weekend launches and a full product used in real classrooms.</p>
+          <p>Today I’m going deeper into Swift and SwiftUI. I care about the space where engineering, design and product thinking become one clear experience.</p>
+          <a class="text-link" href="about.html">Read my story <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <blockquote class="manifesto fade-up"><span>I don’t just want to write code.</span><strong>I want to build products people actually use.</strong></blockquote>
+    </section>
+
+    <section class="currently-section" aria-labelledby="currently-title">
+      <div class="home-shell">
+        <div class="section-head fade-up">
+          <h2 id="currently-title">What I’m focused on now.</h2>
+        </div>
+        <div class="currently-grid depth-stagger">
+          <article class="now-card now-card-featured">
+            <div class="now-top"><span>Building</span></div>
+            <div><h3>Chatra</h3><p>Growing an education platform across mobile, backend and web — shaped by real classroom use.</p></div>
+            <a href="chatra.html" aria-label="Read the Chatra case study">Explore <span>↗</span></a>
+          </article>
+          <article class="now-card"><div class="now-top"><span>Learning</span></div><div><h3>Swift &amp; SwiftUI</h3><p>Moving deeper into native Apple development, interaction design and platform conventions.</p></div></article>
+          <article class="now-card"><div class="now-top"><span>Studying</span></div><div><h3>University</h3><p>Building a technical foundation while turning coursework into working products.</p></div></article>
+          <article class="now-card"><div class="now-top"><span>Exploring</span></div><div><h3>AI products</h3><p>Finding useful, responsible ways for AI to support learning and everyday workflows.</p></div></article>
+          <article class="now-card"><div class="now-top"><span>Designing</span></div><div><h3>Design</h3><p>Creating clear interfaces, reusable components and complete product flows in Figma.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach-section home-shell" aria-labelledby="approach-title">
+      <div class="section-head approach-head fade-up">
+        <h2 id="approach-title">Simple.<br>Useful.<br><em>Intentional.</em></h2>
+        <p>Open a principle to see how it shapes the work.</p>
+      </div>
+      <div class="approach-list stagger">
+        <details class="approach-card"><summary><strong>Product</strong><em>Start with the real problem.</em><i aria-hidden="true"></i></summary><div class="approach-detail"><p>I turn ambiguity into a small, useful first version, then learn from how people actually use it.</p><span>Research · Scope · Ship</span></div></details>
+        <details class="approach-card"><summary><strong>Design</strong><em>Clarity before decoration.</em><i aria-hidden="true"></i></summary><div class="approach-detail"><p>Hierarchy, language and feedback should make the interface understandable before it becomes impressive.</p><span>Flows · Systems · Prototypes</span></div></details>
+        <details class="approach-card"><summary><strong>Development</strong><em>Build for the platform.</em><i aria-hidden="true"></i></summary><div class="approach-detail"><p>I use native patterns, thoughtful architecture and performance constraints as design tools.</p><span>Swift · APIs · Quality</span></div></details>
+        <details class="approach-card"><summary><strong>AI</strong><em>Useful, not ornamental.</em><i aria-hidden="true"></i></summary><div class="approach-detail"><p>AI belongs where it removes friction or helps someone understand more — with clear limits and human control.</p><span>LLM · Context · Responsibility</span></div></details>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills" aria-labelledby="skills-title">
+      <div class="home-shell">
+        <div class="skills-intro fade-up">
+          <h2 id="skills-title">A focused toolkit,<br>used end to end.</h2>
+          <p>Choose a discipline to see how it fits into the product.</p>
+        </div>
+        <div class="skill-explorer fade-up" data-skill-explorer data-active-skill="native">
+          <div class="skill-tabs" role="tablist" aria-label="Skill groups">
+            <button class="skill-tab is-active" id="skill-tab-native" type="button" role="tab" aria-selected="true" aria-controls="skill-panel" tabindex="0" data-skill="native">Native</button>
+            <button class="skill-tab" id="skill-tab-product" type="button" role="tab" aria-selected="false" aria-controls="skill-panel" tabindex="-1" data-skill="product">Product</button>
+            <button class="skill-tab" id="skill-tab-backend" type="button" role="tab" aria-selected="false" aria-controls="skill-panel" tabindex="-1" data-skill="backend">Systems</button>
+            <button class="skill-tab" id="skill-tab-ai" type="button" role="tab" aria-selected="false" aria-controls="skill-panel" tabindex="-1" data-skill="ai">AI</button>
+          </div>
+          <div class="skill-stage" id="skill-panel" role="tabpanel" aria-labelledby="skill-tab-native" aria-live="polite">
+            <div><h3 data-skill-title>Native iOS</h3><p data-skill-copy>Swift, SwiftUI, UIKit and the platform conventions that make an app feel at home on iPhone.</p></div>
+            <ul data-skill-tools><li>Swift</li><li>SwiftUI</li><li>UIKit</li><li>Xcode</li></ul>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="hero-foot">
-    <div class="hero-copy">
-      <p>I design and build digital products with a focus on Apple platforms — Swift, SwiftUI, and the principles behind the apps people keep on their home screen.</p>
-    </div>
-    <div class="hero-actions">
-      <a href="chatra.html" class="btn btn-primary">See Chatra</a>
-      <a href="#work" class="btn btn-ghost">Selected work</a>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ══════════════ FOUNDATION BAR ══════════════ -->
-<section class="foundation" aria-label="Primary focus">
-  <div class="foundation-inner">
-    <div class="foundation-label">Primary focus</div>
-    <ul class="foundation-list">
-      <li><span>Language</span>Swift</li>
-      <li><span>Framework</span>SwiftUI</li>
-      <li><span>Platform</span>iOS</li>
-      <li><span>Tool</span>Xcode</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ══════════════ MANIFESTO ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner manifesto">
-    <p class="sec-eyebrow fade-up">What I do</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      I treat interface design as the work, not the wrapping.
-    </h2>
-    <div class="manifesto-foot">
-      <p class="fade-up"><strong>Design</strong> comes first. Every screen has a reason to exist, a hierarchy that holds up at a glance, and motion that means something.</p>
-      <p class="fade-up"><strong>Engineering</strong> follows — Swift and SwiftUI turned into the same interface, pixel-honest, with the performance and accessibility users expect from native iOS.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ iOS PILLARS — dark section ══════════════ -->
-<section class="section section-dark">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Working in iOS</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Four tools. One ecosystem.
-    </h2>
-    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
-      Native iOS development is its own craft. These are the four instruments I reach for.
-    </p>
-    <div class="pillars">
-      <div class="pillar fade-up">
-        <div class="pillar-num">01</div>
-        <h3 class="pillar-name">Swift</h3>
-        <p class="pillar-body">The language I think in. Type-safe, expressive, fast — code that reads like the design it implements.</p>
-      </div>
-      <div class="pillar fade-up">
-        <div class="pillar-num">02</div>
-        <h3 class="pillar-name">SwiftUI</h3>
-        <p class="pillar-body">Declarative UI built around state. Views that update on their own, animations that follow gesture, layouts that adapt without effort.</p>
-      </div>
-      <div class="pillar fade-up">
-        <div class="pillar-num">03</div>
-        <h3 class="pillar-name">iOS</h3>
-        <p class="pillar-body">Designing for the platform. Dynamic Type, Dark Mode, haptics, system materials — the affordances that make an app feel at home.</p>
-      </div>
-      <div class="pillar fade-up">
-        <div class="pillar-num">04</div>
-        <h3 class="pillar-name">Xcode</h3>
-        <p class="pillar-body">Where the work becomes a product. Previews, instruments, signing, archive — the full path from idea to App Store.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ HIG — design credibility moment ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Apple Human Interface Guidelines</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Good iOS work speaks the platform's language.
-    </h2>
-    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
-      I design against HIG because that's what makes an interface feel native — not because it's a checklist, but because each principle solves a real problem.
-    </p>
-    <div class="hig-grid depth-stagger">
-      <div class="hig-cell">
-        <div>
-          <div class="hig-cell-name">Hierarchy &amp; clarity</div>
-          <p class="hig-cell-desc">Every element earns its visual weight. Type, color, and spacing carry the meaning so users don't have to think.</p>
+    <section class="featured-section" aria-labelledby="featured-title">
+      <div class="home-shell featured-shell">
+        <div class="featured-copy fade-up">
+          <h2 id="featured-title">Building<br>Chatra.</h2>
+          <p>An education platform that brings classes, attendance, assignments, grades and AI tutoring into one coherent product.</p>
+          <div class="featured-actions"><a class="btn btn-primary" href="chatra.html">View case study</a><a class="text-link text-link-light" href="projects.html">All projects <span>→</span></a></div>
+          <dl><div><dt>Role</dt><dd>Mobile Lead</dd></div><div><dt>Platforms</dt><dd>iOS · Web · API</dd></div><div><dt>Status</dt><dd>In real classrooms</dd></div></dl>
+        </div>
+        <div class="featured-visual scale-up" data-scroll-scale>
+          <div class="phone-wrap"><div class="phone-frame"><span class="phone-island" aria-hidden="true"></span><picture><source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w"><source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w"><img src="img/chatra light.jpg" alt="Chatra education app home screen" width="1179" height="2556" loading="lazy" decoding="async"></picture></div></div>
         </div>
       </div>
-      <div class="hig-cell">
-        <div class="hig-cell-name">Deference</div>
-        <p class="hig-cell-desc">Content first. Chrome quiet. The interface steps back so the work speaks.</p>
-      </div>
-      <div class="hig-cell">
-        <div class="hig-cell-name">Consistency</div>
-        <p class="hig-cell-desc">Same gesture, same outcome — across screens, across the system, every time.</p>
-      </div>
-      <div class="hig-cell">
-        <div class="hig-cell-name">Depth</div>
-        <p class="hig-cell-desc">Translucency, motion, layering — a sense of place and order the eye reads in milliseconds.</p>
-      </div>
-      <div class="hig-cell">
-        <div class="hig-cell-name">Feedback</div>
-        <p class="hig-cell-desc">Every touch acknowledged on press. Every state change visible. The interface never lies about what's happening.</p>
-      </div>
-      <div class="hig-cell">
-        <div class="hig-cell-name">Accessibility</div>
-        <p class="hig-cell-desc">Dynamic Type, VoiceOver, color contrast, Reduce Motion — built in from the first sketch, not bolted on.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ══════════════ FEATURED WORK — Chatra ══════════════ -->
-<section class="section section-dark" id="work">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Featured work</p>
-    <div class="work-feature" style="margin-top:32px;">
-      <div class="work-visual">
-        <div class="work-iphone" data-parallax style="--parallax-depth:0.05">
-          <div class="iphone-frame">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <picture>
-                <source type="image/avif" srcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" sizes="(max-width: 400px) 82vw, 360px">
-                <source type="image/webp" srcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" sizes="(max-width: 400px) 82vw, 360px">
-                <img src="img/chatra light.jpg" alt="Chatra iOS app" loading="lazy" decoding="async">
-              </picture>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="work-body-inner">
-        <p class="work-eyebrow fade-up">Case study · 2025—2026</p>
-        <h3 class="work-title word-reveal">Chatra</h3>
-        <p class="work-desc fade-up">
-          A complete educational platform - iOS app, REST backend, and web dashboard - used in real university classrooms. Two developers, three platforms, in production.
-        </p>
-        <a href="chatra.html" class="anchor-link fade-up">
-          Read the case study
-          <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+    <section class="home-cta home-shell fade-up" aria-labelledby="cta-title">
+      <h2 id="cta-title">Let’s build<br>something <em>useful.</em></h2>
+      <div><p>I’m open to internships, collaborations and ambitious product ideas.</p><a class="btn btn-primary" href="contact.html">Start a conversation</a></div>
+    </section>
+  </main>
 
-<!-- ══════════════ SELECTED WORK — minimal row ══════════════ -->
-<section class="section section-light">
-  <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Also built</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      More products, same discipline.
-    </h2>
-    <div class="work-list">
-      <a href="projects.html#chatra" class="work-row fade-up">
-        <span class="work-row-num">01</span>
-        <span class="work-row-title">Chatra</span>
-        <span class="work-row-meta">Flutter · FastAPI · Nuxt · PostgreSQL · production</span>
-        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
-      </a>
-      <a href="projects.html#portfolio" class="work-row fade-up">
-        <span class="work-row-num">02</span>
-        <span class="work-row-title">This Portfolio</span>
-        <span class="work-row-meta">HTML · CSS · JavaScript · Apple-inspired system · zero frameworks</span>
-        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
-      </a>
-      <a href="projects.html#hackathon" class="work-row fade-up">
-        <span class="work-row-num">03</span>
-        <span class="work-row-title">Hackathon MVP</span>
-        <span class="work-row-meta">Flutter · Python · FastAPI · 48 hours · Top 5</span>
-        <span class="work-row-arrow"><svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ BEYOND iOS ══════════════ -->
-<section class="section section-tint">
-  <div class="section-inner beyond">
-    <p class="sec-eyebrow fade-up">Beyond iOS</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      The wider technical foundation.
-    </h2>
-    <p class="sec-body fade-up" style="max-width:560px; margin-top:24px;">
-      iOS is the focus. The depth underneath it — cross-platform, backend, and web — comes from shipping real products across the stack.
-    </p>
-    <div class="beyond-list fade-up">
-      <span class="beyond-item">Flutter</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Dart</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Python</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">FastAPI</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Nuxt</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Vue</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">TypeScript</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Node.js</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">PostgreSQL</span>
-      <span class="beyond-sep">·</span>
-      <span class="beyond-item">Docker</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ CONTACT CTA ══════════════ -->
-<section class="section section-dark" style="padding-bottom: 200px;">
-  <div class="section-inner contact-cta">
-    <p class="sec-eyebrow fade-up">Get in touch</p>
-    <h2 class="sec-heading word-reveal">
-      Let's make<br>something good.
-    </h2>
-    <a href="mailto:alimzhanart@icloud.com" class="contact-mail fade-up">
-      alimzhanart@icloud.com
-      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 11L11 1M4 1h7v7"/></svg>
-    </a>
-    <div class="contact-foot fade-up">
-      <a href="https://github.com/whynicky19" target="_blank">GitHub</a>
-      <a href="https://t.me/whynickyy" target="_blank">Telegram</a>
-      <a href="contact.html">All contact options</a>
-    </div>
-  </div>
-</section>
-
-<div id="site-footer"></div>
-<script src="partials.js"></script>
-
-<script src="utils.js"></script>
-<script src="components.js"></script>
-<script src="app.js"></script>
+  <div id="site-footer"></div>
+  <script src="partials.js?v=5"></script>
+  <script src="utils.js"></script>
+  <script src="components.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

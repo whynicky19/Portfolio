@@ -303,4 +303,54 @@
   window.Components.initCardTilt('.proj-mini', 5);
   window.Components.initCardTilt('.cs-stack-card', 3);
 
+  /* ── Homepage skill explorer ── */
+  const skillExplorer = document.querySelector('[data-skill-explorer]');
+  if (skillExplorer) {
+    const skillData = {
+      native:  { title: 'Native iOS', copy: 'Swift, SwiftUI, UIKit and the platform conventions that make an app feel at home on iPhone.', tools: ['Swift', 'SwiftUI', 'UIKit', 'Xcode'] },
+      product: { title: 'Product design', copy: 'Clear flows, strong hierarchy and prototypes that turn an idea into something people can understand and use.', tools: ['Figma', 'HIG', 'Typography', 'Prototyping'] },
+      backend: { title: 'Connected systems', copy: 'The services and interfaces behind a complete product, from a typed API to production data.', tools: ['Python', 'FastAPI', 'PostgreSQL', 'REST'] },
+      ai:      { title: 'Applied AI', copy: 'Focused AI experiences designed around context, usefulness and clear human control.', tools: ['LLM', 'Prompting', 'RAG', 'Evaluation'] }
+    };
+    const stage = skillExplorer.querySelector('.skill-stage');
+    const title = skillExplorer.querySelector('[data-skill-title]');
+    const copy = skillExplorer.querySelector('[data-skill-copy]');
+    const tools = skillExplorer.querySelector('[data-skill-tools]');
+    const tabs = [...skillExplorer.querySelectorAll('.skill-tab')];
+    const activateSkill = (tab, moveFocus = false) => {
+      const data = skillData[tab.dataset.skill];
+      if (!data) return;
+      const changed = !tab.classList.contains('is-active');
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      if (moveFocus) tab.focus();
+      stage.setAttribute('aria-labelledby', tab.id);
+      skillExplorer.dataset.activeSkill = tab.dataset.skill;
+      if (!changed) return;
+      title.textContent = data.title;
+      copy.textContent = data.copy;
+      tools.innerHTML = data.tools.map((tool) => `<li>${tool}</li>`).join('');
+      stage.classList.remove('is-changing');
+      void stage.offsetWidth;
+      stage.classList.add('is-changing');
+    };
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateSkill(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (nextIndex === undefined) return;
+        event.preventDefault();
+        activateSkill(tabs[nextIndex], true);
+      });
+    });
+  }
+
 })();

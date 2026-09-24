@@ -619,7 +619,7 @@
 
 .arch-layer {
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 1fr;
   gap: clamp(20px, 4vw, 48px);
   align-items: center;
   padding: clamp(28px, 4vw, 56px) clamp(20px, 4vw, 40px);
@@ -770,7 +770,7 @@
   color: var(--black);
   margin-bottom: clamp(12px, 1.5vw, 20px);
 }
-.shipped-num-thin { font-weight: 300; }
+.shipped-num-thin { font-size: clamp(60px, 8vw, 128px); font-weight: 400; }
 
 .shipped-label {
   font-size: 13px;

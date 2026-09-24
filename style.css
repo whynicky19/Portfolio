@@ -404,8 +404,7 @@ body {
 .nav-mobile.open a:nth-child(2) { animation: navLinkIn .22s var(--ease-apple) .05s both; }
 .nav-mobile.open a:nth-child(3) { animation: navLinkIn .22s var(--ease-apple) .08s both; }
 .nav-mobile.open a:nth-child(4) { animation: navLinkIn .22s var(--ease-apple) .11s both; }
-.nav-mobile.open a:nth-child(5) { animation: navLinkIn .22s var(--ease-apple) .14s both; }
-.nav-mobile.open .theme-toggle-mobile { animation: navLinkIn .22s var(--ease-apple) .17s both; }
+.nav-mobile.open .theme-toggle-mobile { animation: navLinkIn .22s var(--ease-apple) .14s both; }
 
 @media (max-width: 900px) {
   .nav-menu, .nav-cta, .theme-toggle { display: none; }

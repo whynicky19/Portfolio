@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Whynicky · iOS Developer & Designer</title>
-<meta name="description" content="Designer and builder focused on iOS. From cross-platform to native SwiftUI.">
+<title>About &amp; Experience — Whynicky · iOS Developer &amp; Designer</title>
+<meta name="description" content="The complete story: product work, education, hackathons, recognition, and the move from cross-platform development to native SwiftUI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/about.html">
-<meta property="og:title" content="About — Whynicky">
-<meta property="og:description" content="Designer and builder focused on iOS. Swift, SwiftUI, and the work behind the work.">
+<meta property="og:title" content="About &amp; Experience — Whynicky">
+<meta property="og:description" content="Product work, education, hackathons, recognition, and the path to native iOS.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About — Whynicky">
-<meta name="twitter:description" content="iOS Developer & Designer. Swift, SwiftUI, and HIG.">
+<meta name="twitter:title" content="About &amp; Experience — Whynicky">
+<meta name="twitter:description" content="iOS Developer &amp; Product Designer. Products, education, and the path to native iOS.">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
@@ -24,12 +24,47 @@
 <style>
 
 .page-hero {
-  padding: calc(var(--nav-h) + 120px) 32px 120px;
+  padding: calc(var(--nav-h) + 112px) 32px 104px;
   background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  width: min(52vw, 720px);
+  aspect-ratio: 1;
+  right: -18%;
+  top: -48%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,113,227,.12), rgba(94,92,230,.05) 42%, transparent 70%);
+  filter: blur(18px);
+  pointer-events: none;
 }
 .page-hero-inner {
   max-width: var(--max-w);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.page-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 28px;
+  color: var(--gray-5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.page-hero-kicker::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 5px rgba(52,199,89,.12);
 }
 .page-hero-title {
   font-family: var(--font-display);
@@ -57,7 +92,7 @@
 }
 
 /* === Section scaffolding (matches index.html) === */
-.section { padding: var(--section-y, 160px) 0; position: relative; }
+.section { padding: var(--section-y, 120px) 0; position: relative; }
 .section-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
 .section-light { background: var(--white); }
 .section-tint  { background: var(--gray-06); }
@@ -114,10 +149,13 @@
   margin-top: 80px;
 }
 .story-pillar {
-  border-radius: 20px;
+  border-radius: 28px;
   padding: 40px 32px;
   display: flex; flex-direction: column;
+  min-height: 270px;
+  transition: transform var(--dur-base) var(--ease-apple), box-shadow var(--dur-base) var(--ease-apple);
 }
+.story-pillar:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
 .story-pillar:nth-child(1) { background: var(--tint-sage); }
 .story-pillar:nth-child(2) { background: var(--tint-cream); }
 .story-pillar:nth-child(3) { background: var(--tint-sky); }
@@ -142,26 +180,68 @@
   line-height: 1.55;
 }
 
-/* === Timeline === */
+/* === Experience — one combined narrative === */
+.experience-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
+  gap: clamp(64px, 9vw, 132px);
+  align-items: start;
+}
+.experience-intro {
+  position: sticky;
+  top: calc(var(--nav-h) + 64px);
+}
+.experience-intro .sec-heading { margin-bottom: 26px; }
+.experience-lede {
+  max-width: 430px;
+  color: var(--gray-4);
+  font-size: 17px;
+  line-height: 1.6;
+}
+.career-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 38px;
+}
+.career-metric {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.career-metric strong {
+  display: block;
+  color: var(--black);
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -.035em;
+}
+.career-metric span {
+  display: block;
+  margin-top: 5px;
+  color: var(--gray-5);
+  font-size: 11px;
+  line-height: 1.35;
+}
 .timeline {
-  margin-top: 80px;
+  margin-top: 6px;
   position: relative;
-  padding-left: 28px;
+  padding-left: 34px;
   border-left: 1px solid var(--border);
-  max-width: 700px;
+  max-width: 760px;
 }
 .tl-item {
   position: relative;
-  padding-bottom: 48px;
+  padding: 0 0 58px 6px;
 }
 .tl-item:last-child { padding-bottom: 0; }
 .tl-dot {
   position: absolute;
-  left: -32px; top: 4px;
-  width: 10px; height: 10px;
+  left: -40px; top: 5px;
+  width: 11px; height: 11px;
   border-radius: 50%;
   background: var(--white);
-  border: 1px solid var(--gray-3);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 6px var(--white);
 }
 .tl-year {
   font-size: 12px; font-weight: 600;
@@ -178,12 +258,32 @@
   color: var(--black);
   margin-bottom: 8px;
 }
+.tl-meta {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-4);
+  margin-bottom: 6px;
+}
 .tl-desc {
   font-size: 15px;
   line-height: 1.55;
   color: var(--gray-4);
   letter-spacing: -0.005em;
   max-width: 520px;
+}
+.tl-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+.tl-tags span {
+  padding: 6px 11px;
+  border-radius: var(--r-pill);
+  background: var(--gray-06);
+  color: var(--gray-4);
+  font-size: 11px;
+  font-weight: 500;
 }
 
 /* === Stack — single elegant list, not skill pills === */
@@ -221,37 +321,40 @@
 .cert-stage {
   margin-top: 64px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(12, 1fr);
   gap: 20px;
 }
 .cert-card {
-  border-radius: 20px;
-  background: var(--white);
+  grid-column: span 4;
+  border-radius: 24px;
+  background: #fff;
   overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  padding: 32px;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
   border: 1px solid rgba(255,255,255,0.06);
+  transition: transform var(--dur-base) var(--ease-apple);
 }
+.cert-card:nth-child(-n+2) { grid-column: span 6; }
+.cert-card:hover { transform: translateY(-4px); }
 .cert-card-img {
-  background: var(--white);
+  background: #fff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(0,0,0,0.10);
   display: flex; align-items: center; justify-content: center;
-  max-height: 320px;
+  aspect-ratio: 4 / 3;
 }
 .cert-card-img img {
-  width: 100%; max-height: 320px;
+  width: 100%; height: 100%;
   object-fit: contain;
   display: block;
 }
+.cert-card > div:last-child { padding: 22px 14px 18px; }
 .cert-card-cat {
   font-size: 11px; font-weight: 600;
   letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--gray-5);
+  color: #86868b;
   margin-bottom: 12px;
 }
 .cert-card-title {
@@ -259,13 +362,13 @@
   font-size: clamp(22px, 2.4vw, 30px);
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--black);
+  color: #1d1d1f;
   line-height: 1.15;
   margin-bottom: 12px;
 }
 .cert-card-org {
   font-size: 14px;
-  color: var(--gray-4);
+  color: #6e6e73;
   letter-spacing: -0.01em;
 }
 
@@ -294,14 +397,20 @@
     gap: 24px;
   }
   .story-pillars { grid-template-columns: 1fr; }
-  .cert-card { grid-template-columns: 1fr; padding: 24px; }
+  .experience-layout { grid-template-columns: 1fr; gap: 56px; }
+  .experience-intro { position: static; }
+  .cert-card, .cert-card:nth-child(-n+2) { grid-column: span 6; }
+  .cert-card:first-child { grid-column: 1 / -1; }
 }
 @media (max-width: 600px) {
   .page-hero { padding: calc(var(--nav-h) + 64px) 20px 64px; }
   .section-inner { padding: 0 24px; }
-  .section { padding: 100px 0; }
+  .section { padding: 88px 0; }
   .stack-list { gap: 8px 20px; }
   .stack-item, .stack-sep { font-size: 20px; }
+  .career-metrics { grid-template-columns: 1fr 1fr; }
+  .cert-card, .cert-card:nth-child(-n+2), .cert-card:first-child { grid-column: 1 / -1; }
+  .story-pillar { min-height: 230px; }
 }
 
 </style>
@@ -309,16 +418,16 @@
 <body>
 
 <div id="site-nav"></div>
-<script src="partials.js"></script>
+<script src="partials.js?v=5"></script>
 
 <section class="page-hero">
   <div class="page-hero-inner">
     <h1 class="page-hero-title fade-up">
-      From <em>cross-platform</em><br>
-      to native iOS.
+      Product thinking.<br>
+      <em>Built into code.</em>
     </h1>
     <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
-      I'm an iOS Developer & Designer in Petropavl, Kazakhstan. The work began with Flutter and full-stack products. Today it goes deeper — Swift, SwiftUI, and the principles that make an interface feel native.
+      I'm an iOS Developer &amp; Product Designer. This is the complete story — the products, education, hackathons, recognition, and the move from cross-platform work to native SwiftUI.
     </p>
   </div>
 </section>
@@ -326,24 +435,20 @@
 <!-- ══════════════ THE PATH ══════════════ -->
 <section class="section section-light">
   <div class="section-inner">
-    <p class="sec-eyebrow fade-up">The path</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
       Three things I believe about good iOS work.
     </h2>
 
     <div class="story-pillars depth-stagger">
       <div class="story-pillar">
-        <div class="story-pillar-num">01</div>
         <div class="story-pillar-title">Design leads</div>
         <p class="story-pillar-body">Every screen starts with intent. Hierarchy, type, motion — designed before a single line of Swift is written.</p>
       </div>
       <div class="story-pillar">
-        <div class="story-pillar-num">02</div>
         <div class="story-pillar-title">Native is a craft</div>
         <p class="story-pillar-body">SwiftUI, UIKit, system materials, haptics — these aren't buzzwords. They're how an app feels at home on iOS.</p>
       </div>
       <div class="story-pillar">
-        <div class="story-pillar-num">03</div>
         <div class="story-pillar-title">Ship real things</div>
         <p class="story-pillar-body">Theory is cheap. Chatra Academy runs in production classrooms — proof that the design and code actually work.</p>
       </div>
@@ -354,17 +459,12 @@
 <!-- ══════════════ STORY ══════════════ -->
 <section class="section section-tint">
   <div class="section-inner">
-    <p class="sec-eyebrow fade-up">The story</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
       Curious by nature. Obsessive by habit.
     </h2>
 
     <div class="about-copy">
       <div class="about-meta">
-        <div class="about-meta-block">
-          <div class="about-meta-label">Currently</div>
-          <div class="about-meta-value">Petropavl, KZ</div>
-        </div>
         <div class="about-meta-block">
           <div class="about-meta-label">Studying</div>
           <div class="about-meta-value">Information Systems</div>
@@ -385,44 +485,76 @@
 </section>
 
 <!-- ══════════════ TIMELINE ══════════════ -->
-<section class="section section-light">
+<section class="section section-light" id="experience">
   <div class="section-inner">
-    <p class="sec-eyebrow fade-up">The road so far</p>
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Recent chapters.
-    </h2>
+    <div class="experience-layout">
+      <div class="experience-intro">
+        <h2 class="sec-heading word-reveal" style="max-width:10ch;">The road so far.</h2>
+        <p class="experience-lede fade-up">Every chapter added a different layer: product pressure at hackathons, systems thinking at university, ownership in Chatra, and the craft of native Apple development.</p>
+        <div class="career-metrics fade-up" aria-label="Experience highlights">
+          <div class="career-metric"><strong>3+</strong><span>hackathons</span></div>
+          <div class="career-metric"><strong>3</strong><span>product layers shipped</span></div>
+          <div class="career-metric"><strong>Top 2</strong><span>best placement</span></div>
+        </div>
+      </div>
 
-    <div class="timeline">
+      <div class="timeline">
       <div class="tl-item fade-up">
         <div class="tl-dot"></div>
-        <div class="tl-year">2023</div>
-        <div class="tl-title">First Hackathon</div>
-        <p class="tl-desc">Built a working MVP in 48 hours, pitched to a panel of judges, finished in the Top 5. The moment software stopped being a subject and became a craft.</p>
-      </div>
-      <div class="tl-item fade-up">
-        <div class="tl-year">2025</div>
-        <div class="tl-title">Information Systems, Petropavl</div>
-        <p class="tl-desc">Began university. Wrote first programs in Python. Discovered that building things with code was the most satisfying thing I'd ever done.</p>
-      </div>
-      <div class="tl-item fade-up">
-        <div class="tl-year">2025 — 2026</div>
-        <div class="tl-title">Chatra Academy shipped</div>
-        <p class="tl-desc">Flutter mobile, FastAPI backend, Nuxt dashboard — production. Used in real university classrooms with students, instructors, and administrators.</p>
-      </div>
-      <div class="tl-item fade-up">
-        <div class="tl-year">2026</div>
-        <div class="tl-title">Harvard CS50P</div>
-        <p class="tl-desc">Completed Harvard's Python course by hand — no AI, no copy-paste. Building real foundations, not surface familiarity.</p>
-      </div>
-      <div class="tl-item fade-up">
-        <div class="tl-year">2026</div>
-        <div class="tl-title">First international stage</div>
-        <p class="tl-desc">Presented at an international scientific and practical conference. First time beyond Kazakhstan. Applying to programs with global reach.</p>
-      </div>
-      <div class="tl-item fade-up">
         <div class="tl-year">2026 →</div>
-        <div class="tl-title">Going native on iOS</div>
-        <p class="tl-desc">The next chapter — Swift and SwiftUI as the primary craft. Apple ecosystem as the design language. The work that follows this page.</p>
+        <div class="tl-meta">Going native</div>
+        <div class="tl-title">Swift &amp; SwiftUI as the primary craft</div>
+        <p class="tl-desc">The current chapter: native iOS patterns, Apple’s Human Interface Guidelines, and interfaces where engineering choices support the product experience.</p>
+        <div class="tl-tags"><span>Swift</span><span>SwiftUI</span><span>iOS</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">International university competition</div>
+        <div class="tl-title">A portfolio built as a complete product</div>
+        <p class="tl-desc">Designed and engineered this site as part of an international submission — bringing product narrative, interface craft, performance, and accessible interaction into one system.</p>
+        <div class="tl-tags"><span>Product Design</span><span>Frontend</span><span>Storytelling</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025 — 2026</div>
+        <div class="tl-meta">Mobile lead · Chatra Academy</div>
+        <div class="tl-title">Led the mobile product from interface to API</div>
+        <p class="tl-desc">Built the Flutter app with Riverpod, GoRouter, Dio, secure persistence, and role-based flows; connected it to a FastAPI backend and Nuxt dashboard used in real classrooms.</p>
+        <div class="tl-tags"><span>Flutter</span><span>FastAPI</span><span>Nuxt</span><span>Figma</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">Speaker · presenter</div>
+        <div class="tl-title">Presented products to faculty, judges, and panels</div>
+        <p class="tl-desc">Turned complex engineering work into clear demos and concise product stories, including a first international scientific and practical conference presentation.</p>
+        <div class="tl-tags"><span>Public Speaking</span><span>Pitch</span><span>Live Demo</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-meta">Harvard Online</div>
+        <div class="tl-title">CS50P — Programming with Python</div>
+        <p class="tl-desc">Completed the course and its problem sets by hand, strengthening fundamentals in program structure, testing, data handling, and problem solving.</p>
+        <div class="tl-tags"><span>Python</span><span>CS50</span><span>Testing</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2025 — present</div>
+        <div class="tl-meta">Education</div>
+        <div class="tl-title">Information Systems &amp; Management</div>
+        <p class="tl-desc">Full-time university study alongside independent product work, technical workshops, academic competitions, and real software shipped beyond coursework.</p>
+        <div class="tl-tags"><span>Algorithms</span><span>Data Structures</span><span>Information Systems</span></div>
+      </div>
+      <div class="tl-item fade-up">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2023 — 2026</div>
+        <div class="tl-meta">Hackathons across Kazakhstan</div>
+        <div class="tl-title">From first 48-hour MVP to a Top 2 finish</div>
+        <p class="tl-desc">Built working products under time pressure, made scope decisions quickly, and pitched to industry judges. Placements include Top 5 and Top 2 finalist results.</p>
+        <div class="tl-tags"><span>MVP</span><span>Teamwork</span><span>Top 2</span></div>
+      </div>
       </div>
     </div>
   </div>
@@ -431,7 +563,6 @@
 <!-- ══════════════ STACK ══════════════ -->
 <section class="section section-tint">
   <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Tools &amp; technologies</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
       What I build with.
     </h2>
@@ -480,9 +611,8 @@
 <!-- ══════════════ CERTIFICATES ══════════════ -->
 <section class="section section-dark">
   <div class="section-inner">
-    <p class="sec-eyebrow fade-up">Certificates &amp; recognition</p>
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Deliberate practice, captured.
+      Certificates and recognition.
     </h2>
 
     <div class="cert-stage">
@@ -577,7 +707,7 @@
 </section>
 
 <div id="site-footer"></div>
-<script src="partials.js"></script>
+<script src="partials.js?v=5"></script>
 
 <script src="utils.js"></script>
 <script src="components.js"></script>

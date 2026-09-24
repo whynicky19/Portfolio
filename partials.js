@@ -11,7 +11,7 @@
   if (page === '') page = 'index.html';
 
   var LINKS = [
-    ['index.html',   'Work'],
+    ['index.html',   'Home'],
     ['projects.html', 'Projects'],
     ['about.html',   'About'],
     ['contact.html', 'Contact']
@@ -27,21 +27,23 @@
   }
 
   function buildNav() {
-    var menuItems = LINKS.map(function (l) {
-      return '<li><a href="' + l[0] + '"' + (isActive(l[0]) ? ' class="active"' : '') + '>' + l[1] + '</a></li>';
+    var menuItems = LINKS.filter(function (l) { return l[0] !== 'contact.html'; }).map(function (l) {
+      return '<li><a href="' + l[0] + '"' + (isActive(l[0]) ? ' class="active" aria-current="page"' : '') + '>' + l[1] + '</a></li>';
     }).join('');
 
     var mobileItems = LINKS.map(function (l) {
-      return '<a href="' + l[0] + '"' + (isActive(l[0]) ? ' class="active"' : '') + '>' + l[1] + '</a>';
+      return '<a href="' + l[0] + '"' + (isActive(l[0]) ? ' class="active" aria-current="page"' : '') + '>' + l[1] + '</a>';
     }).join('');
 
     return (
       '<nav class="apple-nav">' +
         '<div class="nav-inner">' +
-          '<a class="nav-logo" href="index.html">Whynicky</a>' +
-          '<ul class="nav-menu">' + menuItems + '</ul>' +
-          '<div class="nav-actions">' +
-            '<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">' + themeIcons(15) + '</button>' +
+        '<a class="nav-logo" href="index.html">Alimzhan</a>' +
+        '<ul class="nav-menu">' + menuItems + '</ul>' +
+        '<div class="nav-actions">' +
+          '<a class="nav-cta" href="https://github.com/whynicky19" target="_blank" rel="noreferrer">GitHub</a>' +
+          '<a class="nav-cta" href="contact.html">Contact</a>' +
+          '<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">' + themeIcons(15) + '</button>' +
           '</div>' +
           '<button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>' +
         '</div>' +
@@ -61,18 +63,17 @@
     return (
       '<footer class="apple-footer">' +
         '<div class="footer-links-row">' +
-          '<div class="footer-col"><div class="footer-col-title">Portfolio</div>' + portfolioLinks + '</div>' +
+          '<div class="footer-col"><div class="footer-col-title">Alimzhan</div><p class="footer-role">iOS Developer · Product Designer</p></div>' +
           '<div class="footer-col"><div class="footer-col-title">Connect</div>' +
             '<a href="mailto:alimzhanart@icloud.com">Email</a>' +
             '<a href="https://github.com/whynicky19" target="_blank">GitHub</a>' +
-            '<a href="https://t.me/whynicky" target="_blank">Telegram</a>' +
+            '<a href="https://t.me/whynickyy" target="_blank" rel="noreferrer">Telegram</a>' +
           '</div>' +
-          '<div class="footer-col"><div class="footer-col-title">Resources</div>' +
-            '<a href="https://github.com/whynicky19" target="_blank">Open Source</a>' +
+          '<div class="footer-col"><div class="footer-col-title">Explore</div>' + portfolioLinks +
           '</div>' +
         '</div>' +
         '<div class="footer-bottom">' +
-          '<span class="footer-copy">Copyright © 2026 Whynicky. All rights reserved.</span>' +
+          '<span class="footer-copy">Copyright © 2026 Alimzhan. All rights reserved.</span>' +
           '<div class="footer-bottom-links"><a href="contact.html">Contact</a></div>' +
         '</div>' +
       '</footer>'
