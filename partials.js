@@ -16,6 +16,7 @@
     ['about.html',   'About'],
     ['contact.html', 'Contact']
   ];
+  var CV_HREF = 'Alimzhan_Galymzhan_iOS_Developer_CV.pdf';
 
   function isActive(href) { return href === page; }
 
@@ -33,24 +34,26 @@
 
     var mobileItems = LINKS.map(function (l) {
       return '<a href="' + l[0] + '"' + (isActive(l[0]) ? ' class="active" aria-current="page"' : '') + '>' + l[1] + '</a>';
-    }).join('');
+    }).join('') + '<a href="' + CV_HREF + '" target="_blank" rel="noopener">CV</a>';
 
     return (
+      '<a class="skip-link" href="#main-content">Skip to content</a>' +
       '<nav class="apple-nav">' +
         '<div class="nav-inner">' +
         '<a class="nav-logo" href="index.html">Alimzhan</a>' +
         '<ul class="nav-menu">' + menuItems + '</ul>' +
         '<div class="nav-actions">' +
-          '<a class="nav-cta" href="https://github.com/whynicky19" target="_blank" rel="noreferrer">GitHub</a>' +
+          '<a class="nav-cta" href="' + CV_HREF + '" target="_blank" rel="noopener">CV</a>' +
+          '<a class="nav-cta" href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer">GitHub</a>' +
           '<a class="nav-cta" href="contact.html">Contact</a>' +
-          '<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">' + themeIcons(15) + '</button>' +
+          '<button class="theme-toggle" id="themeToggle" type="button" aria-label="Use dark appearance" aria-pressed="false">' + themeIcons(15) + '</button>' +
           '</div>' +
-          '<button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>' +
+          '<button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>' +
         '</div>' +
       '</nav>' +
-      '<nav class="nav-mobile" id="mobileMenu">' +
+      '<nav class="nav-mobile" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">' +
         mobileItems +
-        '<button class="theme-toggle-mobile" id="themeToggleMobile" aria-label="Toggle dark mode">' + themeIcons(20) + 'Appearance</button>' +
+        '<button class="theme-toggle-mobile" id="themeToggleMobile" type="button" aria-label="Use dark appearance" aria-pressed="false">' + themeIcons(20) + 'Appearance</button>' +
       '</nav>'
     );
   }
@@ -61,13 +64,14 @@
     }).join('');
 
     return (
-      '<footer class="apple-footer">' +
+      '<footer class="apple-footer" id="site-footer">' +
         '<div class="footer-links-row">' +
           '<div class="footer-col"><div class="footer-col-title">Alimzhan</div><p class="footer-role">iOS Developer · Product Designer</p></div>' +
           '<div class="footer-col"><div class="footer-col-title">Connect</div>' +
             '<a href="mailto:alimzhanart@icloud.com">Email</a>' +
-            '<a href="https://github.com/whynicky19" target="_blank">GitHub</a>' +
-            '<a href="https://t.me/whynickyy" target="_blank" rel="noreferrer">Telegram</a>' +
+            '<a href="' + CV_HREF + '" target="_blank" rel="noopener">CV</a>' +
+            '<a href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer">GitHub</a>' +
+            '<a href="https://t.me/whynickyy" target="_blank" rel="noopener noreferrer">Telegram</a>' +
           '</div>' +
           '<div class="footer-col"><div class="footer-col-title">Explore</div>' + portfolioLinks +
           '</div>' +

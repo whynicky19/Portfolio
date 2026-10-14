@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Chatra — A new chapter for the classroom · Whynicky</title>
+<title>Chatra — Education Product Case Study · Alimzhan</title>
 <meta name="description" content="An educational platform for classes, assignments, attendance, grades, and AI-supported learning.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/chatra.html">
@@ -14,17 +14,22 @@
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/avif" href="img/chatra-light-1179w.avif" imagesrcset="img/chatra-light-600w.avif 600w, img/chatra-light-1179w.avif 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
-<link rel="preload" as="image" type="image/webp" href="img/chatra-light-1179w.webp" imagesrcset="img/chatra-light-600w.webp 600w, img/chatra-light-1179w.webp 1179w" imagesizes="(max-width: 400px) 82vw, 360px">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="chatra.css">
-<script src="theme-init.js"></script>
+<link rel="canonical" href="https://whynicky19.github.io/Portfolio/chatra.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chatra — A new chapter for the classroom">
+<meta name="twitter:description" content="A full-stack education product built for real classroom workflows.">
+<meta name="twitter:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
+<link rel="stylesheet" href="tokens.css?v=3">
+  <link rel="stylesheet" href="style.css?v=9">
+<link rel="stylesheet" href="chatra.css?v=3">
+<script src="theme-init.js?v=2"></script>
 </head>
 <body class="chatra">
+<noscript><style>.iphone,.meet-stage,.arch-layer,.shipped-cell,.subjects-phone,.themes-card,.quote-word,.scene-h>span,.tools-list span:not(.tools-dot),.ai-stage,.hero-product,.hero-sub,.hero-meta{opacity:1!important;transform:none!important;filter:none!important}</style></noscript>
 
 <div id="site-nav"></div>
-<script src="partials.js?v=5"></script>
+
+<main id="main-content" tabindex="-1">
 
 <!-- ════════════════════════════════════════════════════════════
      SCENE 1 · HERO · cinematic product title
@@ -50,14 +55,30 @@
 
     <p class="hero-sub">An educational platform for classes, assignments, attendance, grades, and AI-supported learning — now used in university classrooms.</p>
 
-    <div class="hero-product" data-parallax="0.05">
+    <div class="hero-product">
       <div class="hero-product-glow" aria-hidden="true"></div>
       <div class="iphone iphone-xl" data-device="xl" data-shadow="deep">
-        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+        <video class="iphone-video" muted loop playsinline preload="metadata" poster="img/video-posters/mainscreen.jpg" data-autoplay>
           <source src="video/mainscreen.mp4" type="video/mp4">
         </video>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="scene scene-overview" aria-labelledby="overview-title">
+  <div class="scene-inner overview-layout">
+    <div class="overview-copy">
+      <p class="case-label">Context and contribution</p>
+      <h2 class="scene-h scene-h-lg" id="overview-title"><span>A classroom system, built end to end.</span></h2>
+      <p class="scene-body">Chatra was built by two developers to replace fragmented classroom workflows with one connected mobile, web, and backend system. My work focused on the mobile product, product interface, and integration across the stack.</p>
+    </div>
+    <dl class="case-facts">
+      <div><dt>Role</dt><dd>Mobile lead and product design</dd></div>
+      <div><dt>Team</dt><dd>Two developers</dd></div>
+      <div><dt>System</dt><dd>Flutter · FastAPI · Nuxt · PostgreSQL</dd></div>
+      <div><dt>Status</dt><dd>Used in university classrooms</dd></div>
+    </dl>
   </div>
 </section>
 
@@ -84,6 +105,20 @@
   </div>
 </section>
 
+<section class="scene scene-decisions" aria-labelledby="decisions-title">
+  <div class="scene-inner decisions-layout">
+    <header>
+      <p class="case-label">Key decisions</p>
+      <h2 class="scene-h scene-h-lg" id="decisions-title"><span>One product, not three disconnected interfaces.</span></h2>
+    </header>
+    <ol class="decision-list">
+      <li><span>01</span><div><h3>Share the system, adapt the surface.</h3><p>Mobile and web clients use one REST API while keeping student, teacher, and administrator tasks specific to each role.</p></div></li>
+      <li><span>02</span><div><h3>Keep learning context together.</h3><p>Schedules, subjects, assignments, attendance, and grades live beside each other instead of being split across chats and spreadsheets.</p></div></li>
+      <li><span>03</span><div><h3>Put AI inside the learning flow.</h3><p>The assistant sits beside course material in the same product, reducing the need for another account or disconnected tool.</p></div></li>
+    </ol>
+  </div>
+</section>
+
 <!-- ════════════════════════════════════════════════════════════
      SCENE 3 · MEET CHATRA · one centered composition
      ════════════════════════════════════════════════════════════ -->
@@ -97,7 +132,7 @@
 
     <div class="meet-stage" data-meet-stage>
       <div class="iphone iphone-xl" data-device="xl" data-screen="chatra-light" data-shadow="hero">
-        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+        <video class="iphone-video" muted loop playsinline preload="none" poster="img/video-posters/aiscreen.jpg" data-autoplay>
           <source src="video/aiscreen.mp4" type="video/mp4">
         </video>
       </div>
@@ -128,7 +163,7 @@
 
     <div class="sticky-phone">
       <div class="iphone iphone-xl iphone-xl-bright" data-device="xl" data-screen="chatra-light" data-shadow="hero">
-        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+        <video class="iphone-video" muted loop playsinline preload="none" poster="img/video-posters/classes.jpg" data-autoplay>
           <source src="video/classes.mp4" type="video/mp4">
         </video>
       </div>
@@ -144,7 +179,7 @@
     <div class="subjects-stage">
       <div class="subjects-phone">
         <div class="iphone iphone-xl" data-device="xl" data-screen="chatra-light" data-shadow="hero">
-          <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+          <video class="iphone-video" muted loop playsinline preload="none" poster="img/video-posters/subjects.jpg" data-autoplay>
             <source src="video/subjects.mp4" type="video/mp4">
           </video>
         </div>
@@ -174,7 +209,7 @@
 
     <div class="ai-stage">
       <div class="iphone iphone-xl iphone-xl-dark" data-device="xl" data-screen="chatra-dark" data-shadow="cinematic">
-        <video class="iphone-video" muted loop playsinline preload="metadata" data-autoplay>
+        <video class="iphone-video" muted loop playsinline preload="none" poster="img/video-posters/aichat.jpg" data-autoplay>
           <source src="video/aichat.mp4" type="video/mp4">
         </video>
       </div>
@@ -223,24 +258,28 @@
 
     <ol class="arch-stack" data-arch>
       <li class="arch-layer" data-arch-layer>
+        <span class="arch-layer-num" aria-hidden="true">01</span>
         <div class="arch-layer-body">
           <h3 class="arch-layer-title">Flutter</h3>
           <p class="arch-layer-desc">Riverpod state, GoRouter navigation, Dio HTTP, secure token persistence.</p>
         </div>
       </li>
       <li class="arch-layer" data-arch-layer>
+        <span class="arch-layer-num" aria-hidden="true">02</span>
         <div class="arch-layer-body">
           <h3 class="arch-layer-title">FastAPI</h3>
           <p class="arch-layer-desc">JWT auth, role-based access, automatic Swagger docs, PostgreSQL via SQLAlchemy.</p>
         </div>
       </li>
       <li class="arch-layer" data-arch-layer>
+        <span class="arch-layer-num" aria-hidden="true">03</span>
         <div class="arch-layer-body">
           <h3 class="arch-layer-title">PostgreSQL</h3>
           <p class="arch-layer-desc">Classes, users, grades, attendance — normalized once, queried forever.</p>
         </div>
       </li>
       <li class="arch-layer" data-arch-layer>
+        <span class="arch-layer-num" aria-hidden="true">04</span>
         <div class="arch-layer-body">
           <h3 class="arch-layer-title">Nuxt.js</h3>
           <p class="arch-layer-desc">Teacher and admin views in Kazakh and Russian. The same API, a different surface.</p>
@@ -322,20 +361,22 @@
       <span>Break things.</span>
     </h2>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" rel="noopener">Mobile source →</a>
-      <a class="btn btn-ghost" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener">Web dashboard</a>
+      <a class="btn btn-primary" href="https://github.com/whynicky19/Chatra-app-IOS.git" target="_blank" rel="noopener noreferrer">Mobile source →</a>
+      <a class="btn btn-ghost" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener noreferrer">Web dashboard</a>
       <a class="btn btn-link" href="projects.html">← All projects</a>
     </div>
   </div>
 </section>
 
+</main>
+
 <div id="site-footer"></div>
-<script src="partials.js?v=5"></script>
+<script src="partials.js?v=10"></script>
 
 <script src="utils.js"></script>
 <script src="components.js"></script>
-<script src="app.js"></script>
-<script src="chatra.js" defer></script>
+<script src="app.js?v=6"></script>
+<script src="chatra.js?v=2" defer></script>
 
 </body>
 </html>

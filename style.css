@@ -15,7 +15,7 @@
 [data-theme="dark"] .nav-burger span { background: rgba(255,255,255,0.85); }
 [data-theme="dark"] .nav-menu li a  { color: rgba(255,255,255,0.8); }
 [data-theme="dark"] .nav-menu li a:hover,
-[data-theme="dark"] .nav-menu li a.active { color: rgba(255,255,255,0.45); }
+[data-theme="dark"] .nav-menu li a.active { color: rgba(255,255,255,0.64); }
 [data-theme="dark"] .nav-cta { color: rgba(255,255,255,0.8); }
 
 [data-theme="dark"] .bento-card  { border-color: var(--border); }
@@ -98,8 +98,6 @@
 [data-theme="dark"] .marquee-item svg   { stroke: rgba(255,255,255,0.6); }
 [data-theme="dark"] .marquee-dot        { background: rgba(255,255,255,0.35); }
 [data-theme="dark"] .skill-pill-icon svg { stroke: var(--black); }
-[data-theme="dark"] .social-icon        { background: var(--overlay-sm); border-color: var(--border); }
-[data-theme="dark"] .social-icon svg    { stroke: var(--black); }
 [data-theme="dark"] .bento-visual svg * { stroke: var(--black); }
 [data-theme="dark"] .hero-photo-badge .badge-live { background: var(--black); }
 [data-theme="dark"] .quote-avatar svg  { stroke: var(--black); }
@@ -109,7 +107,7 @@
 }
 .theme-toggle {
   position: relative;
-  width: 32px; height: 32px; border-radius: 50%;
+  width: 44px; height: 44px; border-radius: 50%;
   background: none; border: 1px solid var(--border);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: rgba(0,0,0,0.6);
@@ -160,75 +158,19 @@
 }
 .theme-toggle-mobile svg { opacity: 0.7; flex-shrink: 0; }
 
-/* Floating glass back-to-top — appears past 400px of scroll, a real
-   Liquid Glass component: blur, specular top edge, elevation shadow.
-   Specificity note: .glass sets position:relative (it needs *some*
-   positioned ancestor for its ::before specular highlight) — for any
-   component that needs fixed/absolute/sticky instead, that component's
-   own position must win via a compound selector like .back-top.glass
-   below, not just .back-top, or .glass's later position:relative in
-   the cascade silently wins on equal specificity. */
-.back-top,
-.back-top.glass {
-  position: fixed;
-  right: var(--sp-5); bottom: var(--sp-5);
-  z-index: var(--z-float);
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--black);
-  cursor: pointer;
-  opacity: 0; visibility: hidden;
-  transform: translateY(12px) scale(.9);
-  transition: opacity var(--dur-base) var(--ease-apple),
-              transform var(--dur-base) var(--ease-spring),
-              visibility 0s linear var(--dur-base);
-  contain: layout paint;
-}
-.back-top.visible {
-  opacity: 1; visibility: visible;
-  transform: translateY(0) scale(1);
-  transition: opacity var(--dur-base) var(--ease-apple),
-              transform var(--dur-base) var(--ease-spring),
-              visibility 0s linear 0s;
-}
-.back-top:hover { transform: translateY(-3px) scale(1.04); box-shadow: var(--shadow-3); }
-.back-top:active { transform: translateY(-1px) scale(.96); }
-@media (max-width: 600px) {
-  .back-top { right: var(--sp-4); bottom: var(--sp-4); width: 40px; height: 40px; }
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--black) 0%, var(--gray-4) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  padding-bottom: 0.1em;
-  display: inline-block;
-  width: 100%;
-}
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 /* ── Keyboard navigation — visible only for keyboard focus, never for a
    mouse click, matching how Safari/macOS actually draws focus. ── */
 :focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: none;
   border-radius: var(--r-sm);
 }
-.btn-primary:focus-visible, .btn-ghost:focus-visible { box-shadow: var(--focus-ring), 0 0 0 0 transparent; border-radius: var(--r-pill); }
+.btn-primary:focus-visible, .btn-ghost:focus-visible { box-shadow: none; border-radius: var(--r-pill); }
 .nav-menu a:focus-visible, .footer-col a:focus-visible { border-radius: 4px; }
-.theme-toggle:focus-visible, .back-top:focus-visible, .social-icon:focus-visible { border-radius: 50%; }
-
-/* ── Performance: skip paint/layout work for off-screen repeating blocks
-   (cert slides, timeline entries, project cards) until they're close to
-   the viewport. contain-intrinsic-size keeps scrollbar geometry stable
-   before the real size is known. ── */
-.cv-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 420px;
-}
+.theme-toggle:focus-visible { border-radius: 50%; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); font-size: 16px; overflow-x: clip; }
 
 body {
@@ -238,41 +180,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: clip;
-  touch-action: pan-y;
+  touch-action: pan-x pan-y pinch-zoom;
 }
+
+.skip-link {
+  position: fixed;
+  top: .5rem;
+  left: .75rem;
+  z-index: calc(var(--z-float) + 1);
+  padding: .65rem .9rem;
+  border-radius: .65rem;
+  background: var(--black);
+  color: var(--white);
+  font-size: .875rem;
+  font-weight: 650;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 1rem));
+}
+.skip-link:focus-visible { transform: none; }
+main[tabindex="-1"]:focus { outline: none; }
+body.menu-open { overflow: hidden; }
+[inert] { pointer-events: none; user-select: none; }
 
 ::selection { background: rgba(0,0,0,0.12); }
 [data-theme="dark"] ::selection { background: rgba(255,255,255,0.18); }
 
-/* ═══════════════════════════════════════════════════════════════
-   LIQUID GLASS — the translucent material used for every piece of
-   floating chrome: nav, mobile nav, the back-to-top button, the
-   filter pills, the theme segmented control. Three ingredients make
-   it read as glass rather than "blurred div": a backdrop blur+
-   saturate (light bends through it), a 1px specular highlight along
-   the top edge (light catches the upper rim), and a soft elevation
-   shadow (it sits above the page, not on it). Never applied to
-   backgrounds or text-bearing surfaces — blur there only costs
-   legibility for no material benefit.
-═══════════════════════════════════════════════════════════════ */
-.glass {
-  position: relative;
-  background: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  isolation: isolate;
-}
-.glass::before {
-  content: '';
-  position: absolute; inset: 0 0 auto 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
-  opacity: .55;
-  pointer-events: none;
-}
-.glass-thick { background: var(--glass-bg-thick); }
-
+/* Restrained translucent navigation material. */
 .apple-nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: var(--z-nav);
@@ -283,8 +216,6 @@ body {
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
   transition: transform var(--dur-base) var(--ease-apple);
-  will-change: transform;
-  contain: layout paint;
 }
 .apple-nav::after {
   content: '';
@@ -318,7 +249,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo {
-  display: flex; align-items: center;
+  display: flex; align-items: center; min-height: 44px;
   font-family: var(--font-display);
   font-size: 15px; font-weight: 600;
   letter-spacing: -0.02em;
@@ -330,7 +261,7 @@ body {
   list-style: none;
 }
 .nav-menu li a {
-  display: block; padding: 0 14px;
+  display: flex; align-items: center; min-height: 44px; padding: 0 14px;
   font-size: 13px; font-weight: 400;
   color: rgba(0,0,0,0.85);
   text-decoration: none; letter-spacing: -0.01em;
@@ -343,7 +274,7 @@ body {
   font-size: 12px; font-weight: 400;
   color: rgba(0,0,0,0.85);
   text-decoration: none;
-  display: flex; align-items: center; gap: 4px;
+  display: flex; align-items: center; gap: 4px; min-height: 44px;
   transition: color .15s;
 }
 .nav-cta:hover { color: rgba(0,0,0,0.55); }
@@ -394,8 +325,9 @@ body {
   }
 }
 .nav-mobile a {
+  display: flex; align-items: center; min-height: 48px;
   font-size: 19px; font-weight: 600; color: var(--black);
-  text-decoration: none; padding: 13px 0;
+  text-decoration: none; padding: 12px 0;
   border-bottom: 1px solid var(--border);
   letter-spacing: -0.02em;
   touch-action: manipulation;
@@ -457,7 +389,8 @@ body {
 }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 44px;
   font-family: var(--font-text);
   font-size: 14px; font-weight: 400;
   letter-spacing: -0.01em;
@@ -471,14 +404,14 @@ body {
 
 .btn-primary {
   background: var(--accent); color: #fff;
-  padding: 10px 22px; border-radius: 980px;
+  padding: 10px 22px; border-radius: var(--r-pill);
 }
 .btn-primary:hover { opacity: 1; background: var(--accent-hover); }
 
 .btn-ghost {
   background: var(--overlay-md);
   color: var(--black);
-  padding: 10px 22px; border-radius: 980px;
+  padding: 10px 22px; border-radius: var(--r-pill);
   border: 1px solid var(--border-strong);
   transition: background .2s, border-color .2s;
 }
@@ -666,9 +599,9 @@ body {
   letter-spacing: -0.01em;
 }
 .footer-col a {
-  display: block; font-size: 12px;
+  display: flex; align-items: center; min-height: 32px; font-size: 12px;
   color: var(--gray-5); text-decoration: none;
-  padding: 2px 0; transition: color .15s;
+  transition: color .15s;
   letter-spacing: -0.01em;
 }
 .footer-col a:hover { color: var(--black); }
@@ -681,6 +614,7 @@ body {
 .footer-copy { font-size: 12px; color: var(--gray-5); }
 .footer-bottom-links { display: flex; gap: 16px; }
 .footer-bottom-links a {
+  display: inline-flex; align-items: center; min-height: 32px;
   font-size: 12px; color: var(--gray-5);
   text-decoration: none; transition: color .15s;
 }

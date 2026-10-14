@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About &amp; Experience — Whynicky · iOS Developer &amp; Designer</title>
+<title>About &amp; Experience — Alimzhan · iOS Developer &amp; Product Builder</title>
 <meta name="description" content="The complete story: product work, education, hackathons, recognition, and the move from cross-platform development to native SwiftUI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/about.html">
-<meta property="og:title" content="About &amp; Experience — Whynicky">
+<meta property="og:title" content="About &amp; Experience — Alimzhan">
 <meta property="og:description" content="Product work, education, hackathons, recognition, and the path to native iOS.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About &amp; Experience — Whynicky">
+<meta name="twitter:title" content="About &amp; Experience — Alimzhan">
 <meta name="twitter:description" content="iOS Developer &amp; Product Designer. Products, education, and the path to native iOS.">
+<meta name="twitter:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
+<link rel="canonical" href="https://whynicky19.github.io/Portfolio/about.html">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="animations.css">
-<link rel="stylesheet" href="style.css">
-<script src="theme-init.js"></script>
+<link rel="stylesheet" href="tokens.css?v=3">
+<link rel="stylesheet" href="animations.css?v=4">
+  <link rel="stylesheet" href="style.css?v=9">
+<script src="theme-init.js?v=2"></script>
 <style>
 
 .page-hero {
@@ -413,21 +415,138 @@
   .story-pillar { min-height: 230px; }
 }
 
+/* Editorial refinement: fewer decorative containers, stronger narrative rhythm. */
+.page-hero{padding:calc(var(--nav-h) + 96px) var(--page-pad) 88px}
+.page-hero::after{display:none}
+.page-hero-title{max-width:12ch;font-size:var(--display-xl);letter-spacing:-.055em;line-height:.94}
+.page-hero-title em{display:block;background:none;color:var(--gray-3);-webkit-text-fill-color:currentColor}
+.page-hero-sub{max-width:680px}
+.story-pillars{display:block;margin-top:64px;border-top:1px solid var(--border)}
+.story-pillar{
+  display:grid;grid-template-columns:minmax(180px,.55fr) minmax(0,1.45fr);gap:48px;
+  min-height:0;padding:34px 0;border:0;border-bottom:1px solid var(--border);border-radius:0;background:none!important;
+}
+.story-pillar:hover{transform:none;box-shadow:none}
+.story-pillar-title{font-size:clamp(24px,3vw,36px)}
+.story-pillar-body{max-width:620px;margin:0}
+.cert-stage{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.cert-card{grid-column:auto!important;border-radius:20px}
+.cert-card-img{aspect-ratio:1.45/1;display:grid;place-items:center;padding:18px}
+.cert-card-img img{width:100%;height:100%;object-fit:contain}
+.section{padding-top:var(--section-y);padding-bottom:var(--section-y)}
+@media(max-width:700px){
+  .story-pillar{grid-template-columns:1fr;gap:12px;padding:28px 0}
+  .cert-stage{grid-template-columns:1fr}
+  .page-hero{padding-top:calc(var(--nav-h) + 72px);padding-bottom:64px}
+}
+
+/* Certificate rail — native momentum plus a mandatory resting point per item. */
+.certificates-section{background:#f5f5f7;color:#1d1d1f;overflow:hidden}
+.certificates-section .sec-heading{color:#1d1d1f}
+.cert-gallery{margin-top:clamp(44px,6vw,72px)}
+.cert-stage{
+  --cert-card-width:clamp(520px,57vw,760px);
+  --cert-rail-pad:max(40px,calc((100vw - var(--max-w))/2 + 40px));
+  display:flex;
+  grid-template-columns:none;
+  gap:clamp(16px,2vw,26px);
+  margin-top:0;
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:var(--cert-rail-pad);
+  padding:4px max(var(--cert-rail-pad),calc(100vw - var(--cert-rail-pad) - var(--cert-card-width))) 14px var(--cert-rail-pad);
+  scrollbar-width:none;
+  touch-action:pan-x pan-y;
+  -webkit-overflow-scrolling:touch;
+}
+.cert-stage::-webkit-scrollbar{display:none}
+.cert-stage:focus-visible{outline:3px solid #0071e3;outline-offset:4px}
+.cert-card,.cert-card:nth-child(-n+2),.cert-card:first-child{
+  flex:0 0 var(--cert-card-width);
+  grid-column:auto;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  overflow:visible;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  transition:none;
+}
+.cert-card:hover{transform:none}
+.cert-card-img{
+  aspect-ratio:1.45/1;
+  padding:clamp(16px,2.4vw,28px);
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:clamp(24px,2.5vw,32px);
+  background:#fff;
+  box-shadow:none;
+}
+.cert-card-img picture,.cert-card-img img{display:block;width:100%;height:100%}
+.cert-card-img img{object-fit:contain;transition:transform .45s var(--ease-apple)}
+@media(hover:hover){.cert-card:hover .cert-card-img img{transform:scale(1.01)}}
+.cert-card>div:last-child{padding:22px 6px 0}
+.cert-card-cat{margin-bottom:8px;color:#6e6e73}
+.cert-card-title{max-width:680px;margin-bottom:8px;font-size:clamp(22px,2.2vw,30px)}
+.cert-card-org{font-size:15px;color:#6e6e73}
+.cert-gallery-footer{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  width:min(calc(100% - 80px),1120px);margin:24px auto 0;
+}
+.cert-gallery-status{margin:0;color:#6e6e73;font-size:13px;font-variant-numeric:tabular-nums}
+.cert-gallery-controls{display:flex;gap:12px}
+.cert-gallery-controls button{
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#dedee3;
+  color:#1d1d1f;
+  cursor:pointer;
+  transition:transform 120ms ease-out,background-color 180ms ease,opacity 180ms ease;
+  touch-action:manipulation;
+}
+.cert-gallery-controls button:hover:not(:disabled){background:#d2d2d7}
+.cert-gallery-controls button:active:not(:disabled){transform:scale(.94)}
+.cert-gallery-controls button:disabled{opacity:.38;cursor:default}
+.cert-gallery-controls button:focus-visible{outline:3px solid #0071e3;outline-offset:3px}
+.cert-gallery-controls svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:700px){
+  .cert-gallery{margin-top:40px}
+  .cert-stage{--cert-card-width:86vw;--cert-rail-pad:24px;gap:14px}
+  .cert-card-img{padding:14px;border-radius:24px}
+  .cert-card>div:last-child{padding:18px 2px 0}
+  .cert-card-title{font-size:22px}
+  .cert-gallery-footer{width:calc(100% - 48px);margin-top:18px}
+  .cert-gallery-controls button{width:46px;height:46px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .cert-card-img img,.cert-gallery-controls button{transition:none!important}
+  .cert-card:hover .cert-card-img img{transform:none}
+}
+
 </style>
 </head>
 <body>
 
 <div id="site-nav"></div>
-<script src="partials.js?v=5"></script>
+
+<main id="main-content" tabindex="-1">
 
 <section class="page-hero">
   <div class="page-hero-inner">
     <h1 class="page-hero-title fade-up">
-      Product thinking.<br>
-      <em>Built into code.</em>
+      I learn by building.<br>
+      <em>Then I build it better.</em>
     </h1>
     <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
-      I'm an iOS Developer &amp; Product Designer. This is the complete story — the products, education, hackathons, recognition, and the move from cross-platform work to native SwiftUI.
+      I’m Alimzhan—an iOS developer and product builder shaped by university, hackathons, and the work of shipping connected products with a small team.
     </p>
   </div>
 </section>
@@ -436,7 +555,7 @@
 <section class="section section-light">
   <div class="section-inner">
     <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Three things I believe about good iOS work.
+      The principles behind the work.
     </h2>
 
     <div class="story-pillars depth-stagger">
@@ -609,18 +728,20 @@
 </section>
 
 <!-- ══════════════ CERTIFICATES ══════════════ -->
-<section class="section section-dark">
+<section class="section section-dark certificates-section" aria-labelledby="certificates-title">
   <div class="section-inner">
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
+    <h2 class="sec-heading word-reveal" id="certificates-title" style="max-width:18ch;">
       Certificates and recognition.
     </h2>
+  </div>
 
-    <div class="cert-stage">
-      <div class="cert-card fade-up">
+  <div class="cert-gallery" data-snap-gallery>
+      <div class="cert-stage" data-snap-track tabindex="0" aria-label="Certificates and recognition. Use the left and right arrow keys to navigate.">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/webp" srcset="img/hackalem-640w.webp 640w, img/hackalem-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/hackalem.jpg" alt="HackAlem AI certificate of participation for Alimzhan Galymzhan" loading="lazy" decoding="async">
+            <img src="img/hackalem.jpg" alt="HackAlem AI certificate of participation for Alimzhan Galymzhan" width="1200" height="928" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -630,12 +751,12 @@
         </div>
       </div>
 
-      <div class="cert-card fade-up">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/avif" srcset="img/hackathon-640w.avif 640w, img/hackathon-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
             <source type="image/webp" srcset="img/hackathon-640w.webp 400w, img/hackathon-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/hackathon.jpg" alt="Hackathon Top 5" loading="lazy" decoding="async">
+            <img src="img/hackathon.jpg" alt="Hackathon Top 5" width="1920" height="1080" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -645,12 +766,12 @@
         </div>
       </div>
 
-      <div class="cert-card fade-up">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/avif" srcset="img/hackathon-urpaq-640w.avif 640w, img/hackathon-urpaq-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
             <source type="image/webp" srcset="img/hackathon-urpaq-640w.webp 640w, img/hackathon-urpaq-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/hackathon-urpaq.jpg" alt="Digital Urpaq Top 2" loading="lazy" decoding="async">
+            <img src="img/hackathon-urpaq.jpg" alt="Digital Urpaq Top 2" width="1212" height="864" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -660,12 +781,12 @@
         </div>
       </div>
 
-      <div class="cert-card fade-up">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/avif" srcset="img/aisana-640w.avif 640w, img/aisana-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
             <source type="image/webp" srcset="img/aisana-640w.webp 640w, img/aisana-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/aisana.jpg" alt="AI-SANA certificate" loading="lazy" decoding="async">
+            <img src="img/aisana.jpg" alt="AI-SANA certificate" width="1974" height="1402" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -675,12 +796,12 @@
         </div>
       </div>
 
-      <div class="cert-card fade-up">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/avif" srcset="img/ai-center-640w.avif 640w, img/ai-center-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
             <source type="image/webp" srcset="img/ai-center-640w.webp 640w, img/ai-center-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/ai-center.jpg" alt="AI Center certificate" loading="lazy" decoding="async">
+            <img src="img/ai-center.jpg" alt="AI Center certificate" width="1207" height="864" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -690,12 +811,12 @@
         </div>
       </div>
 
-      <div class="cert-card fade-up">
+      <div class="cert-card fade-up" data-snap-slide>
         <div class="cert-card-img">
           <picture>
             <source type="image/avif" srcset="img/practice-640w.avif 640w, img/practice-1200w.avif 1200w" sizes="(max-width: 700px) 92vw, 600px">
             <source type="image/webp" srcset="img/practice-640w.webp 640w, img/practice-1200w.webp 1200w" sizes="(max-width: 700px) 92vw, 600px">
-            <img src="img/practice.jpg" alt="International Conference" loading="lazy" decoding="async">
+            <img src="img/practice.jpg" alt="International Conference" width="1216" height="873" loading="lazy" decoding="async">
           </picture>
         </div>
         <div>
@@ -704,7 +825,15 @@
           <div class="cert-card-org">University · 2026</div>
         </div>
       </div>
-    </div>
+      </div>
+
+      <div class="cert-gallery-footer">
+        <p class="cert-gallery-status" data-snap-status aria-live="polite">1 of 6</p>
+        <div class="cert-gallery-controls" aria-label="Certificate gallery controls">
+          <button type="button" data-snap-prev aria-label="Previous certificate" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg></button>
+          <button type="button" data-snap-next aria-label="Next certificate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg></button>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -720,11 +849,13 @@
   </div>
 </section>
 
+</main>
+
 <div id="site-footer"></div>
-<script src="partials.js?v=5"></script>
+<script src="partials.js?v=10"></script>
 
 <script src="utils.js"></script>
 <script src="components.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>

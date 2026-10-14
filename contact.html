@@ -3,24 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Whynicky · iOS Developer &amp; Designer</title>
+<title>Contact — Alimzhan · iOS Developer &amp; Product Builder</title>
 <meta name="description" content="Get in touch — open for internships, freelance, hackathon teams, and iOS work.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whynicky19.github.io/Portfolio/contact.html">
-<meta property="og:title" content="Contact — Whynicky">
+<meta property="og:title" content="Contact — Alimzhan">
 <meta property="og:description" content="Open to internships, freelance, hackathons, and iOS work.">
 <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact — Whynicky">
+<meta name="twitter:title" content="Contact — Alimzhan">
 <meta name="twitter:description" content="Get in touch.">
+<meta name="twitter:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
+<link rel="canonical" href="https://whynicky19.github.io/Portfolio/contact.html">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin">
-<link rel="stylesheet" href="tokens.css">
-<link rel="stylesheet" href="animations.css">
-<link rel="stylesheet" href="style.css">
-<script src="theme-init.js"></script>
+<link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css?v=3">
+<link rel="stylesheet" href="animations.css?v=4">
+  <link rel="stylesheet" href="style.css?v=9">
+<script src="theme-init.js?v=2"></script>
 <style>
 
 /* ===========================================================
@@ -31,21 +33,13 @@
    =========================================================== */
 
 .page-hero {
-  padding: calc(var(--nav-h) + 112px) 32px 88px;
+  padding: calc(var(--nav-h) + 96px) var(--page-pad) 80px;
   background: var(--white);
   position: relative;
   overflow: hidden;
 }
 .page-hero::before {
-  content: '';
-  position: absolute; top: -200px; left: 50%;
-  width: 1000px; height: 600px;
-  transform: translateX(-50%);
-  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,113,227,0.10), transparent 70%);
-  filter: blur(40px);
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
-          mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
-  z-index: 0;
+  display: none;
 }
 .page-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
 .page-hero-eyebrow {
@@ -60,20 +54,18 @@
 }
 .page-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(64px, 11vw, 160px);
+  max-width: 11ch;
+  font-size: var(--display-xl);
   font-weight: 700;
   letter-spacing: var(--em-tightest);
-  line-height: 0.92;
+  line-height: 0.94;
   color: var(--black);
   margin: 0;
   text-wrap: balance;
 }
 .page-hero-title em {
   font-style: normal;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--gray-3);
 }
 .page-hero-sub {
   font-size: clamp(18px, 1.8vw, 22px);
@@ -143,8 +135,8 @@
 .contact-panel {
   min-height: 100%;
   padding: clamp(28px, 4vw, 48px);
-  border-radius: 28px;
-  background: var(--gray-06);
+  border-radius: 24px;
+  background: var(--white);
   border: 1px solid var(--border);
 }
 .contact-block-label {
@@ -289,6 +281,25 @@
   margin-top: 12px;
   font-size: 16px;
 }
+.form-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: var(--white);
+}
+.form-feedback[hidden] { display: none; }
+.form-feedback[data-state="error"] { border-color: color-mix(in srgb, #ff3b30 42%, var(--border)); }
+.form-feedback[data-state="success"] { border-color: color-mix(in srgb, var(--green) 42%, var(--border)); }
+.form-feedback-title { margin: 0; color: var(--black); font-weight: 600; }
+.form-feedback-copy { margin: 6px 0 0; color: var(--gray-4); font-size: 15px; line-height: 1.5; }
+.form-feedback-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.form-feedback-actions [hidden] { display: none; }
+.form-feedback-actions .btn { margin-top: 0; }
+.contact-form.is-complete > :not(.form-feedback) { display: none; }
+.contact-fit { padding: 48px 0 var(--section-y); }
+.contact-fit-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; border-top: 1px solid var(--border); }
+.contact-fit p { max-width: 760px; padding-top: 28px; color: var(--gray-4); font-size: clamp(17px, 2vw, 22px); line-height: 1.5; }
 
 /* === Form inputs === */
 .input, .textarea {
@@ -349,18 +360,20 @@
   .page-hero-title { font-size: clamp(48px, 14vw, 96px); }
   .contact-panel { padding: 26px 20px; border-radius: 24px; }
   .hero-facts { gap: 12px 20px; }
+  .contact-fit-inner { padding: 0 20px; }
 }
 </style>
 </head>
 <body>
 
 <div id="site-nav"></div>
-<script src="partials.js?v=5"></script>
+
+<main id="main-content" tabindex="-1">
 
 <section class="page-hero">
   <div class="page-hero-inner">
     <h1 class="page-hero-title fade-up" style="animation-delay:.1s;">
-      Let's make<br>something <em>good.</em>
+      Let’s build<br> something <em>useful.</em>
     </h1>
     <p class="page-hero-sub fade-up" style="animation-delay:.2s;">
       Open to internships, freelance projects, hackathon teams, and full-time iOS work. The fastest reply comes through email or Telegram.
@@ -381,20 +394,28 @@
             <div class="contact-form-row">
               <div class="contact-form-field">
                 <label class="form-label" for="cf-name">Name</label>
-                <input type="text" name="name" id="cf-name" class="input" placeholder="Your name" required>
+                <input type="text" name="name" id="cf-name" class="input" placeholder="Your name" autocomplete="name" required>
               </div>
               <div class="contact-form-field">
                 <label class="form-label" for="cf-email">Email</label>
-                <input type="email" name="email" id="cf-email" class="input" placeholder="you@example.com" required>
+                <input type="email" name="email" id="cf-email" class="input" placeholder="you@example.com" autocomplete="email" inputmode="email" required>
               </div>
             </div>
             <div class="contact-form-field">
               <label class="form-label" for="cf-msg">Message</label>
               <textarea name="message" id="cf-msg" class="textarea" placeholder="What are you working on?" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" id="cfSubmit">
+            <button type="submit" class="btn btn-primary" id="cfSubmit" aria-describedby="formFeedback">
               Send message →
             </button>
+            <div class="form-feedback" id="formFeedback" role="status" aria-live="polite" aria-atomic="true" hidden>
+              <p class="form-feedback-title" id="formFeedbackTitle"></p>
+              <p class="form-feedback-copy" id="formFeedbackCopy"></p>
+              <div class="form-feedback-actions">
+                <button class="btn btn-ghost" type="button" id="cfRetry" hidden>Try again</button>
+                <a class="btn btn-ghost" id="cfEmailFallback" href="mailto:alimzhanart@icloud.com" hidden>Open email app</a>
+              </div>
+            </div>
           </div>
         </form>
       </div>
@@ -419,7 +440,7 @@
             </div>
           </a>
 
-          <a href="https://github.com/whynicky19" target="_blank" class="channel">
+          <a href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer" class="channel">
             <div class="channel-icon">
               <img src="img/icons/github.svg" alt="" width="16" height="16">
             </div>
@@ -432,7 +453,7 @@
             </div>
           </a>
 
-          <a href="https://t.me/whynickyy" target="_blank" class="channel">
+          <a href="https://t.me/whynickyy" target="_blank" rel="noopener noreferrer" class="channel">
             <div class="channel-icon">
               <img src="img/icons/telegram.svg" alt="" width="16" height="16">
             </div>
@@ -452,94 +473,81 @@
   </div>
 </section>
 
-<!-- ══════════════ Q&A ══════════════ -->
-<section class="section section-tint">
-  <div class="section-inner">
-    <h2 class="sec-heading word-reveal" style="max-width:18ch;">
-      Quick answers.
-    </h2>
-
-    <div class="qa-list">
-      <div class="qa-item fade-up">
-        <div class="qa-q">Are you open to internships or full-time roles?</div>
-        <div class="qa-a">Yes — actively looking for opportunities where I can contribute from day one. Especially interested in mobile, full-stack, and product-focused engineering roles involving Swift, Flutter, or modern web stacks.</div>
-      </div>
-      <div class="qa-item fade-up">
-        <div class="qa-q">Can you join a hackathon team?</div>
-        <div class="qa-a">Absolutely. Hackathons are where I thrive — I can cover mobile (Flutter/Swift), backend (FastAPI), and basic frontend (Nuxt/Vue). If you need someone who can ship a working MVP in 24–48 hours, reach out.</div>
-      </div>
-      <div class="qa-item fade-up">
-        <div class="qa-q">Do you take on freelance projects?</div>
-        <div class="qa-a">Selectively. I prefer projects with a clear problem, real users, and a timeline that allows for quality work. Mobile apps and full-stack web products are my sweet spot.</div>
-      </div>
-      <div class="qa-item fade-up">
-        <div class="qa-q">How fast do you respond?</div>
-        <div class="qa-a">Within 24 hours on email. If it's urgent, Telegram is faster — I'm usually online during UTC+6 business hours.</div>
-      </div>
-      <div class="qa-item fade-up">
-        <div class="qa-q">What's your iOS background?</div>
-        <div class="qa-a">Native iOS is the current focus — Swift and SwiftUI as the primary craft. The portfolio you've been reading is one of the active projects in that transition. Chatra (Flutter) and other earlier projects taught product thinking; native iOS is where the depth is going now.</div>
-      </div>
-    </div>
+<section class="contact-fit" aria-label="Best-fit opportunities">
+  <div class="contact-fit-inner">
+    <p>I’m most useful on mobile, full-stack, and product-focused work where a small team needs someone who can move from a fuzzy problem to a working, carefully designed product.</p>
   </div>
 </section>
 
+</main>
+
 <div id="site-footer"></div>
-<script src="partials.js?v=5"></script>
+<script src="partials.js?v=10"></script>
 
 <script src="utils.js"></script>
 <script src="components.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=6"></script>
 <script>
 (function () {
   const form = document.getElementById('contactForm');
   const btn  = document.getElementById('cfSubmit');
+  const feedback = document.getElementById('formFeedback');
+  const feedbackTitle = document.getElementById('formFeedbackTitle');
+  const feedbackCopy = document.getElementById('formFeedbackCopy');
+  const retry = document.getElementById('cfRetry');
+  const emailFallback = document.getElementById('cfEmailFallback');
   if (!form) return;
 
-  function showSuccess() {
-    form.innerHTML = `
-      <div class="form-success">
-        <div class="form-success-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--black)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-        </div>
-        <p class="form-success-title">Message sent.</p>
-        <p class="form-success-sub">I'll get back to you within 24 hours.</p>
-      </div>`;
-  }
-
-  function mailtoFallback(data) {
+  function mailtoHref(data) {
     const name = data.get('name') || '';
     const email = data.get('email') || '';
     const message = data.get('message') || '';
     const subject = encodeURIComponent('Portfolio contact from ' + name);
     const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-    window.location.href = 'mailto:alimzhanart@icloud.com?subject=' + subject + '&body=' + body;
+    return 'mailto:alimzhanart@icloud.com?subject=' + subject + '&body=' + body;
+  }
+
+  function setState(state, title, copy, data) {
+    feedback.hidden = false;
+    feedback.dataset.state = state;
+    feedbackTitle.textContent = title;
+    feedbackCopy.textContent = copy;
+    retry.hidden = state !== 'error';
+    emailFallback.hidden = state !== 'error';
+    if (data) emailFallback.href = mailtoHref(data);
+    btn.disabled = state === 'sending' || state === 'success';
+    btn.textContent = state === 'sending' ? 'Sending…' : state === 'success' ? 'Sent' : 'Send message →';
+    form.querySelector('.contact-form').classList.toggle('is-complete', state === 'success');
   }
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-
     const data = new FormData(form);
+    setState('sending', 'Sending your message…', 'Please keep this page open for a moment.');
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 12000);
 
     try {
       const res = await fetch(form.action, {
         method: 'POST',
         body: data,
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Accept': 'application/json' },
+        signal: controller.signal
       });
+      window.clearTimeout(timeout);
       if (res.ok) {
-        showSuccess();
+        setState('success', 'Message sent.', "Thank you — I'll get back to you within 24 hours.");
+        form.reset();
       } else {
-        mailtoFallback(data);
-        showSuccess();
+        setState('error', 'The message was not sent.', 'Please try again, or open your email app with the message prepared.', data);
       }
     } catch {
-      mailtoFallback(data);
-      showSuccess();
+      window.clearTimeout(timeout);
+      setState('error', 'The message was not sent.', 'Check your connection and try again, or open your email app with the message prepared.', data);
     }
   });
+
+  retry.addEventListener('click', () => form.requestSubmit());
 })();
 </script>
 </body>

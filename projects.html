@@ -11,26 +11,94 @@
   <meta property="og:description" content="Education, AI, mobile, and full-stack products designed and built by Alimzhan.">
   <meta property="og:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects — Alimzhan">
+  <meta name="twitter:description" content="Education, mobile, AI, finance, and developer products designed and built by Alimzhan.">
+  <meta name="twitter:image" content="https://whynicky19.github.io/Portfolio/img/chatraweb.jpg">
+  <link rel="canonical" href="https://whynicky19.github.io/Portfolio/projects.html">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme:light)">
   <meta name="theme-color" content="#000000" media="(prefers-color-scheme:dark)">
   <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="tokens.css">
-  <link rel="stylesheet" href="animations.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="projects.css?v=3">
-  <script src="theme-init.js"></script>
+  <link rel="stylesheet" href="tokens.css?v=3">
+  <link rel="stylesheet" href="animations.css?v=4">
+  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="projects.css?v=12">
+  <script src="theme-init.js?v=2"></script>
 </head>
 <body class="projects-page">
   <div id="site-nav"></div>
 
-  <main class="projects-main">
+  <main class="projects-main" id="main-content" tabindex="-1">
     <header class="projects-hero">
       <div class="projects-hero-inner">
-        <h1 class="fade-up">Products<br>I’ve built.</h1>
-        <p class="fade-up">Education, AI, finance, and developer tools — each shaped around a real problem and a working product.</p>
+        <p class="projects-kicker">Portfolio · Selected work</p>
+        <h1 class="fade-up">Selected work.<br><span>Built with intention.</span></h1>
+        <p class="fade-up">Real products for learning, communication, and everyday decisions—designed and engineered from first idea to working interface.</p>
       </div>
     </header>
+
+    <section class="editorial-gallery" aria-labelledby="editorial-title">
+      <div class="editorial-gallery-head">
+        <p class="projects-kicker">Product photography</p>
+        <h2 id="editorial-title">Built for real screens.<br><span>Presented as real products.</span></h2>
+      </div>
+
+      <div class="snap-gallery" data-snap-gallery>
+        <div class="snap-gallery-track" data-snap-track tabindex="0" aria-label="Selected product photography. Use the left and right arrow keys to navigate.">
+          <figure class="editorial-card" data-snap-slide>
+            <a class="editorial-card-media" href="#chatra" aria-label="Explore Chatra Academy">
+              <picture><source type="image/webp" srcset="img/editorial/chatra-iphone-editorial.webp"><img src="img/editorial/chatra-iphone-editorial.jpg" width="1586" height="992" alt="Chatra mobile application displayed on an iPhone in a warm study" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>Chatra.</strong> A connected learning experience, designed to make education simpler.</figcaption>
+          </figure>
+
+          <figure class="editorial-card editorial-card-wide" data-snap-slide>
+            <a class="editorial-card-media" href="#chatraweb" aria-label="Explore Chatra across mobile and web">
+              <picture><source type="image/webp" srcset="img/editorial/chatra-ecosystem-editorial-v2.webp"><img src="img/editorial/chatra-ecosystem-editorial-v2.jpg" width="1586" height="992" alt="Chatra Web and mobile applications displayed together on a laptop and phone in a cool daylight workspace" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>One connected experience.</strong> Built for students and educators across devices.</figcaption>
+          </figure>
+
+          <figure class="editorial-card" data-snap-slide>
+            <a class="editorial-card-media" href="#soyle" aria-label="Explore Söyle">
+              <picture><source type="image/webp" srcset="img/editorial/soyle-ipad-editorial-v2.webp"><img src="img/editorial/soyle-ipad-editorial-v2.jpg" width="1586" height="992" alt="Söyle family learning interface displayed on an iPad in a calm sage workspace" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>Söyle.</strong> Thoughtfully designed interactive learning experiences.</figcaption>
+          </figure>
+
+          <figure class="editorial-card" data-snap-slide>
+            <a class="editorial-card-media" href="#digitalurpaq" aria-label="Explore Digital Urpaq">
+              <picture><source type="image/webp" srcset="img/editorial/digital-urpaq-editorial.webp"><img src="img/editorial/digital-urpaq-editorial.jpg" width="1586" height="992" alt="Digital Urpaq platform displayed on a laptop in a university workspace" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>Digital Urpaq.</strong> A bilingual path from discovery to participation.</figcaption>
+          </figure>
+
+          <figure class="editorial-card" data-snap-slide>
+            <a class="editorial-card-media" href="#freelanceos" aria-label="Explore FreelanceOS">
+              <picture><source type="image/webp" srcset="img/editorial/freelanceos-iphone-editorial.webp"><img src="img/editorial/freelanceos-iphone-editorial.jpg" width="1586" height="992" alt="FreelanceOS finance dashboard displayed on a phone" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>FreelanceOS.</strong> Income, tax, and project decisions in one calm view.</figcaption>
+          </figure>
+
+          <figure class="editorial-card" data-snap-slide>
+            <a class="editorial-card-media" href="#portfolio" aria-label="Explore this portfolio project">
+              <picture><source type="image/webp" srcset="img/editorial/portfolio-macbook-editorial-v2.webp"><img src="img/editorial/portfolio-macbook-editorial-v2.jpg" width="1586" height="992" alt="The current portfolio homepage displayed on a laptop in a cool pearl studio" loading="lazy" decoding="async"></picture>
+            </a>
+            <figcaption><strong>This portfolio.</strong> Product thinking applied to every page and breakpoint.</figcaption>
+          </figure>
+        </div>
+
+        <div class="snap-gallery-footer">
+          <p class="snap-gallery-status" data-snap-status aria-live="polite">1 of 6</p>
+          <div class="snap-gallery-controls" aria-label="Product gallery controls">
+            <button type="button" data-snap-prev aria-label="Previous product" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg></button>
+            <button type="button" data-snap-next aria-label="Next product"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="projects-tier"><span>01</span><p>Inside the work</p><small>Deep work across product, interface, and engineering.</small></div>
 
     <section class="project-story story-chatra" id="chatra" aria-labelledby="chatra-title">
       <div class="project-story-inner">
@@ -45,14 +113,11 @@
             </div>
           </div>
           <div class="chatra-card chatra-card-web">
-            <div class="chatra-browser">
-              <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-              <picture><source type="image/avif" srcset="img/chatraweb-960w.avif 960w,img/chatraweb-1600w.avif 1600w"><source type="image/webp" srcset="img/chatraweb-960w.webp 960w,img/chatraweb-1600w.webp 1600w"><img src="img/chatraweb.jpg" alt="Chatra web dashboard" loading="lazy" decoding="async"></picture>
-            </div>
+            <picture class="chatra-macbook-visual"><source type="image/avif" srcset="img/chatraweb-960w.avif 960w,img/chatraweb-1600w.avif 1600w"><source type="image/webp" srcset="img/chatraweb-960w.webp 960w,img/chatraweb-1600w.webp 1600w"><img src="img/chatraweb.jpg" alt="Chatra Web dashboard shown in a MacBook mockup" width="1654" height="1162" loading="lazy" decoding="async"></picture>
           </div>
         </div>
         <div class="project-details">
-          <div><p class="project-copy">Chatra replaced scattered chats and spreadsheets with role-based mobile and web experiences. Students can see their progress, teachers can run a class, and administrators can manage the system without changing tools.</p><a class="project-action" href="chatra.html">Read the case study <span aria-hidden="true">→</span></a></div>
+          <div><p class="project-copy">Chatra replaced scattered chats and spreadsheets with role-based mobile and web experiences. Students can see their progress, teachers can run a class, and administrators can manage the system without changing tools. The web dashboard is part of the same ecosystem, sharing the API and visual language with the mobile product.</p><div class="project-actions"><a class="project-action" href="chatra.html">Read the case study <span aria-hidden="true">→</span></a><a class="project-action" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener noreferrer">Web source <span aria-hidden="true">↗</span></a></div></div>
           <dl class="project-facts"><div><dt>Role</dt><dd>Mobile lead and product design</dd></div><div><dt>Stack</dt><dd>Flutter, FastAPI, Nuxt</dd></div><div><dt>Result</dt><dd>Used in real classrooms</dd></div></dl>
         </div>
       </div>
@@ -73,7 +138,7 @@
               <div class="soyle-camera" aria-hidden="true"></div>
               <picture class="soyle-screen">
                 <source type="image/webp" srcset="img/soyle-app.webp">
-                <img src="img/soyle-app.jpg" alt="Söyle sign-in screen for adult and child accounts" loading="lazy" decoding="async">
+                <img src="img/soyle-app.jpg" alt="Söyle sign-in screen for adult and child accounts" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
             <div class="soyle-base" aria-hidden="true"><span></span></div>
@@ -84,7 +149,7 @@
               <div class="soyle-camera" aria-hidden="true"></div>
               <picture class="soyle-screen">
                 <source type="image/webp" srcset="img/soyle-home.webp">
-                <img src="img/soyle-home.jpg" alt="Söyle family communication and practice landing page" loading="lazy" decoding="async">
+                <img src="img/soyle-home.jpg" alt="Söyle family communication and practice landing page" width="1440" height="900" loading="lazy" decoding="async">
               </picture>
             </div>
             <div class="soyle-base" aria-hidden="true"><span></span></div>
@@ -92,12 +157,12 @@
         </div>
         <div class="project-details">
           <div>
-            <p class="project-copy">Söyle combines short guided practice, AAC communication, and a separate parent space in one role-based product. The experience keeps each screen focused, preserves the child’s choice, and makes AI assistance optional and consent-based.</p>
-            <a class="project-action" href="https://github.com/whynicky19/Soyle.git" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a>
+            <p class="project-copy">Söyle combines short guided practice, AAC communication, and a separate parent space in one role-based product. The experience keeps each screen focused, preserves the child’s choice, and explains each recommendation without sending responses to an external AI provider.</p>
+            <a class="project-action" href="https://github.com/whynicky19/Soyle.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="project-facts">
             <div><dt>Role</dt><dd>Product design and full-stack development</dd></div>
-            <div><dt>Stack</dt><dd>Next.js, React, FastAPI, OpenAI</dd></div>
+            <div><dt>Stack</dt><dd>Next.js, React, FastAPI</dd></div>
             <div><dt>Focus</dt><dd>Accessible, privacy-aware family support</dd></div>
           </dl>
         </div>
@@ -143,39 +208,25 @@
       </div>
     </section>
 
-    <section class="project-story story-du" id="digitalurpaq" aria-labelledby="du-title">
+    <div class="projects-tier"><span>02</span><p>Selected work</p><small>Focused builds shaped by a clear constraint.</small></div>
+
+    <section class="project-story selected-story story-du" id="digitalurpaq" aria-labelledby="du-title">
       <div class="project-story-inner">
         <div class="project-head"><h2 class="project-name word-reveal" id="du-title">Digital<br>Urpaq.</h2><p class="project-intro fade-up">A bilingual service platform for the Palace of Schoolchildren, designed around different roles and everyday workflows.</p></div>
-        <div class="project-media du-stage scale-up"><picture><source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w,img/digital-urpaq-960w.avif 960w"><source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w,img/digital-urpaq-960w.webp 960w"><img src="img/digital-urpaq.jpg" alt="Digital Urpaq web platform" loading="lazy" decoding="async"></picture></div>
-        <div class="project-details"><div><p class="project-copy">The platform brings applications, programmes, and administration into one clear interface in Kazakh and Russian. The work combined service design, role-based navigation, secure APIs, and a focused competition build.</p><a class="project-action" href="https://github.com/serazenith/du-7mile.git" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Full-stack development</dd></div><div><dt>Stack</dt><dd>Nuxt, FastAPI, i18n</dd></div><div><dt>Result</dt><dd>Top 2 finalist</dd></div></dl></div>
+        <div class="project-media du-stage scale-up"><picture><source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w,img/digital-urpaq-960w.avif 960w"><source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w,img/digital-urpaq-960w.webp 960w"><img src="img/digital-urpaq.jpg" alt="Digital Urpaq web platform" width="1654" height="1162" loading="lazy" decoding="async"></picture></div>
+        <div class="project-details"><div><p class="project-copy">The platform brings applications, programmes, and administration into one clear interface in Kazakh and Russian. The work combined service design, role-based navigation, secure APIs, and a focused competition build.</p><a class="project-action" href="https://github.com/serazenith/du-7mile.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Full-stack development</dd></div><div><dt>Stack</dt><dd>Nuxt, FastAPI, i18n</dd></div><div><dt>Result</dt><dd>Top 2 finalist</dd></div></dl></div>
       </div>
     </section>
 
-    <section class="project-story story-rug" id="hackathon" aria-labelledby="rug-title">
+    <section class="project-story selected-story story-rug" id="hackathon" aria-labelledby="rug-title">
       <div class="project-story-inner">
         <div class="project-head"><h2 class="project-name word-reveal" id="rug-title">RugPull<br>Risk.</h2><p class="project-intro fade-up">Crypto risk translated into a fast, readable decision interface during a 48-hour sprint.</p></div>
-        <div class="project-media rug-stage scale-up"><img src="img/crypto-macbook-card.svg" alt="RugPull Risk dashboard on a laptop" loading="lazy"></div>
-        <div class="project-details"><div><p class="project-copy">The challenge was not showing more data; it was making warning signs understandable before a decision. We reduced a complex analysis flow to a focused responsive dashboard connected to a Python service.</p><a class="project-action" href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Frontend and product UI</dd></div><div><dt>Stack</dt><dd>Vue, FastAPI, Python</dd></div><div><dt>Result</dt><dd>Top 5 finalist</dd></div></dl></div>
+        <div class="project-media rug-stage scale-up"><img src="img/crypto-macbook-card.svg" width="1280" height="900" alt="RugPull Risk dashboard shown in a MacBook mockup" loading="lazy" decoding="async"></div>
+        <div class="project-details"><div><p class="project-copy">The challenge was not showing more data; it was making warning signs understandable before a decision. We reduced a complex analysis flow to a focused responsive dashboard connected to a Python service.</p><a class="project-action" href="https://github.com/whynicky19/RugPull-Frontend.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Frontend and product UI</dd></div><div><dt>Stack</dt><dd>Vue, FastAPI, Python</dd></div><div><dt>Result</dt><dd>Top 5 finalist</dd></div></dl></div>
       </div>
     </section>
 
-    <section class="project-story story-portfolio" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="project-story-inner">
-        <div class="project-head"><h2 class="project-name word-reveal" id="portfolio-title">This<br>portfolio.</h2><p class="project-intro fade-up">A personal site treated as a product: clear narrative, responsive layouts, restrained motion, and no framework.</p></div>
-        <div class="project-media portfolio-stage scale-up"><img src="img/macbook-card.svg" alt="Portfolio website on a laptop" loading="lazy"></div>
-        <div class="project-details"><div><p class="project-copy">The system uses shared type, colour, spacing, navigation, dark mode, and accessible motion across every page. Each iteration is tested as a complete experience, not as isolated decoration.</p><a class="project-action" href="https://github.com/whynicky19/Portfolio.git" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Design and development</dd></div><div><dt>Stack</dt><dd>HTML, CSS, JavaScript</dd></div><div><dt>Focus</dt><dd>Typography and responsive motion</dd></div></dl></div>
-      </div>
-    </section>
-
-    <section class="project-story story-web" id="chatraweb" aria-labelledby="web-title">
-      <div class="project-story-inner">
-        <div class="project-head"><h2 class="project-name word-reveal" id="web-title">Chatra<br>Web.</h2><p class="project-intro fade-up">The browser side of Chatra, built for students, instructors, and administrators.</p></div>
-        <div class="project-media web-stage scale-up"><picture><source type="image/avif" srcset="img/chatraweb-960w.avif 960w,img/chatraweb-1600w.avif 1600w"><source type="image/webp" srcset="img/chatraweb-960w.webp 960w,img/chatraweb-1600w.webp 1600w"><img src="img/chatraweb.jpg" alt="Chatra web dashboard" loading="lazy" decoding="async"></picture></div>
-        <div class="project-details"><div><p class="project-copy">Separate user roles share one visual language while keeping their own tasks direct. The dashboard includes Kazakh localisation, live API data, and the administrative workflows behind the mobile experience.</p><a class="project-action" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Product UI and integration</dd></div><div><dt>Stack</dt><dd>Nuxt, Vue, i18n</dd></div><div><dt>Users</dt><dd>Students, teachers, admins</dd></div></dl></div>
-      </div>
-    </section>
-
-    <section class="project-story story-freelance" id="freelanceos" aria-labelledby="freelance-title">
+    <section class="project-story selected-story story-freelance" id="freelanceos" aria-labelledby="freelance-title">
       <div class="project-story-inner">
         <div class="project-head">
           <h2 class="project-name word-reveal" id="freelance-title">FreelanceOS.</h2>
@@ -191,7 +242,7 @@
         <div class="project-details">
           <div>
             <p class="project-copy">FreelanceOS brings the numbers a freelancer checks every day into one calm dashboard: real income, tax reserve, expenses, safe-to-spend money, goals, and recent client payments.</p>
-            <a class="project-action" href="https://github.com/whynicky19" target="_blank" rel="noopener">View source <span aria-hidden="true">↗</span></a>
+            <a class="project-action" href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
           </div>
           <dl class="project-facts">
             <div><dt>Role</dt><dd>Mobile product design and development</dd></div>
@@ -202,11 +253,68 @@
       </div>
     </section>
 
+    <section class="project-story selected-story story-portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="project-story-inner">
+        <div class="project-head">
+          <h2 class="project-name word-reveal" id="portfolio-title">This<br>portfolio.</h2>
+          <p class="project-intro fade-up">A personal site treated as a product: clear narrative, responsive layouts, restrained motion, and no framework.</p>
+        </div>
+        <div class="project-media portfolio-stage scale-up">
+          <figure class="portfolio-macbook" aria-label="The current portfolio homepage shown on a MacBook">
+            <div class="portfolio-macbook-screen">
+              <span class="portfolio-macbook-camera" aria-hidden="true"></span>
+              <img src="img/portfolio-home-current.png" width="1280" height="720" alt="Current portfolio homepage" loading="lazy" decoding="async">
+            </div>
+            <div class="portfolio-macbook-base" aria-hidden="true"><span></span></div>
+          </figure>
+        </div>
+        <div class="project-details">
+          <div>
+            <p class="project-copy">The system uses shared type, colour, spacing, navigation, dark mode, and accessible motion across every page. Each iteration is tested as a complete experience, not as isolated decoration.</p>
+            <a class="project-action" href="https://github.com/whynicky19/Portfolio.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
+          </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>Design and development</dd></div>
+            <div><dt>Stack</dt><dd>HTML, CSS, JavaScript</dd></div>
+            <div><dt>Focus</dt><dd>Typography and responsive motion</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-story selected-story story-web" id="chatraweb" aria-labelledby="web-title">
+      <div class="project-story-inner">
+        <div class="project-head">
+          <h2 class="project-name word-reveal" id="web-title">Chatra<br>Web.</h2>
+          <p class="project-intro fade-up">The browser side of Chatra, built for students, instructors, and administrators.</p>
+        </div>
+        <div class="project-media web-stage scale-up">
+          <picture>
+            <source type="image/avif" srcset="img/chatraweb-480w.avif 480w, img/chatraweb-960w.avif 960w, img/chatraweb-1600w.avif 1600w" sizes="(max-width: 900px) calc(100vw - 40px), 58vw">
+            <source type="image/webp" srcset="img/chatraweb-480w.webp 480w, img/chatraweb-960w.webp 960w, img/chatraweb-1600w.webp 1600w" sizes="(max-width: 900px) calc(100vw - 40px), 58vw">
+            <img src="img/chatraweb.jpg" width="1654" height="1162" alt="Chatra Web dashboard for managing classes and learning activity" loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="project-details">
+          <div>
+            <p class="project-copy">Separate user roles share one visual language while keeping their own tasks direct. The dashboard includes Kazakh localisation, live API data, and the administrative workflows behind the mobile experience.</p>
+            <a class="project-action" href="https://github.com/whynicky19/Chatra-Frontend.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a>
+          </div>
+          <dl class="project-facts">
+            <div><dt>Role</dt><dd>Product UI and integration</dd></div>
+            <div><dt>Stack</dt><dd>Nuxt, Vue, i18n</dd></div>
+            <div><dt>Users</dt><dd>Students, teachers, admins</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
     <section class="project-archive" aria-labelledby="archive-title">
       <div class="project-archive-inner">
-        <h2 class="word-reveal" id="archive-title">More projects.</h2>
-        <a class="archive-item fade-up" href="https://github.com/whynicky19" target="_blank" rel="noopener"><h3>CS50P</h3><p>Every problem set completed by hand: functions, testing, files, regular expressions, and object-oriented Python.</p><span aria-hidden="true">↗</span></a>
-        <a class="archive-item fade-up" href="https://github.com/whynicky19/App-Backend.git" target="_blank" rel="noopener"><h3>FastAPI Template</h3><p>A reusable backend with authentication, PostgreSQL, Docker, and interactive API documentation.</p><span aria-hidden="true">↗</span></a>
+        <div class="projects-tier projects-tier-archive"><span>03</span><p>Additional work</p><small>Tools, systems, and ongoing experiments.</small></div>
+        <h2 class="word-reveal" id="archive-title">More work.</h2>
+        <a class="archive-item fade-up" href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer"><h3>CS50P</h3><p>Every problem set completed by hand: functions, testing, files, regular expressions, and object-oriented Python.</p><span aria-hidden="true">↗</span></a>
+        <a class="archive-item fade-up" href="https://github.com/whynicky19/App-Backend.git" target="_blank" rel="noopener noreferrer"><h3>FastAPI Template</h3><p>A reusable backend with authentication, PostgreSQL, Docker, and interactive API documentation.</p><span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -214,9 +322,9 @@
   </main>
 
   <div id="site-footer"></div>
-  <script src="partials.js?v=5"></script>
+  <script src="partials.js?v=10"></script>
   <script src="utils.js"></script>
   <script src="components.js"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
