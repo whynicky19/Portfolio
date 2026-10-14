@@ -39,6 +39,23 @@
 .browser-bar i{width:8px;height:8px;border-radius:50%;background:#d4d4d7}
 .chatra-browser img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
 
+.story-soyle{--story-bg:#edf3ee;--story-muted:#5f6b65;--story-soft:#7b857f;--story-link:#365f8a}
+.soyle-stage{display:grid;place-items:center;min-height:clamp(610px,70vw,900px);padding:clamp(30px,5vw,76px);isolation:isolate;background:linear-gradient(145deg,#f8fbf9 0%,#dbe7df 52%,#d7e2ee 100%)}
+.soyle-stage:after{content:"";position:absolute;inset:auto 6% 7%;height:20%;border-radius:50%;background:rgba(63,82,72,.18);filter:blur(45px);transform:scaleX(.78);z-index:0}
+.soyle-orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.78;z-index:0}
+.soyle-orb-one{width:38%;aspect-ratio:1;top:-12%;left:-7%;background:radial-gradient(circle at 65% 65%,rgba(255,255,255,.9),rgba(177,204,187,.48) 46%,transparent 72%)}
+.soyle-orb-two{width:34%;aspect-ratio:1;right:-7%;bottom:-16%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.86),rgba(132,163,194,.42) 48%,transparent 72%)}
+.soyle-macbook{position:absolute;width:min(72%,880px);margin:0;filter:drop-shadow(0 32px 42px rgba(32,49,41,.2));transform-origin:center bottom}
+.soyle-macbook-back{z-index:1;top:9%;right:5%;width:min(57%,700px);transform:rotate(2.6deg)}
+.soyle-macbook-front{z-index:2;bottom:8%;left:5%;transform:rotate(-1.2deg)}
+.soyle-screen-shell{position:relative;padding:1.6% 1.45% 1.35%;border-radius:2.7% 2.7% 1.2% 1.2%/4.5% 4.5% 2% 2%;background:linear-gradient(145deg,#303034,#121214 58%,#252527);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),inset 0 -2px 4px rgba(255,255,255,.05)}
+.soyle-camera{position:absolute;z-index:3;top:.55%;left:50%;width:5px;height:5px;border-radius:50%;background:#050506;box-shadow:0 0 0 1px rgba(255,255,255,.07);transform:translateX(-50%)}
+.soyle-screen{display:block;aspect-ratio:16/10;overflow:hidden;border-radius:.7%;background:#fff}
+.soyle-screen img{display:block;width:100%;height:100%;object-fit:cover}
+.soyle-base{position:relative;left:-4%;width:108%;height:18px;border-radius:3px 3px 18px 18px;background:linear-gradient(180deg,#eff0f1 0%,#a8abb0 44%,#d9dade 55%,#909399 100%);box-shadow:0 13px 20px rgba(26,38,32,.14)}
+.soyle-base:after{content:"";position:absolute;right:4%;bottom:-3px;left:4%;height:4px;border-radius:0 0 50% 50%;background:#72757a}
+.soyle-base span{position:absolute;top:0;left:50%;width:12%;height:5px;border-radius:0 0 8px 8px;background:linear-gradient(180deg,#999ca1,#dfe0e2);transform:translateX(-50%)}
+
 .story-forge{--story-bg:#08090b;--story-fg:#f5f5f7;--story-muted:#a8a8ae;--story-soft:#74747c;--story-link:#e5bc91;--media-bg:#101115}
 .forge-stage{display:grid;gap:clamp(18px,2.5vw,30px);min-height:0;padding:clamp(18px,3.5vw,48px);background:radial-gradient(circle at 74% 15%,rgba(213,169,124,.13),transparent 28%),#0b0c0f}
 .forge-window{width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid rgba(255,255,255,.13);border-radius:22px;background:#111216;box-shadow:0 30px 80px rgba(0,0,0,.44)}
@@ -101,6 +118,9 @@
 [data-theme="dark"] .story-chatra,[data-theme="dark"] .story-du,[data-theme="dark"] .story-portfolio,[data-theme="dark"] .story-freelance,[data-theme="dark"] .project-archive{--story-bg:#101012;background:#101012}
 [data-theme="dark"] .project-media{border:1px solid rgba(255,255,255,.08);box-shadow:0 1px 0 rgba(255,255,255,.035),0 35px 100px rgba(0,0,0,.34)}
 [data-theme="dark"] .chatra-stage{background:linear-gradient(145deg,#171b25 0%,#20242d 48%,#151821 100%)}
+[data-theme="dark"] .story-soyle{--story-bg:#101512;--story-muted:#a2ada7;--story-soft:#727c77;background:#101512}
+[data-theme="dark"] .soyle-stage{background:linear-gradient(145deg,#151b17 0%,#202b24 52%,#18212b 100%)}
+[data-theme="dark"] .soyle-stage:after{background:rgba(0,0,0,.42)}
 [data-theme="dark"] .du-stage{background:linear-gradient(135deg,#111827,#20283a 58%,#151b2a)}
 [data-theme="dark"] .portfolio-stage{background:linear-gradient(145deg,#171719,#27272b)}
 [data-theme="dark"] .web-stage{background:linear-gradient(145deg,#111722,#1a2230)}
@@ -139,6 +159,11 @@
   .chatra-phone img{border-radius:29px}
   .chatra-browser{width:94%;border-radius:14px}
   .browser-bar{height:32px;padding:0 13px}
+  .soyle-stage{min-height:500px;padding:20px}
+  .soyle-macbook-front{width:88%;left:3%;bottom:8%}
+  .soyle-macbook-back{width:72%;top:10%;right:1%}
+  .soyle-base{height:11px;border-radius:2px 2px 11px 11px}
+  .soyle-camera{width:3px;height:3px}
   .forge-stage{gap:14px;min-height:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible}
   .forge-window{aspect-ratio:3/4;border-radius:16px}
   .forge-body{grid-template-columns:1fr}
