@@ -18,7 +18,10 @@
   ];
   var CV_HREF = 'Alimzhan_Galymzhan_iOS_Developer_CV.pdf';
 
-  function isActive(href) { return href === page; }
+  function isActive(href) {
+    var activePage = page === 'chatra.html' ? 'projects.html' : page;
+    return href === activePage;
+  }
 
   function themeIcons(size) {
     return (

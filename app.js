@@ -307,4 +307,203 @@
       });
     });
   }
+
+  /* ── Shared motion direction ──────────────────────────────────────────
+     One observer handles narrative reveals across the static pages. The
+     hidden state is attached here (never in the HTML), and a fallback timer
+     always restores every item. This keeps the site readable without JS and
+     safe when a page is restored from the back/forward cache. */
+  function initMotionSystem() {
+    const revealSelector = [
+      '.fade-up', '.fade-in', '.slide-left', '.slide-right', '.scale-up',
+      '.clip-reveal', '.word-reveal', '.stagger', '.depth-stagger',
+      '.motion-auto', '.motion-stagger'
+    ].join(',');
+    const heroSelector = '.home-hero, .projects-hero, .page-hero, .scene-hero';
+
+    document.querySelectorAll([
+      '.editorial-gallery-head',
+      '.editorial-card',
+      '.projects-tier',
+      '.project-details',
+      '.about-copy',
+      '.contact-fit-inner',
+      '.case-facts'
+    ].join(',')).forEach((element) => element.classList.add('motion-auto'));
+
+    document.querySelectorAll('.project-facts, .proof-rail').forEach((element) => {
+      element.classList.add('motion-stagger');
+    });
+
+    const targets = Array.from(document.querySelectorAll(revealSelector))
+      .filter((element) => !element.closest(heroSelector) && !element.closest('.chatra'));
+
+    function reveal(element) {
+      element.classList.add('is-visible');
+      window.setTimeout(() => {
+        element.classList.remove('reveal-pending', 'is-visible');
+      }, 1100);
+    }
+
+    targets.forEach((element) => {
+      Array.from(element.children).forEach((child, index) => {
+        child.style.setProperty('--stagger-index', String(Math.min(index, 8)));
+      });
+
+      const rect = element.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) return;
+      element.classList.add('reveal-pending');
+    });
+
+    const pending = targets.filter((element) => element.classList.contains('reveal-pending'));
+    let revealObserver = null;
+    if ('IntersectionObserver' in window && pending.length && !motionQuery.matches) {
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          reveal(entry.target);
+          revealObserver.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -9% 0px', threshold: 0.08 });
+      pending.forEach((element) => revealObserver.observe(element));
+    } else {
+      pending.forEach(reveal);
+    }
+
+    /* Existing Chatra scenes already define their exact line-by-line timing.
+       Arm those styles only after the observer is ready. */
+    const chatra = document.body.classList.contains('chatra') ? document.body : null;
+    const chatraTargets = chatra ? Array.from(document.querySelectorAll([
+      '.scene-h', '.quote-body', '.meet-stage', '.subjects-phone', '.ai-stage',
+      '.themes-card', '.tools-list', '.shipped-row'
+    ].join(','))) : [];
+    let chatraObserver = null;
+
+    if (chatraTargets.length && 'IntersectionObserver' in window && !motionQuery.matches) {
+      chatraObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('in-view');
+          chatraObserver.unobserve(entry.target);
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+      chatraTargets.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) element.classList.add('in-view');
+        chatraObserver.observe(element);
+      });
+      chatra.classList.add('chatra-motion');
+    } else {
+      chatraTargets.forEach((element) => element.classList.add('in-view'));
+    }
+
+    /* A restrained, scroll-linked depth pass for real product imagery. It is
+       desktop-only, touches transform variables only, and tracks just the
+       elements currently near the viewport. */
+    const parallaxTargets = Array.from(document.querySelectorAll([
+      '.work-media img',
+      '.work-card-media img',
+      '.editorial-card-media img',
+      '.project-media > img',
+      '.project-media > picture > img',
+      '.chatra .iphone-frame'
+    ].join(',')));
+    const activeParallax = new Set();
+    let parallaxFrame = 0;
+    let parallaxObserver = null;
+
+    function clearParallax() {
+      parallaxTargets.forEach((element) => {
+        element.classList.remove('motion-parallax');
+        element.style.removeProperty('--motion-y');
+        element.style.removeProperty('--motion-scale');
+      });
+    }
+
+    function parallaxEnabled() {
+      return !motionQuery.matches && window.innerWidth >= 900 &&
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    }
+
+    function updateParallax() {
+      parallaxFrame = 0;
+      if (!parallaxEnabled()) {
+        clearParallax();
+        return;
+      }
+      const viewport = window.innerHeight;
+      activeParallax.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const range = viewport / 2 + rect.height / 2;
+        const progress = Math.max(-1, Math.min(1, (center - viewport / 2) / range));
+        const y = progress * -12;
+        const scale = 1.014 + (1 - Math.abs(progress)) * 0.01;
+        element.style.setProperty('--motion-y', y.toFixed(2) + 'px');
+        element.style.setProperty('--motion-scale', scale.toFixed(4));
+      });
+    }
+
+    function requestParallax() {
+      if (parallaxFrame) return;
+      parallaxFrame = requestAnimationFrame(updateParallax);
+    }
+
+    if (parallaxTargets.length && 'IntersectionObserver' in window) {
+      parallaxObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('motion-parallax');
+            activeParallax.add(entry.target);
+          } else {
+            activeParallax.delete(entry.target);
+            entry.target.classList.remove('motion-parallax');
+          }
+        });
+        requestParallax();
+      }, { rootMargin: '35% 0px 35% 0px' });
+      parallaxTargets.forEach((element) => parallaxObserver.observe(element));
+      window.addEventListener('scroll', requestParallax, { passive: true });
+      window.addEventListener('resize', requestParallax, { passive: true });
+      requestParallax();
+    }
+
+    const revealFallback = window.setTimeout(() => {
+      targets.forEach(reveal);
+      chatraTargets.forEach((element) => element.classList.add('in-view'));
+    }, 4500);
+
+    function motionPreferenceChanged(event) {
+      root.classList.toggle('motion-ok', !event.matches);
+      if (!event.matches) {
+        requestParallax();
+        return;
+      }
+      targets.forEach(reveal);
+      chatraTargets.forEach((element) => element.classList.add('in-view'));
+      clearParallax();
+    }
+    motionQuery.addEventListener('change', motionPreferenceChanged);
+
+    window.addEventListener('pageshow', (event) => {
+      if (!event.persisted) return;
+      targets.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) reveal(element);
+      });
+      requestParallax();
+    });
+
+    window.addEventListener('pagehide', () => {
+      window.clearTimeout(revealFallback);
+      if (parallaxFrame) cancelAnimationFrame(parallaxFrame);
+    }, { once: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMotionSystem, { once: true });
+  } else {
+    initMotionSystem();
+  }
 })();

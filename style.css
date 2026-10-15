@@ -261,6 +261,7 @@ body.menu-open { overflow: hidden; }
   list-style: none;
 }
 .nav-menu li a {
+  position: relative;
   display: flex; align-items: center; min-height: 44px; padding: 0 14px;
   font-size: 13px; font-weight: 400;
   color: rgba(0,0,0,0.85);
@@ -270,6 +271,22 @@ body.menu-open { overflow: hidden; }
 }
 .nav-menu li a:hover { color: rgba(0,0,0,0.55); }
 .nav-menu li a.active { color: rgba(0,0,0,0.55); }
+.nav-menu li a::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  bottom: 7px;
+  left: 14px;
+  height: 1px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(.25);
+  transform-origin: center;
+  transition: opacity var(--dur-fast) ease, transform var(--dur-base) var(--ease-apple);
+}
+.nav-menu li a:hover::after { opacity: .28; transform: scaleX(1); }
+.nav-menu li a.active::after { opacity: .7; transform: scaleX(1); }
 .nav-cta {
   font-size: 12px; font-weight: 400;
   color: rgba(0,0,0,0.85);
@@ -278,6 +295,14 @@ body.menu-open { overflow: hidden; }
   transition: color .15s;
 }
 .nav-cta:hover { color: rgba(0,0,0,0.55); }
+.nav-logo,
+.nav-cta,
+.footer-col a,
+.footer-bottom a { transition: color var(--dur-fast) ease, opacity var(--dur-fast) ease; }
+.nav-logo:active,
+.nav-cta:active,
+.footer-col a:active,
+.footer-bottom a:active { opacity: .58; }
 .nav-cta svg { width: 13px; height: 13px; stroke: currentColor; fill: none; }
 
 .nav-burger {
@@ -396,11 +421,12 @@ body.menu-open { overflow: hidden; }
   letter-spacing: -0.01em;
   border: none; cursor: pointer;
   text-decoration: none;
-  transition: opacity .15s;
+  transition: opacity .15s, transform var(--dur-instant) var(--ease-out);
   white-space: nowrap;
   touch-action: manipulation;
 }
 .btn:hover { opacity: 0.75; }
+.btn:active { transform: scale(.97); }
 
 .btn-primary {
   background: var(--accent); color: #fff;
