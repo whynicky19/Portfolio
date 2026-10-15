@@ -569,3 +569,83 @@
   .native-tools-controls button { transition: none !important; }
   .native-tool-card:hover .native-tool-visual img { transform: translateY(var(--native-logo-y)); }
 }
+
+/* Scroll story — the flagship moves from a product card to an immersive
+   canvas. The variables are scrubbed by app.js and intentionally have no
+   transitions, so reversing the scroll reverses the composition instantly. */
+@media (min-width: 981px) {
+  .scroll-scenes-ready .home-feature-scroll {
+    position: relative;
+    min-height: 175svh;
+    --home-media-scale: .64;
+    --home-media-y: 14px;
+    --home-image-scale: .94;
+    --home-copy-opacity: 1;
+    --home-copy-x: 0px;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-feature {
+    position: sticky;
+    top: calc(var(--nav-h) + 1rem);
+    display: block;
+    height: calc(100svh - var(--nav-h) - 2rem);
+    min-height: 34rem;
+    isolation: isolate;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-copy {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 3;
+    width: 44%;
+    opacity: var(--home-copy-opacity);
+    transform: translate3d(var(--home-copy-x), 0, 0);
+    will-change: opacity, transform;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-media {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 2rem;
+    transform: translate3d(0, var(--home-media-y), 0) scale(var(--home-media-scale));
+    transform-origin: 100% 50%;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-media picture,
+  .scroll-scenes-ready .home-feature-scroll .work-media img { height: 100%; }
+  .scroll-scenes-ready .home-feature-scroll .work-media img {
+    object-fit: cover;
+    transform: scale(var(--home-image-scale));
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+}
+
+@media (max-width: 980px) {
+  .scroll-scenes-ready .home-feature-scroll {
+    --home-mobile-image-scale: .96;
+    --home-mobile-image-y: 14px;
+    --home-mobile-copy-opacity: .84;
+    --home-mobile-copy-y: 10px;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-copy {
+    opacity: var(--home-mobile-copy-opacity);
+    transform: translate3d(0, var(--home-mobile-copy-y), 0);
+    will-change: opacity, transform;
+  }
+  .scroll-scenes-ready .home-feature-scroll .work-media img {
+    transform: translate3d(0, var(--home-mobile-image-y), 0) scale(var(--home-mobile-image-scale));
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-feature-scroll .work-copy,
+  .home-feature-scroll .work-media,
+  .home-feature-scroll .work-media img {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

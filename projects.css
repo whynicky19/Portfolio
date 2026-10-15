@@ -152,6 +152,7 @@
 
 .story-chatra{--story-bg:#f5f5f7}
 .chatra-stage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.5vw,32px);min-height:0;padding:clamp(18px,2.5vw,34px);background:linear-gradient(145deg,#e8efff 0%,#f4f5f8 48%,#e7ebf5 100%)}
+.project-media.chatra-stage{min-height:0}
 .chatra-card{display:grid;place-items:center;aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(0,0,0,.06);border-radius:clamp(22px,2.5vw,34px);box-shadow:0 24px 60px rgba(24,46,96,.12)}
 .chatra-card-phone{background:radial-gradient(circle at 50% 38%,#fff 0 18%,transparent 58%),linear-gradient(145deg,#dfe8fb,#eef3ff)}
 .chatra-card-web{padding:clamp(8px,1.3vw,18px);background:#fff}
@@ -160,7 +161,7 @@
 .chatra-phone picture,.chatra-phone img{display:block;width:100%;height:100%}
 .chatra-phone img{border-radius:calc(var(--chatra-phone-radius) - 4px)}
 .chatra-macbook-visual,.chatra-macbook-visual img{display:block;width:100%;height:100%}
-.chatra-macbook-visual img{object-fit:cover;object-position:center}
+.chatra-macbook-visual img{object-fit:contain;object-position:center}
 
 .story-soyle{--story-bg:#edf3ee;--story-muted:#5f6b65;--story-soft:#7b857f;--story-link:#365f8a}
 .soyle-stage{display:grid;place-items:center;min-height:clamp(610px,70vw,900px);padding:clamp(30px,5vw,76px);isolation:isolate;background:linear-gradient(145deg,#f8fbf9 0%,#dbe7df 52%,#d7e2ee 100%)}
@@ -377,6 +378,16 @@
   align-self:stretch;
   border-radius:28px;
 }
+.selected-story .project-media-scroll{
+  grid-column:2;
+  grid-row:1 / 3;
+  min-width:0;
+}
+.selected-story .project-copy-scroll{
+  grid-column:1;
+  grid-row:1 / 3;
+  min-width:0;
+}
 .selected-story .project-details{
   grid-column:1;
   grid-row:2;
@@ -422,12 +433,15 @@
   .selected-story .project-story-inner{grid-template-columns:1fr}
   .selected-story .project-head,
   .selected-story .project-details,
+  .selected-story .project-copy-scroll,
+  .selected-story .project-media-scroll,
   .selected-story .project-media,
   .story-rug .project-head,
   .story-rug .project-details,
   .story-rug .project-media,
   .story-web .project-head,
   .story-web .project-details,
+  .story-web .project-media-scroll,
   .story-web .project-media{grid-column:1;grid-row:auto}
   .story-rug .project-story-inner,
   .story-web .project-story-inner{grid-template-columns:1fr}
@@ -707,4 +721,172 @@
   .showcase-soyle:hover .soyle-browser-back{transform:rotate(3.2deg)}
   .showcase-soyle:hover .soyle-browser-front{transform:rotate(-2deg)}
   .showcase-urpaq:hover .urpaq-visual img{transform:scale(1.34)}
+}
+
+/* Scroll stories — three real products share a pinned visual grammar while
+   keeping their own internal choreography. No timeline runs independently of
+   scroll; app.js writes the variables below from measured progress. */
+.scroll-scenes-ready .projects-main{overflow:clip}
+.scroll-scenes-ready .project-story[data-scroll-scene]{
+  --story-media-scale:.94;
+  --story-media-y:30px;
+  --story-head-opacity:1;
+  --story-head-y:0px;
+  --story-details-opacity:0;
+  --story-details-y:26px;
+}
+.scroll-scenes-ready .project-story[data-scroll-scene] .project-head{
+  opacity:var(--story-head-opacity);
+  transform:translate3d(0,var(--story-head-y),0);
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .project-story[data-scroll-scene] .project-details{
+  opacity:var(--story-details-opacity);
+  transform:translate3d(0,var(--story-details-y),0);
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .project-story[data-scroll-scene] .project-media{
+  transform:translate3d(0,var(--story-media-y),0) scale(var(--story-media-scale));
+  transform-origin:50% 50%;
+  will-change:transform;
+  backface-visibility:hidden;
+}
+.scroll-scenes-ready .story-chatra .chatra-card-phone{
+  transform:translate3d(var(--chatra-card-phone-x),var(--chatra-card-phone-y),0)
+    rotate(var(--chatra-card-phone-rotate)) scale(var(--chatra-card-phone-scale));
+  will-change:transform;
+}
+.scroll-scenes-ready .story-chatra .chatra-card-web{
+  transform:translate3d(var(--chatra-card-web-x),var(--chatra-card-web-y),0)
+    rotate(var(--chatra-card-web-rotate)) scale(var(--chatra-card-web-scale));
+  will-change:transform;
+}
+.scroll-scenes-ready .story-soyle .soyle-macbook-back{
+  transform:translate3d(var(--soyle-back-x),var(--soyle-back-y),0)
+    rotate(var(--soyle-back-rotate)) scale(var(--soyle-back-scale));
+  will-change:transform;
+}
+.scroll-scenes-ready .story-soyle .soyle-macbook-front{
+  transform:translate3d(var(--soyle-front-x),var(--soyle-front-y),0)
+    rotate(var(--soyle-front-rotate)) scale(var(--soyle-front-scale));
+  will-change:transform;
+}
+.scroll-scenes-ready .story-du .du-stage img{
+  opacity:var(--urpaq-image-opacity,.78);
+  transform:translate3d(0,var(--urpaq-image-y),0) scale(var(--urpaq-image-scale));
+  transform-origin:50% 50%;
+  will-change:opacity,transform;
+  backface-visibility:hidden;
+}
+.scroll-scenes-ready .story-du .du-stage::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:10%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(116,154,255,.42),rgba(179,204,255,.16) 46%,transparent 72%);
+  opacity:var(--urpaq-glow-opacity,.26);
+  transform:scale(var(--urpaq-glow-scale,.78));
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .story-du .du-stage picture{
+  position:relative;
+  z-index:1;
+}
+
+@media(min-width:901px){
+  .scroll-scenes-ready .story-chatra .chatra-card{
+    width:100%;
+    height:auto;
+    min-height:0;
+    aspect-ratio:4/3;
+    align-self:center;
+  }
+  .scroll-scenes-ready .project-story[data-scroll-scene] .project-media-scroll{
+    position:relative;
+    min-height:170svh;
+  }
+  .scroll-scenes-ready .project-story[data-scroll-scene] .project-media-scroll>.project-media{
+    position:sticky;
+    top:calc(var(--nav-h) + 1.25rem);
+    height:calc(100svh - var(--nav-h) - 2.5rem);
+    min-height:0;
+  }
+  .scroll-scenes-ready .project-story.story-chatra[data-scroll-scene] .project-media-scroll>.chatra-stage{
+    height:auto;
+  }
+  .scroll-scenes-ready .selected-story[data-scroll-scene] .project-media-scroll{
+    grid-column:2;
+    grid-row:1 / 3;
+    width:100%;
+    min-width:0;
+  }
+  .scroll-scenes-ready .story-du .project-story-inner{
+    grid-template-rows:1fr;
+    align-items:stretch;
+  }
+  .scroll-scenes-ready .story-du .project-copy-scroll{
+    grid-column:1;
+    grid-row:1;
+    min-height:170svh;
+  }
+  .scroll-scenes-ready .story-du .project-copy-sticky{
+    position:sticky;
+    top:calc(var(--nav-h) + 1.25rem);
+    display:flex;
+    min-height:calc(100svh - var(--nav-h) - 2.5rem);
+    box-sizing:border-box;
+    flex-direction:column;
+    justify-content:center;
+    gap:clamp(30px,4vw,52px);
+    padding:2rem 0;
+  }
+  .scroll-scenes-ready .story-du .project-media-scroll{
+    grid-row:1;
+  }
+}
+
+@media(max-width:900px){
+  .scroll-scenes-ready .project-story[data-scroll-scene]{
+    --story-media-scale:.97;
+    --story-media-y:14px;
+    --story-head-opacity:1;
+    --story-head-y:0px;
+    --story-details-opacity:1;
+    --story-details-y:0px;
+  }
+  .scroll-scenes-ready .project-story[data-scroll-scene] .project-media-scroll{
+    grid-column:1;
+    grid-row:auto;
+    min-height:0;
+  }
+  .scroll-scenes-ready .story-du .project-copy-scroll{
+    grid-column:1;
+    grid-row:auto;
+    min-height:0;
+  }
+  .scroll-scenes-ready .story-du .project-copy-sticky{
+    position:static;
+  }
+  .scroll-scenes-ready .story-du .project-details{
+    margin-top:42px;
+  }
+  .scroll-scenes-ready .project-story[data-scroll-scene] .project-media-scroll>.project-media{
+    position:relative;
+    top:auto;
+    height:auto;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .project-story[data-scroll-scene] .project-head,
+  .project-story[data-scroll-scene] .project-details,
+  .project-story[data-scroll-scene] .project-media,
+  .project-story[data-scroll-scene] .chatra-card,
+  .project-story[data-scroll-scene] .soyle-macbook,
+  .project-story[data-scroll-scene] .du-stage img{
+    opacity:1!important;
+    transform:none!important;
+  }
+  .project-story[data-scroll-scene] .du-stage::before{display:none}
 }

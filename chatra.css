@@ -1082,3 +1082,117 @@
     transform: translateY(18px);
   }
 }
+
+/* Scroll-linked case-study sequences. These rules only arm after the native
+   scroll engine has measured the page, preserving a complete static document
+   for reduced motion, no-JS, and recovery paths. */
+.scroll-scenes-ready .scene-quote[data-scroll-scene="chatra-quote"]{
+  min-height:165svh;
+  padding:0;
+}
+.scroll-scenes-ready .scene-quote[data-scroll-scene="chatra-quote"]>.scene-inner{
+  position:sticky;
+  top:0;
+  display:flex;
+  min-height:100svh;
+  box-sizing:border-box;
+  flex-direction:column;
+  justify-content:center;
+  padding-top:calc(var(--nav-h) + 3rem);
+  padding-bottom:3rem;
+}
+.scroll-scenes-ready .scene-quote .quote-word,
+.scroll-scenes-ready .chatra.chatra-motion .scene-quote .quote-word{
+  opacity:var(--quote-word-opacity,.22);
+  transform:translate3d(0,var(--quote-word-y,14px),0);
+  filter:none;
+  transition:none!important;
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .scene-quote .quote-foot{
+  opacity:var(--quote-foot-opacity,0);
+  transform:translate3d(0,var(--quote-foot-y,24px),0);
+  will-change:opacity,transform;
+}
+
+.scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"] .scene-h>span,
+.scroll-scenes-ready .chatra.chatra-motion .scene-classes[data-scroll-scene="chatra-classes"] .scene-h>span{
+  opacity:1;
+  transform:none;
+  filter:none;
+  transition:none;
+}
+.scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"]{
+  overflow:clip;
+}
+.scroll-scenes-ready .scene-classes .sticky-copy{
+  opacity:var(--classes-copy-opacity,.42);
+  transform:translate3d(var(--classes-copy-x,-30px),0,0);
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .scene-classes .sticky-phone .iphone{
+  opacity:var(--classes-phone-opacity,.58);
+  transform:translate3d(0,var(--classes-phone-y,52px),0) scale(var(--classes-phone-scale,.78));
+  transform-origin:50% 50%;
+  will-change:opacity,transform;
+}
+.scroll-scenes-ready .scene-classes .sticky-bullets li{
+  opacity:var(--classes-bullet-opacity,0);
+  transform:translate3d(0,var(--classes-bullet-y,12px),0);
+  will-change:opacity,transform;
+}
+
+@media(min-width:1025px){
+  .scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"]{
+    min-height:185svh;
+    padding:0;
+  }
+  .scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"] .sticky-stage{
+    position:sticky;
+    top:0;
+    min-height:100svh;
+    box-sizing:border-box;
+    align-items:center;
+    padding-top:calc(var(--nav-h) + 2rem);
+    padding-bottom:2rem;
+  }
+  .scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"] .sticky-copy{
+    position:relative;
+    top:auto;
+    padding-bottom:0;
+  }
+  .scroll-scenes-ready .scene-classes[data-scroll-scene="chatra-classes"] .sticky-phone{
+    padding-bottom:0;
+  }
+}
+
+@media(max-width:1024px){
+  .scroll-scenes-ready .scene-classes .sticky-copy{
+    opacity:1;
+    transform:none;
+  }
+  .scroll-scenes-ready .scene-classes .sticky-bullets li{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@media(max-width:760px){
+  .scroll-scenes-ready .scene-quote[data-scroll-scene="chatra-quote"]{min-height:145svh}
+  .scroll-scenes-ready .scene-quote[data-scroll-scene="chatra-quote"]>.scene-inner{
+    padding-top:calc(var(--nav-h) + 2rem);
+    padding-bottom:2rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .scene-quote .quote-word,
+  .scene-quote .quote-foot,
+  .scene-classes .sticky-copy,
+  .scene-classes .sticky-phone .iphone,
+  .scene-classes .sticky-bullets li{
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+  }
+}

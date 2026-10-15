@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="tokens.css?v=3">
   <link rel="stylesheet" href="animations.css?v=6">
   <link rel="stylesheet" href="style.css?v=10">
-  <link rel="stylesheet" href="projects.css?v=12">
+  <link rel="stylesheet" href="projects.css?v=21">
   <script src="theme-init.js?v=3"></script>
 </head>
 <body class="projects-page">
@@ -100,20 +100,22 @@
 
     <div class="projects-tier"><span>01</span><p>Inside the work</p><small>Deep work across product, interface, and engineering.</small></div>
 
-    <section class="project-story story-chatra" id="chatra" aria-labelledby="chatra-title">
+    <section class="project-story story-chatra" id="chatra" aria-labelledby="chatra-title" data-scroll-scene="project-chatra">
       <div class="project-story-inner">
         <div class="project-head">
           <h2 class="project-name word-reveal" id="chatra-title">Chatra.</h2>
           <p class="project-intro fade-up">One place for classes, assignments, attendance, grades, and AI-supported learning.</p>
         </div>
-        <div class="project-media chatra-stage scale-up">
-          <div class="chatra-card chatra-card-phone">
-            <div class="chatra-phone">
-              <picture><source type="image/avif" srcset="img/chatra-light-600w.avif 600w,img/chatra-light-1179w.avif 1179w"><source type="image/webp" srcset="img/chatra-light-600w.webp 600w,img/chatra-light-1179w.webp 1179w"><img src="img/chatra light.jpg" alt="Chatra student mobile application" width="1179" height="2556"></picture>
+        <div class="project-media-scroll">
+          <div class="project-media chatra-stage scale-up">
+            <div class="chatra-card chatra-card-phone">
+              <div class="chatra-phone">
+                <picture><source type="image/avif" srcset="img/chatra-light-600w.avif 600w,img/chatra-light-1179w.avif 1179w"><source type="image/webp" srcset="img/chatra-light-600w.webp 600w,img/chatra-light-1179w.webp 1179w"><img src="img/chatra light.jpg" alt="Chatra student mobile application" width="1179" height="2556"></picture>
+              </div>
             </div>
-          </div>
-          <div class="chatra-card chatra-card-web">
-            <picture class="chatra-macbook-visual"><source type="image/avif" srcset="img/chatraweb-960w.avif 960w,img/chatraweb-1600w.avif 1600w"><source type="image/webp" srcset="img/chatraweb-960w.webp 960w,img/chatraweb-1600w.webp 1600w"><img src="img/chatraweb.jpg" alt="Chatra Web dashboard shown in a MacBook mockup" width="1654" height="1162" loading="lazy" decoding="async"></picture>
+            <div class="chatra-card chatra-card-web">
+              <picture class="chatra-macbook-visual"><source type="image/avif" srcset="img/chatraweb-960w.avif 960w,img/chatraweb-1600w.avif 1600w"><source type="image/webp" srcset="img/chatraweb-960w.webp 960w,img/chatraweb-1600w.webp 1600w"><img src="img/chatraweb.jpg" alt="Chatra Web dashboard shown in a MacBook mockup" width="1654" height="1162" loading="lazy" decoding="async"></picture>
+            </div>
           </div>
         </div>
         <div class="project-details">
@@ -123,37 +125,39 @@
       </div>
     </section>
 
-    <section class="project-story story-soyle" id="soyle" aria-labelledby="soyle-title">
+    <section class="project-story story-soyle" id="soyle" aria-labelledby="soyle-title" data-scroll-scene="project-soyle">
       <div class="project-story-inner">
         <div class="project-head">
           <h2 class="project-name word-reveal" id="soyle-title">Söyle.</h2>
           <p class="project-intro fade-up">A calmer way for children to communicate, practise at home, and move at their own pace.</p>
         </div>
-        <div class="project-media soyle-stage scale-up" aria-label="Söyle landing and sign-in screens shown on two MacBook mockups">
-          <div class="soyle-orb soyle-orb-one" aria-hidden="true"></div>
-          <div class="soyle-orb soyle-orb-two" aria-hidden="true"></div>
+        <div class="project-media-scroll">
+          <div class="project-media soyle-stage scale-up" aria-label="Söyle landing and sign-in screens shown on two MacBook mockups">
+            <div class="soyle-orb soyle-orb-one" aria-hidden="true"></div>
+            <div class="soyle-orb soyle-orb-two" aria-hidden="true"></div>
 
-          <figure class="soyle-macbook soyle-macbook-back">
-            <div class="soyle-screen-shell">
-              <div class="soyle-camera" aria-hidden="true"></div>
-              <picture class="soyle-screen">
-                <source type="image/webp" srcset="img/soyle-app.webp">
-                <img src="img/soyle-app.jpg" alt="Söyle sign-in screen for adult and child accounts" width="1440" height="900" loading="lazy" decoding="async">
-              </picture>
-            </div>
-            <div class="soyle-base" aria-hidden="true"><span></span></div>
-          </figure>
+            <figure class="soyle-macbook soyle-macbook-back">
+              <div class="soyle-screen-shell">
+                <div class="soyle-camera" aria-hidden="true"></div>
+                <picture class="soyle-screen">
+                  <source type="image/webp" srcset="img/soyle-app.webp">
+                  <img src="img/soyle-app.jpg" alt="Söyle sign-in screen for adult and child accounts" width="1440" height="900" loading="lazy" decoding="async">
+                </picture>
+              </div>
+              <div class="soyle-base" aria-hidden="true"><span></span></div>
+            </figure>
 
-          <figure class="soyle-macbook soyle-macbook-front">
-            <div class="soyle-screen-shell">
-              <div class="soyle-camera" aria-hidden="true"></div>
-              <picture class="soyle-screen">
-                <source type="image/webp" srcset="img/soyle-home.webp">
-                <img src="img/soyle-home.jpg" alt="Söyle family communication and practice landing page" width="1440" height="900" loading="lazy" decoding="async">
-              </picture>
-            </div>
-            <div class="soyle-base" aria-hidden="true"><span></span></div>
-          </figure>
+            <figure class="soyle-macbook soyle-macbook-front">
+              <div class="soyle-screen-shell">
+                <div class="soyle-camera" aria-hidden="true"></div>
+                <picture class="soyle-screen">
+                  <source type="image/webp" srcset="img/soyle-home.webp">
+                  <img src="img/soyle-home.jpg" alt="Söyle family communication and practice landing page" width="1440" height="900" loading="lazy" decoding="async">
+                </picture>
+              </div>
+              <div class="soyle-base" aria-hidden="true"><span></span></div>
+            </figure>
+          </div>
         </div>
         <div class="project-details">
           <div>
@@ -210,11 +214,15 @@
 
     <div class="projects-tier"><span>02</span><p>Selected work</p><small>Focused builds shaped by a clear constraint.</small></div>
 
-    <section class="project-story selected-story story-du" id="digitalurpaq" aria-labelledby="du-title">
+    <section class="project-story selected-story story-du" id="digitalurpaq" aria-labelledby="du-title" data-scroll-scene="project-urpaq">
       <div class="project-story-inner">
-        <div class="project-head"><h2 class="project-name word-reveal" id="du-title">Digital<br>Urpaq.</h2><p class="project-intro fade-up">A bilingual service platform for the Palace of Schoolchildren, designed around different roles and everyday workflows.</p></div>
-        <div class="project-media du-stage scale-up"><picture><source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w,img/digital-urpaq-960w.avif 960w"><source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w,img/digital-urpaq-960w.webp 960w"><img src="img/digital-urpaq.jpg" alt="Digital Urpaq web platform" width="1654" height="1162" loading="lazy" decoding="async"></picture></div>
-        <div class="project-details"><div><p class="project-copy">The platform brings applications, programmes, and administration into one clear interface in Kazakh and Russian. The work combined service design, role-based navigation, secure APIs, and a focused competition build.</p><a class="project-action" href="https://github.com/serazenith/du-7mile.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Full-stack development</dd></div><div><dt>Stack</dt><dd>Nuxt, FastAPI, i18n</dd></div><div><dt>Result</dt><dd>Top 2 finalist</dd></div></dl></div>
+        <div class="project-copy-scroll">
+          <div class="project-copy-sticky">
+            <div class="project-head"><h2 class="project-name word-reveal" id="du-title">Digital<br>Urpaq.</h2><p class="project-intro fade-up">A bilingual service platform for the Palace of Schoolchildren, designed around different roles and everyday workflows.</p></div>
+            <div class="project-details"><div><p class="project-copy">The platform brings applications, programmes, and administration into one clear interface in Kazakh and Russian. The work combined service design, role-based navigation, secure APIs, and a focused competition build.</p><a class="project-action" href="https://github.com/serazenith/du-7mile.git" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></div><dl class="project-facts"><div><dt>Role</dt><dd>Full-stack development</dd></div><div><dt>Stack</dt><dd>Nuxt, FastAPI, i18n</dd></div><div><dt>Result</dt><dd>Top 2 finalist</dd></div></dl></div>
+          </div>
+        </div>
+        <div class="project-media-scroll"><div class="project-media du-stage scale-up"><picture><source type="image/avif" srcset="img/digital-urpaq-480w.avif 480w,img/digital-urpaq-960w.avif 960w"><source type="image/webp" srcset="img/digital-urpaq-480w.webp 480w,img/digital-urpaq-960w.webp 960w"><img src="img/digital-urpaq.jpg" alt="Digital Urpaq web platform" width="1654" height="1162" loading="lazy" decoding="async"></picture></div></div>
       </div>
     </section>
 
@@ -325,6 +333,6 @@
   <script src="partials.js?v=11"></script>
   <script src="utils.js"></script>
   <script src="components.js"></script>
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>

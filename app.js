@@ -314,6 +314,259 @@
      always restores every item. This keeps the site readable without JS and
      safe when a page is restored from the back/forward cache. */
   function initMotionSystem() {
+    /* Scroll scenes are driven by measured document ranges, not viewport
+       entry events. One rAF writer updates compositor-friendly CSS variables;
+       reversing the scroll reverses every scene without a second timeline. */
+    function initScrollScenes() {
+      const sceneElements = Array.from(document.querySelectorAll('[data-scroll-scene]'));
+      if (!sceneElements.length) {
+        return { request() {}, setReduced() {}, destroy() {} };
+      }
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+      const clamp01 = (value) => clamp(value, 0, 1);
+      const phase = (value, start, end) => clamp01((value - start) / (end - start));
+      const smooth = (value) => value * value * (3 - (2 * value));
+      const mix = (from, to, value) => from + ((to - from) * value);
+      const setVar = (element, name, value, unit) => {
+        element.style.setProperty(name, Number(value).toFixed(4) + (unit || ''));
+      };
+
+      const scenes = sceneElements.map((element) => {
+        const type = element.dataset.scrollScene;
+        return {
+          element,
+          type,
+          driver: type.startsWith('project-')
+            ? element.querySelector('.project-media-scroll') || element
+            : element,
+          copy: type === 'home-feature' ? element.querySelector('.work-copy') : null,
+          words: type === 'chatra-quote'
+            ? Array.from(element.querySelectorAll('.quote-word'))
+            : [],
+          bullets: type === 'chatra-classes'
+            ? Array.from(element.querySelectorAll('.sticky-bullets li'))
+            : [],
+          top: 0,
+          height: 1,
+          lastProgress: -1
+        };
+      });
+
+      let frame = 0;
+      let measureFrame = 0;
+      let viewportHeight = Math.max(window.innerHeight, 1);
+      let viewportWidth = window.innerWidth;
+      let resizeObserver = null;
+
+      function renderHome(scene, progress, compact) {
+        const element = scene.element;
+        if (compact) {
+          const visual = smooth(phase(progress, .02, .92));
+          const copyIn = smooth(phase(progress, 0, .32));
+          setVar(element, '--home-mobile-image-scale', mix(.96, 1, visual));
+          setVar(element, '--home-mobile-image-y', mix(14, 0, visual), 'px');
+          setVar(element, '--home-mobile-copy-opacity', mix(.84, 1, copyIn));
+          setVar(element, '--home-mobile-copy-y', mix(10, 0, copyIn), 'px');
+          scene.copy?.removeAttribute('inert');
+          return;
+        }
+
+        const expansion = smooth(phase(progress, .02, .88));
+        const copyOut = smooth(phase(progress, .2, .72));
+        setVar(element, '--home-media-scale', mix(.64, 1, expansion));
+        setVar(element, '--home-media-y', mix(14, 0, expansion), 'px');
+        setVar(element, '--home-image-scale', mix(.94, 1, expansion));
+        setVar(element, '--home-copy-opacity', 1 - copyOut);
+        setVar(element, '--home-copy-x', mix(0, -30, copyOut), 'px');
+        scene.copy?.toggleAttribute('inert', copyOut > .96);
+      }
+
+      function renderProject(scene, progress, compact) {
+        const element = scene.element;
+        const expansion = smooth(phase(progress, compact ? .02 : .03, compact ? .92 : .86));
+        const isUrpaq = scene.type === 'project-urpaq';
+        const outerScale = mix(compact ? .97 : (isUrpaq ? .975 : .94), 1, expansion);
+
+        setVar(element, '--story-media-scale', outerScale);
+        setVar(element, '--story-media-y', mix(compact ? 14 : (isUrpaq ? 18 : 30), 0, expansion), 'px');
+
+        if (compact) {
+          setVar(element, '--story-head-opacity', 1);
+          setVar(element, '--story-head-y', 0, 'px');
+          setVar(element, '--story-details-opacity', 1);
+          setVar(element, '--story-details-y', 0, 'px');
+        } else if (isUrpaq) {
+          const headDrift = smooth(phase(progress, .5, .94));
+          const detailsIn = smooth(phase(progress, .14, .5));
+          setVar(element, '--story-head-opacity', 1 - (.14 * headDrift));
+          setVar(element, '--story-head-y', mix(0, -10, headDrift), 'px');
+          setVar(element, '--story-details-opacity', detailsIn);
+          setVar(element, '--story-details-y', mix(22, 0, detailsIn), 'px');
+        } else {
+          const headOut = smooth(phase(progress, .12, .66));
+          const detailsIn = smooth(phase(progress, .64, .96));
+          setVar(element, '--story-head-opacity', 1 - (.38 * headOut));
+          setVar(element, '--story-head-y', mix(0, -24, headOut), 'px');
+          setVar(element, '--story-details-opacity', detailsIn);
+          setVar(element, '--story-details-y', mix(26, 0, detailsIn), 'px');
+        }
+
+        if (scene.type === 'project-chatra') {
+          setVar(element, '--chatra-card-phone-x', mix(-6, 0, expansion), '%');
+          setVar(element, '--chatra-card-phone-y', mix(6, 0, expansion), '%');
+          setVar(element, '--chatra-card-phone-rotate', mix(-2.2, 0, expansion), 'deg');
+          setVar(element, '--chatra-card-phone-scale', mix(.88, 1, expansion));
+          setVar(element, '--chatra-card-web-x', mix(6, 0, expansion), '%');
+          setVar(element, '--chatra-card-web-y', mix(-4, 0, expansion), '%');
+          setVar(element, '--chatra-card-web-rotate', mix(2, 0, expansion), 'deg');
+          setVar(element, '--chatra-card-web-scale', mix(.91, 1, expansion));
+        } else if (scene.type === 'project-soyle') {
+          setVar(element, '--soyle-back-x', mix(6, 0, expansion), '%');
+          setVar(element, '--soyle-back-y', mix(7, 0, expansion), '%');
+          setVar(element, '--soyle-back-rotate', mix(4.5, 2.6, expansion), 'deg');
+          setVar(element, '--soyle-back-scale', mix(.9, 1, expansion));
+          setVar(element, '--soyle-front-x', mix(-6, 0, expansion), '%');
+          setVar(element, '--soyle-front-y', mix(9, 0, expansion), '%');
+          setVar(element, '--soyle-front-rotate', mix(-3.5, -1.2, expansion), 'deg');
+          setVar(element, '--soyle-front-scale', mix(.92, 1, expansion));
+        } else if (scene.type === 'project-urpaq') {
+          const reveal = smooth(phase(progress, compact ? .02 : .08, compact ? .92 : .82));
+          setVar(element, '--urpaq-image-scale', mix(compact ? .98 : .94, 1, reveal));
+          setVar(element, '--urpaq-image-y', mix(compact ? 10 : 24, 0, reveal), 'px');
+          setVar(element, '--urpaq-image-opacity', mix(.78, 1, reveal));
+          setVar(element, '--urpaq-glow-scale', mix(.78, 1.08, reveal));
+          setVar(element, '--urpaq-glow-opacity', mix(.26, .72, reveal));
+        }
+      }
+
+      function renderQuote(scene, progress) {
+        const count = Math.max(scene.words.length - 1, 1);
+        scene.words.forEach((word, index) => {
+          const start = .02 + ((index / count) * .68);
+          const wordProgress = smooth(phase(progress, start, start + .2));
+          setVar(word, '--quote-word-opacity', mix(.22, 1, wordProgress));
+          setVar(word, '--quote-word-y', mix(14, 0, wordProgress), 'px');
+        });
+        const footProgress = smooth(phase(progress, .7, .96));
+        setVar(scene.element, '--quote-foot-opacity', footProgress);
+        setVar(scene.element, '--quote-foot-y', mix(16, 0, footProgress), 'px');
+      }
+
+      function renderClasses(scene, progress, compact) {
+        const element = scene.element;
+        const expansion = smooth(phase(progress, .03, compact ? .92 : .78));
+        const copyIn = smooth(phase(progress, .04, compact ? .38 : .35));
+        const copyOut = compact ? 0 : smooth(phase(progress, .74, 1));
+        const phoneScale = mix(compact ? .92 : .78, 1, expansion);
+
+        setVar(element, '--classes-phone-scale', phoneScale);
+        setVar(element, '--classes-phone-y', mix(compact ? 18 : 52, 0, expansion), 'px');
+        setVar(element, '--classes-phone-opacity', mix(.58, 1, smooth(phase(progress, .01, .22))));
+        setVar(element, '--classes-copy-opacity', compact ? 1 : (mix(.42, 1, copyIn) * mix(1, .62, copyOut)));
+        setVar(element, '--classes-copy-x', compact ? 0 : (mix(-30, 0, copyIn) - (14 * copyOut)), 'px');
+
+        scene.bullets.forEach((bullet, index) => {
+          const bulletProgress = compact
+            ? 1
+            : smooth(phase(progress, .18 + (index * .075), .43 + (index * .075)));
+          setVar(bullet, '--classes-bullet-opacity', bulletProgress);
+          setVar(bullet, '--classes-bullet-y', mix(12, 0, bulletProgress), 'px');
+        });
+      }
+
+      function sceneProgress(scene, scrollTop) {
+        const compact = viewportWidth <= (scene.type === 'chatra-classes' ? 1024 : 900);
+        let start;
+        let end;
+
+        if (compact && scene.type !== 'chatra-quote') {
+          start = scene.top - (viewportHeight * .86);
+          end = scene.top + scene.height - (viewportHeight * .14);
+        } else {
+          const stickyOffset = scene.type.startsWith('project-') ? 20 : 0;
+          start = scene.top - stickyOffset;
+          end = scene.top + scene.height - viewportHeight + stickyOffset;
+        }
+
+        if (end <= start) end = start + Math.max(scene.height, viewportHeight * .65);
+        return { compact, value: clamp01((scrollTop - start) / (end - start)) };
+      }
+
+      function update(force) {
+        frame = 0;
+        if (motionQuery.matches) return;
+        const scrollTop = window.scrollY || window.pageYOffset;
+
+        scenes.forEach((scene) => {
+          const progressState = sceneProgress(scene, scrollTop);
+          const progress = progressState.value;
+          if (!force && Math.abs(progress - scene.lastProgress) < .001) return;
+          scene.lastProgress = progress;
+          setVar(scene.element, '--scroll-progress', progress);
+
+          if (scene.type === 'home-feature') renderHome(scene, progress, progressState.compact);
+          else if (scene.type.startsWith('project-')) renderProject(scene, progress, progressState.compact);
+          else if (scene.type === 'chatra-quote') renderQuote(scene, progress);
+          else if (scene.type === 'chatra-classes') renderClasses(scene, progress, progressState.compact);
+        });
+      }
+
+      function requestUpdate(force) {
+        if (frame) return;
+        frame = requestAnimationFrame(() => update(Boolean(force)));
+      }
+
+      function measure() {
+        measureFrame = 0;
+        viewportHeight = Math.max(window.innerHeight, 1);
+        viewportWidth = window.innerWidth;
+        scenes.forEach((scene) => {
+          const rect = scene.driver.getBoundingClientRect();
+          scene.top = rect.top + (window.scrollY || window.pageYOffset);
+          scene.height = Math.max(rect.height, 1);
+          scene.lastProgress = -1;
+        });
+        update(true);
+      }
+
+      function requestMeasure() {
+        if (measureFrame) return;
+        measureFrame = requestAnimationFrame(measure);
+      }
+
+      function setReduced(reduced) {
+        root.classList.toggle('scroll-scenes-ready', !reduced);
+        scenes.forEach((scene) => scene.copy?.removeAttribute('inert'));
+        if (!reduced) requestMeasure();
+      }
+
+      root.classList.toggle('scroll-scenes-ready', !motionQuery.matches);
+      measure();
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestMeasure, { passive: true });
+      window.addEventListener('orientationchange', requestMeasure, { passive: true });
+      window.addEventListener('load', requestMeasure, { once: true });
+      document.fonts?.ready.then(requestMeasure).catch(() => {});
+
+      if ('ResizeObserver' in window) {
+        resizeObserver = new ResizeObserver(requestMeasure);
+        scenes.forEach((scene) => resizeObserver.observe(scene.driver));
+      }
+
+      return {
+        request: requestMeasure,
+        setReduced,
+        destroy() {
+          if (frame) cancelAnimationFrame(frame);
+          if (measureFrame) cancelAnimationFrame(measureFrame);
+          resizeObserver?.disconnect();
+          scenes.forEach((scene) => scene.copy?.removeAttribute('inert'));
+        }
+      };
+    }
+
+    const scrollScenes = initScrollScenes();
     const revealSelector = [
       '.fade-up', '.fade-in', '.slide-left', '.slide-right', '.scale-up',
       '.clip-reveal', '.word-reveal', '.stagger', '.depth-stagger',
@@ -336,7 +589,8 @@
     });
 
     const targets = Array.from(document.querySelectorAll(revealSelector))
-      .filter((element) => !element.closest(heroSelector) && !element.closest('.chatra'));
+      .filter((element) => !element.closest(heroSelector) &&
+        !element.closest('.chatra') && !element.closest('[data-scroll-scene]'));
 
     function reveal(element) {
       element.classList.add('is-visible');
@@ -376,7 +630,7 @@
     const chatraTargets = chatra ? Array.from(document.querySelectorAll([
       '.scene-h', '.quote-body', '.meet-stage', '.subjects-phone', '.ai-stage',
       '.themes-card', '.tools-list', '.shipped-row'
-    ].join(','))) : [];
+    ].join(','))).filter((element) => !element.closest('[data-scroll-scene]')) : [];
     let chatraObserver = null;
 
     if (chatraTargets.length && 'IntersectionObserver' in window && !motionQuery.matches) {
@@ -408,7 +662,7 @@
       '.project-media > img',
       '.project-media > picture > img',
       '.chatra .iphone-frame'
-    ].join(',')));
+    ].join(','))).filter((element) => !element.closest('[data-scroll-scene]'));
     const activeParallax = new Set();
     let parallaxFrame = 0;
     let parallaxObserver = null;
@@ -476,6 +730,7 @@
 
     function motionPreferenceChanged(event) {
       root.classList.toggle('motion-ok', !event.matches);
+      scrollScenes.setReduced(event.matches);
       if (!event.matches) {
         requestParallax();
         return;
@@ -493,11 +748,13 @@
         if (rect.top < window.innerHeight && rect.bottom > 0) reveal(element);
       });
       requestParallax();
+      scrollScenes.request();
     });
 
     window.addEventListener('pagehide', () => {
       window.clearTimeout(revealFallback);
       if (parallaxFrame) cancelAnimationFrame(parallaxFrame);
+      scrollScenes.destroy();
     }, { once: true });
   }
 
