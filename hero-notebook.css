@@ -1,7 +1,7 @@
 /* A typographic identity, not a flattened image: every label remains real text. */
 @font-face { font-family:Pixelify; src:url('fonts/PixelifySans-Variable.ttf') format('truetype'); font-weight:400 700; font-display:swap; }
 @font-face { font-family:Silkscreen; src:url('fonts/Silkscreen-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
-.p-hero.notebook-hero { min-height:0; padding:120px 0 0; color:#191a18; background:#f8f7f3; overflow:hidden; }
+.p-hero.notebook-hero { min-height:0; padding:120px 0 96px; color:#191a18; background:#f8f7f3; overflow:hidden; }
 .notebook-hero::after { display:none; }
 .notebook-paper { position:absolute; z-index:-1; inset:-60px 0; background:repeating-linear-gradient(0deg,transparent 0 39px,#5265760c 39px 40px); transform:translateY(var(--paper-y,0px)); pointer-events:none; }
 .notebook-paper::before { content:""; position:absolute; top:0; bottom:0; left:max(28px,calc((100vw - 1320px)/2)); width:1px; background:#d07a5b38; }
@@ -34,7 +34,7 @@
  .identity-note { font-size:18px; padding:10px 16px; }
 }
 @media(max-width:600px) {
- .p-hero.notebook-hero { padding-top:104px; }
+ .p-hero.notebook-hero { padding:104px 0 64px; }
  .notebook-paper::before { left:12px; }
  .notebook-intro { font-size:11px; }
  .identity-board { width:100%; margin:72px auto 82px; padding:20px 4px 24px; }
