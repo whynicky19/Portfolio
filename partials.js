@@ -14,12 +14,13 @@
     ['index.html',   'Home'],
     ['projects.html', 'Projects'],
     ['about.html',   'About'],
+    ['about.html#experience', 'Experience'],
     ['contact.html', 'Contact']
   ];
   var CV_HREF = 'Alimzhan_Galymzhan_iOS_Developer_CV.pdf';
 
   function isActive(href) {
-    var activePage = page === 'chatra.html' ? 'projects.html' : page;
+    var activePage = ['chatra.html', 'soyle.html', 'digital-urpaq.html'].indexOf(page) !== -1 ? 'projects.html' : page;
     return href === activePage;
   }
 
@@ -43,12 +44,11 @@
       '<a class="skip-link" href="#main-content">Skip to content</a>' +
       '<nav class="apple-nav">' +
         '<div class="nav-inner">' +
-        '<a class="nav-logo" href="index.html">Alimzhan</a>' +
+        '<a class="nav-logo" href="index.html" aria-label="Alimzhan — home">Alimzhan</a>' +
         '<ul class="nav-menu">' + menuItems + '</ul>' +
         '<div class="nav-actions">' +
-          '<a class="nav-cta" href="' + CV_HREF + '" target="_blank" rel="noopener">CV</a>' +
-          '<a class="nav-cta" href="https://github.com/whynicky19" target="_blank" rel="noopener noreferrer">GitHub</a>' +
-          '<a class="nav-cta" href="contact.html">Contact</a>' +
+          '<a class="nav-cta" href="' + CV_HREF + '" target="_blank" rel="noopener">Résumé</a>' +
+          '<a class="nav-cta nav-talk' + (isActive('contact.html') ? ' active' : '') + '" href="contact.html"' + (isActive('contact.html') ? ' aria-current="page"' : '') + '>Let’s talk <span aria-hidden="true">↗</span></a>' +
           '<button class="theme-toggle" id="themeToggle" type="button" aria-label="Use dark appearance" aria-pressed="false">' + themeIcons(15) + '</button>' +
           '</div>' +
           '<button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>' +
@@ -69,7 +69,7 @@
     return (
       '<footer class="apple-footer" id="site-footer">' +
         '<div class="footer-links-row">' +
-          '<div class="footer-col"><div class="footer-col-title">Alimzhan</div><p class="footer-role">iOS Developer · Product Designer</p></div>' +
+          '<div class="footer-col footer-col-intro"><div class="footer-col-title">Alimzhan</div><p class="footer-role">Frontend Developer · UI-Focused Engineer</p><p class="footer-note">Responsive product interfaces, interaction systems, and connected web experiences.</p></div>' +
           '<div class="footer-col"><div class="footer-col-title">Connect</div>' +
             '<a href="mailto:alimzhanart@icloud.com">Email</a>' +
             '<a href="' + CV_HREF + '" target="_blank" rel="noopener">CV</a>' +
@@ -80,7 +80,7 @@
           '</div>' +
         '</div>' +
         '<div class="footer-bottom">' +
-          '<span class="footer-copy">Copyright © 2026 Alimzhan. All rights reserved.</span>' +
+          '<span class="footer-copy">Designed and built by Alimzhan · © 2026</span>' +
           '<div class="footer-bottom-links"><a href="contact.html">Contact</a></div>' +
         '</div>' +
       '</footer>'

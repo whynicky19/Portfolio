@@ -1,0 +1,108 @@
+[
+  {
+    "project": "chatra",
+    "atmosphere": "chatra-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/chatra/classroom-1060.webp",
+      "assets/projects/chatra/mobile-classes-360.webp"
+    ],
+    "exports": [
+      "chatra-showcase-master.png",
+      "chatra-showcase-1200.webp",
+      "chatra-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "soyle",
+    "atmosphere": "soyle-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/soyle/adaptive-plan-1440.webp"
+    ],
+    "exports": [
+      "soyle-showcase-master.png",
+      "soyle-showcase-1200.webp",
+      "soyle-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "digital-urpaq",
+    "atmosphere": "digital-urpaq-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/digital-urpaq/discovery-1060.webp"
+    ],
+    "exports": [
+      "digital-urpaq-showcase-master.png",
+      "digital-urpaq-showcase-1200.webp",
+      "digital-urpaq-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "freelanceos",
+    "atmosphere": "freelanceos-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/freelanceos/finance-mobile-392.webp"
+    ],
+    "exports": [
+      "freelanceos-showcase-master.png",
+      "freelanceos-showcase-1200.webp",
+      "freelanceos-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "rugpull",
+    "atmosphere": "rugpull-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/rugpull/risk-dashboard-1000.webp"
+    ],
+    "exports": [
+      "rugpull-showcase-master.png",
+      "rugpull-showcase-1200.webp",
+      "rugpull-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "api",
+    "atmosphere": "api-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/chatra/api-reference-1060.webp"
+    ],
+    "exports": [
+      "api-showcase-master.png",
+      "api-showcase-1200.webp",
+      "api-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "forge",
+    "atmosphere": "forge-atmosphere.webp",
+    "screenshots": [
+      "assets/projects/forge/landing-1200.webp"
+    ],
+    "exports": [
+      "forge-showcase-master.png",
+      "forge-showcase-1200.webp",
+      "forge-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  },
+  {
+    "project": "archive",
+    "atmosphere": "archive-atmosphere.webp",
+    "screenshots": [
+      "img/portfolio-home-current.png",
+      "assets/projects/chatra/mobile-classes-360.webp"
+    ],
+    "exports": [
+      "archive-showcase-master.png",
+      "archive-showcase-1200.webp",
+      "archive-showcase-640.webp"
+    ],
+    "liveRendering": "Same atmosphere and source screenshots in separate layers to retain independent parallax."
+  }
+]

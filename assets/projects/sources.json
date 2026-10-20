@@ -1,0 +1,67 @@
+{
+  "policy": "All application UI uses authentic source pixels. Crops, resizing and WebP encoding are deterministic. No UI has been generated or redrawn. Original img/ files are untouched. New atmospheric backplates are separately generated and documented in artwork/provenance.json.",
+  "homepageArtwork": "artwork/compositions.json maps all eight live layered compositions and their raster exports to the unchanged UI sources.",
+  "hero": "The exact user-supplied Light Sculpture is preserved at assets/hero/light-sculpture-source.png and optimized to light-sculpture.webp. No generated replacement.",
+  "compositions": "product-composition-{640,1200}.webp and product-composition-master.png are browser exports of the real screenshot/CSS scenes. The live homepage uses responsive screenshot layers rather than flattened posters so parallax remains independent.",
+  "images": [
+    {
+      "project": "Chatra",
+      "files": ["chatra/classroom-source.png", "chatra/classroom-640.webp", "chatra/classroom-1060.webp"],
+      "source": "img/chatraweb.jpg",
+      "operation": "Extract x297 y241 width1060 height662; remove the surrounding marketing presentation, preserve the dashboard pixels.",
+      "repository": "https://github.com/whynicky19/Chatra-Frontend-New"
+    },
+    {
+      "project": "Chatra mobile",
+      "files": ["chatra/mobile-classes-source.png", "chatra/mobile-classes-360.webp"],
+      "source": "img/video-posters/mainscreen.jpg",
+      "operation": "Lossless source preservation and WebP encoding; no crop.",
+      "repository": "https://github.com/whynicky19/Chatra-app-IOS",
+      "limitation": "Available source is 360x780. No invented higher-resolution mobile UI."
+    },
+    {
+      "project": "Söyle",
+      "files": ["soyle/adaptive-plan-source.png", "soyle/adaptive-plan-640.webp", "soyle/adaptive-plan-1440.webp"],
+      "source": "Soyle/docs/screenshots/adaptive-plan.png",
+      "repository": "https://github.com/whynicky19/Soyle",
+      "commit": "a4ca54f7fb382e1ec3f71b3dee523db55a3a85a4",
+      "operation": "Preserve screenshot at 1440x1000; responsive WebP exports.",
+      "additionalReusableAsset": "soyle/landing-{640,1440}.webp from img/soyle-home.jpg"
+    },
+    {
+      "project": "Digital Urpaq",
+      "files": ["digital-urpaq/discovery-source.png", "digital-urpaq/discovery-640.webp", "digital-urpaq/discovery-1060.webp"],
+      "source": "img/digital-urpaq.jpg",
+      "operation": "Extract x297 y241 width1060 height662; preserve the existing Russian-language interface, not the fictional reference screen.",
+      "repository": "https://github.com/whynicky19/Digital-urpaq"
+    },
+    {
+      "project": "FreelanceOS",
+      "files": ["freelanceos/finance-mobile-source.png", "freelanceos/finance-mobile-392.webp"],
+      "source": "img/freelanceOS.jpg",
+      "operation": "Extract x938 y72 width392 height841, preserving the real mobile prototype and existing frame.",
+      "status": "Mobile prototype, not described as a shipped product."
+    },
+    {
+      "project": "RugPull",
+      "files": ["rugpull/risk-dashboard-source.png", "rugpull/risk-dashboard-640.webp", "rugpull/risk-dashboard-1000.webp"],
+      "source": "Embedded raster WebP inside img/crypto-macbook-card.svg",
+      "operation": "Decode original embedded raster; the SVG device illustration is not used.",
+      "repository": "https://github.com/whynicky19/RugPull-Frontend"
+    },
+    {
+      "project": "Chatra API",
+      "files": ["chatra/api-reference-source.png", "chatra/api-reference-640.webp", "chatra/api-reference-1060.webp"],
+      "source": "img/fastqpi.jpg",
+      "operation": "Extract x297 y241 width1060 height662.",
+      "repository": "https://github.com/whynicky19/Chatra-Backend-New"
+    }
+  ],
+  "additionalMedia": [
+    {"project":"FORGE","source":"https://forge-ai-sana.vercel.app","files":["forge/landing-source.png","forge/landing-1200.webp"],"operation":"Browser capture of the public live homepage at 1440x1000; WebP resize only.","captured":"2026-10-21"},
+    {"project":"The archive","source":"img/portfolio-home-current.png","operation":"Existing earlier portfolio screenshot paired with the authentic Chatra mobile screen."}
+  ],
+  "missing": [],
+  "technologyIcons": "Existing img/icons and img/brands assets reused without alteration. HTML, CSS, Nuxt and TypeScript badges are text monograms, not claimed to be official logos.",
+  "scope": "Homepage only. Existing project archive, case studies, contact links and résumé destination retained."
+}

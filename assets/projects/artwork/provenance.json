@@ -1,0 +1,51 @@
+{
+  "method": "Built-in image_gen for atmosphere only; original UI pixels composited in the browser. No generated screen content.",
+  "promptTemplate": "Use case: product-mockup. Asset type: atmospheric raster backdrop for a real software portfolio card, landscape 3:2 composition. {brief} The bottom two thirds will later receive actual software screenshots using deterministic compositing; DO NOT draw any screens, devices, interfaces, text, logos or lettering. Professional restrained photographic material study, fine realistic texture and soft studio lighting. No buildings, rooms, landscapes, neon, holograms, floating cubes, spheres, abstract blobs, glossy plastic, bloom or decorative sci-fi geometry. Do not make a plain digital gradient. Keep background details subordinate and composition uncluttered.",
+  "prompts": [
+    {
+      "id": "chatra",
+      "brief": "Connected learning workspace. Cool slate-blue softly lit matte surface, restrained reflections of window light, an understated layered translucent sheet at bottom right. Upper third dark quiet blue negative space.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-7899908b-7823-45c7-a46d-5ac6b3dcdc1f.png"
+    },
+    {
+      "id": "soyle",
+      "brief": "Warm approachable learning product backdrop. Cream uncoated paper texture meeting pale sage green, soft natural diffused sunlight across paper, gentle warm shadows. Upper third clean cream negative space. No toys or characters.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-438848c5-8f95-4abf-b52e-56423f303c8c.png"
+    },
+    {
+      "id": "digital-urpaq",
+      "brief": "Modern multilingual web platform backdrop. Deep navy ink-toned satin material, subtle blue directional light from lower right and a delicate paper-like layered edge at bottom. Upper third dark navy negative space.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-d8f83d6d-7057-4874-a996-5692029bd4e6.png"
+    },
+    {
+      "id": "freelanceos",
+      "brief": "Mobile financial workspace backdrop. Dark graphite finely textured satin surface, restrained reflected forest-green light near lower right, a soft physical contact shadow in lower center ready for a vertical phone to be composited later. Upper third quiet dark charcoal.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-a8b94c84-0c10-444d-88e2-591ff1035d17.png"
+    },
+    {
+      "id": "rugpull",
+      "brief": "Risk analysis dashboard backdrop. Dark charcoal technical drafting surface with extremely faint fine analytical grid texture and restrained crimson edge light at bottom right. No numbers, no data, no graphs. Upper third empty dark charcoal.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-bf303728-6c6c-4752-b387-0a7e779e7562.png"
+    },
+    {
+      "id": "api",
+      "brief": "Developer infrastructure backdrop. Deep petrol teal fine brushed surface, softly layered translucent documentation-sheet edges visible only at lower right, precise faint ruled texture without characters. Upper third quiet dark teal.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-b98e0eab-d393-4141-a169-1364f70c4b07.png"
+    },
+    {
+      "id": "forge",
+      "brief": "Implementation and planning product backdrop. Warm graphite surface with a restrained bronze rake of light across fine grain and a subtle paper edge at bottom right. Upper third dark warm graphite negative space.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-2149ce70-c025-4ac2-8900-c24e8089c0f8.png"
+    },
+    {
+      "id": "archive",
+      "brief": "Digital portfolio archive backdrop. Muted blue-grey editorial paper surface with a restrained stack of thin unprinted photo-mount sheets at bottom right, soft photographic shadows, tasteful neutral daylight. Upper third dark slate negative space.",
+      "generatedSource": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-8b072eb3-7fc4-40ae-9709-86b89c0894e2.png"
+    }
+  ],
+  "hero": {
+    "source": "light-sculpture-source.png",
+    "export": "light-sculpture.webp",
+    "operation": "Exact supplied image, WebP quality 94; no regeneration."
+  }
+}
