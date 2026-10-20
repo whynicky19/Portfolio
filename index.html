@@ -3,6 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <script>
+    /* Before first paint; static HTML is the default if JavaScript is unavailable. */
+    (() => { try {
+      const nav = performance.getEntriesByType('navigation')[0];
+      const internal = document.referrer && new URL(document.referrer).origin === location.origin;
+      const play = !matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash &&
+        (nav?.type === 'reload' || (nav?.type !== 'back_forward' && !internal));
+      if (!play) return;
+      const root = document.documentElement;
+      root.classList.add('assembly-intro');
+      window.portfolioEntrance = { start:performance.now(), timer:setTimeout(() => {
+        root.classList.remove('assembly-intro');
+        root.dataset.assemblyState = 'fallback';
+      }, 3400) };
+    } catch (_) { document.documentElement.classList.remove('assembly-intro'); } })();
+  </script>
   <title>Alimzhan — Frontend Developer &amp; UI Engineer</title>
   <meta name="description" content="Thoughtful interfaces, smooth interactions and real products across web and mobile. Explore Alimzhan’s frontend and product development work.">
   <meta name="theme-color" content="#F6F8FC">
@@ -12,7 +28,9 @@
   <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/Silkscreen-Bold.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="tokens.css?v=4"><link rel="stylesheet" href="animations.css?v=7"><link rel="stylesheet" href="style.css?v=11"><link rel="stylesheet" href="home-stage.css?v=4"><link rel="stylesheet" href="home-direction.css?v=3">
-  <link rel="stylesheet" href="hero-notebook.css?v=2">
+  <link rel="stylesheet" href="hero-notebook.css?v=3">
+  <link rel="stylesheet" href="pixel-assembly.css?v=1">
+  <script src="pixel-assembly.js?v=1" defer></script>
   <script src="theme-init.js?v=3"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Alimzhan Galymzhan","url":"https://whynicky19.github.io/Portfolio/","sameAs":["https://github.com/whynicky19"],"jobTitle":"Frontend Developer and UI Engineer"}</script>
 </head>

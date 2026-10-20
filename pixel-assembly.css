@@ -1,0 +1,23 @@
+/* Entrance owns opacity/individual translate; scroll owns transform. No layout animation. */
+.home-premium .apple-nav { animation:none; }
+.pixel-fragment-canvas { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.pixel-fragments-active { -webkit-text-fill-color:transparent; }
+.assembly-intro:not(.assembly-name-done) .pixel-name { -webkit-text-fill-color:transparent; }
+.assembly-intro .identity-board::before,.assembly-intro .identity-board::after { opacity:0; }
+.assembly-intro .identity-note,
+.assembly-intro .notebook-intro,
+.assembly-intro .notebook-statement,
+.assembly-intro .notebook-description,
+.assembly-intro .notebook-actions,
+.assembly-intro .notebook-colophon { opacity:0; }
+.assembly-intro .home-premium .apple-nav { animation:none; opacity:.18; }
+.assembly-frame { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; transform:translateY(var(--frame-y,0px)) rotate(-.65deg); }
+.assembly-intro.assembly-frame-done .identity-board::before,
+.assembly-intro.assembly-frame-done .identity-board::after { opacity:1; }
+@media(prefers-reduced-motion:reduce) {
+ .assembly-intro .pixel-name,.pixel-fragments-active { -webkit-text-fill-color:currentColor; }
+ .assembly-intro .identity-note,.assembly-intro .identity-board::before,.assembly-intro .identity-board::after,
+ .assembly-intro .notebook-intro,.assembly-intro .notebook-statement,.assembly-intro .notebook-description,
+ .assembly-intro .notebook-actions,.assembly-intro .notebook-colophon,.assembly-intro .home-premium .apple-nav { opacity:1; }
+ .pixel-fragment-canvas,.assembly-frame { display:none; }
+}
