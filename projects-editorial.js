@@ -55,9 +55,31 @@
       [{translate:(index ? 12 : -12)+'px 110%'}, {translate:'0 0'}],
       {duration:540, delay:index*75}));
   });
-  document.querySelectorAll('.project-heading,.project-details').forEach(block => once(block, () => {
-    const heading = block.querySelector('h2');
-    if (heading) animate(heading, [{clipPath:'inset(0 0 100% 0)'}, {clipPath:'inset(0 0 0 0)'}], {duration:400, easing:'steps(7,end)'});
-    else animate(block, [{opacity:.4, translate:'0 8px'}, {opacity:1, translate:'0 0'}], {duration:400});
-  }));
+  const stories = [...document.querySelectorAll('.project-story')];
+  // Only the first scene gets a curtain reveal. Its pixels never pan or scale.
+  const first = stories[0];
+  if (first) {
+    const desktop = matchMedia('(min-width:1280px)').matches;
+    const target = desktop ? first : first.querySelector('.project-scene');
+    once(target, () => animate(first.querySelector('.project-scene'),
+      [{clipPath:'inset(0 0 100% 0)'}, {clipPath:'inset(0 0 0 0)'}],
+      {duration:500, easing:'cubic-bezier(.2,.65,.25,1)'}));
+  }
+  stories.forEach((story, index) => {
+    const heading = story.querySelector('.project-heading');
+    once(heading, () => {
+      // A stepped mask reveals the pixel type without translating or scaling it.
+      animate(heading.querySelector('h2'),
+        [{clipPath:'inset(0 100% 0 0)'}, {clipPath:'inset(0 0 0 0)'}],
+        {duration:400, delay:index === 0 ? 100 : 0, easing:'steps(8,end)'});
+      animate(heading.querySelector('.project-intro'),
+        [{opacity:.3}, {opacity:1}], {duration:300, delay:index === 0 ? 200 : 80});
+    });
+    const insight = story.querySelector('.project-insight');
+    once(insight, () => animate(insight, [{opacity:.65}, {opacity:1}], {duration:280}));
+    if (index === 0) {
+      const actions = story.querySelector('.project-actions');
+      once(actions, () => animate(actions, [{opacity:.3}, {opacity:1}], {duration:280, delay:280}));
+    }
+  });
 })();
