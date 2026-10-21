@@ -1,0 +1,6 @@
+/* Additional motion belongs only to Home. Static content remains the default. */
+.home-premium .principle.has-drawn-rule::before { display:none; }
+.home-premium .home-drawn-rule { position:absolute; inset:0 0 auto; height:1px; background:#a4ac9a; transform-origin:left center; pointer-events:none; }
+@media(prefers-reduced-motion:reduce) {
+ .home-premium .home-drawn-rule { transform:none; scale:1; }
+}
