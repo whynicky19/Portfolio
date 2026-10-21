@@ -35,7 +35,7 @@ async function state(p){return p.evaluate(()=>({overflow:document.documentElemen
    if(width===1440||width===390)await p.screenshot({path:`${out}/${id}-${width}.png`});measurements.push({id,a,b,...boxes});
   }
   await p.locator('#chatra-project .project-scene').hover();await p.waitForTimeout(450);
-  assert.equal(await p.locator('#chatra-project .scene-screen').evaluate(e=>getComputedStyle(e).scale),'1.025');
+  assert.equal(await p.locator('#chatra-project .scene-screen').evaluate(e=>getComputedStyle(e).scale),'none');
   await p.locator('#chatra-project .project-button').focus();assert(await p.locator('#chatra-project .project-button').evaluate(e=>e===document.activeElement));
   if(width<=768){await scroll(p,0);await p.locator('#navBurger').click();assert.equal(await p.locator('#navBurger').getAttribute('aria-expanded'),'true');await p.keyboard.press('Escape');assert.equal(await p.locator('#navBurger').getAttribute('aria-expanded'),'false');}
   await p.addScriptTag({path:'/tmp/portfolio-a11y.nJVQC6/node_modules/axe-core/axe.min.js'});

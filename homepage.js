@@ -5,9 +5,8 @@
   if (!hero) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const cards = [...document.querySelectorAll('[data-card-depth]')];
   const notes = [...hero.querySelectorAll('.identity-note')];
-  const noteTravel = [-28, -16, 16, -20];
+  const noteTravel = [-44, -28, 32, -38];
   const pointerDepth = [1, -.65, .6, -1];
   const approach = document.querySelector('.h-capabilities');
   const toolkit = document.querySelector('.h-toolkit');
@@ -15,7 +14,7 @@
   const clamp = n => Math.max(0, Math.min(1, n));
   let frame = 0, targetX = 0, targetY = 0, pointerX = 0, pointerY = 0;
   const px = n => `${n.toFixed(2)}px`;
-  const tracked = [hero, approach, toolkit, contact, ...cards];
+  const tracked = [hero, approach, toolkit, contact];
   const geometry = new Map();
   const lastValues = new WeakMap();
   let needsMeasure = true;
@@ -49,9 +48,9 @@
     pointerX += (targetX - pointerX) * .22;
     pointerY += (targetY - pointerY) * .22;
     if (reduced.matches) pointerX = pointerY = 0;
-    set(hero, '--paper-y', px(progress * 40 * strength));
-    set(hero, '--name-y', px(progress * 16 * strength));
-    set(hero, '--frame-y', px(-progress * 4 * strength));
+    set(hero, '--paper-y', px(progress * 108 * strength));
+    set(hero, '--name-y', px(progress * 36 * strength));
+    set(hero, '--frame-y', px(-progress * 24 * strength));
     notes.forEach((note,i) => {
       set(note, '--note-y', px(progress * noteTravel[i] * strength));
       set(note, '--pointer-x', px(pointerX * pointerDepth[i]));
@@ -66,15 +65,7 @@
     const close = reduced.matches ? .5 : clamp((innerHeight - c.top) / (innerHeight + c.height));
     if (visible(c) || reduced.matches) {
       set(contact, '--closing-y', px((close - .5) * 48 * strength));
-      set(contact, '--closing-note-y', px((close - .5) * -24 * strength));
-      set(contact, '--closing-word-y', px((close - .5) * 16 * strength));
     }
-    cards.forEach(card => {
-      const r = rect(card);
-      if (!visible(r) && !reduced.matches) return;
-      const offset = reduced.matches ? 0 : (clamp((innerHeight - r.top) / (innerHeight + r.height)) - .5) * -40 * strength;
-      set(card, '--card-y', px(offset));
-    });
     if (Math.abs(targetX-pointerX) + Math.abs(targetY-pointerY) > .02) schedule();
   }
   function schedule() { if (!frame) frame = requestAnimationFrame(paint); }

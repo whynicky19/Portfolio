@@ -1,0 +1,94 @@
+{
+  "hero": "<header class=\"projects-hero\" data-reveal=\"complete\" style=\"--sky-y: 0.00px; --light-x: 0.00px; --light-y: 0.00px; --title-y: 0.00px; --title-alpha: 1.000; --paper-mix: 0.000;\"><div class=\"projects-sky\" aria-hidden=\"true\"></div><div class=\"projects-light\" aria-hidden=\"true\"></div><h1 style=\"\">PROJECTS</h1></header>",
+  "recent": "<section class=\"recent-work\" aria-labelledby=\"recent-title\" style=\"--paper-rise: 51.00px; --recent-one: 0.3739; --recent-two: 0.1567; --recent-copy: 0.0000;\"><h2 id=\"recent-title\"><span class=\"recent-line\"><span>RECENT</span></span><span class=\"recent-line\"><span>WORK</span></span></h2><p>A collection of web platforms, mobile applications, backend systems and experiments. Different challenges, connected by a care for how things work.</p></section>",
+  "stories": [
+    {
+      "id": "chatra-project",
+      "description": "A learning platform connecting students, teachers and administrators around the daily work of a class. Classrooms, assignments, messages, calendars and study tools share one role-aware system. The Nuxt web interface and Flutter client connect to the same FastAPI service, keeping authentication and learning workflows consistent across devices. My focus spans the frontend, product interface and integration: making a broad set of tools understandable without losing the context of the classroom.",
+      "links": [
+        "chatra.html",
+        "https://github.com/whynicky19/Chatra-Frontend-New",
+        "chatra.html"
+      ]
+    },
+    {
+      "id": "soyle-project",
+      "description": "A family practice platform that separates a child's focused activities from the decisions a parent needs to make. Short exercises, AAC communication, goals, observations and history live in a shared experience. The next-step planner uses inspectable local rules rather than generative advice. I worked on product design and full-stack implementation, including role-separated flows and accessible interactions. The working product is presented for further validation, not as a clinically validated service.",
+      "links": [
+        "soyle.html",
+        "https://github.com/whynicky19/Soyle",
+        "soyle.html"
+      ]
+    },
+    {
+      "id": "digital-urpaq-project",
+      "description": "A competition-built platform for extracurricular education. Its product direction connects programme discovery with applications, schedules and role-specific tools for students, teachers and administrators. The current implementation establishes the public entry point, authentication, catalogue state and FastAPI service foundation. I contributed to the full-stack team build with a focus on the product flow. The wider service journey is a direction for continued development, rather than a claim that every workflow is production-complete.",
+      "links": [
+        "digital-urpaq.html",
+        "https://github.com/whynicky19/Digital-urpaq",
+        "digital-urpaq.html"
+      ]
+    },
+    {
+      "id": "freelanceos",
+      "description": "A mobile product concept exploring how freelancers can separate income from money that is actually available to spend. The prototype brings tax reserves, expenses, project payments and financial summaries into a compact dashboard. Its focus is the relationship between those numbers: helping someone understand the state of their work without moving between disconnected views. This is an interface prototype, not a released finance application; no production backend or payment integration is claimed.",
+      "links": [
+        "img/freelanceOS.jpg",
+        "img/freelanceOS.jpg"
+      ]
+    },
+    {
+      "id": "rugpull",
+      "description": "A token-scanning interface that brings contract, on-chain, social and holder signals into one decision workspace. Instead of presenting disconnected data, the responsive frontend organizes the available risk information around a token. The project has separate frontend and backend repositories, reflecting the boundary between collecting signals and presenting them clearly. The portfolio shows the actual scanner interface; its risk indicators are not a guarantee of safety or investment advice.",
+      "links": [
+        "https://github.com/whynicky19/RugPull-Frontend",
+        "https://github.com/whynicky19/RugPull-Backend",
+        "https://github.com/whynicky19/RugPull-Frontend"
+      ]
+    },
+    {
+      "id": "forge",
+      "description": "FORGE helps turn an unstructured business problem into a task pack that a team can review and act on. Inputs, expected outcomes and acceptance criteria become explicit before work is handed over. The working Nuxt and FastAPI platform includes accounts, role-based access, persistent data and an activity dashboard. Its focus is the handoff between describing a problem and agreeing what a useful result looks like, with a live product available to explore.",
+      "links": [
+        "https://forge-ai-sana.vercel.app",
+        "https://github.com/whynicky19/FORGE",
+        "https://forge-ai-sana.vercel.app"
+      ]
+    },
+    {
+      "id": "portfolio",
+      "description": "This portfolio is a buildless, multi-page website for presenting interfaces, explaining product decisions and linking the work behind them. Shared navigation, responsive layouts, theme support and progressive enhancement keep the pages connected. Motion is implemented around native scrolling, with reduced-motion alternatives and readable content when scripts are unavailable. I designed and built the interface system, using real project imagery throughout. The preview shows an earlier iteration of the site, preserving part of its development history.",
+      "links": [
+        "index.html",
+        "https://github.com/whynicky19/Portfolio",
+        "index.html"
+      ]
+    },
+    {
+      "id": "chatra-backend",
+      "description": "The FastAPI service connects Chatra's web and mobile clients to shared classroom data. Authentication and roles define access to classes, assignments, files, messaging and moderation workflows. PostgreSQL provides persistence, while documented API routes make the client-facing contract visible. This is the infrastructure side of the same learning product: the work that lets different interfaces share a consistent model of the classroom instead of maintaining disconnected copies of it.",
+      "links": [
+        "https://github.com/whynicky19/Chatra-Backend-New",
+        "chatra.html",
+        "https://github.com/whynicky19/Chatra-Backend-New"
+      ]
+    },
+    {
+      "id": "chatra-mobile",
+      "description": "A Flutter client for Chatra's authentication, classroom, messaging and learning workflows. It shares the product's service layer while adapting the interface to a narrow, touch-first screen. Subjects and classes become focused vertical lists, with persistent navigation and familiar classroom concepts. Provider and Dio support client state and data access. The mobile work is shown separately here so the platform-specific interface can be explored alongside the broader web and API system.",
+      "links": [
+        "https://github.com/whynicky19/Chatra-app-IOS",
+        "chatra.html",
+        "https://github.com/whynicky19/Chatra-app-IOS"
+      ]
+    },
+    {
+      "id": "learning",
+      "description": "Python coursework alongside a public archive of web-development exercises. CS50P represents structured programming practice; the Odin repository collects work in HTML, CSS, Git, layout and interaction. These are learning projects, not client products. They remain part of the portfolio because they document the foundation behind the larger systems: understanding the language, building the layout and making small pieces of an interface work reliably.",
+      "links": [
+        "https://github.com/whynicky19/Odin-course",
+        "https://github.com/whynicky19/Odin-course"
+      ]
+    }
+  ]
+}

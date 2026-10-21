@@ -1,0 +1,201 @@
+{
+  "tool": "Built-in ImageGen; hardware only, no generated project UI.",
+  "laptop": {
+    "prompt": "Use case: product-mockup. Asset: reusable photorealistic laptop cutout for a developer portfolio, transparent background. One premium space-gray MacBook Pro style laptop, open, front-facing straight-on symmetrical product photography. Screen plane exactly parallel to image plane: perfectly horizontal top/bottom edges, vertical side edges; rectangular 16:10 display blank solid black, no interface, no wallpaper, no text. Screen occupies most of image width; thin black bezel, tiny centered camera in bezel above active display (no notch intruding into screen). Realistic aluminum body, complete keyboard with individual keys, speaker grilles, visible generous trackpad, correct perspective on base, thin metallic front edge. The screen is viewed straight-on, the base extends toward viewer and keyboard visible in shallow perspective. Soft upper-left studio illumination, fine brushed material, subtle realistic edge reflections. Entire laptop visible, tight crop with 3% transparent margin; no floor, no background, no props, no logos, no generated UI. Landscape image around 3:2. The blank screen is intended for exact deterministic compositing of real screenshots afterward.",
+    "source": "exec-f2679330-6f73-41df-91cf-f75056aeec02.png",
+    "asset": "assets/projects/devices/macbook-studio.webp",
+    "screen": {
+      "x": 196,
+      "y": 83,
+      "width": 1146,
+      "height": 640
+    },
+    "canvas": {
+      "width": 1536,
+      "height": 1024
+    }
+  },
+  "phone": {
+    "prompt": "Use case: product-mockup. Generate a reusable photorealistic modern iPhone Pro hardware cutout for compositing REAL app screenshots later. Portrait canvas. One perfectly front-facing upright iPhone, no tilt, no perspective distortion, centered, tightly framed with 3% margin. Natural dark titanium side rails, subtle polished edge highlights and side buttons, black thin bezels, rounded corners, realistic precise premium hardware. The full active screen is completely blank solid black, with tiny camera/speaker located inside the top black hardware bezel, NOT obscuring the usable display. Display rectangle about 9:19.5 aspect ratio. Entire phone including edges visible. Soft upper-left product studio lighting, sharp subtle metal reflections. No UI, no words, no logo, no wallpaper, no props, no floor. Genuinely transparent background outside the device, alpha zero; not a black or grey background.",
+    "source": "exec-b3892c4c-acd6-452e-afe4-9ea6484141ed.png",
+    "asset": "assets/projects/devices/iphone-titanium.webp",
+    "screen": {
+      "x": 72,
+      "y": 164,
+      "width": 708,
+      "height": 1534
+    },
+    "canvas": {
+      "width": 851,
+      "height": 1847
+    },
+    "derivedScreenshot": {
+      "asset": "assets/projects/devices/freelanceos-display.webp",
+      "source": "assets/projects/freelanceos/finance-mobile-392.webp",
+      "crop": {
+        "left": 14,
+        "top": 14,
+        "width": 364,
+        "height": 811
+      },
+      "encoding": "lossless WebP",
+      "decodedPixelsMatchSourceCrop": true
+    }
+  },
+  "projects": [
+    {
+      "id": "chatra-project",
+      "mockup": "MacBook + iPhone",
+      "screenshots": [
+        {
+          "src": "assets/projects/chatra/classroom-1060.webp",
+          "fit": "cover",
+          "width": 1060,
+          "height": 662
+        },
+        {
+          "src": "assets/projects/chatra/mobile-classes-360.webp",
+          "fit": "contain",
+          "width": 360,
+          "height": 780
+        }
+      ]
+    },
+    {
+      "id": "soyle-project",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/soyle/adaptive-plan-1440.webp",
+          "fit": "cover",
+          "width": 1440,
+          "height": 1000
+        }
+      ]
+    },
+    {
+      "id": "digital-urpaq-project",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/digital-urpaq/discovery-1060.webp",
+          "fit": "cover",
+          "width": 1060,
+          "height": 662
+        }
+      ]
+    },
+    {
+      "id": "freelanceos",
+      "mockup": "iPhone",
+      "screenshots": [
+        {
+          "src": "assets/projects/devices/freelanceos-display.webp",
+          "fit": "contain",
+          "width": 364,
+          "height": 811
+        }
+      ]
+    },
+    {
+      "id": "rugpull",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/rugpull/risk-dashboard-1000.webp",
+          "fit": "cover",
+          "width": 1000,
+          "height": 600
+        }
+      ]
+    },
+    {
+      "id": "forge",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/forge/landing-1200.webp",
+          "fit": "cover",
+          "width": 1200,
+          "height": 833
+        }
+      ]
+    },
+    {
+      "id": "portfolio",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/editorial/portfolio-home-1440.webp",
+          "fit": "cover",
+          "width": 1440,
+          "height": 900
+        }
+      ]
+    },
+    {
+      "id": "chatra-backend",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/chatra/api-reference-1060.webp",
+          "fit": "cover",
+          "width": 1060,
+          "height": 662
+        }
+      ]
+    },
+    {
+      "id": "chatra-mobile",
+      "mockup": "Two iPhones",
+      "screenshots": [
+        {
+          "src": "assets/projects/chatra/mobile-classes-360.webp",
+          "fit": "contain",
+          "width": 360,
+          "height": 780
+        },
+        {
+          "src": "img/video-posters/subjects.jpg",
+          "fit": "contain",
+          "width": 360,
+          "height": 780
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "mockup": "MacBook",
+      "screenshots": [
+        {
+          "src": "assets/projects/learning/cs50p-week9.png",
+          "fit": "contain",
+          "width": 2940,
+          "height": 1912,
+          "source": "User attachment: Снимок экрана — 2026-10-21 в 15.54.55.png",
+          "processing": "Unmodified PNG copy; full image contained without cropping or stretching."
+        }
+      ]
+    }
+  ],
+  "motion": {
+    "shutters": {
+      "elements": ".scene-chatra::before / ::after",
+      "interval": "Section top: 98% to 33% of viewport height",
+      "transform": "translateX(0 → −101% / +101%), smoothstep progress; ±728.65px at 1440px",
+      "stacking": "Behind copy, above product/environment"
+    },
+    "product": {
+      "element": ".scene-chatra .project-scene",
+      "mask": "none",
+      "behavior": "Hardware and atmosphere share the scene-level paper shutters. No independent product reveal or media progress."
+    },
+    "copy": {
+      "elements": ".project-copy h2, p, ul, .project-links (first project only)",
+      "interval": "8–90% of entry progress",
+      "behavior": "Heading bottom mask 100%→0; supporting copy opacity 0→1; action right mask 100%→0"
+    },
+    "reducedMotion": "All entry masks and shutters disabled; atmospheric parallax disabled.",
+    "nativeScrolling": true
+  }
+}

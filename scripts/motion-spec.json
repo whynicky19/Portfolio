@@ -1,0 +1,45 @@
+{
+  "scope": "Home and Projects; native scroll; screenshots and device mockups remain static",
+  "homeEntrance": {
+    "clock": "performance.now() minus portfolioEntrance.start; 0–2650 ms",
+    "rootCause": "Scroll beyond 24 px, pointerdown and keydown called finish(interrupted); a second scrollY check skipped initialization after font loading.",
+    "fix": "Removed scroll/input cancellation and the asynchronous scroll-position guard. Height-only viewport changes no longer cancel the entrance. Canvas fragments live inside the transformed name; entrance owns opacity/individual translate, depth owns transform.",
+    "remainingCancellation": ["reduced-motion preference", "actual viewport width change invalidating glyph dimensions", "page navigation", "font/canvas failure"],
+    "verification": "Early scroll at 200, 500, 1000, 1500 ms at 1440, 768, 390 px; fast scroll, reload, keyboard, touch pointer and viewport-height change; all completed normally."
+  },
+  "effects": [
+    {
+      "layers": [".projects-sky", ".projects-light", ".projects-hero h1"],
+      "progress": "p = clamp((scrollY - hero.offsetTop) / hero.offsetHeight, 0, 1)",
+      "transforms": {
+        ".projects-sky": "translateY(p * heroHeight * 0.62)",
+        ".projects-light": "translate(-p * viewportWidth * 0.18, p * heroHeight * 0.25)",
+        ".projects-hero h1": "translateY(p * heroHeight * 0.30); opacity 1→0 over p=0.48→0.88"
+      },
+      "measured1440x900AtScroll360": {"skyY":223.2,"lightX":-129.6,"lightY":90,"titleY":108,"titleOpacity":0.95},
+      "intent": "Atmosphere lingers while a lateral warm/cool field crosses behind the crisp heading. No pinning or artificial scroll runway."
+    },
+    {
+      "layers": [".recent-work::before", ".recent-line > span", ".recent-work p"],
+      "progress": "q = clamp((0.94 * viewportHeight - recentViewportTop) / (0.48 * viewportHeight), 0, 1); first line clamp(q/0.78), second line clamp((q-0.16)/0.84)",
+      "transforms": "Paper cap translateY 72→0 px (50.4→0 at <=800 px). First line enters its clip from x=-36 px/y=125%; second x=36 px/y=125%. Both finish at 0/0. Description only opacity, q=0.4→1.",
+      "intent": "The paper edge advances across the gradient; staggered, reversible masks resolve the editorial title before the gallery. No timed IntersectionObserver reveal on Recent Work."
+    },
+    {
+      "layers": [".scene-background", ".project-scene::before"],
+      "progress": "p = clamp((viewportHeight - storyViewportTop) / (viewportHeight + storyHeight), 0, 1)",
+      "transforms": "Background translateY -90→90 px; light field translateX -21→21% of its own width, translateY 70→-70 px. Multiply by 0.7 at <=800 px.",
+      "measuredChatra1440AtSceneTops650And50": {"backgroundY":[-60.04,10.73],"lightX":[-186.567,33.2918],"lightY":[46.7,-8.35]},
+      "intent": "Environmental texture moves behind stationary product UI; cool blue Chatra, cream/mint Söyle, deep-blue Urpaq, graphite FreelanceOS."
+    },
+    {
+      "layers": [".notebook-paper", ".identity-note", ".identity-board::before", ".identity-board::after", ".assembly-frame", ".pixel-name"],
+      "progress": "p = clamp((scrollY - hero.offsetTop) / hero.offsetHeight, 0, 1)",
+      "transforms": "Paper y=108p px; name y=36p px; orange frame y=-24p px; mint/yellow/peach/blue stickers y=[-44,-28,32,-38]*p px plus restrained desktop pointer offsets. Multiply scroll travel by 0.55 at <=600 px.",
+      "intent": "Four depth planes, with the canvas and native name sharing a single coordinate system throughout the entrance."
+    }
+  ],
+  "reducedMotion": "Immediate native text, no decorative transform or scroll clipping, Recent Work fully visible. Native navigation retained.",
+  "evidenceDirectory": "/Users/whynicky/.codex/visualizations/2026/10/20/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/motion-redesign",
+  "browserCoverage": "Chromium automated browser. WebKit and Firefox binaries unavailable in this environment; not claimed as tested."
+}

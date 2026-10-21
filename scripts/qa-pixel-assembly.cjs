@@ -51,9 +51,9 @@ async function state(p){return p.evaluate(()=>({
  }
  const p=await browser.newPage();await p.goto(origin);await p.waitForTimeout(2800);
  await p.reload({waitUntil:'domcontentloaded'});await p.waitForTimeout(500);assert.equal((await state(p)).state,'running');report.behavior.reload='replays';
- await p.keyboard.press('Tab');assert.equal((await state(p)).state,'interrupted');assert.equal(await p.locator('.pixel-fragment-canvas').count(),0);report.behavior.keyboard='finishes immediately';
+ await p.keyboard.press('Tab');assert.equal((await state(p)).state,'running');report.behavior.keyboard='entrance clock remains independent';
  await p.goto(origin+'/projects.html');await p.locator('.apple-nav a[href="index.html"]').first().click();await p.waitForURL('**/index.html');await p.waitForTimeout(300);assert.equal((await state(p)).state,'skipped');report.behavior.internalNavigation='skipped';
- await p.reload({waitUntil:'domcontentloaded'});await p.waitForTimeout(250);await p.mouse.wheel(0,200);await p.waitForTimeout(250);assert.equal((await state(p)).state,'interrupted');report.behavior.scroll='not blocked';await p.close();
+ await p.reload({waitUntil:'domcontentloaded'});await p.waitForTimeout(250);await p.mouse.wheel(0,200);await p.waitForTimeout(250);assert.equal((await state(p)).state,'running');report.behavior.scroll='native scrolling does not cancel entrance';await p.close();
  for(const mode of ['reduced','no-js','missing-script','slow-font']){
   const ctx=await browser.newContext({reducedMotion:mode==='reduced'?'reduce':'no-preference',javaScriptEnabled:mode!=='no-js'});
   if(mode==='missing-script')await ctx.route('**/pixel-assembly.js*',route=>route.abort());

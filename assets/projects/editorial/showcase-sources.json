@@ -1,0 +1,51 @@
+{
+  "generatedWith": "Built-in image_gen; background-only generation; WebP conversion using sharp",
+  "backgrounds": [
+    {
+      "project": "chatra",
+      "file": "chatra-sky.webp",
+      "prompt": "Photorealistic product showcase background ONLY, panoramic landscape 2:1. Soft sky blue daylight and delicate white clouds, pale limestone ledge across bottom right half, subtle slender green foliage rising behind the ledge at right and center-right. Left 42 percent is quiet warm off-white haze blending naturally into the sky, intentional clean negative space for dark web typography to be added later. Upper right center clean open sky for a large authentic website screenshot later. Premium editorial photographic lighting, believable stone pores and restrained shadows. No devices, no screens, no interface, no text, no logos, no people, no floating geometric shapes. One continuous immersive photograph.",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-013293d4-1050-4a37-8ec9-e454f698fa2f.png"
+    },
+    {
+      "project": "soyle",
+      "file": "soyle-plaster.webp",
+      "prompt": "Photorealistic product showcase background ONLY, panoramic landscape 2:1. Warm peach plaster studio with softly rippled natural sunlight. Low pale travertine stone surface across bottom left; broad dusty coral fabric folds at far left edge. Left 62 percent is open space above the stone, ready for a large product screenshot to be composited later. Right 38 percent calm warm cream plaster with very subtle texture, clean negative space for dark website text later. Premium restrained product photography, natural materials, soft light. No devices, no screens, no UI, no text, no logo, no people, no ornaments, no spheres. One continuous photographic scene.",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-74fd36e4-772a-4590-9861-1670da554e5b.png"
+    },
+    {
+      "project": "portfolio",
+      "file": "portfolio-paper.webp",
+      "prompt": "Photorealistic editorial website showcase background ONLY, panoramic landscape 2:1. Pale warm paper and fine limestone study, soft daylight across an ivory textured plaster wall, subtle dusty lavender shadows on right half, a thin pale stone shelf along bottom right. Left 40 percent softly lit uniform ivory, generous clean negative space for typography. Right 60 percent open clean environment ready for authentic website browser screenshot overlay. Tactile paper grain, sophisticated quiet lighting, warm neutral palette. No text, no devices, no screens, no UI, no letters, no objects, no illustration, no geometric decorations. Single continuous photograph.",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-5ab689eb-0657-4f3b-8d8d-133a4fb549b1.png"
+    }
+  ],
+  "reusedBackgrounds": {
+    "urpaq": "assets/projects/artwork/digital-urpaq-atmosphere.webp",
+    "freelanceos": "assets/projects/artwork/freelanceos-atmosphere.webp",
+    "rugpull": "assets/projects/artwork/rugpull-atmosphere.webp",
+    "forge": "assets/projects/artwork/forge-atmosphere.webp",
+    "api": "assets/projects/artwork/api-atmosphere.webp",
+    "mobile": "assets/projects/editorial/courtyard.webp",
+    "learning": "assets/projects/artwork/soyle-atmosphere.webp"
+  },
+  "screenshots": {
+    "chatra": "assets/projects/chatra/classroom-1060.webp",
+    "chatraMobile": "assets/projects/chatra/mobile-classes-360.webp",
+    "soyle": "assets/projects/soyle/adaptive-plan-1440.webp",
+    "urpaq": "assets/projects/digital-urpaq/discovery-1060.webp",
+    "freelanceos": "assets/projects/freelanceos/finance-mobile-392.webp",
+    "rugpull": "assets/projects/rugpull/risk-dashboard-1000.webp",
+    "forge": "assets/projects/forge/landing-1200.webp",
+    "portfolio": "portfolio-home-1440.webp: real Chromium capture of current index.html, 1440x900, reduced motion; no UI redrawing",
+    "api": "assets/projects/chatra/api-reference-1060.webp",
+    "mobileSecondary": "img/video-posters/subjects.jpg",
+    "learning": "img/cs50p-960w.webp"
+  },
+  "notes": [
+    "All ten verified entries and action URLs preserved.",
+    "Hero height desktop 80svh→90svh (+12.5%); approved Hero and Recent Work markup/animation unchanged.",
+    "Browser frames used instead of imaginary laptop or tablet geometry.",
+    "Original 360px/392px mobile screenshots limit fine-detail sharpness at enlarged sizes."
+  ]
+}

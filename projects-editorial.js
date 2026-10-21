@@ -22,18 +22,38 @@
   }
   function paint() {
     frame=0;
-    if(dirty){[hero,...stories].forEach(measure);dirty=false;}
-    const mobile=innerWidth<=800?.55:1;
+    if(dirty){[hero,recent,...stories].forEach(measure);dirty=false;}
+    const mobile=innerWidth<=800?.7:1;
     const h=geometry.get(hero), progress=reduced.matches?0:clamp((scrollY-h.top)/h.height);
-    set(hero,'--sky-y',px(progress*110*mobile));
-    set(hero,'--title-y',px(progress*48*mobile));
-    stories.forEach((story,i)=>{
+    set(hero,'--sky-y',px(progress*h.height*.62));
+    set(hero,'--light-x',px(-progress*innerWidth*.18));
+    set(hero,'--light-y',px(progress*h.height*.25));
+    set(hero,'--title-y',px(progress*h.height*.3));
+    set(hero,'--title-alpha',(1-clamp((progress-.48)/.4)).toFixed(3));
+    set(hero,'--paper-mix',clamp((progress-.25)/.75).toFixed(3));
+    const r=geometry.get(recent),top=r.top-scrollY;
+    const editorial=reduced.matches?1:clamp((innerHeight*.94-top)/(innerHeight*.48));
+    set(recent,'--paper-rise',px((1-editorial)*72*mobile));
+    set(recent,'--recent-one',clamp(editorial/ .78).toFixed(4));
+    set(recent,'--recent-two',clamp((editorial-.16)/.84).toFixed(4));
+    set(recent,'--recent-copy',clamp((editorial-.4)/.6).toFixed(4));
+    // One scene-level aperture reveals background and hardware together.
+    // No independent media mask: it produced a second, disconnected cut edge.
+    if(stories[0]){
+      const entryTop=geometry.get(stories[0]).top-scrollY;
+      const opening=reduced.matches?1:clamp((innerHeight*.98-entryTop)/(innerHeight*.65));
+      const smooth=t=>t*t*(3-2*t);
+      set(stories[0],'--gallery-open',smooth(opening).toFixed(4));
+      set(stories[0],'--copy-open',clamp((opening-.08)/.55).toFixed(4));
+      set(stories[0],'--actions-open',clamp((opening-.2)/.7).toFixed(4));
+    }
+    stories.forEach(story=>{
       const r=geometry.get(story),top=r.top-scrollY;
       if(!reduced.matches&&(top>innerHeight+100||top+r.height<-100))return;
       const p=reduced.matches?.5:clamp((innerHeight-top)/(innerHeight+r.height));
-      set(story,'--back-y',px((p-.5)*48*mobile));
-      set(story,'--screen-y',px((p-.5)*-72*mobile));
-      set(story,'--screen-x',px((p-.5)*(i%2?-12:12)*mobile));
+      set(story,'--back-y',px((p-.5)*180*mobile));
+      set(story,'--atmosphere-x',`${((p-.5)*42*mobile).toFixed(2)}%`);
+      set(story,'--atmosphere-y',px((p-.5)*-140*mobile));
     });
   }
   function schedule(){if(!frame)frame=requestAnimationFrame(paint);}
@@ -43,11 +63,12 @@
   if('ResizeObserver'in window)new ResizeObserver(resize).observe(document.querySelector('main'));
   document.fonts?.ready.then(resize);
   paint();
+  document.body.classList.add('gallery-ready');
 
   // Discrete pixel rows reveal the live HTML glyphs, rather than assembling a raster copy.
   function finishReveal(){stopped=true;cancelAnimationFrame(revealFrame);title.style.removeProperty('clip-path');title.style.removeProperty('translate');hero.dataset.reveal='complete';}
   async function reveal(){
-    if(reduced.matches||scrollY>24||location.hash){finishReveal();return;}
+    if(reduced.matches||location.hash){finishReveal();return;}
     title.style.clipPath='inset(100% 0 0)';
     const safety=setTimeout(finishReveal,2100);
     try {
@@ -72,9 +93,6 @@
     }catch(_){clearTimeout(safety);finishReveal();}
   }
   reveal();
-  addEventListener('scroll',()=>{if(scrollY>24&&!stopped)finishReveal();},{passive:true});
-  addEventListener('keydown',finishReveal,{once:true});
-  addEventListener('pointerdown',finishReveal,{once:true,passive:true});
   addEventListener('resize',finishReveal,{once:true});
   const reveals=[];
   reduced.addEventListener('change',()=>{if(reduced.matches){finishReveal();reveals.forEach(a=>a.cancel());}schedule();});
@@ -82,9 +100,11 @@
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
       if(!entry.isIntersecting)return;
       if(!reduced.matches){
-        for(const [i,el]of [...recent.children].entries())reveals.push(el.animate([{opacity:.25,translate:'0 20px'},{opacity:1,translate:'0 0'}],{duration:600,delay:i*100,easing:'cubic-bezier(.2,.7,.2,1)'}));
+          const copy=entry.target;
+          reveals.push(copy.querySelector('h2').animate([{clipPath:'inset(100% 0 0)'},{clipPath:'inset(0 0 0)'}],{duration:550,easing:'cubic-bezier(.2,.7,.2,1)'}));
+          copy.querySelectorAll('p').forEach((el,i)=>reveals.push(el.animate([{opacity:.2},{opacity:1}],{duration:450,delay:Math.min(i*45,135),fill:'backwards'})));
       }
       observer.unobserve(entry.target);
-    }),{threshold:.25});observer.observe(recent);
+    }),{threshold:.2});stories.slice(1).forEach(s=>observer.observe(s.querySelector('.project-copy')));
   }
 })();

@@ -124,7 +124,7 @@
     try {
       const loaded=await Promise.race([document.fonts.load('700 100px Silkscreen'),new Promise(r=>setTimeout(()=>r([]),600))]);
       if(finished) return;
-      if(!loaded.length||reduced.matches||scrollY>24||!root.classList.contains('assembly-intro')) {finish('skipped');return;}
+      if(!loaded.length||reduced.matches||!root.classList.contains('assembly-intro')) {finish('skipped');return;}
       heroMask=fragments(document.querySelector('.pixel-name'));
       const board=document.querySelector('.identity-board');
       const svgNS='http://www.w3.org/2000/svg';
@@ -185,10 +185,15 @@
       contactObserver.observe(word);
     } catch (_) { /* Static text is the fallback. */ }
   }
-  addEventListener('scroll',()=>{if(scrollY>24)finish('interrupted');},{passive:true});
-  addEventListener('pointerdown',()=>finish('interrupted'),{capture:true,passive:true});
-  addEventListener('keydown',()=>finish('interrupted'),{capture:true});
-  addEventListener('resize',()=>{finish('resized');contactMask?.remove();contactMask=null;});
+  // Native scrolling (wheel, touch and keyboard) never owns the entrance clock.
+  // Mobile browser chrome can resize the viewport while scrolling; only a real
+  // width change invalidates the glyph geometry captured by the canvas.
+  let glyphViewportWidth=innerWidth;
+  addEventListener('resize',()=>{
+    if(innerWidth===glyphViewportWidth)return;
+    glyphViewportWidth=innerWidth;
+    finish('resized');contactMask?.remove();contactMask=null;
+  });
   addEventListener('pagehide',()=>{finish('navigation');active.forEach(m=>m.remove());contactMask=null;});
   reduced.addEventListener('change',()=>{if(reduced.matches){finish('reduced');active.forEach(m=>m.remove());contactMask=null;contactObserver?.disconnect();}});
   startHero();prepareContact();
