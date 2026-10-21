@@ -8,6 +8,7 @@
 .projects-editorial .nav-menu a.active::after { background:#101d2c; }
 .projects-editorial .nav-talk { background:#101518; color:#fff; border-radius:30px; padding:8px 17px; }
 .projects-editorial .nav-inner { max-width:1560px; width:calc(100% - 80px); }
+.projects-opening { position:relative; isolation:isolate; overflow:hidden; }
 .projects-hero { position:relative; isolation:isolate; display:grid; place-items:center; height:80svh; min-height:540px; max-height:900px; overflow:hidden; }
 .projects-sky { position:absolute; inset:-120px 0; z-index:-1; background:radial-gradient(ellipse at 0 100%,#ffc4a5 0,transparent 49%),radial-gradient(ellipse at 100% 105%,#eead9d 0,transparent 47%),linear-gradient(165deg,#6488aa 0%,#8098b5 46%,#aaa5b7 76%,#d4afa9 100%); }
 .projects-sky::after { content:""; position:absolute; inset:0; opacity:.13; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23888888' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
@@ -26,7 +27,25 @@
 .projects-editorial .apple-footer a,.projects-editorial .footer-note,.projects-editorial .footer-copy { color:#555a52; }
 .projects-editorial .footer-col-title,.projects-editorial .footer-role { color:#292c28; }
 
-/* Preserve the established Hero and intro; neither has a scroll timeline. */
+/* Editorial sky shutters: an entry transition, never a scroll timeline.
+   Decorations are created only when motion is available; static HTML stays readable. */
+.recent-work { overflow:hidden; }
+.recent-shutters { position:absolute; inset:0; z-index:-1; display:flex; pointer-events:none; }
+.recent-shutter { flex:1; margin-right:-1px; background:var(--editorial-paper); }
+/* One continuous sky behind both sections, not a separately approximated gradient.
+   Only the paper masks move; the shared color and grain never shift at the seam. */
+.recent-work:is([data-transition="armed"],[data-transition="running"]) { background:transparent; }
+.recent-work[data-transition="armed"] :is(h2,p) { visibility:hidden; }
+.recent-work[data-transition="armed"] .recent-shutter { transform:translateY(102%); }
+.recent-work[data-transition="running"] .recent-shutter { transform:none; }
+.recent-work[data-transition="complete"] .recent-shutters { display:none; }
+@media(prefers-reduced-motion:reduce) {
+ .recent-shutters { display:none; }
+ .recent-work[data-transition] :is(h2,p) { visibility:visible; }
+ .recent-work[data-transition] { background:var(--editorial-paper); }
+}
+
+/* Preserve the established Hero; it has no scroll timeline. */
 .projects-editorial .skip-link:not(:focus-visible) { opacity:0; }
 @media(min-width:801px) { .projects-hero { height:90svh; min-height:608px; max-height:1012px; } }
 @media(max-width:800px) {

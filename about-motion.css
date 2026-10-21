@@ -1,0 +1,18 @@
+/* Post-Hero editorial motion. No document offsets, sticky scenes or image zooms. */
+.about-editorial h2[data-about-motion="type"] { display:flex; flex-direction:column; }
+.about-editorial .about-type-line { display:block; overflow:clip; padding:.12em .06em; margin:-.12em -.06em; }
+.about-editorial .about-type-line > span { display:block; }
+.about-editorial [data-about-motion="type"][data-motion-phase="pending"] .about-type-line > span { transform:translateY(115%); }
+.about-editorial [data-about-motion="split"][data-motion-phase="pending"] { clip-path:inset(0 50% round 12px); }
+.about-editorial [data-about-motion="diagonal"][data-motion-phase="pending"] { clip-path:polygon(0 0,0 0,0 100%,0 100%); }
+.about-editorial [data-about-motion="paper"][data-motion-phase="pending"] { clip-path:inset(100% 0 0); }
+.about-editorial [data-about-motion="chapter"][data-motion-phase="pending"] article { clip-path:inset(0 100% 0 0); }
+.about-editorial [data-about-motion="chapter"]::before { display:none; }
+.about-editorial .road-trace { position:absolute; left:134px; top:10px; bottom:-10px; width:1px; background:#87988a; transform-origin:top; pointer-events:none; }
+.about-editorial .road > li:last-child .road-trace { display:none; }
+.about-editorial [data-motion-phase="pending"] .road-trace { transform:scaleY(0); }
+@media(max-width:600px) { .about-editorial .road-trace { left:2px; } }
+@media(prefers-reduced-motion:reduce) {
+ .about-editorial [data-about-motion],.about-editorial [data-about-motion] article { clip-path:none!important; }
+ .about-editorial [data-about-motion] .about-type-line > span,.about-editorial .road-trace { transform:none!important; }
+}

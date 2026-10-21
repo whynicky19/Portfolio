@@ -24,3 +24,13 @@ Created with built-in ImageGen, 21 October 2026, as two four-image sheets, then 
 - `skill-1.webp` through `skill-4.webp`: laptop design canvas, laptop on a warm desk, pencil wireframes, motion study on a monitor.
 - `process-1.webp` through `process-4.webp`: planning notebook, pinned wireframes, visual design study, laptop code editor.
 - Full production prompts: `card-generation-prompts.json`.
+
+## Refinement: authentic interface materials and photography
+- UI Craft: `assets/projects/chatra/classroom-source.png`, original Chatra classroom pixels (see `assets/projects/sources.json`).
+- Motion & Interaction: `img/video-posters/mainscreen.jpg` and `subjects.jpg`, frames from the actual Chatra mobile application.
+- Process Design: `assets/projects/soyle/adaptive-plan-source.png`, genuine Söyle adaptive-plan screenshot (see project provenance).
+- `planning-real.webp`: https://images.unsplash.com/photo-1581291518857-4e27b48ff24e
+- `wireframes-real.webp`: https://images.unsplash.com/photo-1586717791821-3f44a563fa4c
+- `development-real.webp`: https://images.unsplash.com/photo-1555066931-4365d14bab8c
+- All stock photography is representative, not presented as personal possessions. Prior generated skill/process studies are no longer used on the page.
+- Timeline work dates and Chatra role: unchanged `Alimzhan_Galymzhan_iOS_Developer_CV.pdf`. Söyle's family speech-practice purpose: existing `soyle.html` case study. Certificate dates: the original certificate images. No new certificates or employer names are invented.

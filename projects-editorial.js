@@ -1,4 +1,4 @@
-/* Projects: a load-time pixel entrance and one-time copy reveals. No parallax. */
+/* Projects: independent load-time pixel entrance and one-time editorial reveals. */
 (() => {
   'use strict';
   const hero = document.querySelector('.projects-hero');
@@ -50,11 +50,69 @@
   addEventListener('pagehide', finish, {once:true});
   if (!window.PortfolioReveal) return;
   const {once, animate} = window.PortfolioReveal;
-  once(document.querySelector('.recent-work'), () => {
-    document.querySelectorAll('.recent-line > span').forEach((line, index) => animate(line,
-      [{translate:(index ? 12 : -12)+'px 110%'}, {translate:'0 0'}],
-      {duration:540, delay:index*75}));
-  });
+  // Own wrappers and animation handles: scrolling cannot complete the Hero,
+  // restart this sequence, or write transforms on any project photograph.
+  const recent = document.querySelector('.recent-work');
+  if (recent && !reduced.matches && !location.hash && 'IntersectionObserver' in window) {
+    const curtain = document.createElement('div');
+    curtain.className = 'recent-shutters';
+    curtain.setAttribute('aria-hidden', 'true');
+    const panels = Array.from({length:8}, (_, index) => {
+      const panel = document.createElement('span');
+      panel.className = 'recent-shutter';
+      curtain.append(panel);
+      return panel;
+    });
+    recent.append(curtain);
+    const motions = [];
+    let observer, fallback, inView = false;
+    const onScroll = () => { if (inView && scrollY > 8) play(); };
+    function settle() {
+      observer?.disconnect();
+      removeEventListener('scroll', onScroll);
+      clearTimeout(fallback);
+      recent.dataset.transition = 'complete';
+      motions.forEach(motion => motion?.cancel());
+      curtain.remove();
+    }
+    function play() {
+      if (recent.dataset.transition !== 'armed') return;
+      observer.disconnect();
+      removeEventListener('scroll', onScroll);
+      recent.dataset.transition = 'running';
+      recent.dataset.transitionCount = '1';
+      const options = {easing:'cubic-bezier(.22,.72,.18,1)'};
+      panels.forEach((panel, index) => motions.push(animate(panel,
+        [{transform:'translateY(102%)'}, {transform:'translateY(0)'}],
+        {...options, duration:620, delay:Math.abs(index-3.5)*55})));
+      recent.querySelectorAll('.recent-line > span').forEach((word, index) => {
+        motions.push(animate(word,
+          [{transform:`translate(${index ? 24 : -24}%, ${index ? -110 : 110}%)`}, {transform:'translate(0,0)'}],
+          {...options, duration:560, delay:120+index*90}));
+      });
+      motions.push(animate(recent.querySelector('p'),
+        [{clipPath:'inset(0 0 100% 0)', transform:'translateY(12px)'},
+         {clipPath:'inset(0 0 0 0)', transform:'translateY(0)'}],
+        {...options, duration:400, delay:370}));
+      Promise.all(motions.map(motion => motion?.finished.catch(() => {}))).then(settle);
+      fallback = setTimeout(settle, 1300);
+    }
+    // A restored deep scroll should show content immediately, not replay an intro.
+    if (recent.getBoundingClientRect().bottom <= 0) settle();
+    else {
+      recent.dataset.transition = 'armed';
+      observer = new IntersectionObserver(entries => {
+        inView = entries.some(entry => entry.isIntersecting);
+        onScroll();
+      }, {rootMargin:`0px 0px -${Math.round(innerHeight * .18)}px 0px`, threshold:0});
+      observer.observe(recent);
+      addEventListener('scroll', onScroll, {passive:true});
+    }
+    reduced.addEventListener('change', () => { if (reduced.matches) settle(); });
+    addEventListener('pagehide', settle, {once:true});
+    // Keyboard users never have to wait for decorative masks.
+    document.addEventListener('focusin', settle, {once:true});
+  }
   const stories = [...document.querySelectorAll('.project-story')];
   // Only the first scene gets a curtain reveal. Its pixels never pan or scale.
   const first = stories[0];
