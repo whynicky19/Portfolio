@@ -129,8 +129,12 @@
 .scene-learning .scene-screen { inset:7% 4%; }
 .scene-phone.device-phone { border:0; border-radius:0; background:none; box-shadow:none; aspect-ratio:851 / 1847; height:auto; filter:drop-shadow(12px 25px 16px #111b295c); }
 .device-phone .device-hardware { position:absolute; inset:0; width:100%; height:100%; }
-.phone-display { position:absolute; left:8.4606%; top:8.8793%; width:83.1962%; height:83.0536%; overflow:hidden; border-radius:8% / 3.7%; background:#060709; }
-.phone-display .authentic-screen { display:block; width:100%; height:100%; object-fit:contain; }
+/* Calibrated to the inner glass, not the outer titanium silhouette.
+   Native 851×1847 coordinates: x74, y164, width704, height1525⅓.
+   The lower glass corners are tighter than the old screenshot aperture:
+   74px top / 104px bottom radii keep UI clear of the curved metal rails. */
+.phone-display { position:absolute; left:8.69565%; top:8.87926%; width:82.72620%; height:auto; aspect-ratio:6 / 13; overflow:hidden; border-radius:10.51136% 10.51136% 14.77273% 14.77273% / 4.85140% 4.85140% 6.81818% 6.81818%; background:#060709; isolation:isolate; }
+.phone-display .authentic-screen { display:block; width:100%; height:100%; max-width:none; object-fit:contain; object-position:center; border:0; border-radius:0; transform:none; }
 /* FreelanceOS's source already includes its black bezel. Crop only that bezel,
    never the UI, using a fixed aperture rather than a second nested phone. */
 .finance-screen .phone-display { background:#0b0b0b; }

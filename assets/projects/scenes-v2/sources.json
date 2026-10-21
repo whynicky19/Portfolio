@@ -1,0 +1,66 @@
+{
+  "generator": "Built-in image_gen",
+  "created": "2026-10-21",
+  "assets": [
+    {
+      "id": "chatra",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-b4461789-9ad6-4045-a68d-22e40273ac67.png",
+      "output": "assets/projects/scenes-v2/chatra-scene.webp",
+      "mobile": "assets/projects/scenes-v2/chatra-scene-800.webp"
+    },
+    {
+      "id": "soyle",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-ef38d135-ef94-4d33-b207-904015d82077.png",
+      "output": "assets/projects/scenes-v2/soyle-scene.webp",
+      "mobile": "assets/projects/scenes-v2/soyle-scene-800.webp"
+    },
+    {
+      "id": "digital-urpaq",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-ba7dd65e-6c66-455b-b717-1d9611437bd4.png",
+      "output": "assets/projects/scenes-v2/digital-urpaq-scene.webp",
+      "mobile": "assets/projects/scenes-v2/digital-urpaq-scene-800.webp"
+    },
+    {
+      "id": "freelanceos",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-d829b660-b6b3-427f-88f5-47b8edb3bc53.png",
+      "output": "assets/projects/scenes-v2/freelanceos-scene.webp",
+      "mobile": "assets/projects/scenes-v2/freelanceos-scene-800.webp"
+    },
+    {
+      "id": "rugpull-risk",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-451fec76-13c4-4f9e-897a-3cd391e98d82.png",
+      "output": "assets/projects/scenes-v2/rugpull-risk-scene.webp",
+      "mobile": "assets/projects/scenes-v2/rugpull-risk-scene-800.webp"
+    },
+    {
+      "id": "forge",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-05f6df6e-13ad-4c11-a63e-5df2754beac5.png",
+      "output": "assets/projects/scenes-v2/forge-scene.webp",
+      "mobile": "assets/projects/scenes-v2/forge-scene-800.webp"
+    },
+    {
+      "id": "portfolio",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-f354735c-bc3c-49ce-b854-add3d9ec06ff.png",
+      "output": "assets/projects/scenes-v2/portfolio-scene.webp",
+      "mobile": "assets/projects/scenes-v2/portfolio-scene-800.webp"
+    },
+    {
+      "id": "chatra-api",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-5ab27c4e-4ab7-42cd-9495-787be028a4a4.png",
+      "output": "assets/projects/scenes-v2/chatra-api-scene.webp",
+      "mobile": "assets/projects/scenes-v2/chatra-api-scene-800.webp"
+    },
+    {
+      "id": "chatra-mobile",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-82670ed5-790b-4585-9a5a-e94c2c5c4b51.png",
+      "output": "assets/projects/scenes-v2/chatra-mobile-scene.webp",
+      "mobile": "assets/projects/scenes-v2/chatra-mobile-scene-800.webp"
+    },
+    {
+      "id": "learning",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-2026363a-2aaa-40bf-80b6-6c6b5e0f6d2d.png",
+      "output": "assets/projects/scenes-v2/learning-scene.webp",
+      "mobile": "assets/projects/scenes-v2/learning-scene-800.webp"
+    }
+  ]
+}

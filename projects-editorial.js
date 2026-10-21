@@ -101,8 +101,10 @@
       if(!entry.isIntersecting)return;
       if(!reduced.matches){
           const copy=entry.target;
-          reveals.push(copy.querySelector('h2').animate([{clipPath:'inset(100% 0 0)'},{clipPath:'inset(0 0 0)'}],{duration:550,easing:'cubic-bezier(.2,.7,.2,1)'}));
-          copy.querySelectorAll('p').forEach((el,i)=>reveals.push(el.animate([{opacity:.2},{opacity:1}],{duration:450,delay:Math.min(i*45,135),fill:'backwards'})));
+          // Pixel-row mask on live type; all glyphs keep their original geometry.
+          reveals.push(copy.querySelector('h2').animate([{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0 0)'}],{duration:420,easing:'steps(7,end)'}));
+          // Copy reveals independently of static hardware and the moving environment.
+          copy.querySelectorAll('.project-deck,.project-description,.project-role,.project-stack').forEach((el,i)=>reveals.push(el.animate([{clipPath:'inset(0 100% 0 0)',opacity:.6},{clipPath:'inset(0 0 0 0)',opacity:1}],{duration:480,delay:Math.min(i*60,150),easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'})));
       }
       observer.unobserve(entry.target);
     }),{threshold:.2});stories.slice(1).forEach(s=>observer.observe(s.querySelector('.project-copy')));

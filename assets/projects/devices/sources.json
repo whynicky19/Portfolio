@@ -20,10 +20,14 @@
     "source": "exec-b3892c4c-acd6-452e-afe4-9ea6484141ed.png",
     "asset": "assets/projects/devices/iphone-titanium.webp",
     "screen": {
-      "x": 72,
+      "x": 74,
       "y": 164,
-      "width": 708,
-      "height": 1534
+      "width": 704,
+      "height": 1525.333333,
+      "cornerRadiusTop": 74,
+      "cornerRadiusBottom": 104,
+      "aspectRatio": "6 / 13",
+      "fit": "contain; centered; no screenshot transform"
     },
     "canvas": {
       "width": 851,
