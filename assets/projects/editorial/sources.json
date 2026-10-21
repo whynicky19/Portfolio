@@ -1,0 +1,189 @@
+{
+  "scope": "Projects page only; existing screenshots are unchanged. New backgrounds contain no application UI.",
+  "generatedWith": "Built-in image_gen tool",
+  "backgrounds": [
+    {
+      "file": "courtyard.webp",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-3ad3590a-36c0-47de-9095-daf8002ddf32.png",
+      "prompt": "Use case: product-mockup. Generate a photorealistic empty backdrop for compositing an authentic website screenshot later. Landscape 3:2. Architectural editorial photography: pale warm concrete courtyard walls at outer left and right edges, dusty clear blue sky across upper half, quiet limestone horizontal surface in lower foreground. Strong but soft natural afternoon sunlight, realistic concrete pores and clean restrained shadows. Central 75% intentionally uncluttered, suitable for a large desktop display overlay. Premium creative portfolio, subtle natural film grain. NO devices, NO screens, NO interface, NO text, NO logos, NO people, NO spheres. One continuous photograph, not panels."
+    },
+    {
+      "file": "curtain.webp",
+      "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-0d268372-64be-4922-84c9-f2d30ace3885.png",
+      "prompt": "Photorealistic product photography background ONLY, landscape 3:2. Dusty blush coral fabric curtain with broad vertical folds on left half, matte warm sand plaster tabletop foreground, soft warm peach wall right half. Side daylight, gentle realistic shadows, restrained editorial art direction. Central 70% unobstructed empty space to later composite real application screens. No devices, no screens, no text, no logos, no people, no props, no spheres. Real material texture, not glossy plastic, not futuristic."
+    }
+  ],
+  "projects": [
+    {
+      "name": "Chatra",
+      "id": "chatra-project",
+      "screenshot": "assets/projects/chatra/classroom-1060.webp",
+      "background": "assets/projects/editorial/courtyard.webp",
+      "links": [
+        [
+          "View project",
+          "chatra.html"
+        ],
+        [
+          "GitHub",
+          "https://github.com/whynicky19/Chatra-Frontend-New"
+        ]
+      ]
+    },
+    {
+      "name": "Söyle",
+      "id": "soyle-project",
+      "screenshot": "assets/projects/soyle/adaptive-plan-1440.webp",
+      "background": "assets/projects/editorial/curtain.webp",
+      "links": [
+        [
+          "View project",
+          "soyle.html"
+        ],
+        [
+          "GitHub",
+          "https://github.com/whynicky19/Soyle"
+        ]
+      ]
+    },
+    {
+      "name": "Digital Urpaq",
+      "id": "digital-urpaq-project",
+      "screenshot": "assets/projects/digital-urpaq/discovery-1060.webp",
+      "background": "assets/projects/editorial/courtyard.webp",
+      "links": [
+        [
+          "View project",
+          "digital-urpaq.html"
+        ],
+        [
+          "GitHub",
+          "https://github.com/whynicky19/Digital-urpaq"
+        ]
+      ]
+    },
+    {
+      "name": "FreelanceOS",
+      "id": "freelanceos",
+      "screenshot": "assets/projects/freelanceos/finance-mobile-392.webp",
+      "background": "assets/projects/editorial/curtain.webp",
+      "links": [
+        [
+          "View prototype",
+          "img/freelanceOS.jpg"
+        ]
+      ]
+    },
+    {
+      "name": "RugPull Risk",
+      "id": "rugpull",
+      "screenshot": "assets/projects/rugpull/risk-dashboard-1000.webp",
+      "background": "assets/projects/artwork/rugpull-atmosphere.webp",
+      "links": [
+        [
+          "Frontend source",
+          "https://github.com/whynicky19/RugPull-Frontend"
+        ],
+        [
+          "Backend",
+          "https://github.com/whynicky19/RugPull-Backend"
+        ]
+      ]
+    },
+    {
+      "name": "FORGE",
+      "id": "forge",
+      "screenshot": "assets/projects/forge/landing-1200.webp",
+      "background": "assets/projects/artwork/forge-atmosphere.webp",
+      "links": [
+        [
+          "Live product",
+          "https://forge-ai-sana.vercel.app"
+        ],
+        [
+          "GitHub",
+          "https://github.com/whynicky19/FORGE"
+        ]
+      ]
+    },
+    {
+      "name": "Portfolio Website",
+      "id": "portfolio",
+      "screenshot": "img/portfolio-home-current.png",
+      "background": "assets/projects/artwork/archive-atmosphere.webp",
+      "links": [
+        [
+          "Visit homepage",
+          "index.html"
+        ],
+        [
+          "GitHub",
+          "https://github.com/whynicky19/Portfolio"
+        ]
+      ]
+    },
+    {
+      "name": "Chatra API",
+      "id": "chatra-backend",
+      "screenshot": "assets/projects/chatra/api-reference-1060.webp",
+      "background": "assets/projects/artwork/api-atmosphere.webp",
+      "links": [
+        [
+          "View source",
+          "https://github.com/whynicky19/Chatra-Backend-New"
+        ],
+        [
+          "Product story",
+          "chatra.html"
+        ]
+      ]
+    },
+    {
+      "name": "Chatra mobile",
+      "id": "chatra-mobile",
+      "screenshot": "assets/projects/chatra/mobile-classes-360.webp",
+      "background": "assets/projects/editorial/courtyard.webp",
+      "links": [
+        [
+          "View source",
+          "https://github.com/whynicky19/Chatra-app-IOS"
+        ],
+        [
+          "Case study",
+          "chatra.html"
+        ]
+      ]
+    },
+    {
+      "name": "CS50P + Odin",
+      "id": "learning",
+      "screenshot": "img/cs50p-960w.webp",
+      "background": "assets/projects/artwork/soyle-atmosphere.webp",
+      "links": [
+        [
+          "Explore archive",
+          "https://github.com/whynicky19/Odin-course"
+        ]
+      ]
+    }
+  ],
+  "facts": [
+    "Existing projects.html catalogue (all 10 entries retained)",
+    "chatra.html, soyle.html, digital-urpaq.html case studies",
+    "assets/projects/sources.json screenshot provenance",
+    "RugPull-Frontend/main/package.json confirms Nuxt 3",
+    "GitHub public repository list checked 2026-10-21"
+  ],
+  "missing": [
+    "Personal Todo: no verified project entry, repository or screenshot found",
+    "Hackathon MVP: no standalone project found; Digital Urpaq competition build retained",
+    "Learning SwiftUI: skill listed, no standalone project materials found",
+    "Docker Labs: no verified project materials found",
+    "FreelanceOS: no verified implementation stack, repository or live app; shown honestly as a prototype"
+  ],
+  "screenshotLimitations": [
+    "Chatra mobile original 360x780",
+    "FreelanceOS original crop 392x841",
+    "Portfolio preview is an explicitly labelled earlier iteration"
+  ]
+}
