@@ -1,5 +1,4 @@
 /* Homepage compositions and motion. Hero identity lives in hero-notebook.css. */
-.home-premium .apple-nav,.home-premium .apple-nav.glass-thick { position:absolute; background:transparent; backdrop-filter:none; box-shadow:none; }
 .home-premium .skip-link:not(:focus-visible) { opacity:0; pointer-events:none; }
 .home-premium main a { scroll-margin-top:32px; }
 .h-work { position:relative; margin:0; padding:76px 0 112px; background:#0b0d12; }

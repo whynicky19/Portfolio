@@ -17,17 +17,10 @@
     ['about.html#experience', 'Experience'],
     ['contact.html', 'Contact']
   ];
-  var CV_HREF = 'Alimzhan_Galymzhan_iOS_Developer_CV.pdf';
+  var CV_HREF = 'Alimzhan_Galymzhan_Frontend_CV.pdf';
 
   function isActive(href) {
     return href === page;
-  }
-
-  function themeIcons(size) {
-    return (
-      '<svg class="icon-sun" aria-hidden="true" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>' +
-      '<svg class="icon-moon" aria-hidden="true" width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
-    );
   }
 
   function buildNav() {
@@ -42,21 +35,19 @@
 
     return (
       '<a class="skip-link" href="#main-content">Skip to content</a>' +
-      '<nav class="apple-nav">' +
+      '<nav class="apple-nav" id="primary-nav" aria-label="Main navigation">' +
         '<div class="nav-inner">' +
         '<a class="nav-logo" href="index.html" aria-label="Alimzhan — home">Alimzhan</a>' +
         '<ul class="nav-menu">' + menuItems + '</ul>' +
         '<div class="nav-actions">' +
           '<a class="nav-cta" href="' + CV_HREF + '" target="_blank" rel="noopener">Résumé</a>' +
           '<a class="nav-cta nav-talk' + (isActive('contact.html') ? ' active' : '') + '" href="contact.html"' + (isActive('contact.html') ? ' aria-current="page"' : '') + '>Let’s talk <span aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-up-right"></use></svg></span></a>' +
-          '<button class="theme-toggle" id="themeToggle" type="button" aria-label="Use dark appearance" aria-pressed="false">' + themeIcons(15) + '</button>' +
           '</div>' +
           '<button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>' +
         '</div>' +
       '</nav>' +
       '<nav class="nav-mobile" id="mobileMenu" aria-label="Mobile navigation" aria-hidden="true">' +
         mobileItems +
-        '<button class="theme-toggle-mobile" id="themeToggleMobile" type="button" aria-label="Use dark appearance" aria-pressed="false">' + themeIcons(20) + 'Appearance</button>' +
       '</nav>'
     );
   }

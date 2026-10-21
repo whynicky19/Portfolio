@@ -82,13 +82,11 @@
     navFrame = 0;
     nav?.classList.toggle('glass-thick', window.scrollY > 20);
   }
-  // Home and Projects use a static transparent navigation surface.
-  if (!document.body.matches('.home-premium,.projects-editorial')) {
-    window.addEventListener('scroll', () => {
-      if (!navFrame) navFrame = requestAnimationFrame(updateNav);
-    }, { passive: true });
-    updateNav();
-  }
+  // The same fixed material applies to every page.
+  window.addEventListener('scroll', () => {
+    if (!navFrame) navFrame = requestAnimationFrame(updateNav);
+  }, { passive: true });
+  updateNav();
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (event) => {

@@ -165,21 +165,25 @@
   }
 
   async function prepareContact() {
+    // Unlike the load-time Hero, this word is already visible when its scroll
+    // observer runs. Keep the real text in place during mobile swipes.
+    const mobile = matchMedia('(max-width:800px), (pointer:coarse)');
+    if (mobile.matches) return;
     if(reduced.matches||!('IntersectionObserver' in window)) return;
     const word=document.querySelector('.contact-word');
     if(!word) return;
     try {
       await document.fonts.load('700 100px Silkscreen');
-      if(reduced.matches) return;
+      if(reduced.matches || mobile.matches) return;
       contactObserver=new IntersectionObserver(entries=>{
         if(!entries.some(e=>e.isIntersecting)) return;
         contactObserver.disconnect();
-        if(reduced.matches) return;
+        if(reduced.matches || mobile.matches) return;
         try {
           contactMask=fragments(word);word.classList.add('pixel-fragments-active');
           word.dataset.assemblyState='running';const start=performance.now();
           function tick(now) {
-            if(!contactMask||reduced.matches) {contactMask?.remove();word.dataset.assemblyState='skipped';return;}
+            if(!contactMask||reduced.matches||mobile.matches) {contactMask?.remove();contactMask=null;word.dataset.assemblyState='skipped';return;}
             try {
               const elapsed=now-start;
               if(elapsed>=650) {contactMask.remove();contactMask=null;word.dataset.assemblyState='complete';return;}

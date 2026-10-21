@@ -1,7 +1,7 @@
 @font-face { font-family:Silkscreen; src:url('fonts/Silkscreen-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
 .projects-editorial { --editorial-paper:#f7f5f2; color:#141413; background:var(--editorial-paper); font-family:Inter,Arial,sans-serif; }
 .projects-editorial main { overflow:clip; }
-.projects-editorial .apple-nav,.projects-editorial .apple-nav.glass-thick { position:absolute; background:transparent; backdrop-filter:none; box-shadow:none; animation:none; color:#101d2c; }
+.projects-editorial .apple-nav { animation:none; }
 .projects-editorial .nav-logo,.projects-editorial .nav-menu a,.projects-editorial .nav-cta:not(.nav-talk),.projects-editorial .theme-toggle { color:#101d2c; }
 .projects-editorial .nav-burger span { background:#101d2c; }
 .projects-editorial .nav-mobile[aria-hidden="true"] { visibility:hidden; transition:none; }
