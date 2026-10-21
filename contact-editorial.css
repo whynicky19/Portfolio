@@ -24,3 +24,73 @@
 @media(max-width:1100px){.contact-foreground-leaves{width:360px;height:480px;right:-90px;bottom:-195px}.hero-invitation{right:35px}}
 @media(max-width:767px){.contact-foreground-leaves{width:240px;height:360px;right:-90px;bottom:-155px}.hero-invitation{right:25px}}
 @media(max-width:430px){.contact-foreground-leaves{width:210px;height:320px;right:-100px;bottom:-145px}.hero-invitation{right:20px}}
+/* Size the foliage by its real aspect ratio, so transparent margins don't hide it. */
+.contact-foreground-leaves{width:600px;height:auto;aspect-ratio:3/2;object-fit:contain;right:-20px;bottom:-120px;filter:blur(2px);opacity:.92}.hero-invitation{right:200px}.contact-editorial .pixel-laptop{right:18%}
+@media(max-width:1100px){.contact-foreground-leaves{width:470px;right:-20px;bottom:-110px}.hero-invitation{right:155px}.contact-editorial .pixel-laptop{right:19%}}
+@media(max-width:767px){
+ .contact-foreground-leaves{width:380px;right:-16px;bottom:-110px}
+ .contact-editorial .hero-board{min-height:710px}
+ .hero-invitation{right:125px;bottom:8px}
+ .hero-invitation>p{font-size:18px;line-height:1.3}
+ .hero-invitation>svg{width:34px}
+ .contact-editorial .pixel-laptop{right:32%;bottom:110px}
+ .contact-editorial .pixel-chat{left:14%;bottom:125px}
+ .contact-editorial .opportunities{padding-top:54px}
+ .opportunities>div>h2{padding-right:100px;font-size:32px}
+ .contact-area{width:calc(100% - 40px);padding:0;border:0;background:none;border-radius:0;gap:24px;margin-bottom:48px}
+ .contact-intro{padding:0 0 8px}
+ .contact-intro>p:not(.contact-kicker){max-width:520px}
+ .message-panel,.direct-panel{width:100%;padding:28px 24px;border-radius:18px;box-shadow:0 5px 20px #302c2009}
+ .contact-form-row{grid-template-columns:1fr;gap:22px}
+ .contact-form-field label{font-size:12px}
+ .contact-form-field input,.contact-form-field textarea{min-height:50px;padding:13px 14px;font-size:16px}
+ .contact-form-field textarea{min-height:180px}
+ .contact-channel{min-height:84px;padding-block:20px;gap:14px}
+ .contact-channel>span>span{font-size:14px}
+ .contact-submit{min-height:50px;font-size:14px;padding-inline:24px}
+ .contact-sunset{background-position:60% center}
+}
+@media(max-width:430px){
+ .contact-foreground-leaves{width:350px;right:-14px;bottom:-105px}
+ .contact-editorial .hero-board{min-height:705px}
+ .hero-invitation{right:110px;bottom:0}
+ .hero-invitation>p{font-size:17px}
+ .hero-invitation>svg{width:30px;height:60px}
+ .contact-editorial .pixel-laptop{right:31%;bottom:105px;width:68px}
+ .contact-editorial .pixel-chat{left:12%;bottom:120px;width:48px}
+ .opportunities>div>h2{padding-right:86px;font-size:30px}
+ .contact-area{width:calc(100% - 32px);padding:0}
+ .contact-intro h2{font-size:44px;line-height:1.05}
+ .message-panel,.direct-panel{padding:26px 22px}
+ .contact-channel>span>span{font-size:13px}
+ .contact-sunset{min-height:390px}
+}
+@media(max-width:359px){
+ .contact-foreground-leaves{width:310px;right:-12px;bottom:-95px}
+ .contact-editorial .hero-board{min-height:680px}
+ .hero-invitation{right:94px;bottom:0}
+ .hero-invitation>p{font-size:15px}
+ .hero-invitation>svg{width:26px}
+ .contact-editorial .pixel-laptop{right:30%;bottom:105px;width:60px}
+ .opportunities>div>h2{font-size:28px;padding-right:75px}
+ .message-panel,.direct-panel{padding:24px 20px}
+ .message-panel>h3,.direct-panel>h3{font-size:22px}
+ .contact-intro h2{font-size:40px}
+ .contact-channel>span>span{font-size:12px}
+}
+@media(max-width:767px){.hero-invitation{right:150px}.hero-invitation>p{white-space:nowrap}}
+@media(max-width:359px){.hero-invitation{right:118px}.hero-invitation>p{font-size:15px}}
+@media(min-width:768px) and (max-width:900px){
+ .contact-editorial .hero-board{min-height:730px;display:flex;align-items:flex-start;justify-content:center}
+ .contact-editorial .hero-copy{width:100%;padding-top:240px;padding-bottom:0}
+ .contact-editorial .hero-copy h1{font-size:112px}
+ .contact-editorial .yellow-note{width:170px;min-height:215px;padding:25px 24px;top:6px;left:20px}
+ .contact-editorial .yellow-note p{font-size:23px}
+ .contact-editorial .checklist-note{width:180px;min-height:205px;padding:28px 20px;right:20px;top:8px}
+ .contact-editorial .checklist-note ul{font-size:20px;gap:15px}
+ .hero-pencil-arrow,.hero-margin-note{display:none}
+ .contact-editorial .pixel-laptop{right:23%;bottom:75px;width:86px}
+ .contact-editorial .pixel-chat{left:22%;bottom:95px}
+ .hero-invitation{right:170px;bottom:0}
+ .contact-foreground-leaves{width:420px;right:-20px;bottom:-110px}
+}
