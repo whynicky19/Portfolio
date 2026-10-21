@@ -1,5 +1,5 @@
 /* Shared progressive-enhancement layer: navigation, theme, reveal motion,
-   filters, pointer depth, and the Chatra scroll story. */
+   filters and the Chatra case-study story. */
 (function () {
   'use strict';
 
@@ -82,10 +82,13 @@
     navFrame = 0;
     nav?.classList.toggle('glass-thick', window.scrollY > 20);
   }
-  window.addEventListener('scroll', () => {
-    if (!navFrame) navFrame = requestAnimationFrame(updateNav);
-  }, { passive: true });
-  updateNav();
+  // Home and Projects use a static transparent navigation surface.
+  if (!document.body.matches('.home-premium,.projects-editorial')) {
+    window.addEventListener('scroll', () => {
+      if (!navFrame) navFrame = requestAnimationFrame(updateNav);
+    }, { passive: true });
+    updateNav();
+  }
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (event) => {
@@ -162,67 +165,6 @@
     if (hash && buttons.some((button) => button.dataset.filter === hash)) applyFilter(hash);
   }
 
-  function initPointerDepth() {
-    const scenes = Array.from(document.querySelectorAll('[data-product-parallax]'));
-    if (!scenes.length) return;
-    let scrollFrame = 0;
-    function updateScrollDepth() {
-      scrollFrame = 0;
-      scenes.forEach((scene) => {
-        const hero = scene.closest('.p-hero');
-        if (!hero) return;
-        const rect = hero.getBoundingClientRect();
-        const progress = motionQuery.matches ? 0 : Math.max(0, Math.min(1, -rect.top / rect.height));
-        const strength = window.innerWidth <= 900 ? .45 : 1;
-        scene.style.setProperty('--scroll-y', (progress * 88 * strength).toFixed(2) + 'px');
-        scene.style.setProperty('--scroll-phone-y', (progress * -54 * strength).toFixed(2) + 'px');
-        scene.style.setProperty('--scroll-light-y', (progress * 140 * strength).toFixed(2) + 'px');
-        scene.style.setProperty('--scroll-note-y', (progress * -24 * strength).toFixed(2) + 'px');
-        hero.style.setProperty('--hero-shade', (progress * .85).toFixed(3));
-        hero.nextElementSibling?.style.setProperty('--work-lift', (progress * -28 * strength).toFixed(2) + 'px');
-        if (motionQuery.matches) {
-          scene.style.setProperty('--pointer-x', '0px');
-          scene.style.setProperty('--pointer-y', '0px');
-        }
-      });
-    }
-    window.addEventListener('scroll', () => {
-      if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollDepth);
-    }, { passive: true });
-    window.addEventListener('resize', updateScrollDepth, { passive: true });
-    motionQuery.addEventListener('change', updateScrollDepth);
-    updateScrollDepth();
-
-    if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-    scenes.forEach((scene) => {
-      let frame = 0;
-      let x = 0, y = 0, targetX = 0, targetY = 0, lastTime = 0;
-      function settlePointer(time) {
-        const dt = Math.min(32, time - (lastTime || time - 16));
-        lastTime = time;
-        const blend = 1 - Math.exp(-dt / 70);
-        x += (targetX - x) * blend;
-        y += (targetY - y) * blend;
-        if (motionQuery.matches) x = y = targetX = targetY = 0;
-        scene.style.setProperty('--pointer-x', x.toFixed(2) + 'px');
-        scene.style.setProperty('--pointer-y', y.toFixed(2) + 'px');
-        frame = Math.abs(targetX - x) + Math.abs(targetY - y) > .02 ? requestAnimationFrame(settlePointer) : 0;
-        if (!frame) lastTime = 0;
-      }
-      scene.addEventListener('pointermove', (event) => {
-        if (motionQuery.matches) return;
-        const rect = scene.getBoundingClientRect();
-        targetX = ((event.clientX - rect.left) / rect.width - .5) * 16;
-        targetY = ((event.clientY - rect.top) / rect.height - .5) * 16;
-        if (!frame) frame = requestAnimationFrame(settlePointer);
-      });
-      scene.addEventListener('pointerleave', () => {
-        targetX = targetY = 0;
-        if (!frame) frame = requestAnimationFrame(settlePointer);
-      });
-    });
-  }
-
   function initStickyStory() {
     const story = document.querySelector('[data-sticky-story]');
     if (!story) return;
@@ -239,7 +181,7 @@
     steps.forEach((step) => observer.observe(step));
   }
 
-  function init() { initReveals(); initFilters(); initPointerDepth(); initStickyStory(); }
+  function init() { initReveals(); initFilters(); initStickyStory(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
 })();

@@ -1,100 +1,31 @@
-/* Native scrolling. Independent transforms keep entrance, hover and depth from fighting. */
+/* One-time content entrances. Native scrolling never writes visual state. */
 (() => {
   'use strict';
-  const hero = document.querySelector('.p-hero');
-  if (!hero) return;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const hero = document.querySelector('.notebook-hero');
+  if (!hero || !window.PortfolioReveal) return;
+  const { once, animate, reduced } = window.PortfolioReveal;
+  document.querySelectorAll('.h-reveal').forEach(element => once(element, () => {
+    animate(element, [{opacity:.35, translate:'0 12px'}, {opacity:1, translate:'0 0'}], {duration:480});
+  }));
+  const note = document.querySelector('.closing-note');
+  if (note) once(note, () => animate(note, [{opacity:0, translate:'0 8px'}, {opacity:1, translate:'0 0'}], {duration:360}));
+  // Pointer feedback is independent of both scroll and the assembly timeline.
+  const pointer = matchMedia('(hover:hover) and (pointer:fine)');
   const notes = [...hero.querySelectorAll('.identity-note')];
-  const noteTravel = [-44, -28, 32, -38];
-  const pointerDepth = [1, -.65, .6, -1];
-  const approach = document.querySelector('.h-capabilities');
-  const toolkit = document.querySelector('.h-toolkit');
-  const contact = document.querySelector('.h-contact');
-  const clamp = n => Math.max(0, Math.min(1, n));
-  let frame = 0, targetX = 0, targetY = 0, pointerX = 0, pointerY = 0;
-  const px = n => `${n.toFixed(2)}px`;
-  const tracked = [hero, approach, toolkit, contact];
-  const geometry = new Map();
-  const lastValues = new WeakMap();
-  let needsMeasure = true;
-  function set(el, key, value) {
-    let values = lastValues.get(el);
-    if (!values) lastValues.set(el, values = new Map());
-    if (values.get(key) === value) return;
-    el.style.setProperty(key, value);
-    values.set(key, value);
-  }
-  function rect(el) {
-    const r = geometry.get(el);
-    return {top:r.top-scrollY, bottom:r.top+r.height-scrollY, height:r.height};
-  }
-  const visible = r => r.bottom >= -80 && r.top <= innerHeight + 80;
-  function paint() {
-    frame = 0;
-    // Cache layout only on resize/content changes. offsetTop ignores entrance/hover transforms.
-    if (needsMeasure) {
-      tracked.forEach(el => {
-        let top = 0;
-        for (let parent = el; parent; parent = parent.offsetParent) top += parent.offsetTop;
-        geometry.set(el, {top, height:el.offsetHeight});
-      });
-      needsMeasure = false;
-    }
-    const h = rect(hero), a = rect(approach), t = rect(toolkit), c = rect(contact);
-    const strength = innerWidth <= 600 ? .55 : 1;
-    const progress = reduced.matches ? 0 : clamp(-h.top / h.height);
-    if (reduced.matches || !finePointer.matches || h.bottom <= 0) targetX = targetY = 0;
-    pointerX += (targetX - pointerX) * .22;
-    pointerY += (targetY - pointerY) * .22;
-    if (reduced.matches) pointerX = pointerY = 0;
-    set(hero, '--paper-y', px(progress * 108 * strength));
-    set(hero, '--name-y', px(progress * 36 * strength));
-    set(hero, '--frame-y', px(-progress * 24 * strength));
-    notes.forEach((note,i) => {
-      set(note, '--note-y', px(progress * noteTravel[i] * strength));
-      set(note, '--pointer-x', px(pointerX * pointerDepth[i]));
-      set(note, '--pointer-y', px(pointerY * pointerDepth[i]));
+  const depth = [1, -.65, .6, -1];
+  const reset = () => notes.forEach(note => {
+    note.style.removeProperty('--pointer-x');
+    note.style.removeProperty('--pointer-y');
+  });
+  hero.addEventListener('pointermove', event => {
+    if (reduced.matches || !pointer.matches || event.pointerType === 'touch') return;
+    const rect = hero.getBoundingClientRect();
+    notes.forEach((note, i) => {
+      note.style.setProperty('--pointer-x', (((event.clientX-rect.left)/rect.width-.5)*6*depth[i])+'px');
+      note.style.setProperty('--pointer-y', (((event.clientY-rect.top)/rect.height-.5)*4*depth[i])+'px');
     });
-    const line = reduced.matches ? 1 : .3 + .7 * clamp((innerHeight - a.top) / (innerHeight * .7));
-    if (visible(a) || reduced.matches) set(approach, '--line-scale', line.toFixed(3));
-    const tech = reduced.matches ? .5 : clamp((innerHeight - t.top) / (innerHeight + t.height));
-    if (visible(t) || reduced.matches) {
-      set(toolkit, '--tech-light-y', px((tech - .5) * 100 * strength));
-    }
-    const close = reduced.matches ? .5 : clamp((innerHeight - c.top) / (innerHeight + c.height));
-    if (visible(c) || reduced.matches) {
-      set(contact, '--closing-y', px((close - .5) * 48 * strength));
-    }
-    if (Math.abs(targetX-pointerX) + Math.abs(targetY-pointerY) > .02) schedule();
-  }
-  function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
-  hero.addEventListener('pointermove', e => {
-    if (!finePointer.matches || reduced.matches || e.pointerType === 'touch') return;
-    targetX = (e.clientX / innerWidth - .5) * 8;
-    targetY = (e.clientY / innerHeight - .5) * 6;
-    schedule();
   }, {passive:true});
-  hero.addEventListener('pointerleave', () => { targetX = targetY = 0; schedule(); });
-  addEventListener('scroll',schedule,{passive:true});
-  function measure() { needsMeasure = true; schedule(); }
-  addEventListener('resize',measure,{passive:true});
-  reduced.addEventListener('change',schedule);
-  finePointer.addEventListener('change',schedule);
-  paint();
-  if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.querySelector('main'));
-  document.fonts?.ready.then(measure);
-  // Content is visible by default, including if construction or observation fails.
-  if ('IntersectionObserver' in window) {
-    try {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-revealed');
-          observer.unobserve(entry.target);
-        });
-      }, {threshold:.12});
-      document.querySelectorAll('.h-reveal,.closing-action').forEach(e=>observer.observe(e));
-    } catch (_) { /* No hidden pending state to recover. */ }
-  }
+  hero.addEventListener('pointerleave', reset);
+  reduced.addEventListener('change', reset);
+  pointer.addEventListener('change', reset);
 })();

@@ -1,5 +1,6 @@
 /* Homepage compositions and motion. Hero identity lives in hero-notebook.css. */
 .home-premium .apple-nav,.home-premium .apple-nav.glass-thick { position:absolute; background:transparent; backdrop-filter:none; box-shadow:none; }
+.home-premium .skip-link:not(:focus-visible) { opacity:0; pointer-events:none; }
 .home-premium main a { scroll-margin-top:32px; }
 .h-work { position:relative; margin:0; padding:76px 0 112px; background:#0b0d12; }
 .h-work::before { display:none; }
@@ -30,11 +31,11 @@
 .approach-signoff span { display:block; }
 .principle-notes { display:grid; grid-template-columns:1fr 1fr; gap:36px 32px; padding-top:4px; }
 .principle { position:relative; padding:20px 0 0; margin:0; border:0; }
-.principle::before { content:""; position:absolute; left:0; top:0; height:1px; width:100%; background:#a4ac9a; transform:scaleX(var(--line-scale,1)); transform-origin:left; }
+.principle::before { content:""; position:absolute; left:0; top:0; height:1px; width:100%; background:#a4ac9a; transform-origin:left; }
 .principle h3 { margin:0 0 12px; font-size:19px; line-height:1.25; letter-spacing:-.025em; }
 .principle p { font-size:16px; color:#5b6058; line-height:1.6; }
 .h-toolkit { position:relative; isolation:isolate; overflow:hidden; background:#0d141f; color:#f3f6ff; padding:88px 0 112px; }
-.tech-light { position:absolute; z-index:-1; width:65%; height:150%; top:-35%; right:-10%; background:linear-gradient(115deg,transparent 35%,#aac8f21a 45%,#8ea8d00a 65%,transparent); transform:translateY(var(--tech-light-y,0px)) rotate(-8deg); pointer-events:none; }
+.tech-light { position:absolute; z-index:-1; width:65%; height:150%; top:-35%; right:-10%; background:linear-gradient(115deg,transparent 35%,#aac8f21a 45%,#8ea8d00a 65%,transparent); transform:rotate(-8deg); pointer-events:none; }
 .h-toolkit>.h-shell { display:grid; grid-template-columns:.75fr 1.25fr; gap:70px; align-items:start; }
 .h-toolkit .h-section-head { display:block; margin:0; }
 .h-toolkit h2 { font-size:clamp(42px,4.6vw,65px); max-width:390px; }
@@ -61,7 +62,7 @@
 /* Closing page: paper, ink and a single note; no photographic background. */
 .h-contact { position:relative; isolation:isolate; padding:96px 0 48px; background:#f8f7f3; color:#191a18; }
 .closing-paper { position:absolute; z-index:-1; inset:0; overflow:hidden; pointer-events:none; }
-.closing-paper::before { content:""; position:absolute; inset:-50px 0; background:repeating-linear-gradient(0deg,transparent 0 39px,#5265760c 39px 40px); transform:translateY(var(--closing-y,0px)); }
+.closing-paper::before { content:""; position:absolute; inset:-50px 0; background:repeating-linear-gradient(0deg,transparent 0 39px,#5265760c 39px 40px); }
 .closing-layout { display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:56px 80px; }
 .h-contact h2 { font-size:clamp(48px,5.5vw,78px); line-height:1.04; letter-spacing:-.055em; }
 .h-contact .h-body { margin:28px 0 0; color:#555d50; font-size:16px; }
@@ -85,14 +86,6 @@
 .home-premium .apple-footer { background:#f8f7f3; border-top:1px solid #bfc3b8; }
 .home-premium .footer-col-intro .footer-note { max-width:280px; }
 .home-premium .footer-bottom { border-color:#d4d7cd; }
-@media(prefers-reduced-motion:no-preference) {
- .h-reveal.is-revealed { animation:section-arrive 650ms var(--h-ease) var(--reveal-delay,0ms) backwards; }
- .feature-card.is-revealed { animation:card-arrive 700ms var(--h-ease) var(--reveal-delay,0ms) backwards; }
- .closing-action.is-revealed .closing-note { animation:note-arrive 650ms var(--h-ease) 100ms backwards; }
-}
-@keyframes section-arrive { from { opacity:.25; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-@keyframes card-arrive { from { opacity:.35; } to { opacity:1; } }
-@keyframes note-arrive { from { opacity:0; } to { opacity:1; } }
 @media(max-width:1000px) {
  .approach-layout { gap:40px; }
  .h-toolkit>.h-shell { grid-template-columns:1fr; gap:46px; }

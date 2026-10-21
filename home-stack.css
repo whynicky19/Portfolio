@@ -1,4 +1,4 @@
-/* Home MY STACK only. The photograph is a separate, overscanned scroll layer. */
+/* Home MY STACK only. The photograph stays anchored to its section. */
 .home-premium .home-stack {
   position:relative;
   isolation:isolate;
@@ -7,7 +7,7 @@
   background:#b8c5d4;
   color:#171717;
 }
-.home-stack .stack-sky { position:absolute; inset:-100px 0; z-index:-2; pointer-events:none; transform:translate3d(0,var(--stack-sky-y,0px),0); }
+.home-stack .stack-sky { position:absolute; inset:-100px 0; z-index:-2; pointer-events:none; }
 .home-stack .stack-sky img { width:100%; height:100%; max-width:none; object-fit:cover; object-position:50% 56%; }
 /* One light veil preserves the photograph, with predictable text contrast. */
 .home-stack::after { content:""; position:absolute; inset:0; z-index:-1; background:rgb(255 252 246 / 18%); pointer-events:none; }

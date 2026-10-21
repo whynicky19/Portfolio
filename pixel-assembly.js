@@ -133,6 +133,13 @@
       line.setAttribute('x','.75');line.setAttribute('y','.75');line.setAttribute('width',board.offsetWidth-1.5);line.setAttribute('height',board.offsetHeight-1.5);
       line.setAttribute('fill','none');line.setAttribute('stroke','#c7542f');line.setAttribute('stroke-width','1.5');line.setAttribute('pathLength','1');line.setAttribute('stroke-dasharray','1');
       frameSVG.append(line);board.append(frameSVG);
+      // Start the visual clock only once the real font and fragment geometry
+      // exist. Network/font delay must not consume the assembly before paint.
+      clearTimeout(entrance.timer);
+      entrance.start=performance.now();
+      entrance.timer=setTimeout(()=>finish('fallback'),3400);
+      root.dataset.assemblyCount='1';
+      heroMask.draw(0);
       uiAnimations.push(line.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:500,delay:1500-(performance.now()-entrance.start),fill:'both',easing:'cubic-bezier(.2,.75,.25,1)'}));
       ['.note-mint','.note-yellow','.note-peach','.note-blue'].forEach((s,i)=>animateUI(s,1500+i*65,300,8));
       animateUI('.notebook-intro',1800,300,0);

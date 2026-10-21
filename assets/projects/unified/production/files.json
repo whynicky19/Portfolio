@@ -1,0 +1,378 @@
+{
+  "integration": [
+    "projects.html",
+    "projects-unified.css"
+  ],
+  "productionScripts": [
+    "scripts/build-unified-showcases.py",
+    "scripts/qa-unified-showcases.cjs"
+  ],
+  "sources": [
+    {
+      "path": "assets/projects/chatra/classroom-1060.webp",
+      "sha256": "8f997817fbb2272e491b9877197fe9cd3825ddb74d8abfa5d55e39884bcdb446"
+    },
+    {
+      "path": "assets/projects/chatra/mobile-classes-360.webp",
+      "sha256": "4866d80ea204c144286f52ae3a0c8392998edae598b6260269d7c0db112f26e1"
+    },
+    {
+      "path": "assets/projects/soyle/adaptive-plan-1440.webp",
+      "sha256": "288db093cc31c038c97ac220678f7d6937b9cf249143babc0f977033048614bc"
+    },
+    {
+      "path": "assets/projects/digital-urpaq/discovery-1060.webp",
+      "sha256": "15f6ffeac986c079c849769e2d643231fc1293062b9e5b29abe56fff33bd3f54"
+    },
+    {
+      "path": "assets/projects/devices/freelanceos-display.webp",
+      "sha256": "b4ba8c6af0e0eeaf5bd6942cd40901d6ec73adf415185ecbddd6ee358d100190"
+    },
+    {
+      "path": "assets/projects/rugpull/risk-dashboard-1000.webp",
+      "sha256": "74f6fc7996f9cb7752937d5c7fdfe2aef6e68832bd0a4f7c257e3cfd0fed1cd5"
+    },
+    {
+      "path": "assets/projects/forge/landing-1200.webp",
+      "sha256": "045a488059d5b841a6f4ca960f8cb2012019ad7679eab3e90e8e20b0e12683d9"
+    },
+    {
+      "path": "assets/projects/editorial/portfolio-home-1440.webp",
+      "sha256": "b856d19382fe21503a4096962524917670ef12080fdaeadf03d546323b9619a8"
+    },
+    {
+      "path": "assets/projects/chatra/api-reference-1060.webp",
+      "sha256": "a9fbf230e31577d18d69e94c978fef399bda54aef6ce7344f0f5bc0fb686034f"
+    },
+    {
+      "path": "img/video-posters/subjects.jpg",
+      "sha256": "6e853d1ee1a1294b79c2fe90bdf76be3195da4c4f676b43eae303c8ec71e6ada"
+    },
+    {
+      "path": "assets/projects/learning/cs50p-week9.png",
+      "sha256": "895bd5437be5070d1ac0c1665cc92e813c682ea330992defe2d89df9d90ece52"
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/projects/unified/chatra-api-showcase-800.webp",
+      "bytes": 56192
+    },
+    {
+      "path": "assets/projects/unified/chatra-api-showcase.webp",
+      "bytes": 145378
+    },
+    {
+      "path": "assets/projects/unified/chatra-mobile-showcase-800.webp",
+      "bytes": 264770
+    },
+    {
+      "path": "assets/projects/unified/chatra-mobile-showcase.webp",
+      "bytes": 634870
+    },
+    {
+      "path": "assets/projects/unified/chatra-showcase-800.webp",
+      "bytes": 79574
+    },
+    {
+      "path": "assets/projects/unified/chatra-showcase.webp",
+      "bytes": 210294
+    },
+    {
+      "path": "assets/projects/unified/cs50p-odin-showcase-800.webp",
+      "bytes": 103044
+    },
+    {
+      "path": "assets/projects/unified/cs50p-odin-showcase.webp",
+      "bytes": 260696
+    },
+    {
+      "path": "assets/projects/unified/digital-urpaq-showcase-800.webp",
+      "bytes": 101110
+    },
+    {
+      "path": "assets/projects/unified/digital-urpaq-showcase.webp",
+      "bytes": 251976
+    },
+    {
+      "path": "assets/projects/unified/forge-showcase-800.webp",
+      "bytes": 92058
+    },
+    {
+      "path": "assets/projects/unified/forge-showcase.webp",
+      "bytes": 242250
+    },
+    {
+      "path": "assets/projects/unified/freelanceos-showcase-800.webp",
+      "bytes": 92964
+    },
+    {
+      "path": "assets/projects/unified/freelanceos-showcase.webp",
+      "bytes": 280334
+    },
+    {
+      "path": "assets/projects/unified/portfolio-showcase-800.webp",
+      "bytes": 48324
+    },
+    {
+      "path": "assets/projects/unified/portfolio-showcase.webp",
+      "bytes": 138214
+    },
+    {
+      "path": "assets/projects/unified/rugpull-risk-showcase-800.webp",
+      "bytes": 109398
+    },
+    {
+      "path": "assets/projects/unified/rugpull-risk-showcase.webp",
+      "bytes": 282050
+    },
+    {
+      "path": "assets/projects/unified/soyle-showcase-800.webp",
+      "bytes": 128182
+    },
+    {
+      "path": "assets/projects/unified/soyle-showcase.webp",
+      "bytes": 335080
+    },
+    {
+      "path": "assets/projects/unified/production/calibration.json",
+      "bytes": 13746
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-api-calibration.jpg",
+      "bytes": 160995
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-api-master.png",
+      "bytes": 1384375
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-api-plate.png",
+      "bytes": 1626929
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-api-screen-1-comparison.jpg",
+      "bytes": 150527
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-api-screen-1-mask.png",
+      "bytes": 3304
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-calibration.jpg",
+      "bytes": 201361
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-master.png",
+      "bytes": 1512578
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-calibration.jpg",
+      "bytes": 482910
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-master.png",
+      "bytes": 2635691
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-plate.png",
+      "bytes": 2907154
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-refined-plate.png",
+      "bytes": 2859606
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-screen-1-comparison.jpg",
+      "bytes": 253011
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-screen-1-mask.png",
+      "bytes": 4802
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-screen-2-comparison.jpg",
+      "bytes": 272934
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-mobile-screen-2-mask.png",
+      "bytes": 4806
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-plate.png",
+      "bytes": 1671315
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-screen-1-comparison.jpg",
+      "bytes": 132659
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-screen-1-mask.png",
+      "bytes": 2604
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-screen-2-comparison.jpg",
+      "bytes": 224208
+    },
+    {
+      "path": "assets/projects/unified/production/chatra-screen-2-mask.png",
+      "bytes": 2498
+    },
+    {
+      "path": "assets/projects/unified/production/cs50p-odin-calibration.jpg",
+      "bytes": 233018
+    },
+    {
+      "path": "assets/projects/unified/production/cs50p-odin-master.png",
+      "bytes": 1655785
+    },
+    {
+      "path": "assets/projects/unified/production/cs50p-odin-plate.png",
+      "bytes": 1756462
+    },
+    {
+      "path": "assets/projects/unified/production/cs50p-odin-screen-1-comparison.jpg",
+      "bytes": 198032
+    },
+    {
+      "path": "assets/projects/unified/production/cs50p-odin-screen-1-mask.png",
+      "bytes": 3621
+    },
+    {
+      "path": "assets/projects/unified/production/digital-urpaq-calibration.jpg",
+      "bytes": 255333
+    },
+    {
+      "path": "assets/projects/unified/production/digital-urpaq-master.png",
+      "bytes": 1743348
+    },
+    {
+      "path": "assets/projects/unified/production/digital-urpaq-plate.png",
+      "bytes": 2002375
+    },
+    {
+      "path": "assets/projects/unified/production/digital-urpaq-screen-1-comparison.jpg",
+      "bytes": 116540
+    },
+    {
+      "path": "assets/projects/unified/production/digital-urpaq-screen-1-mask.png",
+      "bytes": 2899
+    },
+    {
+      "path": "assets/projects/unified/production/forge-calibration.jpg",
+      "bytes": 263103
+    },
+    {
+      "path": "assets/projects/unified/production/forge-master.png",
+      "bytes": 1718768
+    },
+    {
+      "path": "assets/projects/unified/production/forge-plate.png",
+      "bytes": 1944160
+    },
+    {
+      "path": "assets/projects/unified/production/forge-screen-1-comparison.jpg",
+      "bytes": 97894
+    },
+    {
+      "path": "assets/projects/unified/production/forge-screen-1-mask.png",
+      "bytes": 4159
+    },
+    {
+      "path": "assets/projects/unified/production/freelanceos-calibration.jpg",
+      "bytes": 257352
+    },
+    {
+      "path": "assets/projects/unified/production/freelanceos-master.png",
+      "bytes": 1865047
+    },
+    {
+      "path": "assets/projects/unified/production/freelanceos-plate.png",
+      "bytes": 2119524
+    },
+    {
+      "path": "assets/projects/unified/production/freelanceos-screen-1-comparison.jpg",
+      "bytes": 166900
+    },
+    {
+      "path": "assets/projects/unified/production/freelanceos-screen-1-mask.png",
+      "bytes": 6136
+    },
+    {
+      "path": "assets/projects/unified/production/generation.json",
+      "bytes": 22144
+    },
+    {
+      "path": "assets/projects/unified/production/portfolio-calibration.jpg",
+      "bytes": 172835
+    },
+    {
+      "path": "assets/projects/unified/production/portfolio-master.png",
+      "bytes": 1312769
+    },
+    {
+      "path": "assets/projects/unified/production/portfolio-plate.png",
+      "bytes": 1635304
+    },
+    {
+      "path": "assets/projects/unified/production/portfolio-screen-1-comparison.jpg",
+      "bytes": 124920
+    },
+    {
+      "path": "assets/projects/unified/production/portfolio-screen-1-mask.png",
+      "bytes": 2695
+    },
+    {
+      "path": "assets/projects/unified/production/prompts.json",
+      "bytes": 20775
+    },
+    {
+      "path": "assets/projects/unified/production/refinements.json",
+      "bytes": 907
+    },
+    {
+      "path": "assets/projects/unified/production/report.html",
+      "bytes": 17294
+    },
+    {
+      "path": "assets/projects/unified/production/rugpull-risk-calibration.jpg",
+      "bytes": 276971
+    },
+    {
+      "path": "assets/projects/unified/production/rugpull-risk-master.png",
+      "bytes": 1848819
+    },
+    {
+      "path": "assets/projects/unified/production/rugpull-risk-plate.png",
+      "bytes": 2103424
+    },
+    {
+      "path": "assets/projects/unified/production/rugpull-risk-screen-1-comparison.jpg",
+      "bytes": 92283
+    },
+    {
+      "path": "assets/projects/unified/production/rugpull-risk-screen-1-mask.png",
+      "bytes": 3589
+    },
+    {
+      "path": "assets/projects/unified/production/soyle-calibration.jpg",
+      "bytes": 289135
+    },
+    {
+      "path": "assets/projects/unified/production/soyle-master.png",
+      "bytes": 1867468
+    },
+    {
+      "path": "assets/projects/unified/production/soyle-plate.png",
+      "bytes": 2130269
+    },
+    {
+      "path": "assets/projects/unified/production/soyle-screen-1-comparison.jpg",
+      "bytes": 133798
+    },
+    {
+      "path": "assets/projects/unified/production/soyle-screen-1-mask.png",
+      "bytes": 3922
+    }
+  ]
+}

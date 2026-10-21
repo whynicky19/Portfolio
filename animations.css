@@ -123,17 +123,6 @@
 .motion-ok .depth-stagger.reveal-pending.is-visible > *,
 .motion-ok .motion-stagger.reveal-pending.is-visible > * { opacity: 1; transform: none; }
 
-/* Scroll-linked depth. app.js writes two compositor-only custom values from
-   one requestAnimationFrame loop and only while an element is near view. */
-.motion-parallax {
-  --motion-y: 0px;
-  --motion-scale: 1;
-  translate: 0 var(--motion-y);
-  scale: var(--motion-scale);
-  transform-origin: 50% 50%;
-  will-change: transform;
-}
-
 /* Project and product imagery should feel alive without becoming a toy. */
 @media (hover: hover) and (pointer: fine) {
   .work-feature,
@@ -185,8 +174,7 @@
   }
 
   .reveal-pending,
-  .reveal-pending > *,
-  .motion-parallax {
+  .reveal-pending > * {
     opacity: 1 !important;
     clip-path: none !important;
     translate: none !important;

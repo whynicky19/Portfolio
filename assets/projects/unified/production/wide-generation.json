@@ -1,0 +1,52 @@
+[
+  {
+    "id": "chatra",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square Chatra product photograph. Create a LANDSCAPE 2256 x 1254 image by OUTPAINTING ONLY TO THE LEFT. Keep the entire original square photograph unchanged at the RIGHT, occupying the rightmost 55.6% of the canvas, full height. Preserve the original MacBook, iPhone, their screen content, perspective, lighting, stone table and window exactly. Extend the same limestone room, pale wall and continuous table surface naturally to the LEFT. The LEFT 44.4% must be quiet unobstructed light neutral warm limestone wall/space for dark HTML text. No new devices, no text, no extra objects, no hard seam, no frame, no vignette. The added room has soft physical lighting consistent with the original. Full-bleed premium architectural product photo, NOT a webpage mockup. Do not resize or recompose the original square region; only add scene width on its left.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-1eecf6b9-c802-426d-93d1-d338cc6eb9b8.png"
+  },
+  {
+    "id": "soyle",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square soyle product photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 image. Keep the original device(s), their screen content, shapes, camera angle and setting unchanged in the rightmost 55% of the image. Extend the existing warm cream plaster wall and linen tabletop, soft thoughtful morning light naturally across the LEFT 45%. Entire left area should be quiet open unobstructed space for HTML text. Preserve full devices with ample right-edge margins, grounded contact shadows, natural materials and original lighting. No new devices or objects, no text, no frame, no seams, no webpage layout. This is one continuous full-width photographic scene. Never invent or redraw the interface.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-70c4a034-ba63-4e78-9630-6b0bcf99ef6a.png"
+  },
+  {
+    "id": "digital-urpaq",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square digital-urpaq product photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 image. Keep the original device(s), their screen content, shapes, camera angle and setting unchanged in the rightmost 55% of the image. Extend the existing cool blue-gray architectural concrete and distant blue sky, structured calm atmosphere naturally across the LEFT 45%. Entire left area should be quiet open unobstructed space for HTML text. Preserve full devices with ample right-edge margins, grounded contact shadows, natural materials and original lighting. No new devices or objects, no text, no frame, no seams, no webpage layout. This is one continuous full-width photographic scene. Never invent or redraw the interface.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-caab4c8c-eb82-4e53-b1f5-582d142c222d.png"
+  },
+  {
+    "id": "freelanceos",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square freelanceos product photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 image. Keep the original device(s), their screen content, shapes, camera angle and setting unchanged in the rightmost 55% of the image. Extend the existing dark graphite textured surface and restrained green light, very quiet deep charcoal negative space naturally across the LEFT 45%. Entire left area should be quiet open unobstructed space for HTML text. Preserve full devices with ample right-edge margins, grounded contact shadows, natural materials and original lighting. No new devices or objects, no text, no frame, no seams, no webpage layout. This is one continuous full-width photographic scene. Never invent or redraw the interface.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-60c731b2-6f6a-4a68-bf2e-613fdd104463.png"
+  },
+  {
+    "id": "rugpull-risk",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square rugpull-risk photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 scene. Preserve the original MacBook, display geometry, screen content, keyboard, camera angle, shadows and setting in the rightmost 55% of the canvas. Extend dark charcoal stone and subdued burgundy side light into the LEFT 45%, quiet empty negative space for HTML text. Keep device completely visible with safe margins. Continuous room and surface across entire canvas, no frame or seam. No additional props, devices, text or decorative objects. Never invent/redraw UI. High-resolution photorealistic editorial product scene, not a webpage.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-260cf9be-a97d-4265-ab3d-6347f6981112.png"
+  },
+  {
+    "id": "forge",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square forge photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 scene. Preserve the original MacBook, display geometry, screen content, keyboard, camera angle, shadows and setting in the rightmost 55% of the canvas. Extend warm dark brushed-metal workbench and textured bronze plaster, subdued controlled lighting into the LEFT 45%, quiet empty negative space for HTML text. Keep device completely visible with safe margins. Continuous room and surface across entire canvas, no frame or seam. No additional props, devices, text or decorative objects. Never invent/redraw UI. High-resolution photorealistic editorial product scene, not a webpage.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-c3f1b484-c60b-4c33-9694-4f3765dbb27d.png"
+  },
+  {
+    "id": "portfolio",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square portfolio photograph. Outpaint ONLY TO THE LEFT into a wide LANDSCAPE 2256 x 1254 scene. Preserve the original MacBook, display geometry, screen content, keyboard, camera angle, shadows and setting in the rightmost 55% of the canvas. Extend soft warm-white paper-inspired studio and pale stone tabletop into the LEFT 45%, quiet empty negative space for HTML text. Keep device completely visible with safe margins. Continuous room and surface across entire canvas, no frame or seam. No additional props, devices, text or decorative objects. Never invent/redraw UI. High-resolution photorealistic editorial product scene, not a webpage.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-0ee986a3-619c-4038-af0d-8c7ce7b8d92d.png"
+  },
+  {
+    "id": "chatra-api",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square chatra-api photograph. Outpaint ONLY TO THE LEFT into wide LANDSCAPE 2256 x 1254. Preserve the original device(s), full display geometry, original screen content, lighting, perspective and natural shadows in the rightmost 55% of canvas. Extend the existing calm pale sage glass workspace and frosted-glass tabletop naturally across the LEFT 45%, quiet uncluttered negative space for HTML text. Keep every device fully visible with safe outer margins. One continuous photographic environment across whole image. No new props/devices, no text, no border, no graphic framing, no seams, no invented UI. Premium photorealistic product photography, NOT a webpage mockup.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-6a8a8d25-6ec7-455c-b650-81e0e23f5fdf.png"
+  },
+  {
+    "id": "chatra-mobile",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square chatra-mobile photograph. Outpaint ONLY TO THE LEFT into wide LANDSCAPE 2256 x 1254. Preserve the original device(s), full display geometry, original screen content, lighting, perspective and natural shadows in the rightmost 55% of canvas. Extend the existing soft blue woven fabric surface with subtle natural light naturally across the LEFT 45%, quiet uncluttered negative space for HTML text. Keep every device fully visible with safe outer margins. One continuous photographic environment across whole image. No new props/devices, no text, no border, no graphic framing, no seams, no invented UI. Premium photorealistic product photography, NOT a webpage mockup.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-d01dd7ac-8072-4251-b18c-784de837f8aa.png"
+  },
+  {
+    "id": "cs50p-odin",
+    "prompt": "Use case: compositing / precise-object-edit. Edit target: supplied square cs50p-odin photograph. Outpaint ONLY TO THE LEFT into wide LANDSCAPE 2256 x 1254. Preserve the original device(s), full display geometry, original screen content, lighting, perspective and natural shadows in the rightmost 55% of canvas. Extend the existing warm pale oak study table and cream wall with soft window light naturally across the LEFT 45%, quiet uncluttered negative space for HTML text. Keep every device fully visible with safe outer margins. One continuous photographic environment across whole image. No new props/devices, no text, no border, no graphic framing, no seams, no invented UI. Premium photorealistic product photography, NOT a webpage mockup.",
+    "source": "/Users/whynicky/.codex/generated_images/01a15a07-2edc-7470-a0fd-e9178a7fb6a1/exec-afdf3b42-ba40-4eef-b7f0-27951385b4ee.png"
+  }
+]
