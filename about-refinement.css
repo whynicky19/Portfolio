@@ -169,3 +169,6 @@
  .about-editorial .skills-grid .skill-motion > img { top:145px; }
  .about-editorial .skills-grid .skill-motion > .motion-second { top:220px; }
 }
+/* The closing invitation now has two clean columns, without a decorative note. */
+.about-editorial .about-contact{grid-template-columns:1fr 1.4fr;gap:10%}
+@media(max-width:600px){.about-editorial .about-contact{grid-template-columns:1fr;gap:24px}}

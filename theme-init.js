@@ -10,18 +10,7 @@
   root.classList.add('js');
   if (!motionQuery.matches) root.classList.add('motion-ok');
 
-  function readCookie(name) {
-    return (document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)') || [])[1] || null;
-  }
-
-  var saved;
-  try { saved = localStorage.getItem('theme'); } catch (_) {}
-  if (!saved) saved = readCookie('theme');
-
-  var theme = saved === 'light' || saved === 'dark'
-    ? saved
-    : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-  root.setAttribute('data-theme', theme);
-  root.style.colorScheme = theme;
+  // The portfolio always uses light appearance, independent of OS or storage.
+  root.setAttribute('data-theme', 'light');
+  root.style.colorScheme = 'light';
 })();

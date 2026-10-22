@@ -1,37 +1,14 @@
-/* Shared progressive-enhancement layer: navigation, theme, reveal motion,
+/* Shared progressive-enhancement layer: navigation, reveal motion,
    filters and the Chatra case-study story. */
 (function () {
   'use strict';
 
   const root = document.documentElement;
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const systemThemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const nav = document.querySelector('.apple-nav');
 
-  function storageGet(key) { try { return localStorage.getItem(key); } catch (_) { return null; } }
-  function storageSet(key, value) { try { localStorage.setItem(key, value); } catch (_) {} }
-
-  function setTheme(theme, persist) {
-    const next = theme === 'dark' ? 'dark' : 'light';
-    root.setAttribute('data-theme', next);
-    root.style.colorScheme = next;
-    if (persist) {
-      storageSet('theme', next);
-      document.cookie = 'theme=' + next + ';path=/;max-age=31536000;SameSite=Lax';
-    }
-    document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach((button) => {
-      const isDark = next === 'dark';
-      button.setAttribute('aria-pressed', String(isDark));
-      button.setAttribute('aria-label', isDark ? 'Use light appearance' : 'Use dark appearance');
-    });
-  }
-
-  document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach((button) => {
-    button.addEventListener('click', () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true));
-  });
-  setTheme(root.getAttribute('data-theme'), false);
-  systemThemeQuery.addEventListener('change', (event) => { if (!storageGet('theme')) setTheme(event.matches ? 'dark' : 'light', false); });
-  window.addEventListener('storage', (event) => { if (event.key === 'theme' && /^(light|dark)$/.test(event.newValue || '')) setTheme(event.newValue, false); });
+  root.setAttribute('data-theme', 'light');
+  root.style.colorScheme = 'light';
 
   /* Mobile navigation is a real focus-contained modal surface. */
   const burger = document.getElementById('navBurger');
