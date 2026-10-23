@@ -90,6 +90,14 @@
 
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const animations = new Set();
+  const hero = document.querySelector('.contact-hero');
+  window.addEventListener('pagehide', () => hero?.classList.remove('contact-play'));
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted || !hero || motion.matches) return;
+    hero.classList.remove('contact-play');
+    void hero.offsetWidth;
+    hero.classList.add('contact-play');
+  });
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -99,7 +107,7 @@
       animations.add(animation);
       animation.finished.catch(() => {}).finally(() => animations.delete(animation));
     }),{threshold:0,rootMargin:'0px 0px 80px 0px'});
-    document.querySelectorAll('.opportunities,.contact-intro,.message-panel,.direct-panel,.contact-sunset>.contact-shell').forEach(element => observer.observe(element));
+    document.querySelectorAll('.contact-intro,.message-panel,.contact-direct-heading,.contact-channel').forEach(element => observer.observe(element));
   }
   motion.addEventListener('change', () => { if (motion.matches) animations.forEach(animation => animation.cancel()); });
 })();

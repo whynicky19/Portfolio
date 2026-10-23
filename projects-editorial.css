@@ -1,4 +1,3 @@
-@font-face { font-family:Silkscreen; src:url('fonts/PortfolioPixel-Bold.woff2?v=2') format('woff2'); font-weight:700; font-display:swap; }
 .projects-editorial { --editorial-paper:#f7f5f2; color:#141413; background:var(--editorial-paper); font-family:Inter,Arial,sans-serif; }
 .projects-editorial main { overflow:clip; }
 

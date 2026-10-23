@@ -868,7 +868,7 @@ body.menu-open { overflow: hidden; }
 #primary-nav .nav-burger {color:inherit}
 
 /* One shared navigation layout; page artwork does not change its controls. */
-@font-face{font-family:PortfolioPixel;src:url('fonts/PortfolioPixel-Bold.woff2?v=2') format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:PortfolioPixel;src:url('fonts/PortfolioPixel-Bold.woff2?v=3') format('woff2');font-weight:700;font-display:swap}
 #primary-nav .nav-inner{width:min(1320px,calc(100% - 80px));max-width:1320px;padding:0;margin-inline:auto}
 #primary-nav .nav-logo{font-family:PortfolioPixel,monospace;font-size:20px;font-weight:700;letter-spacing:0;line-height:1.2;min-height:44px}
 #primary-nav .nav-menu a{font-family:Inter,sans-serif;font-size:13px;font-weight:450;letter-spacing:-.01em;padding:0 14px}
@@ -884,3 +884,6 @@ body.menu-open { overflow: hidden; }
 /* Maintain contrast on the dark opening artwork without adding a bar. */
 .home-premium #primary-nav:not(.glass-thick){color:#f4f3ed}
 .home-premium #primary-nav:not(.glass-thick) .nav-talk{background:#f4f3ed;color:#20262b!important}
+
+/* All pixel headings share the same corrected glyphs as the navigation. */
+@font-face{font-family:Silkscreen;src:url('fonts/PortfolioPixel-Bold.woff2?v=3') format('woff2');font-weight:700;font-display:swap}

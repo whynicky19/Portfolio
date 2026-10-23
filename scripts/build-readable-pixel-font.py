@@ -1,5 +1,5 @@
 """Build the portfolio's OFL Silkscreen derivative (requires fonttools + brotli).
-Keep original metrics; distinguish M/W with open, stepped diagonals.
+Use full bold M stems on the original pixel grid and open W diagonals.
 """
 from pathlib import Path
 from fontTools.ttLib import TTFont
@@ -16,13 +16,13 @@ for char in 'MmWw':
     pen = TTGlyphPen(None)
     points = [(round(125 + x * 750 / 9), round((7-y if char in 'Mm' else y) * 625 / 7)) for x,y in outline]
     if char in 'Mm':
-        # Full bold stems and a 250-unit diagonal band, with a stepped notch.
-        bold_m = [(125,625),(125,0),(375,0),(375,125),(437.5,125),
-                  (437.5,187.5),(562.5,187.5),(562.5,125),(625,125),
-                  (625,0),(875,0),(875,625),(625,625),(625,375),
-                  (562.5,375),(562.5,437.5),(437.5,437.5),(437.5,375),
-                  (375,375),(375,625)]
-        points = [(round(x), round(625-y)) for x,y in bold_m]
+        # M needs a wider body to keep a readable notch AND full bold strokes.
+        # Every step uses the family's original 125-unit pixel grid.
+        bold_m = [(0,5),(0,0),(2,0),(2,1),(3,1),(3,2),(5,2),
+                  (5,1),(6,1),(6,0),(8,0),(8,5),(6,5),(6,3),
+                  (5,3),(5,4),(3,4),(3,3),(2,3),(2,5)]
+        points = [(125 + x*125, (5-y)*125) for x,y in bold_m]
+        font['hmtx'][font.getBestCmap()[ord(char)]] = (1250, 125)
     # Preserve clockwise outlines when reflecting M into W.
     if char in 'Ww': points.reverse()
     pen.moveTo(points[0])
@@ -30,7 +30,7 @@ for char in 'MmWw':
     pen.closePath()
     font['glyf'][font.getBestCmap()[ord(char)]] = pen.glyph()
 for record in font['name'].names:
-    replacements = {1:'Portfolio Pixel',2:'Bold',3:'PortfolioPixel-Bold-1.1',
+    replacements = {1:'Portfolio Pixel',2:'Bold',3:'PortfolioPixel-Bold-1.2',
                     4:'Portfolio Pixel Bold',6:'PortfolioPixel-Bold',16:'Portfolio Pixel',17:'Bold'}
     if record.nameID in replacements:
         record.string = replacements[record.nameID].encode(record.getEncoding())
