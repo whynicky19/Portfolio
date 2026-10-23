@@ -28,14 +28,9 @@
   to { opacity: 1; }
 }
 
-/* Fast page continuity. Supporting browsers also use the cross-document
-   View Transition below; other engines simply get this short fade. */
-.motion-ok body { animation: pageArrive 240ms ease-out both; }
-
-@view-transition { navigation: auto; }
-::view-transition-old(root) { animation: 150ms ease-in both fade-out; }
-::view-transition-new(root) { animation: 260ms ease-out both pageArrive; }
-@keyframes fade-out { to { opacity: 0; } }
+/* Navigation swaps fully painted documents. Keep the whole page opaque;
+   individual sections own their entrance animations. */
+@view-transition { navigation: none; }
 
 /* Hero choreography: a compact 600–850ms sequence with no loading gate. */
 .motion-ok .home-hero .home-kicker,

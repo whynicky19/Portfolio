@@ -5,8 +5,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const entrance = window.portfolioEntrance;
   const active = new Set();
-  const uiAnimations = [];
-  let heroFrame = 0, frameSVG, heroMask, contactMask, contactObserver;
+  let heroFrame = 0, heroMask, contactMask, contactObserver;
   let finished = !entrance;
   const ease = n => 1 - Math.pow(1 - Math.max(0,Math.min(1,n)),3);
   const hash = (x,y) => ((x * 73 + y * 151 + x * y * 19) % 997) / 997;
@@ -107,17 +106,9 @@
   function finish(reason='complete') {
     if(finished) return;
     finished=true; cancelAnimationFrame(heroFrame); clearTimeout(entrance?.timer);
-    heroMask?.remove(); frameSVG?.remove();
-    root.classList.remove('assembly-intro','assembly-name-done','assembly-frame-done');
-    uiAnimations.forEach(a=>a.cancel());
+    heroMask?.remove();
+    root.classList.remove('assembly-intro','assembly-name-done');
     root.dataset.assemblyState=reason;
-  }
-  function animateUI(selector, delay, duration, y=0, from=0) {
-    document.querySelectorAll(selector).forEach(el=>{
-      const animation=el.animate([{opacity:from,translate:`0 ${y}px`},{opacity:1,translate:'0 0'}],
-        {duration,delay:delay-(performance.now()-entrance.start),easing:'cubic-bezier(.2,.75,.25,1)',fill:'both'});
-      uiAnimations.push(animation);
-    });
   }
   async function startHero() {
     if(!entrance) {root.dataset.assemblyState='skipped';return;}
@@ -126,37 +117,20 @@
       if(finished) return;
       if(!loaded.length||reduced.matches||!root.classList.contains('assembly-intro')) {finish('skipped');return;}
       heroMask=fragments(document.querySelector('.pixel-name'));
-      const board=document.querySelector('.identity-board');
-      const svgNS='http://www.w3.org/2000/svg';
-      frameSVG=document.createElementNS(svgNS,'svg');frameSVG.classList.add('assembly-frame');frameSVG.setAttribute('aria-hidden','true');
-      const line=document.createElementNS(svgNS,'rect');
-      line.setAttribute('x','.75');line.setAttribute('y','.75');line.setAttribute('width',board.offsetWidth-1.5);line.setAttribute('height',board.offsetHeight-1.5);
-      line.setAttribute('fill','none');line.setAttribute('stroke','#c7542f');line.setAttribute('stroke-width','1.5');line.setAttribute('pathLength','1');line.setAttribute('stroke-dasharray','1');
-      frameSVG.append(line);board.append(frameSVG);
-      // Start the visual clock only once the real font and fragment geometry
-      // exist. Network/font delay must not consume the assembly before paint.
+      // Start the visual clock only once the real font and glyph geometry exist.
       clearTimeout(entrance.timer);
       entrance.start=performance.now();
-      entrance.timer=setTimeout(()=>finish('fallback'),3400);
+      entrance.timer=setTimeout(()=>finish('fallback'),1900);
       root.dataset.assemblyCount='1';
       heroMask.draw(0);
-      uiAnimations.push(line.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:500,delay:1500-(performance.now()-entrance.start),fill:'both',easing:'cubic-bezier(.2,.75,.25,1)'}));
-      ['.note-mint','.note-yellow','.note-peach','.note-blue'].forEach((s,i)=>animateUI(s,1500+i*65,300,8));
-      animateUI('.notebook-intro',1800,300,0);
-      animateUI('.notebook-statement',2050,450,10);
-      animateUI('.notebook-description',2140,410,6);
-      animateUI('.notebook-actions',2220,400,6);
-      animateUI('.notebook-colophon',2300,350,0);
-      animateUI('.apple-nav',2050,500,0,.18);
       root.dataset.assemblyState='running';root.dataset.assemblyStart=String(entrance.start);
       function tick(now) {
         if(finished) return;
         const elapsed=now-entrance.start;
         try {
-          if(elapsed<1500) heroMask.draw(elapsed);
+          if(elapsed<1350) heroMask.draw(elapsed);
           else if(!root.classList.contains('assembly-name-done')) {root.classList.add('assembly-name-done');heroMask.remove();}
-          if(elapsed>=2000&&!root.classList.contains('assembly-frame-done')) {root.classList.add('assembly-frame-done');frameSVG.remove();}
-          if(elapsed>=2650) {finish();return;}
+          if(elapsed>=1550) {finish();return;}
           heroFrame=requestAnimationFrame(tick);
         } catch (_) {finish('fallback');}
       }

@@ -1,24 +1,24 @@
-@font-face { font-family:Silkscreen; src:url('fonts/Silkscreen-Bold.ttf') format('truetype'); font-weight:700; font-display:swap; }
+@font-face { font-family:Silkscreen; src:url('fonts/PortfolioPixel-Bold.woff2?v=2') format('woff2'); font-weight:700; font-display:swap; }
 .projects-editorial { --editorial-paper:#f7f5f2; color:#141413; background:var(--editorial-paper); font-family:Inter,Arial,sans-serif; }
 .projects-editorial main { overflow:clip; }
-.projects-editorial .apple-nav { animation:none; }
-.projects-editorial .nav-logo,.projects-editorial .nav-menu a,.projects-editorial .nav-cta:not(.nav-talk),.projects-editorial .theme-toggle { color:#101d2c; }
-.projects-editorial .nav-burger span { background:#101d2c; }
-.projects-editorial .nav-mobile[aria-hidden="true"] { visibility:hidden; transition:none; }
-.projects-editorial .nav-menu a.active::after { background:#101d2c; }
-.projects-editorial .nav-talk { background:#101518; color:#fff; border-radius:30px; padding:8px 17px; }
-.projects-editorial .nav-inner { max-width:1560px; width:calc(100% - 80px); }
-.projects-opening { position:relative; isolation:isolate; overflow:hidden; }
-.projects-hero { position:relative; isolation:isolate; display:grid; place-items:center; height:80svh; min-height:540px; max-height:900px; overflow:hidden; }
-.projects-sky { position:absolute; inset:-120px 0; z-index:-1; background:radial-gradient(ellipse at 0 100%,#ffc4a5 0,transparent 49%),radial-gradient(ellipse at 100% 105%,#eead9d 0,transparent 47%),linear-gradient(165deg,#6488aa 0%,#8098b5 46%,#aaa5b7 76%,#d4afa9 100%); }
+
+
+
+
+
+
+
+.projects-opening { position:relative; isolation:isolate; overflow:hidden; background:#8098b5; }
+.projects-hero { position:relative; z-index:1; isolation:isolate; display:grid; place-items:center; height:80svh; min-height:540px; max-height:900px; overflow:hidden; }
+.projects-sky { position:absolute; inset:-120px 0; z-index:0; background:radial-gradient(ellipse at 0 100%,#ffc4a5 0,transparent 49%),radial-gradient(ellipse at 100% 105%,#eead9d 0,transparent 47%),linear-gradient(165deg,#6488aa 0%,#8098b5 46%,#aaa5b7 76%,#d4afa9 100%); }
 .projects-sky::after { content:""; position:absolute; inset:0; opacity:.13; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23888888' filter='url(%23n)' opacity='.5' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
 .projects-hero h1 { position:relative; margin:0; font:700 clamp(40px,10.6vw,166px)/1.15 Silkscreen,monospace; letter-spacing:-.055em; white-space:nowrap; color:#fff; }
 .projects-editorial .projects-hero h1 { animation:none; transition:none; opacity:1; }
-.projects-light { position:absolute; inset:-25% -30%; z-index:-1; pointer-events:none; background:radial-gradient(ellipse at 78% 52%,#fff1da99,transparent 42%),radial-gradient(ellipse at 12% 30%,#426baf66,transparent 50%); }
+.projects-light { position:absolute; inset:-25% -30%; z-index:0; pointer-events:none; background:radial-gradient(ellipse at 78% 52%,#fff1da99,transparent 42%),radial-gradient(ellipse at 12% 30%,#426baf66,transparent 50%); }
 .recent-line { display:block; clip-path:inset(-16% -15% -4%); }
 .recent-line>span { display:block; }
 .projects-pixel-mask { position:absolute; width:0; height:0; pointer-events:none; }
-.recent-work { position:relative; isolation:isolate; text-align:center; padding:96px 24px 110px; background:var(--editorial-paper); }
+.recent-work { position:relative; z-index:1; isolation:isolate; text-align:center; padding:96px 24px 110px; background:var(--editorial-paper); }
 .recent-work h2 { font-size:clamp(76px,9.3vw,138px); font-weight:450; line-height:.78; letter-spacing:-.085em; margin:0; transform:skewX(-5deg); }
 .recent-work p { max-width:410px; margin:32px auto 0; font-size:12px; line-height:1.45; text-transform:uppercase; color:#45443f; }
 .projects-close { padding:112px 24px; text-align:center; }
@@ -53,7 +53,7 @@
  .recent-work { padding:72px 24px 80px; }
 }
 @media(max-width:480px) {
- .projects-editorial .nav-inner { width:calc(100% - 40px); }
+
  .projects-hero { height:65svh; min-height:360px; }
  .projects-hero h1 { font-size:12.2vw; letter-spacing:-.055em; }
  .recent-work { padding:64px 24px 72px; }

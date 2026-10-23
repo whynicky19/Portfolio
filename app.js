@@ -57,13 +57,14 @@
   let navFrame = 0;
   function updateNav() {
     navFrame = 0;
-    nav?.classList.toggle('glass-thick', window.scrollY > 20);
+    nav?.classList.toggle('glass-thick', window.scrollY > 8);
   }
-  // The same fixed material applies to every page.
+  // Restore the material from the current scroll position on every page.
   window.addEventListener('scroll', () => {
     if (!navFrame) navFrame = requestAnimationFrame(updateNav);
   }, { passive: true });
   updateNav();
+  window.addEventListener('pageshow', updateNav);
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (event) => {

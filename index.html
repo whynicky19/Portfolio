@@ -1,127 +1,121 @@
 <!doctype html>
 <html lang="en" data-theme="light">
 <head>
+<style>html{background:#f8f7f2;color-scheme:light}</style>
 <meta name="color-scheme" content="light">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <script>
-    /* Before first paint; static HTML is the default if JavaScript is unavailable. */
-    (() => { try {
-      const nav = performance.getEntriesByType('navigation')[0];
-      const internal = document.referrer && new URL(document.referrer).origin === location.origin;
-      const play = !matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash &&
-        (nav?.type === 'reload' || (nav?.type !== 'back_forward' && !internal));
-      if (!play) return;
-      const root = document.documentElement;
-      root.classList.add('assembly-intro');
-      window.portfolioEntrance = { start:performance.now(), timer:setTimeout(() => {
-        root.classList.remove('assembly-intro');
-        root.dataset.assemblyState = 'fallback';
-      }, 3400) };
-    } catch (_) { document.documentElement.classList.remove('assembly-intro'); } })();
-  </script>
-  <title>Alimzhan — Frontend Developer &amp; UI Engineer</title>
+  <title>Alimzhan · Frontend Developer &amp; UI Engineer</title>
   <meta name="description" content="Thoughtful interfaces, smooth interactions and real products across web and mobile. Explore Alimzhan’s frontend and product development work.">
-  <meta name="theme-color" content="#F6F8FC">
-  <meta property="og:type" content="website"><meta property="og:url" content="https://whynicky19.github.io/Portfolio/"><meta property="og:title" content="Alimzhan — Frontend Developer &amp; UI Engineer"><meta property="og:description" content="Thoughtful interfaces and connected web and mobile products."><meta property="og:image" content="https://whynicky19.github.io/Portfolio/assets/hero/pixel-identity-preview.png">
+  <meta name="theme-color" content="#1b1c1c">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://whynicky19.github.io/Portfolio/"><meta property="og:title" content="Alimzhan · Frontend Developer &amp; UI Engineer"><meta property="og:description" content="Thoughtful interfaces and connected web and mobile products."><meta property="og:image" content="https://whynicky19.github.io/Portfolio/assets/hero/misty-forest.webp">
   <link rel="canonical" href="https://whynicky19.github.io/Portfolio/">
   <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
   <link rel="preload" href="fonts/Inter-Latin-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Silkscreen-Bold.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="tokens.css?v=4"><link rel="stylesheet" href="animations.css?v=8"><link rel="stylesheet" href="style.css?v=12"><link rel="stylesheet" href="home-stage.css?v=5"><link rel="stylesheet" href="home-direction.css?v=5">
-  <link rel="stylesheet" href="hero-notebook.css?v=6">
-  <link rel="stylesheet" href="pixel-assembly.css?v=2">
-  <link rel="stylesheet" href="home-stack.css?v=2">
-  <link rel="stylesheet" href="home-details-motion.css?v=1">
+  <link rel="preload" href="fonts/PortfolioPixel-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="tokens.css?v=4">
+  <link rel="stylesheet" href="style.css?v=15">
+  <link rel="stylesheet" href="home-editorial.css?v=9">
   <script src="reveal-once.js?v=2" defer></script>
-  <script src="home-stack.js?v=2" defer></script>
-  <script src="pixel-assembly.js?v=4" defer></script>
   <script src="theme-init.js?v=4"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Alimzhan Galymzhan","url":"https://whynicky19.github.io/Portfolio/","sameAs":["https://github.com/whynicky19"],"jobTitle":"Frontend Developer and UI Engineer"}</script>
 </head>
 <body class="home-premium">
   <div id="site-nav"></div>
   <main id="main-content" tabindex="-1">
-    <header class="p-hero notebook-hero" aria-labelledby="hero-title">
-      <div class="notebook-paper" aria-hidden="true"></div>
-      <div class="h-shell notebook-content">
-        <p class="notebook-intro">A little about me <span aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-down-left"></use></svg></span></p>
-        <div class="identity-board">
-          <p class="identity-note note-mint">Product builder</p>
-          <p class="identity-note note-yellow">Built with care</p>
-          <h1 id="hero-title" class="pixel-name">ALIMZHAN</h1>
-          <p class="identity-note note-peach">Frontend developer</p>
-          <p class="identity-note note-blue">Web + mobile</p>
-        </div>
-        <p class="notebook-statement">I build digital experiences<br> people actually enjoy.</p>
-        <p class="notebook-description">Thoughtful interfaces, smooth interactions.<br> From the first idea to the details that make it feel right.</p>
-        <div class="h-actions notebook-actions"><a class="h-button" href="projects.html">View my work <span aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-up-right"></use></svg></span></a><a class="h-button h-button-light" href="about.html">About me <span aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-right"></use></svg></span></a></div>
+    <header class="home-hero hero-play" aria-labelledby="hero-title">
+      <div class="hero-light" aria-hidden="true"></div>
+      <div class="home-shell hero-identity">
+        <h1 id="hero-title" aria-label="whynicky®">
+          <!-- Inline wordmark: generated by scripts/build-hero-wordmark.py. -->
+<svg class="hero-word" viewBox="0 0 4892 1040" aria-hidden="true" focusable="false">
+<defs>
+<g id="hero-lettering">
+<path d="M174.33 800 13.65 254.1H172.21L218.09 453.03Q230.05 507.56 244.1 571.47Q258.16 635.38 269.87 712.36H253.03Q265.68 636.8 280.82 572.65Q295.95 508.5 308.97 453.03L357.58 254.1H495.81L542.87 453.03Q555.4 508.17 570.58 572.08Q585.76 635.99 598.41 712.36H581.93Q593.56 636.39 606.8 572.49Q620.05 508.58 632.21 453.03L678.09 254.1H838.93L677.11 800H523.27L463.59 592.28Q454.84 561.53 446.15 523.18Q437.47 484.83 429.27 445.09Q421.07 405.36 412.53 371.44H438.91Q430.85 405.16 422.41 444.99Q413.97 484.83 405.43 523.38Q396.88 561.93 387.85 592.28L328.17 800Z"/>
+<path d="M1026.91 484.83V800H875.72V72.46H1024.06V390.7H1012.35Q1033.54 323 1077.12 285.13Q1120.69 247.27 1190.4 247.27Q1247.29 247.27 1289.61 272.11Q1331.93 296.95 1355.26 343.04Q1378.6 389.12 1378.6 452.75V800H1227.2V479.75Q1227.2 429.88 1201.52 401.5Q1175.83 373.13 1130.39 373.13Q1100.17 373.13 1076.76 386.37Q1053.35 399.61 1040.13 424.49Q1026.91 449.36 1026.91 484.83Z"/>
+<path d="M1459.35 992.91 1493.79 879.67 1512.47 884.67Q1542.46 892.36 1565.29 888.91Q1588.12 885.45 1601.71 870.6Q1615.29 855.75 1617.36 829.52L1620.72 801.5L1415.93 254.1H1576.28L1665.97 534.2Q1682.82 588.12 1693.09 642.06Q1703.36 696 1716.66 755.42H1682.44Q1695.75 696 1708.83 641.67Q1721.91 587.35 1739.41 534.2L1833.78 254.1H1992.22L1761.03 863.01Q1744.42 907.04 1718.24 939.67Q1692.05 972.31 1652.88 990.16Q1613.7 1008.01 1557.45 1008.01Q1528.02 1008.01 1501.81 1003.73Q1475.59 999.46 1459.35 992.91Z"/>
+<path d="M2180.89 484.83V800H2029.7V254.1H2172.34L2174.83 390.7H2166.33Q2187.52 323 2231.1 285.13Q2274.67 247.27 2344.39 247.27Q2401.27 247.27 2443.49 272.11Q2485.71 296.95 2509.04 343.04Q2532.38 389.12 2532.38 452.75V800H2381.18V479.75Q2381.18 429.88 2355.5 401.5Q2329.81 373.13 2284.37 373.13Q2254.15 373.13 2230.74 386.37Q2207.33 399.61 2194.11 424.49Q2180.89 449.36 2180.89 484.83Z"/>
+<path d="M2616.7 800V254.1H2767.89V800ZM2692.21 184.42Q2658.47 184.42 2634.42 161.9Q2610.36 139.38 2610.36 107.84Q2610.36 75.67 2634.42 53.4Q2658.47 31.14 2692.21 31.14Q2726.08 31.14 2750.17 53.37Q2774.27 75.61 2774.27 107.83Q2774.27 139.41 2750.17 161.91Q2726.08 184.42 2692.21 184.42Z"/>
+<path d="M3097.97 810.58Q3015.2 810.58 2955.01 775.28Q2894.83 739.98 2862.3 676.65Q2829.76 613.31 2829.76 529.33Q2829.76 444.73 2862.3 381.3Q2894.83 317.86 2955.01 282.56Q3015.2 247.27 3097.97 247.27Q3147.5 247.27 3188.93 260.09Q3230.36 272.91 3262.27 296.76Q3294.17 320.61 3314.6 354.67Q3335.02 388.73 3342.55 431.22L3202.18 456.86Q3197.75 435.58 3188.82 418.71Q3179.89 401.85 3166.98 389.91Q3154.07 377.96 3137.17 371.74Q3120.27 365.51 3099.68 365.51Q3061.82 365.51 3036.07 385.95Q3010.33 406.39 2997.09 443.08Q2983.85 479.77 2983.85 528.76Q2983.85 577.05 2997.09 613.93Q3010.33 650.8 3036.07 671.57Q3061.82 692.33 3099.68 692.33Q3120.47 692.33 3137.57 685.86Q3154.68 679.39 3167.94 667.1Q3181.2 654.82 3190.12 637.12Q3199.05 619.42 3203.2 597.45L3343.36 622.8Q3336.04 666.55 3315.51 701.1Q3294.98 735.65 3263.12 760.19Q3231.26 784.73 3189.48 797.66Q3147.71 810.58 3097.97 810.58Z"/>
+<path d="M3540.96 643.06V461.46H3563.64L3737.72 254.1H3911.91L3677.43 529.06H3640.86ZM3403.98 800V72.46H3555.17V800ZM3744.35 800 3584.41 562.85 3685.12 455.5 3921.87 800Z"/>
+<path d="M3945.13 992.91 3979.57 879.67 3998.25 884.67Q4028.25 892.36 4051.07 888.91Q4073.9 885.45 4087.49 870.6Q4101.07 855.75 4103.14 829.52L4106.5 801.5L3901.71 254.1H4062.06L4151.75 534.2Q4168.6 588.12 4178.87 642.06Q4189.14 696 4202.44 755.42H4168.22Q4181.53 696 4194.61 641.67Q4207.69 587.35 4225.19 534.2L4319.56 254.1H4478L4246.81 863.01Q4230.21 907.04 4204.02 939.67Q4177.83 972.31 4138.66 990.16Q4099.48 1008.01 4043.23 1008.01Q4013.8 1008.01 3987.59 1003.73Q3961.38 999.46 3945.13 992.91Z"/>
+<path d="M4688.05 350Q4658.15 350 4631.87 338.66Q4605.59 327.33 4585.75 307.4Q4565.91 287.47 4554.63 261.18Q4543.34 234.9 4543.34 205Q4543.34 175.1 4554.63 148.82Q4565.91 122.53 4585.75 102.6Q4605.59 82.67 4631.87 71.34Q4658.15 60 4688.05 60Q4718.2 60 4744.48 71.34Q4770.77 82.67 4790.7 102.6Q4810.63 122.53 4821.84 148.82Q4833.05 175.1 4833.05 205Q4833.05 234.9 4821.84 261.18Q4810.63 287.47 4790.7 307.4Q4770.77 327.33 4744.48 338.66Q4718.2 350 4688.05 350ZM4688.05 311.52Q4717.72 311.52 4741.91 297.21Q4766.09 282.9 4780.48 258.7Q4794.87 234.51 4794.87 204.99Q4794.87 175.48 4780.46 151.34Q4766.05 127.2 4741.84 112.84Q4717.62 98.48 4688.08 98.48Q4658.78 98.48 4634.52 112.84Q4610.25 127.2 4595.89 151.34Q4581.53 175.48 4581.53 204.93Q4581.53 234.38 4595.9 258.56Q4610.27 282.75 4634.55 297.14Q4658.82 311.52 4688.05 311.52ZM4713.42 270.79 4685 208.97H4721.17L4751.83 270.79ZM4635.67 270.79V137.25H4701.11Q4713.8 137.25 4724.39 142.37Q4734.98 147.49 4741.24 157.27Q4747.51 167.05 4747.51 181.08Q4747.51 195.35 4741 205.38Q4734.48 215.42 4723.66 220.58Q4712.84 225.74 4699.69 225.74H4654.75V202.84H4692.18Q4699.86 202.84 4705.41 197.64Q4710.95 192.44 4710.95 182.08Q4710.95 171.72 4705.35 167.14Q4699.76 162.57 4692.39 162.57H4670.51V270.79Z"/>
+</g>
+<clipPath id="hero-band-0" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="-20" width="6892" height="180"/></clipPath>
+<clipPath id="hero-band-1" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="160" width="6892" height="180"/></clipPath>
+<clipPath id="hero-band-2" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="340" width="6892" height="180"/></clipPath>
+<clipPath id="hero-band-3" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="520" width="6892" height="180"/></clipPath>
+<clipPath id="hero-band-4" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="700" width="6892" height="180"/></clipPath>
+<clipPath id="hero-band-5" clipPathUnits="userSpaceOnUse"><rect x="-1000" y="880" width="6892" height="180"/></clipPath>
+</defs>
+<use class="hero-solid" href="#hero-lettering"/>
+<g class="hero-slice" style="--piece-x:-200px;--piece-delay:0ms"><g clip-path="url(#hero-band-0)"><use href="#hero-lettering"/></g></g>
+<g class="hero-slice" style="--piece-x:270px;--piece-delay:65ms"><g clip-path="url(#hero-band-1)"><use href="#hero-lettering"/></g></g>
+<g class="hero-slice" style="--piece-x:-340px;--piece-delay:130ms"><g clip-path="url(#hero-band-2)"><use href="#hero-lettering"/></g></g>
+<g class="hero-slice" style="--piece-x:410px;--piece-delay:195ms"><g clip-path="url(#hero-band-3)"><use href="#hero-lettering"/></g></g>
+<g class="hero-slice" style="--piece-x:-480px;--piece-delay:260ms"><g clip-path="url(#hero-band-4)"><use href="#hero-lettering"/></g></g>
+<g class="hero-slice" style="--piece-x:550px;--piece-delay:325ms"><g clip-path="url(#hero-band-5)"><use href="#hero-lettering"/></g></g>
+</svg>
+        </h1>
       </div>
     </header>
-    <section class="h-capabilities" aria-labelledby="cap-title"><div class="h-shell approach-layout">
-      <header class="h-reveal"><p class="h-eyebrow">How I work</p><h2 id="cap-title">Design decisions.<br>Working code.</h2><p class="h-body">I like working on both sides of an interface: deciding how it should feel, then building the details that make it work.</p><p class="approach-signoff">Clear in use. <span>Careful in code.</span></p></header>
-      <div class="principle-notes h-reveal">
-        <article class="principle"><h3>Clarity first</h3><p>I start with what someone needs to do, then give that action room to stand out.</p></article>
-        <article class="principle"><h3>Interaction with purpose</h3><p>I use motion to explain a change, not to make people wait for it.</p></article>
-        <article class="principle"><h3>Built for real devices</h3><p>I test narrow screens, touch targets and keyboard navigation while I build.</p></article>
-        <article class="principle"><h3>Think beyond the screen</h3><p>I think about the data, permissions and failure states behind the interface.</p></article>
-      </div>
-    </div></section>
-    <section class="h-toolkit home-stack" aria-labelledby="toolkit-title">
-      <div class="stack-sky" aria-hidden="true"><img src="assets/stack/sunset.webp" alt="" width="1659" height="948" loading="lazy" decoding="async"></div>
-      <div class="stack-shell">
-        <header class="stack-intro">
-          <h2 id="toolkit-title" aria-label="My stack"><span aria-hidden="true" class="stack-word">MY</span><span aria-hidden="true" class="stack-word">STACK</span></h2>
-          <p>Frontend is where I focus.<br>A wider toolkit connects the interfaces I build to mobile apps and the services behind them.</p>
-        </header>
-        <div class="stack-technologies">
-          <section class="stack-group stack-primary" aria-labelledby="stack-frontend">
-            <span class="stack-rule" aria-hidden="true"></span>
-            <h3 id="stack-frontend">Frontend</h3>
-            <ul>
-              <li><img src="assets/stack/logos/html5.svg" alt="" width="48" height="48" loading="lazy"><span>HTML</span></li>
-              <li><img src="assets/stack/logos/css3.svg" alt="" width="48" height="48" loading="lazy"><span>CSS</span></li>
-              <li><img src="assets/stack/logos/javascript.svg" alt="" width="48" height="48" loading="lazy"><span>JavaScript</span></li>
-              <li><img src="assets/stack/logos/typescript.svg" alt="" width="48" height="48" loading="lazy"><span>TypeScript</span></li>
-              <li><img src="assets/stack/logos/vuejs.svg" alt="" width="48" height="48" loading="lazy"><span>Vue</span></li>
-              <li><img src="assets/stack/logos/nuxtjs.svg" alt="" width="48" height="48" loading="lazy"><span>Nuxt</span></li>
-            </ul>
-          </section>
-          <div class="stack-supporting">
-            <section class="stack-group" aria-labelledby="stack-mobile">
-              <span class="stack-rule" aria-hidden="true"></span><h3 id="stack-mobile">Mobile</h3>
-              <ul>
-                <li><img src="assets/stack/logos/flutter.svg" alt="" width="28" height="28" loading="lazy"><span>Flutter</span></li>
-                <li><img src="img/brands/swift-logo.svg" alt="" width="28" height="28" loading="lazy"><span>Swift</span></li>
-                <li><img src="img/brands/swiftui-icon.webp" alt="" width="28" height="28" loading="lazy"><span>SwiftUI</span></li>
-              </ul>
-            </section>
-            <section class="stack-group" aria-labelledby="stack-backend">
-              <span class="stack-rule" aria-hidden="true"></span><h3 id="stack-backend">Backend</h3>
-              <ul>
-                <li><img src="assets/stack/logos/python.svg" alt="" width="28" height="28" loading="lazy"><span>Python</span></li>
-                <li><img src="assets/stack/logos/fastapi.svg" alt="" width="28" height="28" loading="lazy"><span>FastAPI</span></li>
-                <li><img src="assets/stack/logos/postgresql.svg" alt="" width="28" height="28" loading="lazy"><span>PostgreSQL</span></li>
-              </ul>
-            </section>
-            <section class="stack-group" aria-labelledby="stack-tools">
-              <span class="stack-rule" aria-hidden="true"></span><h3 id="stack-tools">Tools</h3>
-              <ul><li><img src="assets/stack/logos/git.svg" alt="" width="28" height="28" loading="lazy"><span>Git</span></li></ul>
-            </section>
-          </div>
+
+    <section class="home-craft paper-grid" aria-labelledby="craft-title">
+      <div class="home-shell craft-layout">
+        <div class="craft-intro home-reveal">
+          <h2 id="craft-title"><span class="craft-line">DESIGN.</span><span class="craft-line">CODE.</span><span class="craft-line pixel-type">MOTION<span class="accent-dot coral">.</span></span></h2>
+        </div>
+        <div class="craft-stack home-reveal">
+          <p class="craft-description">I turn ideas into clean, functional interfaces.<br>I care about the details that make it feel right.</p>
+          <h3>Technologies I work with <span aria-hidden="true"></span></h3>
+          <ul class="technology-list">
+            <li><img src="assets/stack/pixel/html5.svg" alt="" width="40" height="40" loading="lazy"><span>HTML</span></li>
+            <li><img src="assets/stack/pixel/css3.svg" alt="" width="40" height="40" loading="lazy"><span>CSS</span></li>
+            <li><img src="assets/stack/pixel/javascript.svg" alt="" width="40" height="40" loading="lazy"><span>JavaScript</span></li>
+            <li><img src="assets/stack/pixel/typescript.svg" alt="" width="40" height="40" loading="lazy"><span>TypeScript</span></li>
+            <li><img src="assets/stack/pixel/vuejs.svg" alt="" width="40" height="40" loading="lazy"><span>Vue</span></li>
+            <li><img src="assets/stack/pixel/nuxtjs.svg" alt="" width="40" height="40" loading="lazy"><span>Nuxt</span></li>
+            <li><img src="assets/stack/pixel/flutter.svg" alt="" width="40" height="40" loading="lazy"><span>Flutter</span></li>
+            <li><img src="assets/stack/pixel/swift.svg" alt="" width="40" height="40" loading="lazy"><span>Swift</span></li>
+            <li><img src="assets/stack/pixel/swiftui.svg" alt="" width="40" height="40" loading="lazy"><span>SwiftUI</span></li>
+            <li><img src="assets/stack/pixel/fastapi.svg" alt="" width="40" height="40" loading="lazy"><span>FastAPI</span></li>
+            <li><img src="assets/stack/pixel/python.svg" alt="" width="40" height="40" loading="lazy"><span>Python</span></li>
+            <li><img src="assets/stack/pixel/postgresql.svg" alt="" width="40" height="40" loading="lazy"><span>PostgreSQL</span></li>
+            <li><img src="assets/stack/pixel/git.svg" alt="" width="40" height="40" loading="lazy"><span>Git</span></li>
+          </ul>
         </div>
       </div>
     </section>
-    <section class="h-contact" aria-labelledby="contact-title">
-      <div class="closing-paper" aria-hidden="true"></div>
-      <div class="h-shell closing-layout">
-        <div class="closing-heading h-reveal"><p class="h-eyebrow">A new idea starts with a conversation</p><h2 id="contact-title">Have something<br>in mind?</h2><p class="h-body">Tell me what you’re working on.<br>We can figure out the next step together.</p></div>
-        <div class="closing-action"><a class="pixel-contact" href="contact.html"><span class="contact-word">LET’S<br>TALK</span><span class="contact-arrow" aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-up-right"></use></svg></span><span class="contact-action-label">Start a conversation</span></a></div>
-        <div class="closing-links"><a class="contact-email" href="mailto:alimzhanart@icloud.com">alimzhanart@icloud.com <span aria-hidden="true"><svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-up-right"></use></svg></span></a><a class="contact-resume" href="Alimzhan_Galymzhan_Frontend_CV.pdf" target="_blank" rel="noopener">View résumé <svg class="ui-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="img/icons/ui.svg#arrow-up-right"></use></svg></a></div>
+
+    <section class="home-feel" aria-labelledby="feel-title">
+      <div class="home-shell feel-layout">
+        <h2 id="feel-title" class="pixel-type home-reveal"><span class="feel-line">MAKE</span><span class="feel-line">IT FEEL</span><span class="feel-line">RIGHT<span class="accent-dot blue">.</span></span></h2>
+        <div class="feel-copy home-reveal">
+          <p>Good interfaces are not just about how they look, but how they feel. I focus on clarity, smooth interactions and meaningful details.</p>
+          <ul><li>Clarity</li><li>Performance</li><li>Accessibility</li><li>Real use</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="sky-ribbon" aria-hidden="true"><div class="home-shell">IDEAS<br>INTERFACES<br>PEOPLE</div></div>
+
+    <section class="home-contact" aria-labelledby="contact-title">
+      <div class="home-shell contact-layout">
+        <h2 id="contact-title" class="home-reveal"><a href="contact.html"><span class="contact-sans">LET’S</span><br><span class="pixel-type">TALK<span class="accent-dot blue">.</span></span></a></h2>
+        <div class="contact-copy home-reveal">
+          <p>Have an idea, a question or just want to say hi? I’m always open to new opportunities and interesting conversations.</p>
+          <a class="editorial-link contact-email" href="mailto:alimzhanart@icloud.com">alimzhanart@icloud.com </a>
+        </div>
       </div>
     </section>
   </main>
-  <div id="site-footer"></div>
-  <script src="partials.js?v=17"></script><script src="utils.js"></script><script src="components.js"></script><script src="app.js?v=14"></script><script src="homepage.js?v=10" defer></script>
+  <footer id="site-footer" class="home-footer" data-custom-footer>
+    <div class="home-shell footer-layout">
+      <div><a class="footer-name pixel-type" href="index.html">ALIMZHAN</a><p>Frontend Developer<br>Building digital experiences<br>with care and attention to detail.</p></div>
+      <small>© 2026 Alimzhan. All rights reserved.</small>
+      <nav aria-label="Footer navigation"><a href="index.html" aria-current="page">Home</a><a href="projects.html">Projects</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="#main-content" aria-label="Back to top">Top</a></nav>
+    </div>
+  </footer>
+  <script src="partials.js?v=20"></script><script src="utils.js"></script><script src="components.js"></script><script src="app.js?v=15"></script><script src="homepage.js?v=14" defer></script>
 </body>
 </html>

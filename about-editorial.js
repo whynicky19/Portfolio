@@ -18,7 +18,7 @@
     current = (index + certificates.length) % certificates.length;
     const source = certificates[current];
     preview.src = source.dataset.source;
-    preview.alt = source.dataset.title + ' — original certificate';
+    preview.alt = source.dataset.title + ', original certificate';
     document.querySelector('#certificate-title').textContent = source.dataset.title;
     document.querySelector('#certificate-original').href = source.dataset.source;
     document.querySelector('.certificate-counter').textContent = `${current + 1} / ${certificates.length}`;

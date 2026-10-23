@@ -37,7 +37,7 @@
       '<a class="skip-link" href="#main-content">Skip to content</a>' +
       '<nav class="apple-nav" id="primary-nav" aria-label="Main navigation">' +
         '<div class="nav-inner">' +
-        '<a class="nav-logo" href="index.html" aria-label="Alimzhan — home">Alimzhan</a>' +
+        '<a class="nav-logo" href="index.html" aria-label="Alimzhan home">Alimzhan</a>' +
         '<ul class="nav-menu">' + menuItems + '</ul>' +
         '<div class="nav-actions">' +
           '<a class="nav-cta" href="' + CV_HREF + '" target="_blank" rel="noopener">Résumé</a>' +
@@ -82,5 +82,5 @@
   if (navMount) navMount.outerHTML = buildNav();
 
   var footerMount = document.getElementById('site-footer');
-  if (footerMount) footerMount.outerHTML = buildFooter();
+  if (footerMount && !footerMount.hasAttribute('data-custom-footer')) footerMount.outerHTML = buildFooter();
 })();

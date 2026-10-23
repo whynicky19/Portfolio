@@ -45,12 +45,12 @@
     layer.className='project-live-screens';
     layer.setAttribute('aria-hidden','true');
     scene.append(layer);
-    records.push({article,scene,photo,layer,variants,variant:null});
+    records.push({article,scene,photo,layer,variants,variant:null,active:false});
   });
   let frame=0;
   function update() {
     frame=0;
-    const measurements=records.map(record=> {
+    const measurements=records.filter(record=>record.active).map(record=> {
       const {article,photo,variants}=record;
       const variant=innerWidth>=1280 ? (article.classList.contains('scene-left')&&variants.left?'left':'wide') : 'square';
       const scene=variants[variant];
@@ -90,5 +90,19 @@
   const observer=new ResizeObserver(schedule);
   records.forEach(record=>{observer.observe(record.scene);record.photo.addEventListener('load',()=>{record.planes?.forEach(plane=>{if(plane.firstElementChild.complete&&plane.firstElementChild.naturalWidth)plane.classList.add('screen-ready');});schedule();});});
   window.addEventListener('resize',schedule,{passive:true});
-  update();
+  // Do not decode and allocate every perspective screen while the hero paints.
+  // The original high-quality scene remains visible until its real screen is ready.
+  if ('IntersectionObserver' in window) {
+    const nearby = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const record = records.find(record => record.scene === entry.target);
+        if (record) record.active = entry.isIntersecting;
+      });
+      schedule();
+    }, {rootMargin:'200px 0px',threshold:0});
+    records.forEach(record => nearby.observe(record.scene));
+  } else {
+    records.forEach(record => {record.active=true;});
+    update();
+  }
 })().catch(() => { /* Keep the original photographic scenes on load failure. */ });

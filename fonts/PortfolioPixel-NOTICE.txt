@@ -1,0 +1,5 @@
+Portfolio Pixel Bold is a modified version of Silkscreen Bold.
+Original copyright: 2001 The Silkscreen Project Authors.
+Modifications: open, stepped M/m and W/w outlines, retaining original metrics. M/m stems and diagonal band match the 250-unit bold strokes of the family.
+Licensed under the SIL Open Font License 1.1 (see Silkscreen-OFL.txt).
+Rebuild with scripts/build-readable-pixel-font.py (fonttools + brotli).

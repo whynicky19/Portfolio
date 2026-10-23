@@ -1,0 +1,7 @@
+{
+  "grid": "20 x 20",
+  "format": "SVG square cells, crispEdges",
+  "sources": "Existing assets/stack/logos SVG brand marks and img/brands/swift-logo.svg",
+  "swiftui": "Blue pixel variant of the existing Swift bird mark",
+  "generator": "scripts/build-pixel-icons.cjs"
+}
