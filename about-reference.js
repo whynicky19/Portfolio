@@ -213,3 +213,82 @@
   archive.classList.add('ab-archive-enhanced');
   reduced.addEventListener('change', event => { if (event.matches) previewMotion?.cancel(); });
 })();
+
+/* Each opening typesets the records again; offscreen rows wait for their turn. */
+(() => {
+  const chapter = document.querySelector('#experience');
+  const content = chapter?.querySelector('.ab-background-content');
+  if (!content || !Element.prototype.animate || !('IntersectionObserver' in window)) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const active = new Set();
+  let observer;
+  const ease = 'cubic-bezier(.16,.8,.2,1)';
+  const records = [...content.querySelectorAll('.ab-record-group-title,.ab-record')];
+
+  records.forEach(record => {
+    if (record.matches('.ab-record-group-title')) return;
+    const rule = document.createElement('i');
+    rule.className = 'ab-record-rule';
+    rule.setAttribute('aria-hidden', 'true');
+    record.append(rule);
+  });
+  chapter.classList.add('ab-record-motion');
+
+  function settle() {
+    observer?.disconnect();
+    active.forEach(animation => animation.cancel());
+    active.clear();
+  }
+  function move(node, frames, duration, delay = 0) {
+    if (!node) return;
+    const animation = node.animate(frames, {duration, delay, easing:ease, fill:'backwards'});
+    active.add(animation);
+    animation.finished.catch(() => {}).finally(() => active.delete(animation));
+  }
+  function reveal(record, delay = 0) {
+    observer?.unobserve(record);
+    move(record.querySelector('.ab-record-rule'), [
+      {transform:'scaleX(0)',opacity:.2}, {transform:'scaleX(1)',opacity:1}
+    ], 680, delay);
+    if (record.matches('.ab-record-group-title')) {
+      move(record.querySelector('strong'), [{opacity:.2,transform:'translateY(24px)',clipPath:'inset(0 0 80% 0)'},{opacity:1,transform:'none',clipPath:'inset(0 0 0% 0)'}], 720, delay);
+      return;
+    }
+    move(record.querySelector('.ab-record-date'), [
+      {opacity:.15,transform:'translateX(-12px)'},{opacity:1,transform:'none'}
+    ], 500, delay + 35);
+    move(record.querySelector('.ab-record-role'), [
+      {opacity:.2,transform:'translateY(18px)',clipPath:'inset(0 0 70% 0)'},
+      {opacity:1,transform:'none',clipPath:'inset(0 0 0% 0)'}
+    ], 650, delay + 75);
+    move(record.querySelector('.ab-record-description'), [
+      {opacity:.1,transform:'translateY(14px)'},{opacity:1,transform:'none'}
+    ], 650, delay + 135);
+  }
+  function open() {
+    settle();
+    if (!chapter.open || reduced.matches) return;
+    content.querySelectorAll('#experience-title').forEach((line, index) => {
+      move(line, [
+        {opacity:.2,transform:`translateX(${index ? 20 : -20}px)`},
+        {opacity:1,transform:'none'}
+      ], 620, index * 70);
+    });
+    observer = new IntersectionObserver(entries => {
+      entries.filter(entry => entry.isIntersecting).forEach((entry, index) => reveal(entry.target, Math.min(index * 70, 210)));
+    }, {threshold:0, rootMargin:'0px 0px -24px 0px'});
+    let index = 0;
+    records.forEach(record => {
+      const bounds = record.getBoundingClientRect();
+      if (bounds.bottom > 48 && bounds.top < innerHeight - 24) reveal(record, 90 + index++ * 70);
+      else if (bounds.bottom > 48) observer.observe(record);
+    });
+  }
+  chapter.addEventListener('toggle', () => chapter.open ? open() : settle());
+  // Focused links must always be completely visible, even during their entrance.
+  content.addEventListener('focusin', () => active.forEach(animation => animation.finish()));
+  reduced.addEventListener('change', () => reduced.matches ? settle() : open());
+  addEventListener('pagehide', settle);
+  addEventListener('pageshow', event => { if (event.persisted) open(); });
+  if (chapter.open) open();
+})();
